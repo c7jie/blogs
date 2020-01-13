@@ -6,25 +6,51 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://blogs.attachie.club">
-  <title>C# 基础知识系列- 2 字符串 | 高先生小屋</title>
+  <title>IT  技能图谱 | 高先生小屋</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="C# 字符串介绍，字符串常见方法">
+  <meta name="description" content="2.1.3 Java集合图谱 2.1.4 Java集合类图 2.1.5 Java List类图 2.1.6 Java Map类图 2.1.7 Java Set类图 2.1.8 Java TCP&#x2F;IP 3.1 Hadoop技能图谱 3.2 大数据技能图谱 4.1 云计算图谱 4.2 云计算技能图谱 5.1 IOS技能图谱 5.2 OpenResty技能图谱 5.3 前端技能图谱 5.4 容器技能图">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C# 基础知识系列- 2 字符串">
-<meta property="og:url" content="https://blogs.attachie.club/basecharp/e6999e60.html">
+<meta property="og:title" content="IT  技能图谱">
+<meta property="og:url" content="https://blogs.attachie.club/others/45148.html">
 <meta property="og:site_name" content="高先生小屋">
-<meta property="og:description" content="C# 字符串介绍，字符串常见方法">
+<meta property="og:description" content="2.1.3 Java集合图谱 2.1.4 Java集合类图 2.1.5 Java List类图 2.1.6 Java Map类图 2.1.7 Java Set类图 2.1.8 Java TCP&#x2F;IP 3.1 Hadoop技能图谱 3.2 大数据技能图谱 4.1 云计算图谱 4.2 云计算技能图谱 5.1 IOS技能图谱 5.2 OpenResty技能图谱 5.3 前端技能图谱 5.4 容器技能图">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-03-30T05:55:00.000Z">
-<meta property="article:modified_time" content="2020-01-11T03:56:47.125Z">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45a0a5ab64411cab00092a.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000eff.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000f05.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000f01.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000ef4.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000f08.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000ef7.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000f06.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000ef6.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000efd.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000ef8.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000f09.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000efa.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000f0c.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000ef3.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000ef2.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000efb.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000f02.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000f03.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000f00.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000f04.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000f07.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000f0b.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000efc.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000f0a.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000ef5.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/5a45bf81ab64411e95000ef5.png">
+<meta property="og:image" content="https://blogs.attachie.club/images/pasted-1.png">
+<meta property="article:published_time" content="2019-03-13T03:30:00.000Z">
+<meta property="article:modified_time" content="2020-01-13T07:26:56.377Z">
 <meta property="article:author" content="Mr.Gao">
-<meta property="article:tag" content="C#">
-<meta property="article:tag" content=".net">
-<meta property="article:tag" content="字符串">
-<meta property="article:tag" content="常见方法">
+<meta property="article:tag" content="IT 图谱">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blogs.attachie.club/images/5a45a0a5ab64411cab00092a.png">
   
     <link rel="alternative" href="/atom.xml" title="高先生小屋" type="application/atom+xml">
   
@@ -79,7 +105,6 @@ var _hmt = _hmt || [];
 
 
   
-
 </head>
 
 <body>
@@ -217,14 +242,14 @@ var _hmt = _hmt || [];
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-C-基础知识系列-2-字符串" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-IT-技能图谱" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      C# 基础知识系列- 2 字符串
+      IT  技能图谱
     </h1>
   
 
@@ -236,8 +261,8 @@ var _hmt = _hmt || [];
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/basecharp/e6999e60.html" class="archive-article-date">
-        <time datetime="2019-03-30T05:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-30</time>
+<a href="/others/45148.html" class="archive-article-date">
+        <time datetime="2019-03-13T03:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-13</time>
 </a>
 
   
@@ -250,7 +275,7 @@ var _hmt = _hmt || [];
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.1k字</span>
+      <span class="post-count">207字</span>
     </span>
   </span>
 
@@ -259,7 +284,7 @@ var _hmt = _hmt || [];
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">4分</span>
+      <span class="post-count">1分</span>
     </span>
   </span>
 </div>
@@ -270,50 +295,34 @@ var _hmt = _hmt || [];
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h1 id="String的常见方法"><a href="#String的常见方法" class="headerlink" title="String的常见方法"></a>String的常见方法</h1><h2 id="String-变量的声明方式"><a href="#String-变量的声明方式" class="headerlink" title="String 变量的声明方式"></a>String 变量的声明方式</h2><p>C#中字符串常见的声明有两种：</p>
-<ol>
-<li>直接使用字面值 即<code>String s = &quot;12321&quot;;</code></li>
-<li>使用构造器，即<code>String s = new String(&quot;12321&quot;);</code></li>
-</ol>
-<h2 id="string-的特点"><a href="#string-的特点" class="headerlink" title="string 的特点"></a>string 的特点</h2><p><code>String</code>（字符串）在大多数开发语言中属于不可变量，任何针对String的修改都会生成一个新的字符串。为什么会如此呢，究其原因是String在内存中以类似数组的形式存储字符数据。同时，<code>String</code> 还有一个非常有意思的特点： 字符串在一次声明后，程序会记忆当前已声明的字符串，以备下次使用时不用重新划分内存。<br>关于这一点有个很有意思（智障）的面试题：</p>
-<blockquote>
-<p>以下三种方式一共生成了几个内存空间：</p>
-</blockquote>
-<ol>
-<li>string s1 = “sa1234”;</li>
-<li>string s2 = “sa”+”1234”;</li>
-<li>string s3 = new string(s1);</li>
-</ol>
-<p>很多人包括一些老开发都会认为是4个，那么实际上呢，s2和s1同时指向了一个地址也就是两个。<br>嗯？是不是有点不可思议？</p>
-<p>这个是因为在C#中，字面值有一个特点，如果声明过程中一个变量的声明使用的都是字面值（即非变量）或者是常量，那么该变量的声明过程会优先计算值，然后将该变量指向一个常量。<br>也就是说 在<code>string s2 = &quot;sa&quot;+&quot;1234&quot;;</code>这个表达式中，会先将”sa”和”1234”合并成一个字符串，再赋值给s2。并不会先划分一个”sa”的内存区域，再划分一个”1234”的内存区域，最后再合并成”sa1234“。所以1和2都是直接指向”sa1234”。</p>
-<h2 id="string的构造函数"><a href="#string的构造函数" class="headerlink" title="string的构造函数"></a>string的构造函数</h2><p><code>string</code>的构造函数一共有以下几种：</p>
-<ol>
-<li><code>public String(char c, int count);</code></li>
-<li><code>public String(char[] value)；</code></li>
-<li><code>public String(char[] value, int startIndex, int length)；</code></li>
-<li>其他</li>
-</ol>
-<p>第一个： 生成数量为count的由c组成的字符串，不包括其他字符。<br>例：<code>string  s = new String(&#39;a&#39;,10);//s=&quot;aaaaaaaaaa&quot;</code><br>第二个： 将字符数组value转换为字符串，字符串等于字符数组依次连接生成的字符串<br>例：<code>string s = new String(new char[]{&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;,&#39;e&#39;});//s = &quot;abcde&quot;</code><br>第三个： 将字符数组value中部分元素拼接为字符串<br>例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var chars &#x3D; new char[] &#123;&#39;A&#39;, &#39;V&#39;, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;&#125;;</span><br><span class="line">var sr &#x3D; new string(chars, 0, 5);&#x2F;&#x2F;sr &#x3D; &quot;AVabc&quot;</span><br></pre></td></tr></table></figure>
-<p>第四个：这里面包括了一些不安全代码，即用到了指针。有机会会对这部分进行介绍。</p>
-<p>但是，到这里我们发现一个问题，<code>new string(string str)</code>在哪，前面不是使用了一个 <code>new string(&quot;12321&quot;)</code>吗？<br>事实是，并没有这个构造函数。那么，当我们使用<code>new string(&quot;12321&quot;)</code>时，实际上是哪个呢？显然可以看到它走的是 <strong>第二种</strong> ，系统将字符串当做字符数组传递给了<code>string</code>的构造函数。这也为我们揭露了string在内存中的存储方式-字符数组。由此可见字符串的不可变性其实跟数组类似。</p>
-<h2 id="空字符串"><a href="#空字符串" class="headerlink" title="空字符串"></a>空字符串</h2><p>在string类里有一个很有意思的静态属性：<code>string.Empty</code> 。它是一个常量，表示空字符串。空字符串，顾名思义：一个空的字符串，不含任何字符，但是不是NULL。</p>
-<h3 id="空字符串与NULL的区别"><a href="#空字符串与NULL的区别" class="headerlink" title="空字符串与NULL的区别"></a>空字符串与NULL的区别</h3><ul>
-<li>空字符串是一个长度为0的字符串；NULL没有长度，如果强行获取.Length将抛出异常</li>
-<li>空字符串可以调用字符串所有的方法；NULL无法调用字符串对象的任何方法</li>
-<li>空字符串指向的是内存中的某一个地址，NULL则没有任何指向</li>
-</ul>
-<h3 id="判断字符串是否为空："><a href="#判断字符串是否为空：" class="headerlink" title="判断字符串是否为空："></a>判断字符串是否为空：</h3><ol>
-<li>字符串是否是空字符串：</li>
-</ol>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">string</span> str = <span class="keyword">string</span>.Empty;</span><br><span class="line"><span class="keyword">bool</span> result = str == <span class="string">""</span> || str == <span class="keyword">string</span>.Empty || str.Length == <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>字符串是否是空引用：</li>
-</ol>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">string</span> str = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">bool</span> result = str == <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
-<p>除了这些繁琐的方法，c# 内部为我们增加了一个默认支持方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string.IsNullOrEmpty(value)</span><br></pre></td></tr></table></figure>
-<p>该方法验证字符串是否是NULL或者一个空串并返回验证结果<br>当然，在我们平时开发过程中不只是需要不是一个空串或NULL，还得是一个非空白字符的串。这时候就需要用到这个方法了:<code>string.IsNullOrWhiteSpace(value)</code>。</p>
+    <p><img src="/images/5a45a0a5ab64411cab00092a.png" alt="2.2 Java并发图谱"></p>
+<h2 id="2-1-3-Java集合图谱"><a href="#2-1-3-Java集合图谱" class="headerlink" title="2.1.3 Java集合图谱"></a>2.1.3 Java集合图谱</h2><p><img src="/images/5a45bf81ab64411e95000eff.png" alt="2.3 Java集合图谱"></p>
+<h2 id="2-1-4-Java集合类图"><a href="#2-1-4-Java集合类图" class="headerlink" title="2.1.4 Java集合类图"></a>2.1.4 Java集合类图</h2><p><img src="/images/5a45bf81ab64411e95000f05.png" alt="2.4 Java集合类图"></p>
+<h2 id="2-1-5-Java-List类图"><a href="#2-1-5-Java-List类图" class="headerlink" title="2.1.5 Java List类图"></a>2.1.5 Java List类图</h2><p><img src="/images/5a45bf81ab64411e95000f01.png" alt="2.5 Java List类图"></p>
+<h2 id="2-1-6-Java-Map类图"><a href="#2-1-6-Java-Map类图" class="headerlink" title="2.1.6 Java Map类图"></a>2.1.6 Java Map类图</h2><p><img src="/images/5a45bf81ab64411e95000ef4.png" alt="2.6 Java Map类图"></p>
+<h2 id="2-1-7-Java-Set类图"><a href="#2-1-7-Java-Set类图" class="headerlink" title="2.1.7 Java Set类图"></a>2.1.7 Java Set类图</h2><p><img src="/images/5a45bf81ab64411e95000f08.png" alt="2.7 Java Set类图"></p>
+<h2 id="2-1-8-Java-TCP-IP"><a href="#2-1-8-Java-TCP-IP" class="headerlink" title="2.1.8 Java TCP/IP"></a>2.1.8 Java TCP/IP</h2><p><img src="/images/5a45bf81ab64411e95000ef7.png" alt="2.8 Java TCP IP"></p>
+<h1 id="3-1-Hadoop技能图谱"><a href="#3-1-Hadoop技能图谱" class="headerlink" title="3.1 Hadoop技能图谱"></a>3.1 Hadoop技能图谱</h1><p><img src="/images/5a45bf81ab64411e95000f06.png" alt="3.1 Hadoop技能图谱"></p>
+<h1 id="3-2-大数据技能图谱"><a href="#3-2-大数据技能图谱" class="headerlink" title="3.2 大数据技能图谱"></a>3.2 大数据技能图谱</h1><p><img src="/images/5a45bf81ab64411e95000ef6.png" alt="3.2 大数据技能图谱"></p>
+<h1 id="4-1-云计算图谱"><a href="#4-1-云计算图谱" class="headerlink" title="4.1 云计算图谱"></a>4.1 云计算图谱</h1><p><img src="/images/5a45bf81ab64411e95000efd.png" alt="4.1 云计算图谱"></p>
+<h1 id="4-2-云计算技能图谱"><a href="#4-2-云计算技能图谱" class="headerlink" title="4.2 云计算技能图谱"></a>4.2 云计算技能图谱</h1><p><img src="/images/5a45bf81ab64411e95000ef8.png" alt="4.2 云计算技能图谱"></p>
+<h1 id="5-1-IOS技能图谱"><a href="#5-1-IOS技能图谱" class="headerlink" title="5.1 IOS技能图谱"></a>5.1 IOS技能图谱</h1><p><img src="/images/5a45bf81ab64411e95000f09.png" alt="5.1 IOS技能图谱"></p>
+<h1 id="5-2-OpenResty技能图谱"><a href="#5-2-OpenResty技能图谱" class="headerlink" title="5.2 OpenResty技能图谱"></a>5.2 OpenResty技能图谱</h1><p><img src="/images/5a45bf81ab64411e95000efa.png" alt="5.2 OpenResty技能图谱"></p>
+<h1 id="5-3-前端技能图谱"><a href="#5-3-前端技能图谱" class="headerlink" title="5.3 前端技能图谱"></a>5.3 前端技能图谱</h1><p><img src="/images/5a45bf81ab64411e95000f0c.png" alt="5.3 前端技能图谱"></p>
+<h1 id="5-4-容器技能图谱"><a href="#5-4-容器技能图谱" class="headerlink" title="5.4 容器技能图谱"></a>5.4 容器技能图谱</h1><p><img src="/images/5a45bf81ab64411e95000ef3.png" alt="5.4 容器技能图谱"></p>
+<h1 id="5-5-嵌入式开发技能图谱"><a href="#5-5-嵌入式开发技能图谱" class="headerlink" title="5.5 嵌入式开发技能图谱"></a>5.5 嵌入式开发技能图谱</h1><p><img src="/images/5a45bf81ab64411e95000ef2.png" alt="5.5 嵌入式开发技能图谱"></p>
+<h1 id="5-6-开发语言宝典"><a href="#5-6-开发语言宝典" class="headerlink" title="5.6 开发语言宝典"></a>5.6 开发语言宝典</h1><p><img src="/images/5a45bf81ab64411e95000efb.png" alt="5.6 开发语言宝典"></p>
+<h1 id="5-7-移动端测试图谱"><a href="#5-7-移动端测试图谱" class="headerlink" title="5.7 移动端测试图谱"></a>5.7 移动端测试图谱</h1><p><img src="/images/5a45bf81ab64411e95000f02.png" alt="5.7 移动端测试图谱"></p>
+<h1 id="5-8-运维技能图谱"><a href="#5-8-运维技能图谱" class="headerlink" title="5.8 运维技能图谱"></a>5.8 运维技能图谱</h1><p><img src="/images/5a45bf81ab64411e95000f03.png" alt="5.8 运维技能图谱"></p>
+<h1 id="5-9-软件工程"><a href="#5-9-软件工程" class="headerlink" title="5.9 软件工程"></a>5.9 软件工程</h1><p><img src="/images/5a45bf81ab64411e95000f00.png" alt="5.9 软件工程"></p>
+<h1 id="5-10-DevOps"><a href="#5-10-DevOps" class="headerlink" title="5.10 DevOps"></a>5.10 DevOps</h1><p><img src="/images/5a45bf81ab64411e95000f04.png" alt="5.10 DevOps"></p>
+<h1 id="5-11-前端开发"><a href="#5-11-前端开发" class="headerlink" title="5.11 前端开发"></a>5.11 前端开发</h1><p><img src="/images/5a45bf81ab64411e95000f07.png" alt="5.11 前端开发"></p>
+<h1 id="5-12-后端开发"><a href="#5-12-后端开发" class="headerlink" title="5.12 后端开发"></a>5.12 后端开发</h1><p><img src="/images/5a45bf81ab64411e95000f0b.png" alt="5.12 后端开发"></p>
+<h1 id="5-13-软件发布流程"><a href="#5-13-软件发布流程" class="headerlink" title="5.13 软件发布流程"></a>5.13 软件发布流程</h1><p><img src="/images/5a45bf81ab64411e95000efc.png" alt="5.13 软件发布流程"></p>
+<h1 id="5-14-DBA-技能图谱1-0"><a href="#5-14-DBA-技能图谱1-0" class="headerlink" title="5.14 DBA 技能图谱1.0"></a>5.14 DBA 技能图谱1.0</h1><p><img src="/images/5a45bf81ab64411e95000f0a.png" alt="5.14 DBA 技能图谱1.0"></p>
+<h1 id="5-15-H5技能图谱1-0"><a href="#5-15-H5技能图谱1-0" class="headerlink" title="5.15 H5技能图谱1.0"></a>5.15 H5技能图谱1.0</h1><p><img src="/images/5a45bf81ab64411e95000ef5.png" alt="5.15 H5技能图谱1.0"></p>
+<h1 id="5-16-移动性能优化1-0"><a href="#5-16-移动性能优化1-0" class="headerlink" title="5.16 移动性能优化1.0"></a>5.16 移动性能优化1.0</h1><p><img src="/images/5a45bf81ab64411e95000ef5.png" alt="5.16 移动性能优化1.0"></p>
+<h1 id="5-17-机器学习技能图谱"><a href="#5-17-机器学习技能图谱" class="headerlink" title="5.17 机器学习技能图谱"></a>5.17 机器学习技能图谱</h1><p><img src="/images/pasted-1.png" alt="机器学习技能图谱"></p>
 
     
 
@@ -360,7 +369,7 @@ var _hmt = _hmt || [];
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https:/blogs.attachie.club/basecharp/e6999e60.html" title="C# 基础知识系列- 2 字符串" target="_blank">https:/blogs.attachie.club/basecharp/e6999e60.html</a>
+          <a href="https:/blogs.attachie.club/others/45148.html" title="IT  技能图谱" target="_blank">https:/blogs.attachie.club/others/45148.html</a>
         </li>
         
         <li>
@@ -382,11 +391,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C#基础知识</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">字符串</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">IT 图谱</a>
         		</li>
       		
 		</ul>
@@ -398,7 +403,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/basecharp/" class="article-tag-list-link color2">C#基础知识</a>
+        			<a href="/categories/others/" class="article-tag-list-link color3">其他</a>
         		</li>
       		
 		</ul>
@@ -453,7 +458,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://blogs.attachie.club/basecharp/e6999e60.html" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://blogs.attachie.club/others/45148.html" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -468,18 +473,18 @@ var _hmt = _hmt || [];
 
 <nav id="article-nav">
   
-    <a href="/leetcode/31441.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/basecharp/381553b5.html" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          LeetCode刷题系列-01 两数之和
+          C# 基础知识系列- 1 数据类型
         
       </div>
     </a>
   
   
-    <a href="/basecharp/381553b5.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">C# 基础知识系列- 1 数据类型</div>
+    <a href="/express/deceab70.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Express 基础入门</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -506,7 +511,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#String的常见方法"><span class="toc-number">1.</span> <span class="toc-text">String的常见方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#String-变量的声明方式"><span class="toc-number">1.1.</span> <span class="toc-text">String 变量的声明方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#string-的特点"><span class="toc-number">1.2.</span> <span class="toc-text">string 的特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#string的构造函数"><span class="toc-number">1.3.</span> <span class="toc-text">string的构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#空字符串"><span class="toc-number">1.4.</span> <span class="toc-text">空字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#空字符串与NULL的区别"><span class="toc-number">1.4.1.</span> <span class="toc-text">空字符串与NULL的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#判断字符串是否为空："><span class="toc-number">1.4.2.</span> <span class="toc-text">判断字符串是否为空：</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-3-Java集合图谱"><span class="toc-number">1.</span> <span class="toc-text">2.1.3 Java集合图谱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-4-Java集合类图"><span class="toc-number">2.</span> <span class="toc-text">2.1.4 Java集合类图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-5-Java-List类图"><span class="toc-number">3.</span> <span class="toc-text">2.1.5 Java List类图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-6-Java-Map类图"><span class="toc-number">4.</span> <span class="toc-text">2.1.6 Java Map类图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-7-Java-Set类图"><span class="toc-number">5.</span> <span class="toc-text">2.1.7 Java Set类图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-8-Java-TCP-IP"><span class="toc-number">6.</span> <span class="toc-text">2.1.8 Java TCP&#x2F;IP</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-1-Hadoop技能图谱"><span class="toc-number"></span> <span class="toc-text">3.1 Hadoop技能图谱</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-2-大数据技能图谱"><span class="toc-number"></span> <span class="toc-text">3.2 大数据技能图谱</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-1-云计算图谱"><span class="toc-number"></span> <span class="toc-text">4.1 云计算图谱</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-2-云计算技能图谱"><span class="toc-number"></span> <span class="toc-text">4.2 云计算技能图谱</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-1-IOS技能图谱"><span class="toc-number"></span> <span class="toc-text">5.1 IOS技能图谱</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-2-OpenResty技能图谱"><span class="toc-number"></span> <span class="toc-text">5.2 OpenResty技能图谱</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-3-前端技能图谱"><span class="toc-number"></span> <span class="toc-text">5.3 前端技能图谱</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-4-容器技能图谱"><span class="toc-number"></span> <span class="toc-text">5.4 容器技能图谱</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-5-嵌入式开发技能图谱"><span class="toc-number"></span> <span class="toc-text">5.5 嵌入式开发技能图谱</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-6-开发语言宝典"><span class="toc-number"></span> <span class="toc-text">5.6 开发语言宝典</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-7-移动端测试图谱"><span class="toc-number"></span> <span class="toc-text">5.7 移动端测试图谱</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-8-运维技能图谱"><span class="toc-number"></span> <span class="toc-text">5.8 运维技能图谱</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-9-软件工程"><span class="toc-number"></span> <span class="toc-text">5.9 软件工程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-10-DevOps"><span class="toc-number"></span> <span class="toc-text">5.10 DevOps</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-11-前端开发"><span class="toc-number"></span> <span class="toc-text">5.11 前端开发</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-12-后端开发"><span class="toc-number"></span> <span class="toc-text">5.12 后端开发</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-13-软件发布流程"><span class="toc-number"></span> <span class="toc-text">5.13 软件发布流程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-14-DBA-技能图谱1-0"><span class="toc-number"></span> <span class="toc-text">5.14 DBA 技能图谱1.0</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-15-H5技能图谱1-0"><span class="toc-number"></span> <span class="toc-text">5.15 H5技能图谱1.0</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-16-移动性能优化1-0"><span class="toc-number"></span> <span class="toc-text">5.16 移动性能优化1.0</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-17-机器学习技能图谱"><span class="toc-number"></span> <span class="toc-text">5.17 机器学习技能图谱</span></a>
                     </div>
                 </span>
             </div>
@@ -667,14 +672,6 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C#基础知识</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Express</a>
               </li>
              
@@ -687,11 +684,31 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">IT 图谱</a>
+                <a href="javascript:void(0)" class="js-tag color2">C#基础知识</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">IT 图谱</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">日常工作系列</a>
               </li>
              
               <li class="article-tag-list-item">
