@@ -18,7 +18,7 @@
 <meta property="og:description" content="该文档整理自 Express官方文档  安装首先假定你已经安装了 Node.js，接下来为你的应用创建一个目录，然后进入此目录并将其作为当前工作目录。 12$ mkdir myapp$ cd myapp  通过 npm init 命令为你的应用创建一个 package.json 文件。 欲了解 package.json 是如何起作用的，请参考 Specifics of npm’s package">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-03-13T02:59:00.000Z">
-<meta property="article:modified_time" content="2020-01-11T03:56:47.125Z">
+<meta property="article:modified_time" content="2020-03-04T00:55:43.563Z">
 <meta property="article:author" content="Mr.Gao">
 <meta property="article:tag" content="Express">
 <meta property="article:tag" content=" NodeJS">
@@ -366,28 +366,29 @@ var _hmt = _hmt || [];
 <h1 id="Express-常见问题"><a href="#Express-常见问题" class="headerlink" title="Express 常见问题"></a>Express 常见问题</h1><h2 id="我的应用该如何组织？"><a href="#我的应用该如何组织？" class="headerlink" title="我的应用该如何组织？"></a>我的应用该如何组织？</h2><p>对于这个问题其实没有一个确定的答案。这要根据你的应用的规模和参与开发的团队来确定。为了尽可能灵活，Express 自身是并没有硬性要求应用结构是哪一种的。</p>
 <p>根据你的需求，可以把路由和其他应用相关的业务逻辑存放在任意多个文件和任意目录中。下面推荐的实例或许对你能有一些启发：</p>
 <ul>
-<li>Route listings</li>
-<li>Route map</li>
-<li>MVC style controllers</li>
+<li><a href="https://github.com/strongloop/express/blob/4.13.1/examples/route-separation/index.js#L32-L47" target="_blank" rel="noopener">Route listings</a></li>
+<li><a href="https://github.com/strongloop/express/blob/4.13.1/examples/route-map/index.js#L52-L66" target="_blank" rel="noopener">Route map</a></li>
+<li><a href="https://github.com/strongloop/express/tree/master/examples/mvc" target="_blank" rel="noopener">MVC style controllers</a></li>
 </ul>
 <p>另外，这里还有一些第三方 Express 扩展简化了这种组织方式：</p>
 <ul>
-<li>Resourceful routing</li>
+<li><a href="https://github.com/expressjs/express-resource" target="_blank" rel="noopener">Resourceful routing</a></li>
 </ul>
 <h2 id="如何定义模型（model）？"><a href="#如何定义模型（model）？" class="headerlink" title="如何定义模型（model）？"></a>如何定义模型（model）？</h2><p>Express自身并不感知数据库是否存在。数据库功能依赖于第三方 Node 模块提供的接口。</p>
 <h2 id="如何验证用户？"><a href="#如何验证用户？" class="headerlink" title="如何验证用户？"></a>如何验证用户？</h2><p>这是另一个 Express 不涉及的领域。你可以使用任何验证方式。对于简单的用户名/密码验证方式，可以参考<a href="https://github.com/expressjs/express/tree/master/examples/auth" target="_blank" rel="noopener">这个实例</a>。</p>
-<h2 id="Express-支持哪些模板引擎？"><a href="#Express-支持哪些模板引擎？" class="headerlink" title="Express 支持哪些模板引擎？"></a>Express 支持哪些模板引擎？</h2><p>Express 支持任何符合 (path, locals, callback) 接口规范的模板引擎。 为了统一模板引擎的接口和缓存功能，请参考 consolidate.js 项目。其他未提及的模板引擎也可能支持 Express 接口规范。</p>
+<h2 id="Express-支持哪些模板引擎？"><a href="#Express-支持哪些模板引擎？" class="headerlink" title="Express 支持哪些模板引擎？"></a>Express 支持哪些模板引擎？</h2><p>Express 支持任何符合 (path, locals, callback) 接口规范的模板引擎。 为了统一模板引擎的接口和缓存功能，请参考 <a href="https://github.com/visionmedia/consolidate.js" target="_blank" rel="noopener"><code>consolidate.js</code></a> 项目。其他未提及的模板引擎也可能支持 Express 接口规范。</p>
 <h2 id="如何处理-404-？"><a href="#如何处理-404-？" class="headerlink" title="如何处理 404 ？"></a>如何处理 404 ？</h2><p>在 Express 中，404 并不是一个错误（error）。因此，错误处理器中间件并不捕获 404。这是因为 404 只是意味着某些功能没有实现。也就是说，Express 执行了所有中间件、路由之后还是没有获取到任何输出。你所需要做的就是在其所有他中间件的后面添加一个处理 404 的中间件。如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  res.status(<span class="number">404</span>).send(<span class="string">'Sorry cant find that!'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <h1 id="如何设置一个错误处理器？"><a href="#如何设置一个错误处理器？" class="headerlink" title="如何设置一个错误处理器？"></a>如何设置一个错误处理器？</h1><p>错误处理器中间件的定义和其他中间件一样，唯一的区别是 4 个而不是 3 个参数，即 (err, req, res, next)：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">err, req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.error(err.stack);</span><br><span class="line">  res.status(<span class="number">500</span>).send(<span class="string">'Something broke!'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<p>请参考错误处理章节以了解更多信息。</p>
+<p>请参考<a href="http://www.expressjs.com.cn/guide/error-handling.html" target="_blank" rel="noopener">错误处理</a>章节以了解更多信息。</p>
 <h1 id="如何渲染纯-HTML-文件？"><a href="#如何渲染纯-HTML-文件？" class="headerlink" title="如何渲染纯 HTML 文件？"></a>如何渲染纯 HTML 文件？</h1><p>不需要！无需通过 <code>res.render()</code> 渲染 <code>HTML</code>。你可以通过 <code>res.sendFile()</code> 直接对外输出 <code>HTML</code> 文件。如果你需要对外提供的资源文件很多，可以使用 <code>express.static()</code> 中间件。</p>
 
     
 
+    
     
     <div class="page-reward">
       <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
@@ -423,6 +424,7 @@ var _hmt = _hmt || [];
     
 
     
+    
     <div class="declare"> 
       <ul class="post-copyright">
         <li>
@@ -442,6 +444,7 @@ var _hmt = _hmt || [];
         
       </ul>
     </div>
+    
     
 
   </div>
@@ -737,14 +740,6 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C#基础知识</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Express</a>
               </li>
              
@@ -754,6 +749,14 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Express 基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">C#基础知识</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -785,11 +788,27 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">日志</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">加密技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
             
             <div class="clearfix"></div>
