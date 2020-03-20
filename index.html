@@ -260,7 +260,7 @@ var _hmt = _hmt || [];
     <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>Jupyter Notebook（此前被称为 IPython notebook）是一个交互式笔记本，目前支持运行 40 多种编程语言。</p>
 <p>Jupyter Notebook 的本质是一个 Web 应用程序，便于创建和共享文学化程序文档，支持实时代码，数学方程，可视化和 markdown。对于一些追求可视化的选手，或者说在写一些需要一步步调试的功能时，是一个很好的工具。</p>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="通过Anaconda安装"><a href="#通过Anaconda安装" class="headerlink" title="通过Anaconda安装"></a>通过<code>Anaconda</code>安装</h2><p><code>Anaconda</code> 是一个很有意思的软件，也是Python中举足轻重的一部分，不过网上一搜一大堆，就不过多介绍了。</p>
-<p>按照 官方给定的教程下载后，就会在启动面板看到 <code>Jupyter</code> 的图标。<br><img src="/images/pasted-37.png" alt="pasted image"></p>
+<p>按照 官方给定的教程下载后，就会在启动面板看到 <code>Jupyter</code> 的图标。<br><img src="https://graph.baidu.com/resource/222da954276aeb0df89c301584691858.png" alt="file"></p>
 <blockquote>
 <p>注：按照个人安装的包不一致，显示的版本和图标顺序会有所不同。</p>
 </blockquote>
@@ -270,25 +270,18 @@ var _hmt = _hmt || [];
 </li>
 <li><p>如果安装了多个Python版本，则根据设置的Python安装别名进行安装<br>在<code>Python2</code> 和<code>Python3</code>共存的前提下，设置了<code>Python3</code>的别名为<code>python3</code> 使用以下命令，对于大多数内置了Py2和Py3的Linux来说 ，也是这个命令。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python3 -m pip install --upgrade pip</span><br><span class="line">pip3 install jupyter</span><br></pre></td></tr></table></figure>
-<p>在<code>Python2</code> 和<code>Python3</code>共存的前提下，设置了<code>Python2</code>的别名为<code>python2</code> 使用以下命令<br>如果已经安装了Python 2：</p>
+<p>在<code>Python2</code> 和<code>Python3</code>共存的前提下，设置了<code>Python2</code>的别名为<code>python2</code> 使用以下命令<br>如果已经安装了<code>Python 2</code>：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python2 -m pip install --upgrade pip</span><br><span class="line">pip2 install jupyter</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
 <p>嗯，怎么说呢，在非Anaconda环境下，多Python版本管理是个非常蛋疼的事情。</p>
 <h1 id="第一次启动"><a href="#第一次启动" class="headerlink" title="第一次启动"></a>第一次启动</h1><ol>
-<li>在<code>Anaconda</code>环境中启动<br><img src="/images/pasted-38.png" alt="pasted image"><br>在Windows+Anaconda 环境中会出现这两个图标，如果没有修改过任何配置的话，它们的启动后的工作目录应该都是</li>
+<li>在<code>Anaconda</code>环境中启动<br><img src="https://graph.baidu.com/resource/22298a3018cb772aa26ec01584691893.png" alt="file"><br>在Windows+Anaconda 环境中会出现这两个图标，如果没有修改过任何配置的话，它们的启动后的工作目录应该都是</li>
 </ol>
-<p><strong>文档</strong> 目录，即当前用户的文档目录。点这两个都可以启动，启动后会出现如下的弹窗。Windows和Linux差不多，只是部分显示信息不同。<br><img src="/images/pasted-39.png" alt="pasted image"><br>我这个因为一些设置，将<strong>当前用户</strong>根目录设置为工作目录了。启动成功后，会通过浏览器打开一个页面，然后就可以在网页里操作了。<br>2. 命令行启动<br>在命令行中输入</p>
-<blockquote>
-<p>jupyter notebook<br><img src="/images/pasted-40.png" alt="pasted image"></p>
-</blockquote>
-<p>这个就使用了我之前设置的启动目录，所以我一般用命令行启动，比较好控制启动目录。</p>
-<ol start="3">
-<li>启动并临时设置工作目录<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook . # 设置当前目录为工作目录，并启动jupyter notebook</span><br><span class="line"></span><br><span class="line">jupyter notebook path # 设置 path 目录为工作目录，path可以为任意目录，但需要注意 Windows和Linux关于目录分隔符的区别</span><br></pre></td></tr></table></figure>
+<p><strong>文档</strong> 目录，即当前用户的文档目录。点这两个都可以启动，启动后会出现如下的弹窗。Windows和Linux差不多，只是部分显示信息不同。<br><img src="https://graph.baidu.com/resource/2226285560f0f1570c9f901584691912.png" alt="file"><br>我这个因为一些设置，将<strong>当前用户</strong>根目录设置为工作目录了。启动成功后，会通过浏览器打开一个页面，然后就可以在网页里操作了。<br>2. 命令行启动<br>在命令行中输入 <code>jupyter notebook</code><br><img src="https://graph.baidu.com/resource/22218110736dbf9ff4e3501584691943.png" alt="file"><br>这个就使用了我之前设置的启动目录，所以我一般用命令行启动，比较好控制启动目录。<br>3. 启动并临时设置工作目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook . # 设置当前目录为工作目录，并启动jupyter notebook</span><br><span class="line">jupyter notebook path # 设置 path 目录为工作目录，path可以为任意目录，但需要注意 Windows和Linux关于目录分隔符的区别</span><br></pre></td></tr></table></figure>
 
-</li>
-</ol>
 <h1 id="Jupyter设置"><a href="#Jupyter设置" class="headerlink" title="Jupyter设置"></a>Jupyter设置</h1><h2 id="生成配置文件"><a href="#生成配置文件" class="headerlink" title="生成配置文件"></a>生成配置文件</h2><p>在命令行中输入</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br></pre></td></tr></table></figure>
 <p>如果命令执行成功，会在 %用户目录%/.jupyter/ 下生成一个 <code>jupyter_notebook_config.py</code> 文件。</p>
@@ -302,10 +295,11 @@ var _hmt = _hmt || [];
 在python交互命令行中执行以上命令，然后两次输入密码，就会得到一个密码串，格式是：’sha1:&lt;密码&gt;’<br>将得到的密码串（包括 sha1 前缀） 赋值给 <code>c.NotebookApp.password</code></li>
 </ol>
 <p>以上是我最近遇到的一些设置项，更多的可以查看 <code>jupyter_notebook_config.py</code>文件。<br>需要指出的是，配置文件中所有设置项都是注释的，如果需要修改，必须先取消注释才行。</p>
-<h2 id="关于-Windows下-通过快捷方式启动Jupyter-NoteBook-可能需要的问题"><a href="#关于-Windows下-通过快捷方式启动Jupyter-NoteBook-可能需要的问题" class="headerlink" title="关于 Windows下 通过快捷方式启动Jupyter NoteBook 可能需要的问题"></a>关于 Windows下 通过快捷方式启动Jupyter NoteBook 可能需要的问题</h2><p>如果直接通过快捷方式启动，会遇到设置的工作目录不起作用的问题，右键快捷方式点击属性<br><img src="/images/pasted-41.png" alt="pasted image"><br>然后修改箭头指向的内容，点确认保存修改。</p>
-<h1 id="使用-Visual-Code-写Jupyter-NoteBook"><a href="#使用-Visual-Code-写Jupyter-NoteBook" class="headerlink" title="使用 Visual Code 写Jupyter NoteBook"></a>使用 Visual Code 写Jupyter NoteBook</h1><p>每次启动 Jupyter NoteBook都会弹出一个黑框，身为一个非典型强迫症看着着实难受，所以就尝试了用code。<br>感觉很不错，code 安装<code>python</code>扩展后，直接新建 XXX.ipynb 文件就会自动渲染，效果如下<br><img src="/images/pasted-42.png" alt="pasted image"><br>点 三角形箭头执行当前单元格。</p>
+<h2 id="关于-Windows下-通过快捷方式启动Jupyter-NoteBook-可能需要的问题"><a href="#关于-Windows下-通过快捷方式启动Jupyter-NoteBook-可能需要的问题" class="headerlink" title="关于 Windows下 通过快捷方式启动Jupyter NoteBook 可能需要的问题"></a>关于 Windows下 通过快捷方式启动Jupyter NoteBook 可能需要的问题</h2><p>如果直接通过快捷方式启动，会遇到设置的工作目录不起作用的问题，右键快捷方式点击属性<br><img src="https://graph.baidu.com/resource/222f2afdbfb77370b2a8b01584691996.png" alt="file"><br>然后修改箭头指向的内容，点确认保存修改。</p>
+<h1 id="使用-Visual-Code-写Jupyter-NoteBook"><a href="#使用-Visual-Code-写Jupyter-NoteBook" class="headerlink" title="使用 Visual Code 写Jupyter NoteBook"></a>使用 Visual Code 写Jupyter NoteBook</h1><p>每次启动 Jupyter NoteBook都会弹出一个黑框，身为一个非典型强迫症看着着实难受，所以就尝试了用code。<br>感觉很不错，code 安装<code>python</code>扩展后，直接新建 XXX.ipynb 文件就会自动渲染，效果如下<br><img src="https://graph.baidu.com/resource/2228b55d5749213cc0aa301584692010.png" alt="file"><br>点 三角形箭头执行当前单元格。</p>
 <h1 id="不重启服务安装其他包"><a href="#不重启服务安装其他包" class="headerlink" title="不重启服务安装其他包"></a>不重启服务安装其他包</h1><p>在平时使用的时候会遇到这么一种情况，写的正嗨的时候，发现要用的包没安装，不得已关闭然后pip安装，再启动，感觉相当费劲。所以我就查了一下有没有在不重启服务的前提下，安装三方包。现有方案如下</p>
-<h2 id="方案一-使用命令"><a href="#方案一-使用命令" class="headerlink" title="方案一 使用命令"></a>方案一 使用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!pip install</span><br></pre></td></tr></table></figure>
+<h2 id="方案一-使用命令"><a href="#方案一-使用命令" class="headerlink" title="方案一 使用命令"></a>方案一 使用命令</h2><p>在<code>jupyter notebook</code> 的单元格里输入下面的命令，然后执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!pip install</span><br></pre></td></tr></table></figure>
 <p><code>jupyter</code> 可以通过这种方式访问别的命令，例如 !ls !touch xxx.py</p>
 <h2 id="方案二-使用python脚本"><a href="#方案二-使用python脚本" class="headerlink" title="方案二  使用python脚本"></a>方案二  使用<code>python</code>脚本</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">ok = <span class="literal">False</span></span><br><span class="line"><span class="keyword">while</span> <span class="keyword">not</span> ok:</span><br><span class="line">    get_ipython().system(<span class="string">'pip install numpy'</span>)<span class="comment">#或者os.system('pip install numpy')</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">import</span> numpy</span><br><span class="line">        ok = <span class="literal">True</span>;</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">continue</span></span><br></pre></td></tr></table></figure>
 <p>这种方式比较万能，适合很多python环境，在脚本或者其他不能重启的环境中可以通过这种方式安装三方包，不过也是一种权宜之计。</p>
@@ -2265,14 +2259,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Express</a>
               </li>
              
@@ -2285,6 +2271,18 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">IT 图谱</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">每日转载一篇</a>
               </li>
              
@@ -2294,10 +2292,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习路线</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">IT 图谱</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2317,15 +2311,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">加密技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2333,11 +2323,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">日志</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+                <a href="javascript:void(0)" class="js-tag color5">加密技术</a>
               </li>
             
             <div class="clearfix"></div>
