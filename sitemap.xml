@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blogs.attachie.club/about/index.html</loc>
+    
+    <lastmod>2020-03-23T03:26:14.218Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blogs.attachie.club/database/sql/14604.html</loc>
     
-    <lastmod>2020-03-23T02:07:45.129Z</lastmod>
+    <lastmod>2020-03-23T02:08:22.660Z</lastmod>
     
   </url>
   
@@ -131,13 +138,6 @@
     <loc>https://blogs.attachie.club/tags/index.html</loc>
     
     <lastmod>2020-01-11T03:56:47.281Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blogs.attachie.club/about/index.html</loc>
-    
-    <lastmod>2020-01-11T03:56:47.125Z</lastmod>
     
   </url>
   
