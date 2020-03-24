@@ -1110,7 +1110,8 @@ var _hmt = _hmt || [];
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><img src="/images/5a45a0a5ab64411cab00092a.png" alt="2.2 Java并发图谱"></p>
+    <a id="more"></a>
+<p><img src="/images/5a45a0a5ab64411cab00092a.png" alt="2.2 Java并发图谱"></p>
 <h2 id="2-1-3-Java集合图谱"><a href="#2-1-3-Java集合图谱" class="headerlink" title="2.1.3 Java集合图谱"></a>2.1.3 Java集合图谱</h2><p><img src="/images/5a45bf81ab64411e95000eff.png" alt="2.3 Java集合图谱"></p>
 <h2 id="2-1-4-Java集合类图"><a href="#2-1-4-Java集合类图" class="headerlink" title="2.1.4 Java集合类图"></a>2.1.4 Java集合类图</h2><p><img src="/images/5a45bf81ab64411e95000f05.png" alt="2.4 Java集合类图"></p>
 <h2 id="2-1-5-Java-List类图"><a href="#2-1-5-Java-List类图" class="headerlink" title="2.1.5 Java List类图"></a>2.1.5 Java List类图</h2><p><img src="/images/5a45bf81ab64411e95000f01.png" alt="2.5 Java List类图"></p>
@@ -1257,98 +1258,9 @@ var _hmt = _hmt || [];
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install express</span></span><br></pre></td></tr></table></figure>
 
 <p>安装 Node 模块时，如果指定了 <code>--save</code>参数，那么此模块将被添加到 <code>package.json</code> 文件中 <code>dependencies</code> 依赖列表中。 然后通过 <code>npm install</code> 命令即可自动安装依赖列表中所列出的所有模块。</p>
-<hr>
-<h1 id="Hello-world-实例"><a href="#Hello-world-实例" class="headerlink" title="Hello world 实例"></a>Hello world 实例</h1><p>继续之前请务必按照 <a href="#安装">安装</a> 章节执行了所有的前期准备工作。</p>
-<p>接下来，我们一起创建一个基本的 Express 应用。</p>
-<p>注意：这里所创建是一个最最简单的 Express 应用，并且仅仅只有一个文件 — 和通过 <a href="#Express应用生成器">Express 应用生成器</a> 所创建的应用<strong>完全不一样</strong>，Express 应用生成器所创建的应用框架包含多个 JavaScript 文件、Jade 模板和针对不同用途的子目录。</p>
-<p>进入 myapp 目录，创建一个名为 app.js 的文件，然后将下列代码复制进去：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  res.send(<span class="string">'Hello World!'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> server = app.listen(<span class="number">3000</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> host = server.address().address;</span><br><span class="line">  <span class="keyword">var</span> port = server.address().port;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Example app listening at http://%s:%s'</span>, host, port);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>上面的代码启动一个服务并监听从 3000 端口进入的所有连接请求。他将对所有 (/) URL 或 路由 返回 “Hello World!” 字符串。对于其他所有路径全部返回 404 Not Found。</p>
-<blockquote>
-<p>req (请求) 和 res (响应) 与 Node 提供的对象完全一致，因此，你可以调用 req.pipe()、req.on(‘data’, callback) 以及任何 Node 提供的方法。</p>
-</blockquote>
-<p>通过如下命令启动此应用</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> node app.js</span></span><br></pre></td></tr></table></figure>
-
-<p>然后在浏览器中打开 <a href="http://localhost:3000/" target="_blank" rel="noopener">http://localhost:3000/</a> 并查看输出结果。</p>
-<h1 id="Express应用生成器"><a href="#Express应用生成器" class="headerlink" title="Express应用生成器"></a>Express应用生成器</h1><p>通过应用生成器工具 express 可以快速创建一个应用的骨架。</p>
-<p>通过如下命令安装：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install express-generator -g</span></span><br></pre></td></tr></table></figure>
-
-<p>-h 选项可以列出所有可用的命令行选项：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> express -h</span></span><br><span class="line"></span><br><span class="line">  Usage: express [options] [dir]</span><br><span class="line"></span><br><span class="line">  Options:</span><br><span class="line"></span><br><span class="line">    -h, --help          output usage information</span><br><span class="line">    -V, --version       output the version number</span><br><span class="line">    -e, --ejs           add ejs engine support (defaults to jade)</span><br><span class="line">        --hbs           add handlebars engine support</span><br><span class="line">    -H, --hogan         add hogan.js engine support</span><br><span class="line">    -c, --css &lt;engine&gt;  add stylesheet &lt;engine&gt; support (less|stylus|compass|sass) (defaults to plain css)</span><br><span class="line">        --git           add .gitignore</span><br><span class="line">    -f, --force         force on non-empty directory</span><br></pre></td></tr></table></figure>
-
-<p>例如，下面的示例就是在当前工作目录下创建一个命名为 myapp 的应用。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> express myapp</span></span><br><span class="line"></span><br><span class="line">   create : myapp</span><br><span class="line">   create : myapp/package.json</span><br><span class="line">   create : myapp/app.js</span><br><span class="line">   create : myapp/public</span><br><span class="line">   create : myapp/public/javascripts</span><br><span class="line">   create : myapp/public/images</span><br><span class="line">   create : myapp/routes</span><br><span class="line">   create : myapp/routes/index.js</span><br><span class="line">   create : myapp/routes/users.js</span><br><span class="line">   create : myapp/public/stylesheets</span><br><span class="line">   create : myapp/public/stylesheets/style.css</span><br><span class="line">   create : myapp/views</span><br><span class="line">   create : myapp/views/index.jade</span><br><span class="line">   create : myapp/views/layout.jade</span><br><span class="line">   create : myapp/views/error.jade</span><br><span class="line">   create : myapp/bin</span><br><span class="line">   create : myapp/bin/www</span><br></pre></td></tr></table></figure>
-
-<p>然后安装所有依赖包：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> myapp </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install</span></span><br></pre></td></tr></table></figure>
-
-<p>启动这个应用（MacOS 或 Linux 平台）：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> DEBUG=myapp npm start</span></span><br></pre></td></tr></table></figure>
-
-<p>Windows 平台使用如下命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="built_in">set</span> DEBUG=myapp &amp; npm start</span></span><br></pre></td></tr></table></figure>
-
-<p>然后在浏览器中打开 <a href="http://localhost:3000/" target="_blank" rel="noopener">http://localhost:3000/</a> 网址就可以看到这个应用了。</p>
-<p>通过 Express 应用生成器创建的应用一般都有如下目录结构：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── app.js</span><br><span class="line">├── bin</span><br><span class="line">│   └── www</span><br><span class="line">├── package.json</span><br><span class="line">├── public</span><br><span class="line">│   ├── images</span><br><span class="line">│   ├── javascripts</span><br><span class="line">│   └── stylesheets</span><br><span class="line">│       └── style.css</span><br><span class="line">├── routes</span><br><span class="line">│   ├── index.js</span><br><span class="line">│   └── users.js</span><br><span class="line">└── views</span><br><span class="line">    ├── error.jade</span><br><span class="line">    ├── index.jade</span><br><span class="line">    └── layout.jade</span><br><span class="line"></span><br><span class="line">7 directories, 9 files</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>通过 Express 应用生成器创建应用只是众多方法中的一种。你可以不使用它，也可以修改它让它符合你的需求，都是开源的嘛！</p>
-</blockquote>
-<h1 id="一个简单的-Express-路由"><a href="#一个简单的-Express-路由" class="headerlink" title="一个简单的 Express 路由"></a>一个简单的 Express 路由</h1><p>这篇教程只是对 Express 路由做一个简单的介绍。路由（Routing）是由一个 URI（或者叫路径）和一个特定的 HTTP 方法（GET、POST 等）组成的，涉及到应用如何响应客户端对某个网站节点的访问。</p>
-<p>每一个路由都可以有一个或者多个处理器函数，当匹配到路由时，这个/些函数将被执行。</p>
-<p>路由的定义由如下结构组成：<code>app.METHOD(PATH, HANDLER)</code>。其中，<code>app</code> 是一个 <code>express</code> 实例；METHOD 是某个 HTTP 请求方式中的一个；PATH 是服务器端的路径；HANDLER 是当路由匹配到时需要执行的函数。</p>
-<p>本教程假定已经存在一个命名为 <code>app</code> 的 <code>express</code> 实例了，并且应用程序是运行状态。如果你还不熟悉如何创建一个应用并使其运行，请参考 Hello world 实例。</p>
-<p>下面的代码展示了几个路由实例：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 对网站首页的访问返回 "Hello World!" 字样</span></span><br><span class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  res.send(<span class="string">'Hello World!'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 网站首页接受 POST 请求</span></span><br><span class="line">app.post(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  res.send(<span class="string">'Got a POST request'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// /user 节点接受 PUT 请求</span></span><br><span class="line">app.put(<span class="string">'/user'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  res.send(<span class="string">'Got a PUT request at /user'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// /user 节点接受 DELETE 请求</span></span><br><span class="line">app.delete(<span class="string">'/user'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  res.send(<span class="string">'Got a DELETE request at /user'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>关于路由的详细资料，请参考 路由指南 章节。</p>
-<h1 id="利用-Express-托管静态文件"><a href="#利用-Express-托管静态文件" class="headerlink" title="利用 Express 托管静态文件"></a>利用 Express 托管静态文件</h1><p>通过 Express 内置的 express.static 可以方便地托管静态文件，例如图片、CSS、JavaScript 文件等。</p>
-<p>将静态资源文件所在的目录作为参数传递给 express.static 中间件就可以提供静态资源文件的访问了。例如，假设在 public 目录放置了图片、CSS 和 JavaScript 文件，你就可以：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.use(express.static(<span class="string">'public'</span>));</span><br></pre></td></tr></table></figure>
-
-<p>现在，public 目录下面的文件就可以访问了。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:3000/images/kitten.jpg</span><br><span class="line">http://localhost:3000/css/style.css</span><br><span class="line">http://localhost:3000/js/app.js</span><br><span class="line">http://localhost:3000/images/bg.png</span><br><span class="line">http://localhost:3000/hello.html</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>所有文件的路径都是相对于存放目录的，因此，存放静态文件的目录名不会出现在 URL 中。</p>
-</blockquote>
-<p>如果你的静态资源存放在多个目录下面，你可以多次调用 express.static 中间件：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app.use(express.static(<span class="string">'public'</span>));</span><br><span class="line">app.use(express.static(<span class="string">'files'</span>));</span><br></pre></td></tr></table></figure>
-
-<p>访问静态资源文件时，express.static 中间件会根据目录添加的顺序查找所需的文件。</p>
-<p>如果你希望所有通过 express.static 访问的文件都存放在一个“虚拟（virtual）”目录（即目录根本不存在）下面，可以通过为静态资源目录指定一个挂载路径的方式来实现，如下所示：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="string">'/static'</span>, express.static(<span class="string">'public'</span>));</span><br></pre></td></tr></table></figure>
-
-<p>现在，你就爱可以通过带有 “/static” 前缀的地址来访问 public 目录下面的文件了。</p>
-<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">http://localhost:3000/static/images/kitten.jpg</span></span><br><span class="line"><span class="attribute">http://localhost:3000/static/css/style.css</span></span><br><span class="line"><span class="attribute">http://localhost:3000/static/js/app.js</span></span><br><span class="line"><span class="attribute">http://localhost:3000/static/images/bg.png</span></span><br><span class="line"><span class="attribute">http://localhost:3000/static/hello.html</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="Express-常见问题"><a href="#Express-常见问题" class="headerlink" title="Express 常见问题"></a>Express 常见问题</h1><h2 id="我的应用该如何组织？"><a href="#我的应用该如何组织？" class="headerlink" title="我的应用该如何组织？"></a>我的应用该如何组织？</h2><p>对于这个问题其实没有一个确定的答案。这要根据你的应用的规模和参与开发的团队来确定。为了尽可能灵活，Express 自身是并没有硬性要求应用结构是哪一种的。</p>
-<p>根据你的需求，可以把路由和其他应用相关的业务逻辑存放在任意多个文件和任意目录中。下面推荐的实例或许对你能有一些启发：</p>
-<ul>
-<li><a href="https://github.com/strongloop/express/blob/4.13.1/examples/route-separation/index.js#L32-L47" target="_blank" rel="noopener">Route listings</a></li>
-<li><a href="https://github.com/strongloop/express/blob/4.13.1/examples/route-map/index.js#L52-L66" target="_blank" rel="noopener">Route map</a></li>
-<li><a href="https://github.com/strongloop/express/tree/master/examples/mvc" target="_blank" rel="noopener">MVC style controllers</a></li>
-</ul>
-<p>另外，这里还有一些第三方 Express 扩展简化了这种组织方式：</p>
-<ul>
-<li><a href="https://github.com/expressjs/express-resource" target="_blank" rel="noopener">Resourceful routing</a></li>
-</ul>
-<h2 id="如何定义模型（model）？"><a href="#如何定义模型（model）？" class="headerlink" title="如何定义模型（model）？"></a>如何定义模型（model）？</h2><p>Express自身并不感知数据库是否存在。数据库功能依赖于第三方 Node 模块提供的接口。</p>
-<h2 id="如何验证用户？"><a href="#如何验证用户？" class="headerlink" title="如何验证用户？"></a>如何验证用户？</h2><p>这是另一个 Express 不涉及的领域。你可以使用任何验证方式。对于简单的用户名/密码验证方式，可以参考<a href="https://github.com/expressjs/express/tree/master/examples/auth" target="_blank" rel="noopener">这个实例</a>。</p>
-<h2 id="Express-支持哪些模板引擎？"><a href="#Express-支持哪些模板引擎？" class="headerlink" title="Express 支持哪些模板引擎？"></a>Express 支持哪些模板引擎？</h2><p>Express 支持任何符合 (path, locals, callback) 接口规范的模板引擎。 为了统一模板引擎的接口和缓存功能，请参考 <a href="https://github.com/visionmedia/consolidate.js" target="_blank" rel="noopener"><code>consolidate.js</code></a> 项目。其他未提及的模板引擎也可能支持 Express 接口规范。</p>
-<h2 id="如何处理-404-？"><a href="#如何处理-404-？" class="headerlink" title="如何处理 404 ？"></a>如何处理 404 ？</h2><p>在 Express 中，404 并不是一个错误（error）。因此，错误处理器中间件并不捕获 404。这是因为 404 只是意味着某些功能没有实现。也就是说，Express 执行了所有中间件、路由之后还是没有获取到任何输出。你所需要做的就是在其所有他中间件的后面添加一个处理 404 的中间件。如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  res.status(<span class="number">404</span>).send(<span class="string">'Sorry cant find that!'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h1 id="如何设置一个错误处理器？"><a href="#如何设置一个错误处理器？" class="headerlink" title="如何设置一个错误处理器？"></a>如何设置一个错误处理器？</h1><p>错误处理器中间件的定义和其他中间件一样，唯一的区别是 4 个而不是 3 个参数，即 (err, req, res, next)：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">err, req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.error(err.stack);</span><br><span class="line">  res.status(<span class="number">500</span>).send(<span class="string">'Something broke!'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>请参考<a href="http://www.expressjs.com.cn/guide/error-handling.html" target="_blank" rel="noopener">错误处理</a>章节以了解更多信息。</p>
-<h1 id="如何渲染纯-HTML-文件？"><a href="#如何渲染纯-HTML-文件？" class="headerlink" title="如何渲染纯 HTML 文件？"></a>如何渲染纯 HTML 文件？</h1><p>不需要！无需通过 <code>res.render()</code> 渲染 <code>HTML</code>。你可以通过 <code>res.sendFile()</code> 直接对外输出 <code>HTML</code> 文件。如果你需要对外提供的资源文件很多，可以使用 <code>express.static()</code> 中间件。</p>
-
+    
+    <a class="article-more-a" href="/express/deceab70.html#more">more >></a>
+    
     
 
     
@@ -1572,10 +1484,6 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C#基础知识</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Express</a>
               </li>
              
@@ -1585,10 +1493,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Express 基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1608,7 +1512,19 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">C#基础知识</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1616,15 +1532,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">C# 基础数据类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1636,7 +1552,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1645,10 +1561,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">加密技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
               </li>
              
               <li class="article-tag-list-item">

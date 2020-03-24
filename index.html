@@ -562,35 +562,9 @@ var _hmt = _hmt || [];
 </li>
 </ol>
 <p>嗯，怎么说呢，在非Anaconda环境下，多Python版本管理是个非常蛋疼的事情。</p>
-<h1 id="第一次启动"><a href="#第一次启动" class="headerlink" title="第一次启动"></a>第一次启动</h1><ol>
-<li>在<code>Anaconda</code>环境中启动<br><img src="https://img-blog.csdnimg.cn/2020032016232075.png" alt="file"><br>在Windows+Anaconda 环境中会出现这两个图标，如果没有修改过任何配置的话，它们的启动后的工作目录应该都是</li>
-</ol>
-<p><strong>文档</strong> 目录，即当前用户的文档目录。点这两个都可以启动，启动后会出现如下的弹窗。Windows和Linux差不多，只是部分显示信息不同。<br><img src="https://img-blog.csdnimg.cn/20200320162320413.png" alt="file"><br>我这个因为一些设置，将<strong>当前用户</strong>根目录设置为工作目录了。启动成功后，会通过浏览器打开一个页面，然后就可以在网页里操作了。<br>2. 命令行启动<br>在命令行中输入 <code>jupyter notebook</code><br><img src="https://img-blog.csdnimg.cn/20200320162320768.png" alt="file"><br>这个就使用了我之前设置的启动目录，所以我一般用命令行启动，比较好控制启动目录。<br>3. 启动并临时设置工作目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook . # 设置当前目录为工作目录，并启动jupyter notebook</span><br><span class="line">jupyter notebook path # 设置 path 目录为工作目录，path可以为任意目录，但需要注意 Windows和Linux关于目录分隔符的区别</span><br></pre></td></tr></table></figure>
-
-<h1 id="Jupyter设置"><a href="#Jupyter设置" class="headerlink" title="Jupyter设置"></a>Jupyter设置</h1><h2 id="生成配置文件"><a href="#生成配置文件" class="headerlink" title="生成配置文件"></a>生成配置文件</h2><p>在命令行中输入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br></pre></td></tr></table></figure>
-<p>如果命令执行成功，会在 %用户目录%/.jupyter/ 下生成一个 <code>jupyter_notebook_config.py</code> 文件。</p>
-<blockquote>
-<p>注意 Windows的 %用户目录% 指 C:/Users/&lt;登录用户名&gt;<br>Linux 值 运行 cd ~  返回的目录</p>
-</blockquote>
-<p>如果已存在，则会提示是否已覆盖，按需输入y/N，默认是不覆盖</p>
-<h2 id="修改几个常用项"><a href="#修改几个常用项" class="headerlink" title="修改几个常用项"></a>修改几个常用项</h2><ol>
-<li><code>c.NotebookApp.notebook_dir</code> 默认工作目录</li>
-<li><code>c.NotebookApp.password</code>  密码，使用的是 SHA1 密码串<br>生成密码串的方式：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> notebook.auth <span class="keyword">import</span> passwd</span><br><span class="line">passwd()</span><br></pre></td></tr></table></figure>
-在python交互命令行中执行以上命令，然后两次输入密码，就会得到一个密码串，格式是：’sha1:&lt;密码&gt;’<br>将得到的密码串（包括 sha1 前缀） 赋值给 <code>c.NotebookApp.password</code></li>
-</ol>
-<p>以上是我最近遇到的一些设置项，更多的可以查看 <code>jupyter_notebook_config.py</code>文件。<br>需要指出的是，配置文件中所有设置项都是注释的，如果需要修改，必须先取消注释才行。</p>
-<h2 id="关于-Windows下-通过快捷方式启动Jupyter-NoteBook-可能需要的问题"><a href="#关于-Windows下-通过快捷方式启动Jupyter-NoteBook-可能需要的问题" class="headerlink" title="关于 Windows下 通过快捷方式启动Jupyter NoteBook 可能需要的问题"></a>关于 Windows下 通过快捷方式启动Jupyter NoteBook 可能需要的问题</h2><p>如果直接通过快捷方式启动，会遇到设置的工作目录不起作用的问题，右键快捷方式点击属性<br><img src="https://img-blog.csdnimg.cn/202003201623217.png" alt="file"><br>然后修改箭头指向的内容，点确认保存修改。</p>
-<h1 id="使用-Visual-Code-写Jupyter-NoteBook"><a href="#使用-Visual-Code-写Jupyter-NoteBook" class="headerlink" title="使用 Visual Code 写Jupyter NoteBook"></a>使用 Visual Code 写Jupyter NoteBook</h1><p>每次启动 Jupyter NoteBook都会弹出一个黑框，身为一个非典型强迫症看着着实难受，所以就尝试了用code。<br>感觉很不错，code 安装<code>python</code>扩展后，直接新建 XXX.ipynb 文件就会自动渲染，效果如下<br><img src="https://img-blog.csdnimg.cn/20200320162321231.png" alt="file"><br>点 三角形箭头执行当前单元格。</p>
-<h1 id="不重启服务安装其他包"><a href="#不重启服务安装其他包" class="headerlink" title="不重启服务安装其他包"></a>不重启服务安装其他包</h1><p>在平时使用的时候会遇到这么一种情况，写的正嗨的时候，发现要用的包没安装，不得已关闭然后pip安装，再启动，感觉相当费劲。所以我就查了一下有没有在不重启服务的前提下，安装三方包。现有方案如下</p>
-<h2 id="方案一-使用命令"><a href="#方案一-使用命令" class="headerlink" title="方案一 使用命令"></a>方案一 使用命令</h2><p>在<code>jupyter notebook</code> 的单元格里输入下面的命令，然后执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!pip install</span><br></pre></td></tr></table></figure>
-<p><code>jupyter</code> 可以通过这种方式访问别的命令，例如 !ls !touch xxx.py</p>
-<h2 id="方案二-使用python脚本"><a href="#方案二-使用python脚本" class="headerlink" title="方案二  使用python脚本"></a>方案二  使用<code>python</code>脚本</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">ok = <span class="literal">False</span></span><br><span class="line"><span class="keyword">while</span> <span class="keyword">not</span> ok:</span><br><span class="line">    get_ipython().system(<span class="string">'pip install numpy'</span>)<span class="comment">#或者os.system('pip install numpy')</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">import</span> numpy</span><br><span class="line">        ok = <span class="literal">True</span>;</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">continue</span></span><br></pre></td></tr></table></figure>
-<p>这种方式比较万能，适合很多python环境，在脚本或者其他不能重启的环境中可以通过这种方式安装三方包，不过也是一种权宜之计。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>jupyter notebook 的初步使用就这么多，更多功能需要后续慢慢挖掘。</p>
-
+    
+    <a class="article-more-a" href="/python/jupyter/13129.html#more">more >></a>
+    
     
 
     
@@ -609,11 +583,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">jupyter</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">jupyter</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		
 		</ul>
@@ -710,39 +684,9 @@ var _hmt = _hmt || [];
 <p>而且主要是在用枚举的地方会有更强的类型约束：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 入参就有明确类型约束</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">judgeVideoStatus</span><span class="params">( VideoStatus status )</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    ...</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这样在使用 <code>judgeVideoStatus</code> 函数时，入参类型就会受到明确的类型约束，一旦传入无效值，编译器就会帮我们检查，从而规避潜在问题。<br>除此之外，枚举在扩展性方面比普常量更方便、也更优雅。</p>
-<h1 id="重新系统认识一下枚举"><a href="#重新系统认识一下枚举" class="headerlink" title="重新系统认识一下枚举"></a>重新系统认识一下枚举</h1><p>还是拿前文《答应我，别再if/else走天下了可以吗》中的那个例子来说：比如，在后台管理系统中，肯定有用户角色一说，而且角色一般都是固定的，适合定义成一个枚举：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> UserRole &#123;</span><br><span class="line"></span><br><span class="line">    ROLE_ROOT_ADMIN,  <span class="comment">// 系统管理员</span></span><br><span class="line"></span><br><span class="line">    ROLE_ORDER_ADMIN, <span class="comment">// 订单管理员</span></span><br><span class="line"></span><br><span class="line">    ROLE_NORMAL       <span class="comment">// 普通用户</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>接下来我们就用这个<code>UserRole</code>为例来说明枚举的所有基本用法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">UserRole role1 = UserRole.ROLE_ROOT_ADMIN;</span><br><span class="line">UserRole role2 = UserRole.ROLE_ORDER_ADMIN;</span><br><span class="line">UserRole role3 = UserRole.ROLE_NORMAL;</span><br><span class="line"></span><br><span class="line"><span class="comment">// values()方法：返回所有枚举常量的数组集合</span></span><br><span class="line"><span class="keyword">for</span> ( UserRole role : UserRole.values() ) &#123;</span><br><span class="line">    System.out.println(role);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 打印：</span></span><br><span class="line"><span class="comment">// ROLE_ROOT_ADMIN</span></span><br><span class="line"><span class="comment">// ROLE_ORDER_ADMIN</span></span><br><span class="line"><span class="comment">// ROLE_NORMAL</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ordinal()方法：返回枚举常量的序数，注意从0开始</span></span><br><span class="line">System.out.println( role1.ordinal() ); <span class="comment">// 打印0</span></span><br><span class="line">System.out.println( role2.ordinal() ); <span class="comment">// 打印1</span></span><br><span class="line">System.out.println( role3.ordinal() ); <span class="comment">// 打印2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// compareTo()方法：枚举常量间的比较</span></span><br><span class="line">System.out.println( role1.compareTo(role2) ); <span class="comment">//打印-1</span></span><br><span class="line">System.out.println( role2.compareTo(role3) ); <span class="comment">//打印-2</span></span><br><span class="line">System.out.println( role1.compareTo(role3) ); <span class="comment">//打印-2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// name()方法：获得枚举常量的名称</span></span><br><span class="line">System.out.println( role1.name() ); <span class="comment">// 打印ROLE_ROOT_ADMIN</span></span><br><span class="line">System.out.println( role2.name() ); <span class="comment">// 打印ROLE_ORDER_ADMIN</span></span><br><span class="line">System.out.println( role3.name() ); <span class="comment">// 打印ROLE_NORMAL</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// valueOf()方法：返回指定名称的枚举常量</span></span><br><span class="line">System.out.println( UserRole.valueOf( <span class="string">"ROLE_ROOT_ADMIN"</span> ) );</span><br><span class="line">System.out.println( UserRole.valueOf( <span class="string">"ROLE_ORDER_ADMIN"</span> ) );</span><br><span class="line">System.out.println( UserRole.valueOf( <span class="string">"ROLE_NORMAL"</span> ) );</span><br></pre></td></tr></table></figure>
-
-<p>除此之外，枚举还可以用于<code>switch</code>语句中，而且意义更加明确：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">UserRole userRole = UserRole.ROLE_ORDER_ADMIN;</span><br><span class="line"><span class="keyword">switch</span> (userRole) &#123;</span><br><span class="line">    <span class="keyword">case</span> ROLE_ROOT_ADMIN:  <span class="comment">// 比如此处的意义就非常清晰了，比1，2，3这种数字好！</span></span><br><span class="line">        System.out.println(<span class="string">"这是系统管理员角色"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> ROLE_ORDER_ADMIN:</span><br><span class="line">        System.out.println(<span class="string">"这是订单管理员角色"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> ROLE_NORMAL:</span><br><span class="line">        System.out.println(<span class="string">"这是普通用户角色"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="自定义扩充枚举"><a href="#自定义扩充枚举" class="headerlink" title="自定义扩充枚举"></a>自定义扩充枚举</h1><p>上面展示的枚举例子非常简单，仅仅是单值的情形，而实际项目中用枚举往往是多值用法。<br>比如，我想扩充一下上面的<code>UserRole</code>枚举，在里面加入 角色名 – 角色编码 的对应关系，这也是实际项目中常用的用法。<br>这时候我们可以在枚举里自定义各种属性、构造函数、甚至各种方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> UserRole &#123;</span><br><span class="line"></span><br><span class="line">    ROLE_ROOT_ADMIN( <span class="string">"系统管理员"</span>, <span class="number">000000</span> ),</span><br><span class="line">    ROLE_ORDER_ADMIN( <span class="string">"订单管理员"</span>, <span class="number">100000</span> ),</span><br><span class="line">    ROLE_NORMAL( <span class="string">"普通用户"</span>, <span class="number">200000</span> ),</span><br><span class="line">    ;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 以下为自定义属性</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String roleName;  <span class="comment">//角色名称</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Integer roleCode; <span class="comment">//角色编码</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 以下为自定义构造函数</span></span><br><span class="line">    </span><br><span class="line">    UserRole( String roleName, Integer roleCode ) &#123;</span><br><span class="line">        <span class="keyword">this</span>.roleName = roleName;</span><br><span class="line">        <span class="keyword">this</span>.roleCode = roleCode;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 以下为自定义方法</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getRoleName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.roleName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getRoleCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.roleCode;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title">getRoleCodeByRoleName</span><span class="params">( String roleName )</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>( UserRole enums : UserRole.values() ) &#123;</span><br><span class="line">            <span class="keyword">if</span>( enums.getRoleName().equals( roleName ) ) &#123;</span><br><span class="line">                <span class="keyword">return</span> enums.getRoleCode();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>从上述代码可知，在<code>enum</code>枚举类中完全可以像在普通<code>Class</code>里一样声明属性、构造函数以及成员方法。</p>
-<h1 id="枚举-接口"><a href="#枚举-接口" class="headerlink" title="枚举 + 接口 = ?"></a>枚举 + 接口 = ?</h1><p>比如在我的前文《答应我，别再if/else走天下了可以吗》中讲烦人的if/else消除时，就讲过如何通过让枚举去实现接口来方便的完成。<br>这地方不妨再回顾一遍：<br>什么角色能干什么事，这很明显有一个对应关系，所以我们首先定义一个公用的接口RoleOperation，表示不同角色所能做的操作：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">RoleOperation</span> </span>&#123;</span><br><span class="line">    <span class="function">String <span class="title">op</span><span class="params">()</span></span>;  <span class="comment">// 表示某个角色可以做哪些op操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>接下来我们将不同角色的情况全部交由枚举类来做，定义一个枚举类RoleEnum，并让它去实现<code>RoleOperation</code>接口：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> RoleEnum implements RoleOperation &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 系统管理员(有A操作权限)</span></span><br><span class="line">    ROLE_ROOT_ADMIN &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">op</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"ROLE_ROOT_ADMIN:"</span> + <span class="string">" has AAA permission"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 订单管理员(有B操作权限)</span></span><br><span class="line">    ROLE_ORDER_ADMIN &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">op</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"ROLE_ORDER_ADMIN:"</span> + <span class="string">" has BBB permission"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 普通用户(有C操作权限)</span></span><br><span class="line">    ROLE_NORMAL &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">op</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"ROLE_NORMAL:"</span> + <span class="string">" has CCC permission"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样，在调用处就变得异常简单了，一行代码就行了，根本不需要什么<code>if/else</code>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JudgeRole</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">judge</span><span class="params">( String roleName )</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 一行代码搞定！之前的if/else灰飞烟灭</span></span><br><span class="line">        <span class="keyword">return</span> RoleEnum.valueOf(roleName).op();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>而且这样一来，以后假如我想扩充条件，只需要去枚举类中加代码即可，而不用改任何老代码，非常符合开闭原则！</p>
-<h1 id="枚举与设计模式"><a href="#枚举与设计模式" class="headerlink" title="枚举与设计模式"></a>枚举与设计模式</h1><p>什么？枚举还能实现设计模式？<br>是的！不仅能而且还能实现好几种！</p>
-<h2 id="1、单例模式"><a href="#1、单例模式" class="headerlink" title="1、单例模式"></a>1、单例模式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造函数私有化，避免外部创建实例</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//定义一个内部枚举</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">enum</span> SingletonEnum&#123;</span><br><span class="line"></span><br><span class="line">        SEED;  <span class="comment">// 唯一一个枚举对象，我们称它为“种子选手”！</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> Singleton singleton;</span><br><span class="line"></span><br><span class="line">        SingletonEnum()&#123;</span><br><span class="line">            singleton = <span class="keyword">new</span> Singleton(); <span class="comment">//真正的对象创建隐蔽在此！</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Singleton <span class="title">getInstnce</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> singleton;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 故意外露的对象获取方法，也是外面获取实例的唯一入口</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> SingletonEnum.SEED.getInstnce(); <span class="comment">// 通过枚举的种子选手来完成</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="2、策略模式"><a href="#2、策略模式" class="headerlink" title="2、策略模式"></a>2、策略模式</h2><p>这个也比较好举例，比如用枚举就可以写出一个基于策略模式的加减乘除计算器</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">enum</span> Calculator &#123;</span><br><span class="line"></span><br><span class="line">        ADDITION &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> Double <span class="title">execute</span><span class="params">( Double x, Double y )</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> x + y; <span class="comment">// 加法</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line">        SUBTRACTION &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> Double <span class="title">execute</span><span class="params">( Double x, Double y )</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> x - y; <span class="comment">// 减法</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line">        MULTIPLICATION &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> Double <span class="title">execute</span><span class="params">( Double x, Double y )</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> x * y; <span class="comment">// 乘法</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        DIVISION &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> Double <span class="title">execute</span><span class="params">( Double x, Double y )</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> x/y;  <span class="comment">// 除法</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> Double <span class="title">execute</span><span class="params">(Double x, Double y)</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println( Calculator.ADDITION.execute( <span class="number">4.0</span>, <span class="number">2.0</span> ) );       </span><br><span class="line">        <span class="comment">// 打印 6.0</span></span><br><span class="line">        System.out.println( Calculator.SUBTRACTION.execute( <span class="number">4.0</span>, <span class="number">2.0</span> ) );    </span><br><span class="line">        <span class="comment">// 打印 2.0</span></span><br><span class="line">        System.out.println( Calculator.MULTIPLICATION.execute( <span class="number">4.0</span>, <span class="number">2.0</span> ) ); </span><br><span class="line">        <span class="comment">// 打印 8.0</span></span><br><span class="line">        System.out.println( Calculator.DIVISION.execute( <span class="number">4.0</span>, <span class="number">2.0</span> ) );       </span><br><span class="line">        <span class="comment">// 打印 2.0</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="专门用于枚举的集合类"><a href="#专门用于枚举的集合类" class="headerlink" title="专门用于枚举的集合类"></a>专门用于枚举的集合类</h1><p>我们平常一般习惯于使用诸如：<code>HashMap</code> 和 <code>HashSet</code>等集合来盛放元素，而对于枚举，有它专门的集合类：<code>EnumSet</code>和<code>EnumMap</code></p>
-<h2 id="1、EnumSet"><a href="#1、EnumSet" class="headerlink" title="1、EnumSet"></a>1、EnumSet</h2><p><code>EnumSet</code> 是专门为盛放枚举类型所设计的 Set 类型。<br>还是举例来说，就以文中开头定义的角色枚举为例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> UserRole &#123;</span><br><span class="line"></span><br><span class="line">    ROLE_ROOT_ADMIN,  <span class="comment">// 系统管理员</span></span><br><span class="line"></span><br><span class="line">    ROLE_ORDER_ADMIN, <span class="comment">// 订单管理员</span></span><br><span class="line"></span><br><span class="line">    ROLE_NORMAL       <span class="comment">// 普通用户</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>比如系统里来了一批人，我们需要查看他是不是某个角色中的一个：<br>// 定义一个管理员角色的专属集合</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">EnumSet&lt;UserRole&gt; userRolesForAdmin </span><br><span class="line">    = EnumSet.of( </span><br><span class="line">        UserRole.ROLE_ROOT_ADMIN,</span><br><span class="line">        UserRole.ROLE_ORDER_ADMIN </span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断某个进来的用户是不是管理员</span></span><br><span class="line"><span class="function">Boolean <span class="title">isAdmin</span><span class="params">( User user )</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>( userRoles.contains( user.getUserRole() ) )</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2、EnumMap"><a href="#2、EnumMap" class="headerlink" title="2、EnumMap"></a>2、EnumMap</h2><p>同样，<code>EnumMap</code> 则是用来专门盛放枚举类型为key的 Map 类型。<br>比如，系统里来了一批人，我们需要统计不同的角色到底有多少人这种的话：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;UserRole,Integer&gt; userStatisticMap = <span class="keyword">new</span> EnumMap&lt;&gt;(UserRole<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> ( User user : userList ) &#123;</span><br><span class="line">    Integer num = userStatisticMap.get( user.getUserRole() );</span><br><span class="line">    <span class="keyword">if</span>( <span class="keyword">null</span> != num ) &#123;</span><br><span class="line">        userStatisticMap.put( user.getUserRole(), num+<span class="number">1</span> );</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        userStatisticMap.put( user.getUserRole(), <span class="number">1</span> );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>用<code>EnumMap</code>可以说非常方便了。</p>
-<h1 id="总-结"><a href="#总-结" class="headerlink" title="总  结"></a>总  结</h1><p>小小的枚举就玩出这么多的花样，不过好在探索和总结的过程还挺有意思的，也复习了很多知识，慢慢来吧。</p>
-
+    
+    <a class="article-more-a" href="/java-plus/62567.html#more">more >></a>
+    
     
 
     
@@ -846,108 +790,9 @@ var _hmt = _hmt || [];
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这期我想写很久了，但是因为时间的原因一直拖到了现在，我以为一两天就写完了，结果从构思到整理资料，再到写出来用了差不多一周的时间吧。<br>你们也知道丙丙一直都是创作鬼才来的，所以我肯定不会一本正经的写，我想了好几个切入点，最后决定用一个完整的电商系统作为切入点，带着大家看看，我们需要学些啥，我甚至还收集配套视频和资料，暖男石锤啊，这期是呕心沥血之作，不要白嫖了。</p>
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>在写这个文章之前，我花了点时间，自己臆想了一个电商系统，基本上算是麻雀虽小五脏俱全，我今天就用它开刀，一步步剖析，我会讲一下我们可能会接触的技术栈可能不全，但是够用，最后给个学习路线。</p>
 <p><strong>Tip：</strong>请多欣赏一会，每个点看一下，看看什么地方是你接触过的，什么技术栈是你不太熟悉的，我觉得还算是比较全的，有什么建议也可以留言给我。<br><img src="/images/pasted-22.png" alt="pasted image"><br>不知道大家都看了一下没，现在我们就要庖丁解牛了，我从上到下依次分析。</p>
-<h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><p>你可能会会好奇，你不是讲后端学习路线嘛，为啥还有前端的部分，我只能告诉你，傻瓜，肤浅。</p>
-<p>我们可不能闭门造车，谁告诉你后端就不学点前端了？</p>
-<p>前端现在很多也了解后端的技术栈的，你想我们去一个网站，最先接触的，最先看到的是啥？</p>
-<p>没错就是前端，在大学你要是找不到专门的前端同学，去做系统肯定也要自己顶一下前端的，那我觉得最基本的技术栈得熟悉和了解吧，丙丙现在也是偶尔会开发一下我们的管理系统主要是VUE和React。</p>
-<p>在这里我列举了我目前觉得比较简单和我们后端可以了解的技术栈，都是比较基础的。</p>
-<p>作为一名后端了解部分前端知识还是很有必要的，在以后开发的时候，公司有前端那能帮助你前后端联调更顺畅，如果没前端你自己也能顶一下简单的页面。</p>
-<p>HTML、CSS、JS、Ajax我觉得是必须掌握的点，看着简单其实深究或者去操作的话还是有很多东西的，其他作为扩展有兴趣可以了解，反正入门简单，只是精通很难很难。</p>
-<p>在这一层不光有这些还有Http协议和Servlet，request、response、cookie、session这些也会伴随你整个技术生涯，理解他们对后面的你肯定有不少好处。<br><img src="/images/pasted-23.png" alt="pasted image"><br><strong>Tip：</strong>我这里最后删除了JSP相关的技术，我个人觉得没必要学了，很多公司除了老项目之外，新项目都不会使用那些技术了。</p>
-<p>前端在我看来比后端难，技术迭代比较快，知识好像也没特定的体系，所以面试大厂的前端很多朋友都说难，不是技术多难，而是知识多且复杂，找不到一个完整的体系，相比之下后端明朗很多，我后面就开始讲后端了。</p>
-<h2 id="网关层："><a href="#网关层：" class="headerlink" title="网关层："></a>网关层：</h2><p>互联网发展到现在，涌现了很多互联网公司，技术更新迭代了很多个版本，从早期的单机时代，到现在超大规模的互联网时代，几亿人参与的春运，几千亿成交规模的双十一，无数互联网前辈的造就了现在互联网的辉煌。</p>
-<p>微服务，分布式，负载均衡等我们经常提到的这些名词都是这些技术在场景背后支撑。</p>
-<p>单机顶不住，我们就多找点服务器，但是怎么将流量均匀的打到这些服务器上呢？</p>
-<h3 id="负载均衡，LVS"><a href="#负载均衡，LVS" class="headerlink" title="负载均衡，LVS"></a>负载均衡，LVS</h3><p>我们机器都是IP访问的，那怎么通过我们申请的域名去请求到服务器呢？</p>
-<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><p>大家刷的抖音，B站，快手等等视频服务商，是怎么保证同时为全国的用户提供快速的体验？</p>
-<h3 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h3><p>我们这么多系统和服务，还有这么多中间件的调度怎么去管理调度等等？</p>
-<h3 id="zk"><a href="#zk" class="headerlink" title="zk"></a>zk</h3><p>这么多的服务器，怎么对外统一访问呢，就可能需要知道反向代理的服务器。</p>
-<h3 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h3><p><img src="/images/pasted-25.png" alt="pasted image"></p>
-<p>这一层做了反向负载、服务路由、服务治理、流量管理、安全隔离、服务容错等等都做了，大家公司的内外网隔离也是这一层做的。</p>
-<p>我之前还接触过一些比较有意思的项目，所有对外的接口都是加密的，几十个服务会经过网关解密，找到真的路由再去请求。</p>
-<p><img src="/images/pasted-26.png" alt="pasted image"></p>
-<p>这一层的知识点其实也不少，你往后面学会发现分布式事务，分布式锁，还有很多中间件都离不开zk这一层，我们继续往下看。</p>
-<h2 id="服务层："><a href="#服务层：" class="headerlink" title="服务层："></a>服务层：</h2><p>这一层有点东西了，算是整个框架的核心，如果你跟我帅丙一样以后都是从事后端开发的话，我们基本上整个技术生涯，大部分时间都在跟这一层的技术栈打交道了，各种琳琅满目的中间件，计算机基础知识，Linux操作，算法数据结构，架构框架，研发工具等等。</p>
-<p>我想在看这个文章的各位，计算机基础肯定都是学过的吧，如果大学的时候没好好学，我觉得还是有必要再看看的。</p>
-<p>为什么我们网页能保证安全可靠的传输，你可能会了解到HTTP，TCP协议，什么三次握手，四次挥手。</p>
-<p>还有进程、线程、协程，什么内存屏障，指令乱序，分支预测，CPU亲和性等等，在之后的编程生涯，如果你能掌握这些东西，会让你在遇到很多问题的时候瞬间get到点，而不是像个无头苍蝇一样乱撞（然而丙丙还做得不够）。</p>
-<p>了解这些计算机知识后，你就需要接触编程语言了，大学的C语言基础会让你学什么语言入门都会快点，我选择了面向对象的JAVA，但是也不知道为啥现在还没对象。</p>
-<p>JAVA的基础也一样重要，面向对象（包括类、对象、方法、继承、封装、抽象、 多态、消息解析等），常见API，数据结构，集合框架，设计模式（包括创建型、结构型、行为型），多线程和并发，I/O流，Stream，网络编程你都需要了解。</p>
-<p>代码会写了，你就要开始学习一些能帮助你把系统变得更加规范的框架，SSM可以会让你的开发更加便捷，结构层次更加分明。</p>
-<p>写代码的时候你会发现你大学用的Eclipse在公司看不到了，你跟大家一样去用了IDEA，第一天这是什么玩意，一周后，真香，但是这玩意收费有点贵，那免费的VSCode真的就是不错的选择了。</p>
-<p>代码写的时候你会接触代码的仓库管理工具maven、Gradle，提交代码的时候会去写项目版本管理工具Git。</p>
-<p>代码提交之后，发布之后你会发现很多东西需要自己去服务器亲自排查，那Linux的知识点就可以在里面灵活运用了，查看进程，查看文件，各种Vim操作等等。</p>
-<p>系统的优化很多地方没优化的空间了，你可能会尝试从算法，或者优化数据结构去优化，你看到了HashMap的源码，想去了解红黑树，然后在算法网上看到了二叉树搜索树和各种常见的算法问题，刷多了，你也能总结出精华所在，什么贪心，分治，动态规划等。</p>
-<p>这么多个服务，你发现HTTP请求已经开始有点不满足你的需求了，你想开发更便捷，像访问本地服务一样访问远程服务，所以我们去了解了Dubbo，Spring cloud。</p>
-<p>了解Dubbo的过程中，你发现了RPC的精华所在，所以你去接触到了高性能的NIO框架，Netty。</p>
-<p>代码写好了，服务也能通信了，但是你发现你的代码链路好长，都耦合在一起了，所以你接触了消息队列，这种异步的处理方式，真香。</p>
-<p>他还可以帮你在突发流量的时候用队列做缓冲，但是你发现分布式的情况，事务就不好管理了，你就了解到了分布式事务，什么两段式，三段式，TCC，XA，阿里云的全局事务服务GTS等等。</p>
-<p>分布式事务的时候你会想去了解RocketMQ，因为他自带了分布式事务的解决方案，大数据的场景你又看到了Kafka。</p>
-<p><img src="/images/pasted-27.png" alt="pasted image"></p>
-<p>我上面提到过zk，像Dubbo、Kafka等中间件都是用它做注册中心的，所以很多技术栈最后都组成了一个知识体系，你先了解了体系中的每一员，你才能把它们联系起来。</p>
-<p><img src="/images/pasted-28.png" alt="pasted image"></p>
-<p>服务的交互都从进程内通信变成了远程通信，所以性能必然会受到一些影响。</p>
-<p>此外由于很多不确定性的因素，例如网络拥塞、Server 端服务器宕机、挖掘机铲断机房光纤等等，需要许多额外的功能和措施才能保证微服务流畅稳定的工作。</p>
-<p>Spring Cloud 中就有 Hystrix 熔断器、Ribbon客户端负载均衡器、Eureka注册中心等等都是用来解决这些问题的微服务组件。</p>
-<p>你感觉学习得差不多了，你发现各大论坛博客出现了一些前沿技术，比如容器化，你可能就会去了解容器化的知识，像Docker，Kubernetes（K8s）等。</p>
-<p>微服务之所以能够快速发展，很重要的一个原因就是：容器化技术的发展和容器管理系统的成熟。</p>
-<p><img src="/images/pasted-29.png" alt="pasted image"></p>
-<p>这一层的东西呢其实远远不止这些的，我不过多赘述，写多了像个劝退师一样，但是大家也不用慌，大部分的技术都是慢慢接触了，工作中慢慢去了解，去深入的。</p>
-<p>好啦我们继续沿着图往下看，那再往下是啥呢？</p>
-<h2 id="数据层："><a href="#数据层：" class="headerlink" title="数据层："></a>数据层：</h2><p>数据库可能是整个系统中最值钱的部分了，在我码文字的前一天，刚好发生了微盟程序员删库跑路的操作，删库跑路其实是我们在网上最常用的笑话，没想到还是照进了现实。</p>
-<p><img src="https://tva1.sinaimg.cn/large/0082zybply1gca2znjcfjg30880521kx.gif" alt="pasted image"></p>
-<p>这里也提一点点吧，36小时的故障，其实在互联网公司应该是个笑话了吧，权限控制没做好类似rm -rf 、fdisk、drop等等这样的高危命令是可以实时拦截掉的，备份，全量备份，增量备份，延迟备份，异地容灾全部都考虑一下应该也不至于这样，一家上市公司还是有点点不应该。</p>
-<p><img src="/images/pasted-31.png" alt="数据库事务特性"></p>
-<p>数据库基本的事务隔离级别，索引，SQL，主被同步，读写分离等都可能是你学的时候要了解到的。</p>
-<p>上面我们提到了安全，不要把鸡蛋放一个篮子的道理大家应该都知道，那分库的意义就很明显了，然后你会发现时间久了表的数据大了，就会想到去接触分表，什么TDDL、Sharding-JDBC、DRDS这些插件都会接触到。</p>
-<p>你发现流量大的时候，或者热点数据打到数据库还是有点顶不住，压力太大了，那非关系型数据库就进场了，Redis当然是首选，但是MongoDB、memcache也有各自的应用场景。</p>
-<p>Redis使用后，真香，真快，但是你会开始担心最开始提到的安全问题，这玩意快是因为在内存中操作，那断点了数据丢了怎么办？你就开始阅读官方文档，了解RDB，AOF这些持久化机制，线上用的时候还会遇到缓存雪崩击穿、穿透等等问题。</p>
-<p>单机不满足你就用了，他的集群模式，用了集群可能也担心集群的健康状态，所以就得去了解哨兵，他的主从同步，时间久了Key多了，就得了解内存淘汰机制……</p>
-<p>他的大容量存储有问题，你可能需要去了解Pika….<br><img src="/images/pasted-32.png" alt="pasted image"></p>
-<p><img src="/images/pasted-33.png" alt="pasted image"><br>其实远远没完，每个的点我都点到为止，但是其实要深究每个点都要学很久，我们接着往下看</p>
-<h1 id="实时-离线-大数据"><a href="#实时-离线-大数据" class="headerlink" title="实时/离线/大数据"></a>实时/离线/大数据</h1><p>等你把几种关系型非关系型数据库的知识点，整理清楚后，你会发现数据还是大啊，而且数据的场景越来越多多样化了，那大数据的各种中间件你就得了解了。</p>
-<p>你会发现很多场景，不需要实时的数据，比如你查你的支付宝去年的，上个月的账单，这些都是不会变化的数据，没必要实时，那你可能会接触像ODPS这样的中间件去做数据的离线分析。</p>
-<p>然后你可能会接触Hadoop系列相关的东西，比如于Hadoop（HDFS）的一个数据仓库工具Hive，是建立在 Hadoop 文件系统之上的分布式面向列的数据库HBase 。</p>
-<p>写多的场景，适合做一些简单查询，用他们又有点大材小用，那Cassandra就再合适不过了。</p>
-<p>离线的数据分析没办法满足一些实时的常见，类似风控，那Flink你也得略知一二，他的窗口思想还是很有意思。</p>
-<p>数据接触完了，计算引擎Spark你是不是也不能放过……</p>
-<p><img src="/images/pasted-34.png" alt="pasted image"></p>
-<h2 id="搜索引擎："><a href="#搜索引擎：" class="headerlink" title="搜索引擎："></a>搜索引擎：</h2><p>传统关系型数据库和NoSQL非关系型数据都没办法解决一些问题，比如我们在百度，淘宝搜索东西的时候，往往都是几个关键字在一起一起搜索东西的，在数据库除非把几次的结果做交集，不然很难去实现。</p>
-<p>那全文检索引擎就诞生了，解决了搜索的问题，你得思考怎么把数据库的东西实时同步到ES中去，那你可能会思考到logstash去定时跑脚本同步，又或者去接触伪装成一台MySQL从服务的Canal，他会去订阅MySQL主服务的binlog，然后自己解析了去操作Es中的数据。</p>
-<p>这些都搞定了，那可视化的后台查询又怎么解决呢？Kibana，他他是一个可视化的平台，甚至对Es集群的健康管理都做了可视化，很多公司的日志查询系统都是用它做的。</p>
-<p><img src="/images/pasted-35.png" alt="pasted image"></p>
-<h2 id="学习路线"><a href="#学习路线" class="headerlink" title="学习路线"></a>学习路线</h2><p>看了这么久你是不是发现，帅丙只是一直在介绍每个层级的技术栈，并没说到具体的一个路线，那是因为我想让大家先有个认知或者说是扫盲吧，我一样用脑图的方式汇总一下吧，如果图片被平台二压了，可以去公众号回复【路线】。</p>
-<p><img src="/images/pasted-36.png" alt="pasted image"></p>
-<h2 id="资料-学习网站"><a href="#资料-学习网站" class="headerlink" title="资料/学习网站"></a>资料/学习网站</h2><p>JavaFamily：由一个在互联网苟且偷生的男人维护的GitHub</p>
-<p>CodeGym ：一个在线Java编程课程，80%的内容是练习，适合一窍不通的入门者。</p>
-<p>Wibit Online Java Courses ：一个非常有趣的编程学习网站，各种生动的动画形象能让人忘记学习的枯燥。在线视频学习，非常适合零基础。</p>
-<p>stanford CS106A: Programming Methodology ：斯坦福经典课程系列，完全没有编程经验，想学Java语言的，可以看看这个课程。</p>
-<p>Bloombenc ：一个在线交互式学习平台，老师可以根据你的学习能力和节奏修改他们的教学方法，还可以在平台上编码。</p>
-<p>Imooc：慕课网，我大学的C语言就是在这里看的</p>
-<p>CodeAcademy ：比较实用的Java在线课程，注重的是在找工作时非常有用的技术能力。</p>
-<p>PLURALSIGHT：整合了很多Java的视频课程，部分免费，部分付费，可以根据自己的需要挑选。</p>
-<p>Lynda Online Java Training Videos：Java进阶课程，包括如何使用JDBC来集成MySQL数据库，Reflection API，管理文件和目录等。</p>
-<p>九章基础算法班（Java）：中文在线互动课，随时开始学习。</p>
-<p>BeginnersBook：Java初学者免费教程，有稍微一些编程基础之后，可以跟着文档里的代码练习。</p>
-<p>docs.oracle.com/javase/tutorial：官方Java指南，对了解几乎所有的java技术特性都非常有帮助。</p>
-<p>JournalDev：Java相关教程及问答</p>
-<p>JavaWorld：最早的一个Java站点，每周更新Java技术文章。</p>
-<p>developer.com/java ：由<a href="http://Gamelan.com" target="_blank" rel="noopener">http://Gamelan.com</a> 维护的Java技术文章网站。</p>
-<p>IBM Developerworks技术网站：IBM的Develperworks技术网站，这是其中的Java技术主页</p>
-<p><img src="https://tva1.sinaimg.cn/large/0082zybply1gca3sgtqvnj31vu0rk1ky.jpg" alt="pasted image"></p>
-<h1 id="絮叨"><a href="#絮叨" class="headerlink" title="絮叨"></a>絮叨</h1><p>如果你想去一家不错的公司，但是目前的硬实力又不到，我觉得还是有必要去努力一下的，技术能力的高低能决定你走多远，平台的高低，能决定你的高度。</p>
-<p>如果你通过努力成功进入到了心仪的公司，一定不要懈怠放松，职场成长和新技术学习一样，不进则退。</p>
-<p>丙丙发现在工作中发现我身边的人真的就是实力越强的越努力，最高级的自律，享受孤独（周末的歪哥）</p>
-<p><img src="https://tva1.sinaimg.cn/large/0082zybply1gc90z8argwj30sg0lcaf3.jpg" alt=""></p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>我提到的技术栈你想全部了解，我觉得初步了解可能几个月就够了，这里的了解仅限于你知道它，知道他是干嘛的，知道怎么去使用它，并不是说深入了解他的底层原理，了解他的常见问题，熟悉问题的解决方案等等。</p>
-<p>你想做到后者，基本上只能靠时间上的日积月累，或者不断的去尝试积累经验，也没什么速成的东西，欲速则不达大家也是知道的。</p>
-<p>技术这条路，说实话很枯燥，很辛苦，但是待遇也会高于其他一些基础岗位。</p>
-<p>所实话我大学学这个就是为了兴趣，我从小对电子，对计算机都比较热爱，但是现在打磨得，现在就是为了钱吧，是不是很现实？若家境殷实，谁愿颠沛流离。</p>
-<p>但是至少丙丙因为做软件，改变了家庭的窘境，自己日子也向小康一步步迈过去。</p>
-<p>说做程序员改变了我和我家人的一生可能夸张了，但是我总有一种下班辈子会因为我选择走这条路而改变的错觉。</p>
-<p>我是敖丙，一个在互联网苟且偷生的工具人。</p>
-<p>创作不易，本期硬核，不想被白嫖，各位的「三连」就是丙丙创作的最大动力，我们下次见！<br>————————————————<br>版权声明：本文为CSDN博主「敖 丙」的原创文章，遵循 CC 4.0 BY 版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/qq_35190492/article/details/104548249" target="_blank" rel="noopener">https://blog.csdn.net/qq_35190492/article/details/104548249</a></p>
-
+    
+    <a class="article-more-a" href="/java-plus/55489.html#more">more >></a>
+    
     
 
     
@@ -1051,275 +896,12 @@ var _hmt = _hmt || [];
     
     <blockquote><p>这几天在玩Java，看到了这里，就翻了一篇 MyBatis相关的文章出来</p>
 <footer><strong>ThinkWon</strong><cite><a href="https://blog.csdn.net/ThinkWon/article/details/101292950" target="_blank" rel="noopener">MyBatis常见面试题和答案（2020最新版）</a></cite></footer></blockquote>
+
 <p><img src="/images/pasted-16.png" alt="pasted image"></p>
 <h1 id="MyBatis简介"><a href="#MyBatis简介" class="headerlink" title="MyBatis简介"></a>MyBatis简介</h1><h2 id="MyBatis是什么？"><a href="#MyBatis是什么？" class="headerlink" title="MyBatis是什么？"></a>MyBatis是什么？</h2><p>MyBatis 是一款优秀的持久层框架，一个半 ORM（对象关系映射）框架，它支持定制化 SQL、存储过程以及高级映射。MyBatis 避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集。MyBatis 可以使用简单的 XML 或注解来配置和映射原生类型、接口和 Java 的 POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。</p>
-<h2 id="ORM是什么"><a href="#ORM是什么" class="headerlink" title="ORM是什么"></a>ORM是什么</h2><p>ORM（Object Relational Mapping），对象关系映射，是一种为了解决关系型数据库数据与简单Java对象（POJO）的映射关系的技术。简单的说，ORM是通过使用描述对象和数据库之间映射的元数据，将程序中的对象自动持久化到关系型数据库中。</p>
-<h2 id="为什么说Mybatis是半自动ORM映射工具？它与全自动的区别在哪里？"><a href="#为什么说Mybatis是半自动ORM映射工具？它与全自动的区别在哪里？" class="headerlink" title="为什么说Mybatis是半自动ORM映射工具？它与全自动的区别在哪里？"></a>为什么说Mybatis是半自动ORM映射工具？它与全自动的区别在哪里？</h2><p>Hibernate属于全自动ORM映射工具，使用Hibernate查询关联对象或者关联集合对象时，可以根据对象关系模型直接获取，所以它是全自动的。<br>而Mybatis在查询关联对象或关联集合对象时，需要手动编写sql来完成，所以，称之为半自动ORM映射工具。</p>
-<h2 id="传统JDBC开发存在的问题"><a href="#传统JDBC开发存在的问题" class="headerlink" title="传统JDBC开发存在的问题"></a>传统JDBC开发存在的问题</h2><p>频繁创建数据库连接对象、释放，容易造成系统资源浪费，影响系统性能。可以使用连接池解决这个问题。但是使用jdbc需要自己实现连接池。sql语句定义、参数设置、结果集处理存在硬编码。实际项目中sql语句变化的可能性较大，一旦发生变化，需要修改java代码，系统需要重新编译，重新发布。不好维护。使用preparedStatement向占有位符号传参数存在硬编码，因为sql语句的where条件不一定，可能多也可能少，修改sql还要修改代码，系统不易维护。结果集处理存在重复代码，处理麻烦。如果可以映射成Java对象会比较方便。</p>
-<h2 id="JDBC编程有哪些不足之处，MyBatis是如何解决这些问题的？"><a href="#JDBC编程有哪些不足之处，MyBatis是如何解决这些问题的？" class="headerlink" title="JDBC编程有哪些不足之处，MyBatis是如何解决这些问题的？"></a>JDBC编程有哪些不足之处，MyBatis是如何解决这些问题的？</h2><ol>
-<li>数据库链接创建、释放频繁造成系统资源浪费从而影响系统性能，如果使用数据库连接池可解决此问题。<br>解决：在mybatis-config.xml中配置数据链接池，使用连接池管理数据库连接。</li>
-<li>Sql语句写在代码中造成代码不易维护，实际应用sql变化的可能较大，sql变动需要改变java代码。<br>解决：将Sql语句配置在XXXXmapper.xml文件中与java代码分离。</li>
-<li>向sql语句传参数麻烦，因为sql语句的where条件不一定，可能多也可能少，占位符需要和参数一一对应。<br>解决：Mybatis自动将java对象映射至sql语句。</li>
-<li>对结果集解析麻烦，sql变化导致解析代码变化，且解析前需要遍历，如果能将数据库记录封装成pojo对象解析比较方便。<br>解决：Mybatis自动将sql执行结果映射至java对象。</li>
-</ol>
-<h2 id="Mybatis优缺点"><a href="#Mybatis优缺点" class="headerlink" title="Mybatis优缺点"></a>Mybatis优缺点</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><p>与传统的数据库访问技术相比，ORM有以下优点：</p>
-<ul>
-<li>基于SQL语句编程，相当灵活，不会对应用程序或者数据库的现有设计造成任何影响，SQL写在XML里，解除sql与程序代码的耦合，便于统一管理；提供XML标签，支持编写动态SQL语句，并可重用</li>
-<li>与JDBC相比，减少了50%以上的代码量，消除了JDBC大量冗余的代码，不需要手动开关连接很好的与各种数据库兼容（因为MyBatis使用JDBC来连接数据库，所以只要JDBC支持的数据库MyBatis都支持）提供映射标签，支持对象与数据库的ORM字段关系映射；</li>
-<li>提供对象关系映射标签，支持对象关系组件维护</li>
-<li>能够与Spring很好的集成</li>
-</ul>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li>SQL语句的编写工作量较大，尤其当字段多、关联表多时，对开发人员编写SQL语句的功底有一定要求</li>
-<li>SQL语句依赖于数据库，导致数据库移植性差，不能随意更换数据库</li>
-</ul>
-<h2 id="MyBatis框架适用场景"><a href="#MyBatis框架适用场景" class="headerlink" title="MyBatis框架适用场景"></a>MyBatis框架适用场景</h2><p>MyBatis专注于SQL本身，是一个足够灵活的DAO层解决方案。对性能的要求很高，或者需求变化较多的项目，如互联网项目，MyBatis将是不错的选择。</p>
-<h2 id="Hibernate-和-MyBatis-的区别"><a href="#Hibernate-和-MyBatis-的区别" class="headerlink" title="Hibernate 和 MyBatis 的区别"></a>Hibernate 和 MyBatis 的区别</h2><h3 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h3><p>都是对jdbc的封装，都是持久层的框架，都用于dao层的开发。</p>
-<h3 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h3><h4 id="映射关系"><a href="#映射关系" class="headerlink" title="映射关系"></a>映射关系</h4><ul>
-<li>MyBatis 是一个半自动映射的框架，配置Java对象与sql语句执行结果的对应关系，多表关联关系配置简单</li>
-<li>Hibernate 是一个全表映射的框架，配置Java对象与数据库表的对应关系，多表关联关系配置复杂</li>
-</ul>
-<h4 id="SQL优化和移植性"><a href="#SQL优化和移植性" class="headerlink" title="SQL优化和移植性"></a>SQL优化和移植性</h4><ul>
-<li>Hibernate 对SQL语句封装，提供了日志、缓存、级联（级联比 MyBatis 强大）等特性，此外还提供 HQL（Hibernate Query Language）操作数据库，数据库无关性支持好，但会多消耗性能。如果项目需要支持多种数据库，代码开发量少，但SQL语句优化困难。</li>
-<li>MyBatis 需要手动编写 SQL，支持动态 SQL、处理列表、动态生成表名、支持存储过程。开发工作量相对大些。直接使用SQL语句操作数据库，不支持数据库无关性，但sql语句优化容易。</li>
-</ul>
-<h4 id="开发难易程度和学习成本"><a href="#开发难易程度和学习成本" class="headerlink" title="开发难易程度和学习成本"></a>开发难易程度和学习成本</h4><ul>
-<li>Hibernate 是重量级框架，学习使用门槛高，适合于需求相对稳定，中小型的项目，比如：办公自动化系统</li>
-<li>MyBatis 是轻量级框架，学习使用门槛低，适合于需求变化频繁，大型的项目，比如：互联网电子商务系统</li>
-</ul>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>MyBatis 是一个小巧、方便、高效、简单、直接、半自动化的持久层框架，Hibernate 是一个强大、方便、高效、复杂、间接、全自动化的持久层框架。</p>
-<h1 id="MyBatis的解析和运行原理"><a href="#MyBatis的解析和运行原理" class="headerlink" title="MyBatis的解析和运行原理"></a>MyBatis的解析和运行原理</h1><h3 id="MyBatis编程步骤是什么样的"><a href="#MyBatis编程步骤是什么样的" class="headerlink" title="MyBatis编程步骤是什么样的"></a>MyBatis编程步骤是什么样的</h3><ol>
-<li>创建SqlSessionFactory</li>
-<li>通过SqlSessionFactory创建SqlSession</li>
-<li>通过sqlsession执行数据库操作</li>
-<li>调用session.commit()提交事务</li>
-<li>调用session.close()关闭会话</li>
-</ol>
-<h2 id="请说说MyBatis的工作原理"><a href="#请说说MyBatis的工作原理" class="headerlink" title="请说说MyBatis的工作原理"></a>请说说MyBatis的工作原理</h2><p>在学习 MyBatis 程序之前，需要了解一下 MyBatis 工作原理，以便于理解程序。<br>MyBatis 的工作原理如下图<br><img src="/images/pasted-17.png" alt="pasted image"></p>
-<ul>
-<li>1）读取 MyBatis 配置文件：mybatis-config.xml 为 MyBatis 的全局配置文件，配置了 MyBatis 的运行环境等信息，例如数据库连接信息。</li>
-<li>2）加载映射文件。映射文件即 SQL 映射文件，该文件中配置了操作数据库的 SQL 语句，需要在 MyBatis 配置文件 mybatis-config.xml 中加载。mybatis-config.xml 文件可以加载多个映射文件，每个文件对应数据库中的一张表。</li>
-<li>3）构造会话工厂：通过 MyBatis 的环境等配置信息构建会话工厂 SqlSessionFactory。</li>
-<li>4）创建会话对象：由会话工厂创建 SqlSession 对象，该对象中包含了执行 SQL 语句的所有方法。</li>
-<li>5）Executor 执行器：MyBatis 底层定义了一个 Executor 接口来操作数据库，它将根据 SqlSession 传递的参数动态地生成需要执行的 SQL 语句，同时负责查询缓存的维护。</li>
-<li>6）MappedStatement 对象：在 Executor 接口的执行方法中有一个 MappedStatement 类型的参数，该参数是对映射信息的封装，用于存储要映射的 SQL 语句的 id、参数等信息。</li>
-<li>7）输入参数映射：输入参数类型可以是 Map、List 等集合类型，也可以是基本数据类型和 POJO 类型。输入参数映射过程类似于 JDBC 对 preparedStatement 对象设置参数的过程。</li>
-<li>8）输出结果映射：输出结果类型可以是 Map、 List 等集合类型，也可以是基本数据类型和 POJO 类型。输出结果映射过程类似于 JDBC 对结果集的解析过程。</li>
-</ul>
-<h2 id="MyBatis的功能架构是怎样的"><a href="#MyBatis的功能架构是怎样的" class="headerlink" title="MyBatis的功能架构是怎样的"></a>MyBatis的功能架构是怎样的</h2><p><img src="/images/pasted-18.png" alt="pasted image"><br>我们把Mybatis的功能架构分为三层：</p>
-<ul>
-<li>API接口层：提供给外部使用的接口API，开发人员通过这些本地API来操纵数据库。接口层一接收到调用请求就会调用数据处理层来完成具体的数据处理。</li>
-<li>数据处理层：负责具体的SQL查找、SQL解析、SQL执行和执行结果映射处理等。它主要的目的是根据调用的请求完成一次数据库操作。</li>
-<li>基础支撑层：负责最基础的功能支撑，包括连接管理、事务管理、配置加载和缓存处理，这些都是共用的东西，将他们抽取出来作为最基础的组件。为上层的数据处理层提供最基础的支撑。</li>
-</ul>
-<h2 id="MyBatis的框架架构设计是怎么样的"><a href="#MyBatis的框架架构设计是怎么样的" class="headerlink" title="MyBatis的框架架构设计是怎么样的"></a>MyBatis的框架架构设计是怎么样的</h2><p><img src="/images/pasted-19.png" alt="pasted image"><br>这张图从上往下看。MyBatis的初始化，会从mybatis-config.xml配置文件，解析构造成Configuration这个类，就是图中的红框。</p>
-<ul>
-<li><p>(1)加载配置：配置来源于两个地方，一处是配置文件，一处是Java代码的注解，将SQL的配置信息加载成为一个个MappedStatement对象（包括了传入参数映射配置、执行的SQL语句、结果映射配置），存储在内存中。</p>
-</li>
-<li><p>(2)SQL解析：当API接口层接收到调用请求时，会接收到传入SQL的ID和传入对象（可以是Map、JavaBean或者基本数据类型），Mybatis会根据SQL的ID找到对应的MappedStatement，然后根据传入参数对象对MappedStatement进行解析，解析后可以得到最终要执行的SQL语句和参数。</p>
-</li>
-<li><p>(3)SQL执行：将最终得到的SQL和参数拿到数据库进行执行，得到操作数据库的结果。</p>
-</li>
-<li><p>(4)结果映射：将操作数据库的结果按照映射的配置进行转换，可以转换成HashMap、JavaBean或者基本数据类型，并将最终结果返回。</p>
-</li>
-</ul>
-<h2 id="为什么需要预编译"><a href="#为什么需要预编译" class="headerlink" title="为什么需要预编译"></a>为什么需要预编译</h2><ol>
-<li><p>定义：<br>SQL 预编译指的是数据库驱动在发送 SQL 语句和参数给 DBMS 之前对 SQL 语句进行编译，这样 DBMS 执行 SQL 时，就不需要重新编译。</p>
-</li>
-<li><p>为什么需要预编译<br>JDBC 中使用对象 PreparedStatement 来抽象预编译语句，使用预编译。预编译阶段可以优化 SQL 的执行。预编译之后的 SQL 多数情况下可以直接执行，DBMS 不需要再次编译，越复杂的SQL，编译的复杂度将越大，预编译阶段可以合并多次操作为一个操作。同时预编译语句对象可以重复利用。把一个 SQL 预编译后产生的 PreparedStatement 对象缓存下来，下次对于同一个SQL，可以直接使用这个缓存的 PreparedState 对象。Mybatis默认情况下，将对所有的 SQL 进行预编译</p>
-</li>
-</ol>
-<h2 id="Mybatis都有哪些Executor执行器？它们之间的区别是什么？"><a href="#Mybatis都有哪些Executor执行器？它们之间的区别是什么？" class="headerlink" title="Mybatis都有哪些Executor执行器？它们之间的区别是什么？"></a>Mybatis都有哪些Executor执行器？它们之间的区别是什么？</h2><p>Mybatis有三种基本的Executor执行器，<code>SimpleExecutor</code>、<code>ReuseExecutor</code>、<code>BatchExecutor</code>。</p>
-<ul>
-<li><code>SimpleExecutor</code>：每执行一次update或select，就开启一个Statement对象，用完立刻关闭Statement对象。</li>
-<li><code>ReuseExecutor</code>：执行update或select，以sql作为key查找<code>Statement</code>对象，存在就使用，不存在就创建，用完后，不关闭Statement对象，而是放置于<code>Map&lt;String, Statement&gt;</code>内，供下一次使用。简言之，就是重复使用Statement对象。</li>
-<li><code>BatchExecutor</code>：执行update（没有select，JDBC批处理不支持select），将所有sql都添加到批处理中（addBatch()），等待统一执行（executeBatch()），它缓存了多个Statement对象，每个Statement对象都是addBatch()完毕后，等待逐一执行executeBatch()批处理。与JDBC批处理相同。<br>作用范围：Executor的这些特点，都严格限制在SqlSession生命周期范围内。</li>
-</ul>
-<h2 id="Mybatis中如何指定使用哪一种Executor执行器？"><a href="#Mybatis中如何指定使用哪一种Executor执行器？" class="headerlink" title="Mybatis中如何指定使用哪一种Executor执行器？"></a>Mybatis中如何指定使用哪一种Executor执行器？</h2><p>在Mybatis配置文件中，在设置（settings）可以指定默认的ExecutorType执行器类型，也可以手动给DefaultSqlSessionFactory的创建SqlSession的方法传递ExecutorType类型参数，如SqlSession openSession(ExecutorType execType)。<br>配置默认的执行器。SIMPLE 就是普通的执行器；REUSE 执行器会重用预处理语句（prepared statements）；BATCH 执行器将重用语句并执行批量更新。</p>
-<h2 id="Mybatis是否支持延迟加载？如果支持，它的实现原理是什么？"><a href="#Mybatis是否支持延迟加载？如果支持，它的实现原理是什么？" class="headerlink" title="Mybatis是否支持延迟加载？如果支持，它的实现原理是什么？"></a>Mybatis是否支持延迟加载？如果支持，它的实现原理是什么？</h2><p>Mybatis仅支持association关联对象和collection关联集合对象的延迟加载，association指的就是一对一，collection指的就是一对多查询。在Mybatis配置文件中，可以配置是否启用延迟加载lazyLoadingEnabled=true|false。</p>
-<p>它的原理是，使用CGLIB创建目标对象的代理对象，当调用目标方法时，进入拦截器方法，比如调用a.getB().getName()，拦截器invoke()方法发现a.getB()是null值，那么就会单独发送事先保存好的查询关联B对象的sql，把B查询上来，然后调用a.setB(b)，于是a的对象b属性就有值了，接着完成a.getB().getName()方法的调用。这就是延迟加载的基本原理。</p>
-<p>当然了，不光是Mybatis，几乎所有的包括Hibernate，支持延迟加载的原理都是一样的。</p>
-<h1 id="映射器"><a href="#映射器" class="headerlink" title="映射器"></a>映射器</h1><h2 id="和-的区别"><a href="#和-的区别" class="headerlink" title="#{}和${}的区别"></a><code>#{}</code>和<code>${}</code>的区别</h2><ul>
-<li>#{}是占位符，预编译处理；${}是拼接符，字符串替换，没有预编译处理。</li>
-<li>Mybatis在处理#{}时，#{}传入参数是以字符串传入，会将SQL中的#{}替换为?号，调用PreparedStatement的set方法来赋值。</li>
-<li>Mybatis在处理时，是原值传入，就是把{}时，是原值传入，就是把时，是原值传入，就是把{}替换成变量的值，相当于JDBC中的Statement编译</li>
-<li>变量替换后，#{} 对应的变量自动加上单引号 ‘’；变量替换后，${} 对应的变量不会加上单引号 ‘’</li>
-<li>#{} 可以有效的防止SQL注入，提高系统安全性；${} 不能防止SQL 注入</li>
-<li>#{} 的变量替换是在DBMS 中；${} 的变量替换是在 DBMS 外</li>
-</ul>
-<h2 id="模糊查询like语句该怎么写"><a href="#模糊查询like语句该怎么写" class="headerlink" title="模糊查询like语句该怎么写"></a>模糊查询like语句该怎么写</h2><p>（1）<code>’%${question}%’</code> 可能引起SQL注入，不推荐</p>
-<p>（2）<code>&quot;%&quot;#{question}&quot;%&quot;</code>注意：因为<code>#{…}</code>解析成sql语句时候，会在变量外侧自动加单引号’ ‘，所以这里 % 需要使用双引号” “，不能使用单引号 ’ ‘，不然会查不到任何结果。</p>
-<p>（3）<code>CONCAT(’%’,#{question},’%’)</code> 使用<code>CONCAT()</code>函数，推荐</p>
-<p>（4）使用bind标签</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id&#x3D;&quot;listUserLikeUsername&quot; resultType&#x3D;&quot;com.jourwon.pojo.User&quot;&gt;</span><br><span class="line">　　&lt;bind name&#x3D;&quot;pattern&quot; value&#x3D;&quot;&#39;%&#39; + username + &#39;%&#39;&quot; &#x2F;&gt;</span><br><span class="line">　　select id,sex,age,username,password from person where username LIKE #&#123;pattern&#125;</span><br><span class="line">&lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="在mapper中如何传递多个参数"><a href="#在mapper中如何传递多个参数" class="headerlink" title="在mapper中如何传递多个参数"></a>在mapper中如何传递多个参数</h2><h3 id="方法1：顺序传参法"><a href="#方法1：顺序传参法" class="headerlink" title="方法1：顺序传参法"></a>方法1：顺序传参法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public User selectUser(String name, int deptId);</span><br><span class="line"></span><br><span class="line">&lt;select id&#x3D;&quot;selectUser&quot; resultMap&#x3D;&quot;UserResultMap&quot;&gt;</span><br><span class="line">	select * from user    where user_name &#x3D; #&#123;0&#125; and dept_id &#x3D; #&#123;1&#125;</span><br><span class="line">&lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure>
-
-<p><code>#{}</code>里面的数字代表传入参数的顺序。<br>这种方法不建议使用，sql层表达不直观，且一旦顺序调整容易出错。</p>
-<h3 id="方法2：-Param注解传参法"><a href="#方法2：-Param注解传参法" class="headerlink" title="方法2：@Param注解传参法"></a>方法2：<code>@Param</code>注解传参法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public User selectUser(@Param(&quot;userName&quot;) String name, int @Param(&quot;deptId&quot;) deptId);</span><br><span class="line"></span><br><span class="line">&lt;select id&#x3D;&quot;selectUser&quot; resultMap&#x3D;&quot;UserResultMap&quot;&gt;</span><br><span class="line">	select * from user    where user_name &#x3D; #&#123;userName&#125; and dept_id &#x3D; #&#123;deptId&#125;</span><br><span class="line">&lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure>
-
-<p><code>#{}</code>里面的名称对应的是注解@Param括号里面修饰的名称。这种方法在参数不多的情况还是比较直观的，推荐使用。</p>
-<h3 id="方法3：Map传参法"><a href="#方法3：Map传参法" class="headerlink" title="方法3：Map传参法"></a>方法3：Map传参法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public User selectUser(Map&lt;String, Object&gt; params);</span><br><span class="line"></span><br><span class="line">&lt;select id&#x3D;&quot;selectUser&quot; parameterType&#x3D;&quot;java.util.Map&quot; resultMap&#x3D;&quot;UserResultMap&quot;&gt;</span><br><span class="line">    select * from user</span><br><span class="line">    where user_name &#x3D; #&#123;userName&#125; and dept_id &#x3D; #&#123;deptId&#125;</span><br><span class="line">&lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure>
-
-<p><code>#{}</code>里面的名称对应的是Map里面的key名称。</p>
-<p>这种方法适合传递多个参数，且参数易变能灵活传递的情况。</p>
-<h3 id="方法4：Java-Bean传参法"><a href="#方法4：Java-Bean传参法" class="headerlink" title="方法4：Java Bean传参法"></a>方法4：Java Bean传参法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public User selectUser(User user);</span><br><span class="line"></span><br><span class="line">&lt;select id&#x3D;&quot;selectUser&quot; parameterType&#x3D;&quot;com.jourwon.pojo.User&quot; resultMap&#x3D;&quot;UserResultMap&quot;&gt;</span><br><span class="line">    select * from user</span><br><span class="line">    where user_name &#x3D; #&#123;userName&#125; and dept_id &#x3D; #&#123;deptId&#125;</span><br><span class="line">&lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure>
-
-<p><code>#{}</code>里面的名称对应的是User类里面的成员属性。</p>
-<p>这种方法直观，需要建一个实体类，扩展不容易，需要加属性，但代码可读性强，业务逻辑处理方便，推荐使用。</p>
-<h2 id="Mybatis如何执行批量操作"><a href="#Mybatis如何执行批量操作" class="headerlink" title="Mybatis如何执行批量操作"></a>Mybatis如何执行批量操作</h2><h3 id="用foreach标签"><a href="#用foreach标签" class="headerlink" title="用foreach标签"></a>用foreach标签</h3><p>foreach的主要用在构建in条件中，它可以在SQL语句中进行迭代一个集合。foreach标签的属性主要有item，index，collection，open，separator，close。</p>
-<ul>
-<li>item　　表示集合中每一个元素进行迭代时的别名，随便起的变量名；</li>
-<li>index　　指定一个名字，用于表示在迭代过程中，每次迭代到的位置，不常用；</li>
-<li>open　　表示该语句以什么开始，常用“(”；</li>
-<li>separator表示在每次进行迭代之间以什么符号作为分隔符，常用“,”；</li>
-<li>close　　表示以什么结束，常用“)”。</li>
-</ul>
-<p>在使用foreach的时候最关键的也是最容易出错的就是collection属性，该属性是必须指定的，但是在不同情况下，该属性的值是不一样的，主要有一下3种情况：</p>
-<ol>
-<li><p>如果传入的是单参数且参数类型是一个List的时候，collection属性值为list</p>
-</li>
-<li><p>如果传入的是单参数且参数类型是一个array数组的时候，collection的属性值为array</p>
-</li>
-<li><p>如果传入的参数是多个的时候，我们就需要把它们封装成一个Map了，当然单参数也可以封装成map，实际上如果你在传入参数的时候，在MyBatis里面也是会把它封装成一个Map的，<br>map的key就是参数名，所以这个时候collection属性值就是传入的List或array对象在自己封装的map里面的key</p>
-</li>
-</ol>
-<p>具体用法如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 批量保存(foreach插入多条数据两种方法)</span><br><span class="line">       int addEmpsBatch(@Param(&quot;emps&quot;) List&lt;Employee&gt; emps); --&gt;</span><br><span class="line">&lt;!-- MySQL下批量保存，可以foreach遍历 mysql支持values(),(),()语法 --&gt; &#x2F;&#x2F;推荐使用</span><br><span class="line">&lt;insert id&#x3D;&quot;addEmpsBatch&quot;&gt;</span><br><span class="line">    INSERT INTO emp(ename,gender,email,did)</span><br><span class="line">    VALUES</span><br><span class="line">    &lt;foreach collection&#x3D;&quot;emps&quot; item&#x3D;&quot;emp&quot; separator&#x3D;&quot;,&quot;&gt;</span><br><span class="line">        (#&#123;emp.eName&#125;,#&#123;emp.gender&#125;,#&#123;emp.email&#125;,#&#123;emp.dept.id&#125;)</span><br><span class="line">    &lt;&#x2F;foreach&gt;</span><br><span class="line">&lt;&#x2F;insert&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 这种方式需要数据库连接属性allowMutiQueries&#x3D;true的支持</span><br><span class="line"> 如jdbc.url&#x3D;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;mybatis?allowMultiQueries&#x3D;true --&gt;  </span><br><span class="line">&lt;insert id&#x3D;&quot;addEmpsBatch&quot;&gt;</span><br><span class="line">    &lt;foreach collection&#x3D;&quot;emps&quot; item&#x3D;&quot;emp&quot; separator&#x3D;&quot;;&quot;&gt;                                 </span><br><span class="line">        INSERT INTO emp(ename,gender,email,did)</span><br><span class="line">        VALUES(#&#123;emp.eName&#125;,#&#123;emp.gender&#125;,#&#123;emp.email&#125;,#&#123;emp.dept.id&#125;)</span><br><span class="line">    &lt;&#x2F;foreach&gt;</span><br><span class="line">&lt;&#x2F;insert&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="使用ExecutorType-BATCH"><a href="#使用ExecutorType-BATCH" class="headerlink" title="使用ExecutorType.BATCH"></a>使用ExecutorType.BATCH</h3><p>Mybatis内置的ExecutorType有3种，默认为simple,该模式下它为每个语句的执行创建一个新的预处理语句，单条提交sql；而batch模式重复使用已经预处理的语句，并且批量执行所有更新语句，显然batch性能将更优； 但batch模式也有自己的问题，比如在Insert操作时，在事务没有提交之前，是没有办法获取到自增的id，这在某型情形下是不符合业务要求的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;批量保存方法测试</span><br><span class="line">@Test  </span><br><span class="line">public void testBatch() throws IOException&#123;</span><br><span class="line">    SqlSessionFactory sqlSessionFactory &#x3D; getSqlSessionFactory();</span><br><span class="line">    &#x2F;&#x2F;可以执行批量操作的sqlSession</span><br><span class="line">    SqlSession openSession &#x3D; sqlSessionFactory.openSession(ExecutorType.BATCH);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;批量保存执行前时间</span><br><span class="line">    long start &#x3D; System.currentTimeMillis();</span><br><span class="line">    try &#123;</span><br><span class="line">        EmployeeMapper mapper &#x3D; openSession.getMapper(EmployeeMapper.class);</span><br><span class="line">        for (int i &#x3D; 0; i &lt; 1000; i++) &#123;</span><br><span class="line">            mapper.addEmp(new Employee(UUID.randomUUID().toString().substring(0, 5), &quot;b&quot;, &quot;1&quot;));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        openSession.commit();</span><br><span class="line">        long end &#x3D; System.currentTimeMillis();</span><br><span class="line">        &#x2F;&#x2F;批量保存执行后的时间</span><br><span class="line">        System.out.println(&quot;执行时长&quot; + (end - start));</span><br><span class="line">        &#x2F;&#x2F;批量 预编译sql一次&#x3D;&#x3D;》设置参数&#x3D;&#x3D;》10000次&#x3D;&#x3D;》执行1次   677</span><br><span class="line">        &#x2F;&#x2F;非批量  （预编译&#x3D;设置参数&#x3D;执行 ）&#x3D;&#x3D;》10000次   1121</span><br><span class="line"></span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">        openSession.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>mapper和mapper.xml如下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">EmployeeMapper</span> </span>&#123;   </span><br><span class="line">    <span class="comment">//批量保存员工</span></span><br><span class="line">    <span class="function">Long <span class="title">addEmp</span><span class="params">(Employee employee)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"com.jourwon.mapper.EmployeeMapper"</span></span></span><br><span class="line">     &lt;!--批量保存员工 --&gt;</span><br><span class="line">    <span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"addEmp"</span>&gt;</span></span><br><span class="line">        insert into employee(lastName,email,gender)</span><br><span class="line">        values(#&#123;lastName&#125;,#&#123;email&#125;,#&#123;gender&#125;)</span><br><span class="line">    <span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="如何获取生成的主键"><a href="#如何获取生成的主键" class="headerlink" title="如何获取生成的主键"></a>如何获取生成的主键</h2><h3 id="对于支持主键自增的数据库（MySQL）"><a href="#对于支持主键自增的数据库（MySQL）" class="headerlink" title="对于支持主键自增的数据库（MySQL）"></a>对于支持主键自增的数据库（MySQL）</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insertUser"</span> <span class="attr">useGeneratedKeys</span>=<span class="string">"true"</span> <span class="attr">keyProperty</span>=<span class="string">"userId"</span> &gt;</span></span><br><span class="line">    insert into user( </span><br><span class="line">    user_name, user_password, create_time) </span><br><span class="line">    values(#&#123;userName&#125;, #&#123;userPassword&#125; , #&#123;createTime, jdbcType= TIMESTAMP&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>parameterType 可以不写，Mybatis可以推断出传入的数据类型。如果想要访问主键，那么应当parameterType 应当是java实体或者Map。这样数据在插入之后 可以通过ava实体或者Map 来获取主键值。通过 getUserId获取主键。</p>
-<h3 id="不支持主键自增的数据库（Oracle）"><a href="#不支持主键自增的数据库（Oracle）" class="headerlink" title="不支持主键自增的数据库（Oracle）"></a>不支持主键自增的数据库（Oracle）</h3><p>对于像Oracle这样的数据，没有提供主键自增的功能，而是使用序列的方式获取自增主键。<br>可以使用<code>＜selectKey＞</code>标签来获取主键的值，这种方式不仅适用于不提供主键自增功能的数据库，也适用于提供主键自增功能的数据库<br><code>＜selectKey＞</code>一般的用法</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">selectKey</span> <span class="attr">keyColumn</span>=<span class="string">"id"</span> <span class="attr">resultType</span>=<span class="string">"long"</span> <span class="attr">keyProperty</span>=<span class="string">"id"</span> <span class="attr">order</span>=<span class="string">"BEFORE"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">selectKey</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th align="center">属性</th>
-<th align="center">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">keyProperty</td>
-<td align="center">selectKey 语句结果应该被设置的目标属性。如果希望得到多个生成的列，也可以是逗号分隔的属性名称列表。</td>
-</tr>
-<tr>
-<td align="center">keyColumn</td>
-<td align="center">匹配属性的返回结果集中的列名称。如果希望得到多个生成的列，也可以是逗号分隔的属性名称列表。</td>
-</tr>
-<tr>
-<td align="center">resultType</td>
-<td align="center">结果的类型，MyBatis 通常可以推算出来。MyBatis 允许任何简单类型用作主键的类型，包括字符串。如果希望作用于多个生成的列，则可以使用一个包含期望属性的 Object 或一个 Map。</td>
-</tr>
-<tr>
-<td align="center">order</td>
-<td align="center">值可为BEFORE 或 AFTER。如果是 BEFORE，那么它会先执行selectKey设置 keyProperty 然后执行插入语句。如果为AFTER则相反。</td>
-</tr>
-<tr>
-<td align="center">statementType</td>
-<td align="center">使用何种语句类型，默认PREPARED。 有STATEMENT，PREPARED 和 CALLABLE 语句的映射类型。</td>
-</tr>
-</tbody></table>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insertUser"</span> &gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">selectKey</span> <span class="attr">keyColumn</span>=<span class="string">"id"</span> <span class="attr">resultType</span>=<span class="string">"long"</span> <span class="attr">keyProperty</span>=<span class="string">"userId"</span> <span class="attr">order</span>=<span class="string">"BEFORE"</span>&gt;</span></span><br><span class="line">		SELECT USER_ID.nextval as id from dual </span><br><span class="line">	<span class="tag">&lt;/<span class="name">selectKey</span>&gt;</span> </span><br><span class="line">	insert into user( </span><br><span class="line">	user_id,user_name, user_password, create_time) </span><br><span class="line">	values(#&#123;userId&#125;,#&#123;userName&#125;, #&#123;userPassword&#125; , #&#123;createTime, jdbcType= TIMESTAMP&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>此时会将Oracle生成的主键值赋予<code>userId</code>变量。这个userId 就是USER对象的属性，这样就可以将生成的主键值返回了。如果仅仅是在insert语句中使用但是不返回，此时<code>keyProperty=“任意自定义变量名”</code>，resultType 可以不写。<br>Oracle 数据库中的值要设置为 <code>BEFORE</code> ，这是因为 Oracle中需要先从序列获取值，然后将值作为主键插入到数据库中。</p>
-<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><p>如果Mysql 使用selectKey的方式获取主键，需要注意下面两点：</p>
-<ul>
-<li><p>order ： AFTER</p>
-</li>
-<li><p>获取递增主键值 ：SELECT LAST_INSERT_ID()</p>
-</li>
-</ul>
-<h2 id="当实体类中的属性名和表中的字段名不一样-，怎么办"><a href="#当实体类中的属性名和表中的字段名不一样-，怎么办" class="headerlink" title="当实体类中的属性名和表中的字段名不一样 ，怎么办"></a>当实体类中的属性名和表中的字段名不一样 ，怎么办</h2><h3 id="第1种：-通过在查询的SQL语句中定义字段名的别名，让字段名的别名和实体类的属性名一致。"><a href="#第1种：-通过在查询的SQL语句中定义字段名的别名，让字段名的别名和实体类的属性名一致。" class="headerlink" title="第1种： 通过在查询的SQL语句中定义字段名的别名，让字段名的别名和实体类的属性名一致。"></a>第1种： 通过在查询的SQL语句中定义字段名的别名，让字段名的别名和实体类的属性名一致。</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getOrder"</span> <span class="attr">parameterType</span>=<span class="string">"int"</span> <span class="attr">resultType</span>=<span class="string">"com.jourwon.pojo.Order"</span>&gt;</span></span><br><span class="line">       select order_id id, order_no orderno ,order_price price form orders where order_id=#&#123;id&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="第2种：-通过-lt-resultMap-gt-来映射字段名和实体类属性名的一一对应的关系。"><a href="#第2种：-通过-lt-resultMap-gt-来映射字段名和实体类属性名的一一对应的关系。" class="headerlink" title="第2种： 通过&lt;resultMap&gt;来映射字段名和实体类属性名的一一对应的关系。"></a>第2种： 通过<code>&lt;resultMap&gt;</code>来映射字段名和实体类属性名的一一对应的关系。</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getOrder"</span> <span class="attr">parameterType</span>=<span class="string">"int"</span> <span class="attr">resultMap</span>=<span class="string">"orderResultMap"</span>&gt;</span></span><br><span class="line">	select * from orders where order_id=#&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"com.jourwon.pojo.Order"</span> <span class="attr">id</span>=<span class="string">"orderResultMap"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">!–用id属性来映射主键字段–</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">"id"</span> <span class="attr">column</span>=<span class="string">"order_id"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">!–用result属性来映射非主键字段，property为实体类属性名，column为数据库表中的属性–</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span> =<span class="string">"orderno"</span> <span class="attr">column</span> =<span class="string">"order_no"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"price"</span> <span class="attr">column</span>=<span class="string">"order_price"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">reslutMap</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Mapper-编写有哪几种方式？"><a href="#Mapper-编写有哪几种方式？" class="headerlink" title="Mapper 编写有哪几种方式？"></a>Mapper 编写有哪几种方式？</h2><h3 id="第一种：接口实现类继承-SqlSessionDaoSupport：使用此种方法需要编写mapper-接口，mapper-接口实现类、mapper-xml-文件。"><a href="#第一种：接口实现类继承-SqlSessionDaoSupport：使用此种方法需要编写mapper-接口，mapper-接口实现类、mapper-xml-文件。" class="headerlink" title="第一种：接口实现类继承 SqlSessionDaoSupport：使用此种方法需要编写mapper 接口，mapper 接口实现类、mapper.xml 文件。"></a>第一种：接口实现类继承 SqlSessionDaoSupport：使用此种方法需要编写mapper 接口，mapper 接口实现类、mapper.xml 文件。</h3><p>（1）在 sqlMapConfig.xml 中配置 mapper.xml 的位置</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"mapper.xml 文件的地址"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"mapper.xml 文件的地址"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>（2）定义 mapper 接口</p>
-<p>（3）实现类集成 SqlSessionDaoSupport</p>
-<p>mapper 方法中可以 this.getSqlSession()进行数据增删改查。</p>
-<p>（4）spring 配置</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">" "</span> <span class="attr">class</span>=<span class="string">"mapper 接口的实现"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sqlSessionFactory"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">ref</span>=<span class="string">"sqlSessionFactory"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="第二种：使用-org-mybatis-spring-mapper-MapperFactoryBean："><a href="#第二种：使用-org-mybatis-spring-mapper-MapperFactoryBean：" class="headerlink" title="第二种：使用 org.mybatis.spring.mapper.MapperFactoryBean："></a>第二种：使用 org.mybatis.spring.mapper.MapperFactoryBean：</h3><p>（1）在 sqlMapConfig.xml 中配置 mapper.xml 的位置，如果 mapper.xml 和mappre 接口的名称相同且在同一个目录，这里可以不用配置</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"mapper.xml 文件的地址"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"mapper.xml 文件的地址"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>（2）定义 mapper 接口：</p>
-<p>（3）mapper.xml 中的 namespace 为 mapper 接口的地址</p>
-<p>（4）mapper 接口中的方法名和 mapper.xml 中的定义的 statement 的 id 保持一致</p>
-<p>（5）Spring 中定义</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">""</span> <span class="attr">class</span>=<span class="string">"org.mybatis.spring.mapper.MapperFactoryBean"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"mapperInterface"</span> <span class="attr">value</span>=<span class="string">"mapper 接口地址"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sqlSessionFactory"</span> <span class="attr">ref</span>=<span class="string">"sqlSessionFactory"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="第三种：使用-mapper-扫描器："><a href="#第三种：使用-mapper-扫描器：" class="headerlink" title="第三种：使用 mapper 扫描器："></a>第三种：使用 mapper 扫描器：</h3><p>（1）mapper.xml 文件编写：</p>
-<p>mapper.xml 中的 namespace 为 mapper 接口的地址；</p>
-<p>mapper 接口中的方法名和 mapper.xml 中的定义的 statement 的 id 保持一致；</p>
-<p>如果将 mapper.xml 和 mapper 接口的名称保持一致则不用在 sqlMapConfig.xml中进行配置。</p>
-<p>（2）定义 mapper 接口：</p>
-<p>注意 mapper.xml 的文件名和 mapper 的接口名称保持一致，且放在同一个目录</p>
-<p>（3）配置 mapper 扫描器：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.mybatis.spring.mapper.MapperScannerConfigurer"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"basePackage"</span> <span class="attr">value</span>=<span class="string">"mapper 接口包地址</span></span></span><br><span class="line"><span class="tag"><span class="string">    "</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sqlSessionFactoryBeanName"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">value</span>=<span class="string">"sqlSessionFactory"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>（4）使用扫描器后从 spring 容器中获取 mapper 的实现对象。</p>
-<h2 id="什么是MyBatis的接口绑定？有哪些实现方式？"><a href="#什么是MyBatis的接口绑定？有哪些实现方式？" class="headerlink" title="什么是MyBatis的接口绑定？有哪些实现方式？"></a>什么是MyBatis的接口绑定？有哪些实现方式？</h2><p>接口绑定，就是在MyBatis中任意定义接口，然后把接口里面的方法和SQL语句绑定，我们直接调用接口方法就可以，这样比起原来了SqlSession提供的方法我们可以有更加灵活的选择和设置。</p>
-<p>接口绑定有两种实现方式</p>
-<ul>
-<li><p>通过注解绑定，就是在接口的方法上面加上 @Select、@Update等注解，里面包含Sql语句来绑定；</p>
-</li>
-<li><p>通过xml里面写SQL来绑定， 在这种情况下，要指定xml映射文件里面的namespace必须为接口的全路径名。当Sql语句比较简单时候，用注解绑定， 当SQL语句比较复杂时候，用xml绑定，一般用xml绑定的比较多。</p>
-</li>
-</ul>
-<h2 id="使用MyBatis的mapper接口调用时有哪些要求？"><a href="#使用MyBatis的mapper接口调用时有哪些要求？" class="headerlink" title="使用MyBatis的mapper接口调用时有哪些要求？"></a>使用MyBatis的mapper接口调用时有哪些要求？</h2><ol>
-<li><p>Mapper接口方法名和mapper.xml中定义的每个sql的id相同。</p>
-</li>
-<li><p>Mapper接口方法的输入参数类型和mapper.xml中定义的每个sql 的parameterType的类型相同。</p>
-</li>
-<li><p>Mapper接口方法的输出参数类型和mapper.xml中定义的每个sql的resultType的类型相同。</p>
-</li>
-<li><p>Mapper.xml文件中的namespace即是mapper接口的类路径。</p>
-</li>
-</ol>
-<h2 id="最佳实践中，通常一个Xml映射文件，都会写一个Dao接口与之对应，请问，这个Dao接口的工作原理是什么？Dao接口里的方法，参数不同时，方法能重载吗"><a href="#最佳实践中，通常一个Xml映射文件，都会写一个Dao接口与之对应，请问，这个Dao接口的工作原理是什么？Dao接口里的方法，参数不同时，方法能重载吗" class="headerlink" title="最佳实践中，通常一个Xml映射文件，都会写一个Dao接口与之对应，请问，这个Dao接口的工作原理是什么？Dao接口里的方法，参数不同时，方法能重载吗"></a>最佳实践中，通常一个Xml映射文件，都会写一个Dao接口与之对应，请问，这个Dao接口的工作原理是什么？Dao接口里的方法，参数不同时，方法能重载吗</h2><p>Dao接口，就是人们常说的Mapper接口，接口的全限名，就是映射文件中的namespace的值，接口的方法名，就是映射文件中<code>MappedStatement</code>的id值，接口方法内的参数，就是传递给sql的参数。<br>Mapper接口是没有实现类的，当调用接口方法时，接口全限名+方法名拼接字符串作为key值，可唯一定位一个<code>MappedStatement</code>，举例：<code>com.mybatis3.mappers.StudentDao.findStudentById</code>，可以唯一找到namespace为<code>com.mybatis3.mappers.StudentDao</code>下面<code>id = findStudentById</code>的<code>MappedStatement</code>。在Mybatis中，每一个<code>&lt;select&gt;</code>、<code>&lt;insert&gt;</code>、<code>&lt;update&gt;</code>、<code>&lt;delete&gt;</code>标签，都会被解析为一个<code>MappedStatement</code>对象。<br>Dao接口里的方法，是不能重载的，因为是全限名+方法名的保存和寻找策略。</p>
-<p>Dao接口的工作原理是JDK动态代理，Mybatis运行时会使用JDK动态代理为Dao接口生成代理proxy对象，代理对象proxy会拦截接口方法，转而执行MappedStatement所代表的sql，然后将sql执行结果返回。</p>
-<h2 id="Mybatis的Xml映射文件中，不同的Xml映射文件，id是否可以重复？"><a href="#Mybatis的Xml映射文件中，不同的Xml映射文件，id是否可以重复？" class="headerlink" title="Mybatis的Xml映射文件中，不同的Xml映射文件，id是否可以重复？"></a>Mybatis的Xml映射文件中，不同的Xml映射文件，id是否可以重复？</h2><p>不同的Xml映射文件，如果配置了namespace，那么id可以重复；如果没有配置namespace，那么id不能重复；毕竟namespace不是必须的，只是最佳实践而已。</p>
-<p>原因就是<code>namespace+id</code>是作为<code>Map&lt;String, MappedStatement&gt;</code>的key使用的，如果没有<code>namespace</code>，就剩下<code>id</code>，那么，<code>id</code>重复会导致数据互相覆盖。有了<code>namespace</code>，自然<code>id</code>就可以重复，<code>namespace</code>不同，<code>namespace+id</code>自然也就不同。</p>
-<h2 id="简述Mybatis的Xml映射文件和Mybatis内部数据结构之间的映射关系？"><a href="#简述Mybatis的Xml映射文件和Mybatis内部数据结构之间的映射关系？" class="headerlink" title="简述Mybatis的Xml映射文件和Mybatis内部数据结构之间的映射关系？"></a>简述Mybatis的Xml映射文件和Mybatis内部数据结构之间的映射关系？</h2><p>答：Mybatis将所有Xml配置信息都封装到<code>All-In-One</code>重量级对象<code>Configuration</code>内部。在Xml映射文件中，<code>&lt;parameterMap&gt;</code>标签会被解析为<code>ParameterMap</code>对象，其每个子元素会被解析为<code>ParameterMapping</code>对象。<code>&lt;resultMap&gt;</code>标签会被解析为<code>ResultMap</code>对象，其每个子元素会被解析为<code>ResultMapping</code>对象。每一个<code>&lt;select&gt;</code>、<code>&lt;insert&gt;</code>、<code>&lt;update&gt;</code>、<code>&lt;delete&gt;</code>标签均会被解析为<code>MappedStatement</code>对象，标签内的<code>sql</code>会被解析为<code>BoundSql</code>对象。</p>
-<h2 id="Mybatis是如何将sql执行结果封装为目标对象并返回的？都有哪些映射形式？"><a href="#Mybatis是如何将sql执行结果封装为目标对象并返回的？都有哪些映射形式？" class="headerlink" title="Mybatis是如何将sql执行结果封装为目标对象并返回的？都有哪些映射形式？"></a>Mybatis是如何将sql执行结果封装为目标对象并返回的？都有哪些映射形式？</h2><ul>
-<li><p>第一种是使用<code>&lt;resultMap&gt;</code>标签，逐一定义列名和对象属性名之间的映射关系。</p>
-</li>
-<li><p>第二种是使用sql列的别名功能，将列别名书写为对象属性名，比如T_NAME AS NAME，对象属性名一般是name，小写，但是列名不区分大小写，Mybatis会忽略列名大小写，智能找到与之对应对象属性名，你甚至可以写成T_NAME AS NaMe，Mybatis一样可以正常工作。</p>
-</li>
-</ul>
-<p>有了列名与属性名的映射关系后，Mybatis通过反射创建对象，同时使用反射给对象的属性逐一赋值并返回，那些找不到映射关系的属性，是无法完成赋值的。</p>
-<h2 id="Xml映射文件中，除了常见的select-insert-updae-delete标签之外，还有哪些标签？"><a href="#Xml映射文件中，除了常见的select-insert-updae-delete标签之外，还有哪些标签？" class="headerlink" title="Xml映射文件中，除了常见的select|insert|updae|delete标签之外，还有哪些标签？"></a>Xml映射文件中，除了常见的select|insert|updae|delete标签之外，还有哪些标签？</h2><p>还有很多其他的标签，<code>&lt;resultMap&gt;</code>、<code>&lt;parameterMap&gt;</code>、<code>&lt;sql&gt;</code>、<code>&lt;include&gt;</code>、<code>&lt;selectKey&gt;</code>，加上动态<code>sql</code>的9个标签，<code>trim</code>|<code>where</code>|<code>set</code>|<code>foreach</code>|<code>if</code>|<code>choose</code>|<code>when</code>|<code>otherwise</code>|<code>bind</code>等，其中<code>&lt;sql&gt;</code>为sql片段标签，通过<code>&lt;include&gt;</code>标签引入sql片段，<code>&lt;selectKey&gt;</code>为不支持自增的主键生成策略标签。</p>
-<h2 id="Mybatis映射文件中，如果A标签通过include引用了B标签的内容，请问，B标签能否定义在A标签的后面，还是说必须定义在A标签的前面？"><a href="#Mybatis映射文件中，如果A标签通过include引用了B标签的内容，请问，B标签能否定义在A标签的后面，还是说必须定义在A标签的前面？" class="headerlink" title="Mybatis映射文件中，如果A标签通过include引用了B标签的内容，请问，B标签能否定义在A标签的后面，还是说必须定义在A标签的前面？"></a>Mybatis映射文件中，如果A标签通过include引用了B标签的内容，请问，B标签能否定义在A标签的后面，还是说必须定义在A标签的前面？</h2><p>虽然Mybatis解析Xml映射文件是按照顺序解析的，但是，被引用的B标签依然可以定义在任何地方，Mybatis都可以正确识别。</p>
-<p>原理是，Mybatis解析A标签，发现A标签引用了B标签，但是B标签尚未解析到，尚不存在，此时，Mybatis会将A标签标记为未解析状态，然后继续解析余下的标签，包含B标签，待所有标签解析完毕，Mybatis会重新解析那些被标记为未解析的标签，此时再解析A标签时，B标签已经存在，A标签也就可以正常解析完成了。</p>
-<h1 id="高级查询"><a href="#高级查询" class="headerlink" title="高级查询"></a>高级查询</h1><h2 id="MyBatis实现一对一，一对多有几种方式，怎么操作的？"><a href="#MyBatis实现一对一，一对多有几种方式，怎么操作的？" class="headerlink" title="MyBatis实现一对一，一对多有几种方式，怎么操作的？"></a>MyBatis实现一对一，一对多有几种方式，怎么操作的？</h2><p>有联合查询和嵌套查询。联合查询是几个表联合查询，只查询一次，通过在resultMap里面的association，collection节点配置一对一，一对多的类就可以完成</p>
-<p>嵌套查询是先查一个表，根据这个表里面的结果的外键id，去再另外一个表里面查询数据，也是通过配置association，collection，但另外一个表的查询通过select节点配置。</p>
-<h2 id="Mybatis是否可以映射Enum枚举类？"><a href="#Mybatis是否可以映射Enum枚举类？" class="headerlink" title="Mybatis是否可以映射Enum枚举类？"></a>Mybatis是否可以映射Enum枚举类？</h2><p>Mybatis可以映射枚举类，不单可以映射枚举类，Mybatis可以映射任何对象到表的一列上。映射方式为自定义一个<code>TypeHandler</code>，实现<code>TypeHandler</code>的<code>setParameter()</code>和<code>getResult()</code>接口方法。</p>
-<p><code>TypeHandler</code>有两个作用，一是完成从javaType至jdbcType的转换，二是完成jdbcType至javaType的转换，体现为setParameter()和getResult()两个方法，分别代表设置sql问号占位符参数和获取列查询结果。</p>
-<h1 id="动态SQL"><a href="#动态SQL" class="headerlink" title="动态SQL"></a>动态SQL</h1><h2 id="Mybatis动态sql是做什么的？都有哪些动态sql？能简述一下动态sql的执行原理不？"><a href="#Mybatis动态sql是做什么的？都有哪些动态sql？能简述一下动态sql的执行原理不？" class="headerlink" title="Mybatis动态sql是做什么的？都有哪些动态sql？能简述一下动态sql的执行原理不？"></a>Mybatis动态sql是做什么的？都有哪些动态sql？能简述一下动态sql的执行原理不？</h2><p>Mybatis动态sql可以让我们在Xml映射文件内，以标签的形式编写动态sql，完成逻辑判断和动态拼接sql的功能，Mybatis提供了9种动态sql标签<code>trim</code>|<code>where</code>|<code>set</code>|<code>foreach</code>|<code>if</code>|<code>choose</code>|<code>when</code>|<code>otherwise</code>|<code>bind</code>。</p>
-<p>其执行原理为，使用OGNL从sql参数对象中计算表达式的值，根据表达式的值动态拼接sql，以此来完成动态sql的功能。</p>
-<h1 id="插件模块"><a href="#插件模块" class="headerlink" title="插件模块"></a>插件模块</h1><h2 id="Mybatis是如何进行分页的？分页插件的原理是什么？"><a href="#Mybatis是如何进行分页的？分页插件的原理是什么？" class="headerlink" title="Mybatis是如何进行分页的？分页插件的原理是什么？"></a>Mybatis是如何进行分页的？分页插件的原理是什么？</h2><p>Mybatis使用RowBounds对象进行分页，它是针对ResultSet结果集执行的内存分页，而非物理分页，可以在sql内直接书写带有物理分页的参数来完成物理分页功能，也可以使用分页插件来完成物理分页。</p>
-<p>分页插件的基本原理是使用Mybatis提供的插件接口，实现自定义插件，在插件的拦截方法内拦截待执行的sql，然后重写sql，根据dialect方言，添加对应的物理分页语句和物理分页参数。</p>
-<p>举例：<code>select * from student</code>，拦截sql后重写为：<code>select t.* from (select * from student) t limit 0, 10</code></p>
-<h2 id="简述Mybatis的插件运行原理，以及如何编写一个插件。"><a href="#简述Mybatis的插件运行原理，以及如何编写一个插件。" class="headerlink" title="简述Mybatis的插件运行原理，以及如何编写一个插件。"></a>简述Mybatis的插件运行原理，以及如何编写一个插件。</h2><p>Mybatis仅可以编写针对<code>ParameterHandler</code>、<code>ResultSetHandler</code>、<code>StatementHandler</code>、<code>Executor</code>这4种接口的插件，Mybatis使用JDK的动态代理，为需要拦截的接口生成代理对象以实现接口方法拦截功能，每当执行这4种接口对象的方法时，就会进入拦截方法，具体就是<code>InvocationHandler</code>的<code>invoke()</code>方法，当然，只会拦截那些你指定需要拦截的方法。</p>
-<p>实现Mybatis的<code>Interceptor</code>接口并复写<code>intercept()</code>方法，然后在给插件编写注解，指定要拦截哪一个接口的哪些方法即可，记住，别忘了在配置文件中配置你编写的插件。</p>
-<h1 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h1><h2 id="Mybatis的一级、二级缓存"><a href="#Mybatis的一级、二级缓存" class="headerlink" title="Mybatis的一级、二级缓存"></a>Mybatis的一级、二级缓存</h2><ul>
-<li><p>1）一级缓存: 基于 PerpetualCache 的 HashMap 本地缓存，其存储作用域为 Session，当 Session flush 或 close 之后，该 Session 中的所有 Cache 就将清空，默认打开一级缓存。</p>
-</li>
-<li><p>2）二级缓存与一级缓存其机制相同，默认也是采用 PerpetualCache，HashMap 存储，不同在于其存储作用域为 Mapper(Namespace)，并且可自定义存储源，如 Ehcache。默认不打开二级缓存，要开启二级缓存，使用二级缓存属性类需要实现Serializable序列化接口(可用来保存对象的状态),可在它的映射文件中配置<code>&lt;cache/&gt;</code>；</p>
-</li>
-<li><p>3）对于缓存数据更新机制，当某一个作用域(一级缓存 Session/二级缓存Namespaces)的进行了C/U/D 操作后，默认该作用域下所有 select 中的缓存将被 clear。</p>
-</li>
-</ul>
-
+    
+    <a class="article-more-a" href="/java-plus/12234.html#more">more >></a>
+    
     
 
     
@@ -2303,10 +1885,6 @@ var _hmt = _hmt || [];
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">C#基础知识</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Express</a>
               </li>
              
@@ -2316,10 +1894,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Express 基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2339,7 +1913,19 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">C#基础知识</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2347,15 +1933,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">C# 基础数据类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2367,7 +1953,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2376,10 +1962,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">加密技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
               </li>
              
               <li class="article-tag-list-item">
