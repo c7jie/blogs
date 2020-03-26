@@ -20,7 +20,7 @@
 <meta property="og:description" content="C# 字符串介绍，字符串常见方法">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-03-30T05:55:00.000Z">
-<meta property="article:modified_time" content="2020-01-14T07:21:38.785Z">
+<meta property="article:modified_time" content="2020-03-26T02:39:17.588Z">
 <meta property="article:author" content="Mr.Gao">
 <meta property="article:tag" content="C#">
 <meta property="article:tag" content=".net">
@@ -310,6 +310,7 @@ var _hmt = _hmt || [];
 </ol>
 <p>很多人包括一些老开发都会认为是4个，那么实际上呢，s2和s1同时指向了一个地址也就是两个。<br>嗯？是不是有点不可思议？</p>
 <p>这个是因为在C#中，字面值有一个特点，如果声明过程中一个变量的声明使用的都是字面值（即非变量）或者是常量，那么该变量的声明过程会优先计算值，然后将该变量指向一个常量。<br>也就是说 在<code>string s2 = &quot;sa&quot;+&quot;1234&quot;;</code>这个表达式中，会先将”sa”和”1234”合并成一个字符串，再赋值给s2。并不会先划分一个”sa”的内存区域，再划分一个”1234”的内存区域，最后再合并成”sa1234“。所以1和2都是直接指向”sa1234”。</p>
+<a id="more"></a>
 <h2 id="string的构造函数"><a href="#string的构造函数" class="headerlink" title="string的构造函数"></a>string的构造函数</h2><p><code>string</code>的构造函数一共有以下几种：</p>
 <ol>
 <li><code>public String(char c, int count);</code></li>
@@ -674,6 +675,18 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">IT 图谱</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Express</a>
               </li>
              
@@ -683,14 +696,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Express 基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -706,7 +711,31 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">IT 图谱</a>
+                <a href="javascript:void(0)" class="js-tag color5">C# 基础数据类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">加密技术</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -718,35 +747,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">C# 基础数据类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">日志</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">加密技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">日志</a>
               </li>
             
             <div class="clearfix"></div>

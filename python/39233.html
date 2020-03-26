@@ -20,7 +20,7 @@
 <meta property="og:description" content="python 加密算法研究">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-01-14T01:59:00.000Z">
-<meta property="article:modified_time" content="2020-01-14T07:21:38.817Z">
+<meta property="article:modified_time" content="2020-03-26T02:39:17.606Z">
 <meta property="article:author" content="Mr.Gao">
 <meta property="article:tag" content="python加密算法">
 <meta name="twitter:card" content="summary">
@@ -304,7 +304,7 @@ var _hmt = _hmt || [];
 <p>哈希算法最常用于对密码进行加密，从而保存密码的哈希值而非明文密码。当然，哈希算法必须足够好否则就会被破译。哈希算法的另一用途是获取文件的哈希值并将其与文件分开传递，接收者就可以据此判断收到的文件与哈希值是否匹配，如果匹配这说明在传递过程中文件没有被人篡改。</p>
 <p>让我们试着生成一个 md5 哈希值：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>md5 = hashlib.md5()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>md5.update(<span class="string">'Python rocks!'</span>)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">""</span>, line <span class="number">1</span>, <span class="keyword">in</span> </span><br><span class="line">    md5.update(<span class="string">'Python rocks!'</span>)</span><br><span class="line">TypeError: Unicode-objects must be encoded before hashing</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>md5.update(<span class="string">b'Python rocks!'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>md5.digest()</span><br><span class="line"><span class="string">b'\x14\x82\xec\x1b#d\xf6N&#125;\x16*+[\x16\xf4w'</span></span><br></pre></td></tr></table></figure>
-
+<a id="more"></a>
 <p>让我们花点时间分解一下这个过程。首先，我们引入了 <code>hashlib</code> 模块并创建了一个<code>md5 HASH</code>对象。接下来我们向这个对象添加了一些文本字符，但是却得到错误信息。要使用 md5 哈希算法，你必须传递字节串而不是普通的字符串。于是我们改用字节串并调用 <code>digest</code> 方法获取我们想要的哈希值。如果你想要十六进制的密文，我们也可以做到：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; md5.hexdigest()</span><br><span class="line">&#39;1482ec1b2364f64e7d162a2b5b16f477&#39;</span><br></pre></td></tr></table></figure>
 
@@ -671,6 +671,18 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">IT 图谱</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Express</a>
               </li>
              
@@ -680,14 +692,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Express 基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -703,7 +707,31 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">IT 图谱</a>
+                <a href="javascript:void(0)" class="js-tag color5">C# 基础数据类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">加密技术</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -715,35 +743,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">C# 基础数据类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">日志</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">加密技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">日志</a>
               </li>
             
             <div class="clearfix"></div>

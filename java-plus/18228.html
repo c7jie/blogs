@@ -8,22 +8,32 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="canonical" href="https://blogs.attachie.club">
   <link rel="dns-prefetch" href="https://blogs.attachie.club">
-  <title>标签云: Express 基础 | 高先生小屋-高先生小屋, C#,CSharp,.net,Java,Python,技术站</title>
+  <title>【转载】JVM从入门到入土之JVM的类加载机制 | 高先生小屋-高先生小屋, C#,CSharp,.net,Java,Python,技术站</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="高先生小屋, C#,CSharp,.net,Java,Python,技术站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="高先生小屋">
-<meta property="og:url" content="https://blogs.attachie.club/tags/Express-%E5%9F%BA%E7%A1%80/index.html">
+  <meta name="description" content="java JVM相关机制介绍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【转载】JVM从入门到入土之JVM的类加载机制">
+<meta property="og:url" content="https://blogs.attachie.club/java-plus/18228.html">
 <meta property="og:site_name" content="高先生小屋">
-<meta property="og:description" content="高先生小屋, C#,CSharp,.net,Java,Python,技术站">
+<meta property="og:description" content="java JVM相关机制介绍">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://q7hyzeb4g.bkt.clouddn.com/FomwObHkZVV1ZXcpeIH0MPzpFF3H">
+<meta property="og:image" content="http://q7hyzeb4g.bkt.clouddn.com/FrSSELJHVMM00A1IWV7siSd4Wj6B">
+<meta property="og:image" content="http://q7hyzeb4g.bkt.clouddn.com/FvVw3tdQyzP_2Xs7rfhiDUC8DxHQ">
+<meta property="og:image" content="http://q7hyzeb4g.bkt.clouddn.com/Fj55MVOqVLe1vTEH17_8eLq3E6TN">
+<meta property="og:image" content="http://q7hyzeb4g.bkt.clouddn.com/Foyo9YX3DelamBfil348Q4c2nEyi">
+<meta property="og:image" content="http://q7hyzeb4g.bkt.clouddn.com/FnhsqiwKdRSmT6ST82opBY6m7AsZ">
+<meta property="og:image" content="http://q7hyzeb4g.bkt.clouddn.com/FmdVtdRYaMSWQiGQMnEdooWDEGwA">
+<meta property="og:image" content="http://q7hyzeb4g.bkt.clouddn.com/FpVoEfh5QzRjqDtJaCfJ_Zf5fH_B">
+<meta property="article:published_time" content="2020-03-26T00:24:00.000Z">
+<meta property="article:modified_time" content="2020-03-26T02:39:17.603Z">
 <meta property="article:author" content="Mr.Gao">
-<meta property="article:tag" content="C#">
-<meta property="article:tag" content="基础知识">
-<meta property="article:tag" content="技术站">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://q7hyzeb4g.bkt.clouddn.com/FomwObHkZVV1ZXcpeIH0MPzpFF3H">
   
     <link rel="alternative" href="/atom.xml" title="高先生小屋" type="application/atom+xml">
   
@@ -238,84 +248,345 @@ var _hmt = _hmt || [];
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-【转载】JVM从入门到入土之JVM的类加载机制" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/express/deceab70.html" class="archive-article-date">
-        <time datetime="2019-03-13T02:59:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-13</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/express/deceab70.html" target="_blank">Express 基础入门</a>
   
+    <h1 class="article-title" itemprop="name">
+      【转载】JVM从入门到入土之JVM的类加载机制
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/java-plus/18228.html" class="archive-article-date">
+        <time datetime="2020-03-26T00:24:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-26</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">3.1k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">11分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <blockquote><p>偶然间发现的一个JVM系列文章，初看一下感觉很有意思。</p>
+<footer><strong>掘金，六脉神剑</strong><cite><a href="https://juejin.im/post/5e1aaf626fb9a0301d11ac8e" target="_blank" rel="noopener">JVM从入门到入土之JVM的类加载机制</a></cite></footer></blockquote>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>文本已收录至我的GitHub仓库，欢迎Star：<a href="https://github.com/bin392328206/six-finger" target="_blank" rel="noopener">github.com/bin39232820…</a><br/><br><strong>种一棵树最好的时间是十年前，其次是现在</strong><br/><br>我知道很多人不玩<strong>qq</strong>了,但是怀旧一下,欢迎加入六脉神剑Java菜鸟学习群，群聊号码：<strong>549684836</strong> 鼓励大家在技术的路上写博客</p>
+</blockquote>
+<h2 id="絮叨"><a href="#絮叨" class="headerlink" title="絮叨"></a>絮叨</h2><p>学Java的没办法都逃不过Java虚拟机的，所以这个系列是必须讲的，因为你要构建你的Java知识体系，你就肯定知道要怎么按步骤学，对于JVM的学习我也自己的一个小规划吧，从JVM介绍,然后，Java文件编程成.class文件，然后Java虚拟机怎么加载这写.class文件，加载到虚拟机之后，这些数据怎么再Java虚拟机中存储，存储之后我们知道Java是自动回收垃圾，不像C C++那样，那我们我们肯定得知道垃圾回收算法，和垃圾回收器，最后到真正的一个Java系统的JVM调优，这个就是我打算要讲的这个系列，然后我大多数类容参考周志明老师的深入理解Java虚拟机</p>
+<a id="more"></a>
+<p><img src="http://q7hyzeb4g.bkt.clouddn.com/FomwObHkZVV1ZXcpeIH0MPzpFF3H" alt="file"></p>
+<h2 id="什么是JVM"><a href="#什么是JVM" class="headerlink" title="什么是JVM"></a>什么是JVM</h2><p>JVM是Java Virtual Machine（Java虚拟机）的缩写，JVM是一种用于计算设备的规范，它是一个虚构出来的计算机，是通过在实际的计算机上仿真模拟各种计算机功能来实现的。Java虚拟机包括一套字节码指令集、一组寄存器、一个栈、一个垃圾回收堆和一个存储方法域。 JVM屏蔽了与具体操作系统平台相关的信息，使Java程序只需生成在Java虚拟机上运行的目标代码（字节码）,就可以在多种平台上不加修改地运行。JVM在执行字节码时，实际上最终还是把字节码解释成具体平台上的机器指令执行 ,是Java跨平台的原因。</p>
+<h2 id="JDK-JRE-JVM"><a href="#JDK-JRE-JVM" class="headerlink" title="JDK JRE JVM"></a>JDK JRE JVM</h2><p><img src="http://q7hyzeb4g.bkt.clouddn.com/FrSSELJHVMM00A1IWV7siSd4Wj6B" alt="file"></p>
+<p>这个是我从oracle官网截图的，从中可以看出JDK=JRE+一些工具，JRE里面包含了JVM(Java虚拟机)</p>
+<h2 id="JVM总体概述"><a href="#JVM总体概述" class="headerlink" title="JVM总体概述"></a>JVM总体概述</h2><p>JVM总体上是由</p>
+<ul>
+<li>类装载子系统（ClassLoader）</li>
+<li>运行时数据区</li>
+<li>执行引擎</li>
+<li>内存回收</li>
+<li>类文件结构</li>
+</ul>
+<p>以上5个部分组成，每一个都是非常重要的，如果你要了解JVM，要学习JVM调优，那么只能是一个个去把他们啃了</p>
+<h2 id="什么是类加载机制"><a href="#什么是类加载机制" class="headerlink" title="什么是类加载机制"></a>什么是类加载机制</h2><p>书上的原话：</p>
+<blockquote>
+<p>虚拟机把描述类的数据从Class文件加载到内存，并对这些数据进行校验，转换 解析和初始化，最终形成可以被虚拟机直接使用的Java类型，这就是虚拟机的类加载机制</p>
+</blockquote>
+<h2 id="类加载的时机"><a href="#类加载的时机" class="headerlink" title="类加载的时机"></a>类加载的时机</h2><p>类从被加载到虚拟机内存中开始，到卸载出内存为止，它的生命周期包括</p>
+<ul>
+<li>加载</li>
+<li>验证</li>
+<li>准备</li>
+<li>解析</li>
+<li>初始化</li>
+<li>使用</li>
+<li>卸载</li>
+</ul>
+<p>总共是7个阶段</p>
+<p><img src="http://q7hyzeb4g.bkt.clouddn.com/FvVw3tdQyzP_2Xs7rfhiDUC8DxHQ" alt="file"></p>
+<h2 id="理解类加载三个字"><a href="#理解类加载三个字" class="headerlink" title="理解类加载三个字"></a>理解类加载三个字</h2><p>首先 类 是指的.Class文件类，那么怎么生成这个文件呢？</p>
+<ul>
+<li>Java代码编译</li>
+<li>原本就是.Class 文件</li>
+<li>动态代理生成</li>
+</ul>
+<p>等等 还有很多</p>
+<p>那么 加载 这2个字应该怎么理解呢 大家可以看下图</p>
+<p><img src="http://q7hyzeb4g.bkt.clouddn.com/Fj55MVOqVLe1vTEH17_8eLq3E6TN" alt="file"></p>
+<p>本地的.Class文件通过类加载器加载到JVM内存中的方法区里面，然后通过这个对象来访问数据区的数据</p>
+<ol>
+<li>通过一个类的全限定名来获取定义此类的二进制字节流</li>
+<li>将这个字节流代表的静态存储结构转化成方法区的二进制字节流</li>
+<li>再内存的方法区生成这个类的Java.lang.Class对象，作为这个类各个数据访问的入口</li>
+</ol>
+<h2 id="五种必须初始化的情况"><a href="#五种必须初始化的情况" class="headerlink" title="五种必须初始化的情况"></a>五种必须初始化的情况</h2><p>Java并没用规定生命时候进行类加载的第一阶段，但是对于初始化阶段，虚拟机有严格的规范</p>
+<ul>
+<li>遇到new 关键字的时候</li>
+<li>使用reflect包的方法的时候</li>
+<li>当初始化一个类的时候发现父类还没初始化，必须先初始化父类</li>
+<li>当虚拟机启动的时候，加载main方法的类</li>
+<li>当使用1.7的动态语言支持的时候（这块没有接触过，有没有大佬懂的）</li>
+</ul>
+<h2 id="验证阶段"><a href="#验证阶段" class="headerlink" title="验证阶段"></a>验证阶段</h2><p>分为以下几种样装情况</p>
+<ul>
+<li>文件格式的验证，验证当前字节流是否能被JVM识别</li>
+<li>元数据的验证，验证它的父类，它的继承，是否是抽象类等</li>
+<li>字节码验证，验证逻辑是否合理</li>
+<li>符合引用的验证 验证是否能通过生成的Class对象找到对应的数据</li>
+</ul>
+<h2 id="准备阶段"><a href="#准备阶段" class="headerlink" title="准备阶段"></a>准备阶段</h2><p>准备阶段是正式为类变量分配内存并设置类变量初始值的阶段，这些内存都将在方法区中分配。对于该阶段有以下几点需要注意：</p>
+<p>1、这时候进行内存分配的仅包括类变量（static），而不包括实例变量，实例变量会在对象实例化时随着对象一块分配在Java堆中。</p>
+<p>2、这里所设置的初始值通常情况下是数据类型默认的零值（如0、0L、null、false等），而不是被在Java代码中被显式地赋予的值。</p>
+<p>假设一个类变量的定义为：</p>
+<p>public static int value = 3；</p>
+<p>那么变量value在准备阶段过后的初始值为0，而不是3，因为这时候尚未开始执行任何Java方法，而把value赋值为3的putstatic指令是在程序编译后，存放于类构造器（）方法之中的，所以把value赋值为3的动作将在初始化阶段才会执行。</p>
+<p>下表列出了Java中所有基本数据类型以及reference类型的默认零值：</p>
+<p><img src="http://q7hyzeb4g.bkt.clouddn.com/Foyo9YX3DelamBfil348Q4c2nEyi" alt="file"></p>
+<p>这里还需要注意如下几点：</p>
+<ul>
+<li>对基本数据类型来说，对于类变量（static）和全局变量，如果不显式地对其赋值而直接使用，则系统会为其赋予默认的零值，而- 对于局部变量来说，在使用前必须显式地为其赋值，否则编译时不通过。</li>
+<li>对于同时被static和final修饰的常量，必须在声明的时候就为其显式地赋值，否则编译时不通过；而只被final修饰的常量则既可以在声明时显式地为其赋值，也可以在类初始化时显式地为其赋值，总之，在使用前必须为其显式地赋值，系统不会为其赋予默认零值。</li>
+<li>对于引用数据类型reference来说，如数组引用、对象引用等，如果没有对其进行显式地赋值而直接使用，系统都会为其赋予默认的零值，即null。</li>
+<li>如果在数组初始化时没有对数组中的各元素赋值，那么其中的元素将根据对应的数据类型而被赋予默认的零值。</li>
+</ul>
+<p>如果类字段的字段属性表中存在ConstantValue属性，即同时被final和static修饰，那么在准备阶段变量value就会被初始化为ConstValue属性所指定的值。</p>
+<h2 id="解析阶段"><a href="#解析阶段" class="headerlink" title="解析阶段"></a>解析阶段</h2><p>解析阶段是虚拟机将常量池内的符号引用替换为直接引用的过程<br>##初始化阶段<br>到了初始化阶段，才真正开始执行类中定义的Java代码</p>
+<h2 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h2><p>站在Java虚拟机的角度来讲，只存在两种不同的类加载器：</p>
+<ul>
+<li>启动类加载器：它使用C++实现（这里仅限于Hotspot，也就是JDK1.5之后默认的虚拟机，有很多其他的虚拟机是用Java语言实现的），是虚拟机自身的一部分。</li>
+<li>所有其他的类加载器：这些类加载器都由Java语言实现，独立于虚拟机之外，并且全部继承自抽象类java.lang.ClassLoader，这些类加载器需要由启动类加载器加载到内存中之后才能去加载其他的类。</li>
+</ul>
+<p>站在Java开发人员的角度来看，类加载器可以大致划分为以下四类：</p>
+<ul>
+<li>启动类加载器 （C实现）</li>
+<li>扩展类加载器  (ClassLoader)</li>
+<li>应用程序加载器 (ClassLoader)</li>
+<li>自定义加载器 (ClassLoader)</li>
+</ul>
+<p>这几种类加载器的层次关系如下图所示：</p>
+<p><img src="http://q7hyzeb4g.bkt.clouddn.com/FnhsqiwKdRSmT6ST82opBY6m7AsZ" alt="file"></p>
+<h2 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h2><p>类加载器之间的这种层次关系叫做双亲委派模型。<br>双亲委派模型要求除了顶层的启动类加载器（Bootstrap ClassLoader）外，其余的类加载器都应当有自己的父类加载器。这里的类加载器之间的父子关系一般不是以继承关系实现的，而是用组合实现的。</p>
+<h2 id="双亲委派模型的工作过程"><a href="#双亲委派模型的工作过程" class="headerlink" title="双亲委派模型的工作过程"></a>双亲委派模型的工作过程</h2><p>由我来概况就是 八个字 <strong>向上检查，从下加载</strong><br/><br>如果一个类接受到类加载请求，他自己不会去加载这个请求，而是将这个类加载请求委派给父类加载器，这样一层一层传送，直到到达启动类加载器（Bootstrap ClassLoader）。<br>只有当父类加载器无法加载这个请求时，子加载器才会尝试自己去加载。</p>
+<h2 id="双亲委派模型的代码实现"><a href="#双亲委派模型的代码实现" class="headerlink" title="双亲委派模型的代码实现"></a>双亲委派模型的代码实现</h2><p>双亲委派模型的代码实现集中在java.lang.ClassLoader的loadClass()方法当中。</p>
+<ul>
+<li>首先检查类是否被加载，没有则调用父类加载器的loadClass()方法；</li>
+<li>若父类加载器为空，则默认使用启动类加载器作为父加载器；<li>若父类加载失败，抛出ClassNotFoundException 异常后，再调用自己的findClass() 方法。
+loadClass源代码如下：</li>
+
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="keyword">synchronized</span> Class&amp;lt;?&amp;gt; loadClass(String name, <span class="keyword">boolean</span> resolve) <span class="keyword">throws</span> ClassNotFoundException &#123;</span><br><span class="line">    <span class="comment">//1 首先检查类是否被加载</span></span><br><span class="line">    Class c = findLoadedClass(name);</span><br><span class="line">    <span class="keyword">if</span> (c == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (parent != <span class="keyword">null</span>) &#123;</span><br><span class="line">             <span class="comment">//2 没有则调用父类加载器的loadClass()方法；</span></span><br><span class="line">                c = parent.loadClass(name, <span class="keyword">false</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//3 若父类加载器为空，则默认使用启动类加载器作为父加载器；</span></span><br><span class="line">                c = findBootstrapClass0(name);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">           <span class="comment">//4 若父类加载失败，抛出ClassNotFoundException 异常后，这个方法就是加载的核心代码</span></span><br><span class="line">            c = findClass(name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (resolve) &#123;</span><br><span class="line">        <span class="comment">//5 再调用自己的findClass() 方法。</span></span><br><span class="line">        resolveClass(c);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="自定义类加载器"><a href="#自定义类加载器" class="headerlink" title="自定义类加载器"></a>自定义类加载器</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">   <span class="class"><span class="keyword">class</span> <span class="title">NetworkClassLoader</span> <span class="keyword">extends</span> <span class="title">ClassLoader</span> </span>&#123;</span><br><span class="line">*         String host;</span><br><span class="line">*         <span class="keyword">int</span> port;</span><br><span class="line">*</span><br><span class="line">*         <span class="function"><span class="keyword">public</span> Class <span class="title">findClass</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">*             <span class="keyword">byte</span>[] b = loadClassData(name);</span><br><span class="line">*             <span class="keyword">return</span> defineClass(name, b, <span class="number">0</span>, b.length);</span><br><span class="line">*         &#125;</span><br><span class="line">*</span><br><span class="line">*         <span class="keyword">private</span> <span class="keyword">byte</span>[] loadClassData(String name) &#123;</span><br><span class="line">*             <span class="comment">// load the class data from the connection</span></span><br><span class="line">*             &amp;amp;nbsp;.&amp;amp;nbsp;.&amp;amp;nbsp;.</span><br><span class="line">*         &#125;</span><br><span class="line">*     &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个就是官方的例子</p>
+<p><img src="http://q7hyzeb4g.bkt.clouddn.com/FmdVtdRYaMSWQiGQMnEdooWDEGwA" alt="file"></p>
+<h2 id="破环双亲委派"><a href="#破环双亲委派" class="headerlink" title="破环双亲委派"></a>破环双亲委派</h2><p>双亲委派模型很好的解决了各个类加载器加载基础类的统一性问题。即越基础的类由越上层的加载器进行加载。<br>若加载的基础类中需要回调用户代码，而这时顶层的类加载器无法识别这些用户代码，怎么办呢？这时就需要破坏双亲委派模型了。</p>
+<p>java默认的线程上下文类加载器是系统类加载器(AppClassLoader).</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Now create the class loader to use to launch the application    </span></span><br><span class="line">   <span class="keyword">try</span> &#123;    </span><br><span class="line">       loader = AppClassLoader.getAppClassLoader(extcl);    </span><br><span class="line">   &#125; <span class="keyword">catch</span> (IOException e) &#123;    </span><br><span class="line">       <span class="keyword">throw</span> <span class="keyword">new</span> InternalError(    </span><br><span class="line">   <span class="string">"Could not create application class loader"</span> );    </span><br><span class="line">   &#125;    </span><br><span class="line">        </span><br><span class="line">   <span class="comment">// Also set the context class loader for the primordial thread.    </span></span><br><span class="line">  Thread.currentThread().setContextClassLoader(loader);</span><br></pre></td></tr></table></figure>
+
+<p>以上代码摘自sun.misc.Launch的无参构造函数Launch()。</p>
+<p>使用线程上下文类加载器,可以在执行线程中,抛弃双亲委派加载链模式,使用线程上下文里的类加载器加载类.</p>
+<p>典型的例子有,通过线程上下文来加载第三方库jndi实现,而不依赖于双亲委派.</p>
+<p>大部分java app服务器(jboss, tomcat..)也是采用contextClassLoader来处理web服务。</p>
+<p><img src="http://q7hyzeb4g.bkt.clouddn.com/FpVoEfh5QzRjqDtJaCfJ_Zf5fH_B" alt="file"></p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>今天把类加载机制好好讲了一下，这样大家就更加的熟悉了内的加载过程，对于Java开发是有好处的</p>
+<h2 id="日常求赞"><a href="#日常求赞" class="headerlink" title="日常求赞"></a>日常求赞</h2><blockquote>
+<p>好了各位，以上就是这篇文章的全部内容了，能看到这里的人呀，都是<strong>真粉</strong>。</p>
+</blockquote>
+<blockquote>
+<p>创作不易，各位的支持和认可，就是我创作的最大动力，我们下篇文章见</p>
+</blockquote>
+<blockquote>
+<p>六脉神剑 | 文 【原创】如果本篇博客有任何错误，请批评指教，不胜感激 ！</p>
+</blockquote>
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Express</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">每日转载一篇</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3"> NodeJS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Express 基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/express/" class="article-tag-list-link color1">Express 基础</a>
+        			<a href="/categories/java-plus/" class="article-tag-list-link color3">Java 进阶</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+    
 
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://blogs.attachie.club/java-plus/18228.html" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/Linux/26159.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【转载】 Linux-包教包会系列</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#絮叨"><span class="toc-number">1.1.</span> <span class="toc-text">絮叨</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是JVM"><span class="toc-number">1.2.</span> <span class="toc-text">什么是JVM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JDK-JRE-JVM"><span class="toc-number">1.3.</span> <span class="toc-text">JDK JRE JVM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM总体概述"><span class="toc-number">1.4.</span> <span class="toc-text">JVM总体概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是类加载机制"><span class="toc-number">1.5.</span> <span class="toc-text">什么是类加载机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载的时机"><span class="toc-number">1.6.</span> <span class="toc-text">类加载的时机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#理解类加载三个字"><span class="toc-number">1.7.</span> <span class="toc-text">理解类加载三个字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五种必须初始化的情况"><span class="toc-number">1.8.</span> <span class="toc-text">五种必须初始化的情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证阶段"><span class="toc-number">1.9.</span> <span class="toc-text">验证阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#准备阶段"><span class="toc-number">1.10.</span> <span class="toc-text">准备阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解析阶段"><span class="toc-number">1.11.</span> <span class="toc-text">解析阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载器"><span class="toc-number">1.12.</span> <span class="toc-text">类加载器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#双亲委派模型"><span class="toc-number">1.13.</span> <span class="toc-text">双亲委派模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#双亲委派模型的工作过程"><span class="toc-number">1.14.</span> <span class="toc-text">双亲委派模型的工作过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#双亲委派模型的代码实现"><span class="toc-number">1.15.</span> <span class="toc-text">双亲委派模型的代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义类加载器"><span class="toc-number">1.16.</span> <span class="toc-text">自定义类加载器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#破环双亲委派"><span class="toc-number">1.17.</span> <span class="toc-text">破环双亲委派</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结尾"><span class="toc-number">1.18.</span> <span class="toc-text">结尾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#日常求赞"><span class="toc-number">1.19.</span> <span class="toc-text">日常求赞</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
           </div>
@@ -356,9 +627,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,

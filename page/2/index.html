@@ -245,6 +245,118 @@ var _hmt = _hmt || [];
             
 
   
+    <article id="post-【转载】SQL性能优化，书写高质量SQL语句" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/database/6269.html" target="_blank">【转载】SQL性能优化，书写高质量SQL语句</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/database/6269.html" class="archive-article-date">
+        <time datetime="2020-01-15T13:47:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-15</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <blockquote><p>SQL优化是一个十分常见的问题，基本也是面试必考题。留意到一篇SQL优化的文章，就转载过来了。</p>
+<footer><strong>掘金,Java酱</strong><cite><a href="https://juejin.im/post/5e0f5eec5188253a9d4a436f" target="_blank" rel="noopener">《干货！SQL性能优化，书写高质量SQL语句》</a></cite></footer></blockquote>
+
+<p>写SQL语句的时候我们往往关注的是SQL的执行结果，但是是否真的关注了SQL的执行效率，是否注意了SQL的写法规范？<br>以下的干货分享是在实际开发过程中总结的，希望对大家有所帮助！<br>#1. limit分页优化<br>当偏移量特别大时，limit效率会非常低。</p>
+<blockquote>
+<p>SELECT id FROM A LIMIT 1000,10   很快<br>SELECT id FROM A LIMIT 90000,10  <strong>很慢</strong></p>
+</blockquote>
+<p><strong>方案一：</strong><br><code>select id from A order by id limit 90000,10;</code><br>复制代码如果我们结合order by使用。很快，0.04秒就OK。 因为使用了id主键做索引！当然，是否能够使用索引还需要根据业务逻辑来定，这里只是为了提醒大家，在分页的时候还需谨慎使用！<br><strong>方案二</strong><br><code>select id from A order by id  between 90000 and 90010;</code></p>
+<h1 id="2-利用limit-1-、top-1-取得一行"><a href="#2-利用limit-1-、top-1-取得一行" class="headerlink" title="2.利用limit 1 、top 1 取得一行"></a>2.利用<code>limit 1</code> 、<code>top 1</code> 取得一行</h1><p>有些业务逻辑进行查询操作时(特别是在根据某一字段DESC,取最大一笔).可以使用<code>limit 1</code> 或者 <code>top 1</code> 来终止[数据库索引]继续扫描整个表或索引。<br>反例</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> A <span class="keyword">LIKE</span> <span class="string">'abc%'</span></span><br></pre></td></tr></table></figure>
+<p>正例</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> A <span class="keyword">LIKE</span> <span class="string">'abc%'</span> <span class="keyword">limit</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+    
+    <a class="article-more-a" href="/database/6269.html#more">more >></a>
+    
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">每日转载一篇</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/database/" class="article-tag-list-link color1">数据库概念</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/database/6269.html">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-【转载】探索-Python-3-加密技术" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -287,63 +399,9 @@ var _hmt = _hmt || [];
 <p>哈希算法最常用于对密码进行加密，从而保存密码的哈希值而非明文密码。当然，哈希算法必须足够好否则就会被破译。哈希算法的另一用途是获取文件的哈希值并将其与文件分开传递，接收者就可以据此判断收到的文件与哈希值是否匹配，如果匹配这说明在传递过程中文件没有被人篡改。</p>
 <p>让我们试着生成一个 md5 哈希值：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>md5 = hashlib.md5()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>md5.update(<span class="string">'Python rocks!'</span>)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">""</span>, line <span class="number">1</span>, <span class="keyword">in</span> </span><br><span class="line">    md5.update(<span class="string">'Python rocks!'</span>)</span><br><span class="line">TypeError: Unicode-objects must be encoded before hashing</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>md5.update(<span class="string">b'Python rocks!'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>md5.digest()</span><br><span class="line"><span class="string">b'\x14\x82\xec\x1b#d\xf6N&#125;\x16*+[\x16\xf4w'</span></span><br></pre></td></tr></table></figure>
-
-<p>让我们花点时间分解一下这个过程。首先，我们引入了 <code>hashlib</code> 模块并创建了一个<code>md5 HASH</code>对象。接下来我们向这个对象添加了一些文本字符，但是却得到错误信息。要使用 md5 哈希算法，你必须传递字节串而不是普通的字符串。于是我们改用字节串并调用 <code>digest</code> 方法获取我们想要的哈希值。如果你想要十六进制的密文，我们也可以做到：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; md5.hexdigest()</span><br><span class="line">&#39;1482ec1b2364f64e7d162a2b5b16f477&#39;</span><br></pre></td></tr></table></figure>
-
-<p>实际上有更便捷的方法产生哈希值，在创建 sha512 哈希值的时候我们可以这样做：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sha &#x3D; hashlib.sha1(b&#39;Hello Python&#39;).hexdigest()</span><br><span class="line">&gt;&gt;&gt; sha</span><br><span class="line">&#39;422fbfbc67fe17c86642c5eaaa48f8b670cbed1b&#39;</span><br></pre></td></tr></table></figure>
-
-<p>正如你所见，我们可以在创建哈希对象实例的同时调用密文算法，然后将其结果打印出来。我选择 <code>sha1</code> 哈希算法是因为它的结果更短能够更好地适应页面。但同样也更不安全，你也可以随便尝试一下上面列举的其它算法。</p>
-<h1 id="密钥派生"><a href="#密钥派生" class="headerlink" title="密钥派生"></a>密钥派生</h1><p><code>Python</code> 内置标准库对密钥派生的支持非常有限。实际上 <code>hashlib</code> 提供的唯一方法是 <code>pbkdf2_hmac</code>，实现的是<code>PKCS#5</code> 基于密码的密钥派生函数2（PBKDF2 译者注：这里作者原意是<code>pbkdf2_hmac</code>是基于<code>PBKDF2</code>的实现，详细细节可以参看<code>PKCS#5</code>标准，即<code>RFC6070</code>标准 ），它利用 <code>HMAC</code> 作为伪随机函数。你也可以用自己的算法来完成对密码的哈希加密，只要支持 salt 和迭代。例如，如果你用 SHA-256 你可能需要一个长度至少为16个字节的 <code>salt</code> 和至少 100,000 次迭代。</p>
-<p>简单解释一下，<code>salt</code> 是一个随机数据，用来和密码加到一起进行哈希加密，从而使得更难从哈希值“解哈希”得到密码。基本上可以保护你的密码不受字典攻击和预计算彩虹表攻击（译者注:彩虹表是通过实现计算一系列字符集的hash值的数据，然后通过hash后的数据，反查原文的攻击方式）。</p>
-<p>让我们来看一个简单的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import binascii</span><br><span class="line">&gt;&gt;&gt; dk &#x3D; hashlib.pbkdf2_hmac(hash_name&#x3D;&#39;sha256&#39;,</span><br><span class="line">        password&#x3D;b&#39;bad_password34&#39;,</span><br><span class="line">        salt&#x3D;b&#39;bad_salt&#39;,</span><br><span class="line">        iterations&#x3D;100000)</span><br><span class="line">&gt;&gt;&gt; binascii.hexlify(dk)</span><br><span class="line">b&#39;6e97bad21f6200f9087036a71e7ca9fa01a59e1d697f7e0284cd7f9b897d7c02&#39;</span><br></pre></td></tr></table></figure>
-
-<p>这里我们使用一个简单的 salt 数据，但经过 100,000 次迭代来对密码创建一个 SHA256 哈希对象。。当然，实际上并不推荐 SHA 作为密码的密钥派生算法，而是应该使用 scrypt 之类的方法。另外一个很好的选择是使用第三方包：bcrypt，它的设计初衷就是为了专门应对密码哈希加密的。</p>
-<h1 id="PyCryptodome"><a href="#PyCryptodome" class="headerlink" title="PyCryptodome"></a><code>PyCryptodome</code></h1><p><code>PyCryto</code> 可能是 <code>Python</code> 最著名的第三方加密包。可惜的是 <code>PyCryto</code> 的开发在 2012 年就停止了。但其他人在不停地发布新版本的 <code>PyCryto</code> 让你可以在<code>Python 3.5</code> 中使用，如果你不介意使用第三方库作为加密方法的话。例如，我发现了 Github 上一个 Python 3.5 版本的二进制安装包<a href="https://github.com/sfbahr/PyCrypto-Wheels" target="_blank" rel="noopener">（github.com/sfbahr/PyCr…）</a>。</p>
-<p>幸运的是有一个名为 <code>PyCrytodome</code> 的 fork 项目可以替代 <code>PyCrypto</code>。在 Linux 上可以用 pip 命令安装：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pycryptodome</span><br></pre></td></tr></table></figure>
-
-<p>Windows 系统上有点不同：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pycryptodomex</span><br></pre></td></tr></table></figure>
-<p>如果安装过程中遇到问题，可能是因为你没有安装正确的依赖包或者你需要 Windows 系统下面的编译器，可以查看<a href="http://pycryptodome.readthedocs.io/en/latest/" target="_blank" rel="noopener"><code>PyCryptodome</code> 网站</a> 寻找更多安装的帮助或联系支持。</p>
-<p>另外值得一提的是 <code>PyCryptodome</code> 有许多针对最后一版 <code>PyCryto</code> 的增强版本，值得你花时间去访问它的首页查看一下有哪些新的特性。</p>
-<h1 id="加密字符串"><a href="#加密字符串" class="headerlink" title="加密字符串"></a>加密字符串</h1><p>看完他们的首页之后，我们可以继续看几个例子。首先我们用 DES 来加密一个字符串：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from Crypto.Cipher import DES</span><br><span class="line">&gt;&gt;&gt; key &#x3D; &#39;abcdefgh&#39;</span><br><span class="line">&gt;&gt;&gt; def pad(text):</span><br><span class="line">        while len(text) % 8 !&#x3D; 0:</span><br><span class="line">            text +&#x3D; &#39; &#39;</span><br><span class="line">        return text</span><br><span class="line">&gt;&gt;&gt; des &#x3D; DES.new(key, DES.MODE_ECB)</span><br><span class="line">&gt;&gt;&gt; text &#x3D; &#39;Python rocks!&#39;</span><br><span class="line">&gt;&gt;&gt; padded_text &#x3D; pad(text)</span><br><span class="line">&gt;&gt;&gt; encrypted_text &#x3D; des.encrypt(text)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;&quot;, line 1, in </span><br><span class="line">    encrypted_text &#x3D; des.encrypt(text)</span><br><span class="line">  File &quot;C:\Programs\Python\Python35-32\lib\site-packages\Crypto\Cipher\blockalgo.py&quot;, line 244, in encrypt</span><br><span class="line">    return self._cipher.encrypt(plaintext)</span><br><span class="line">ValueError: Input strings must be a multiple of 8 in length</span><br><span class="line">&gt;&gt;&gt; encrypted_text &#x3D; des.encrypt(padded_text)</span><br><span class="line">&gt;&gt;&gt; encrypted_text</span><br><span class="line">b&#39;&gt;\xfc\x1f\x16x\x87\xb2\x93\x0e\xfcH\x02\xd59VQ&#39;</span><br></pre></td></tr></table></figure>
-
-<p>这段代码看起来可能有点绕，我们花点时间了将它分解一下。首先，需要注意 <code>DES</code> 加密所需要的密钥长度应为8字节，因此我们设定变量 key 为这一长度的字符串。被加密的字符串长度必须是 8 的倍数，因此我们创建一个 <code>pad</code> 方法来将字符串用空格填充直至长度为8的倍数。接下来我们创建一个 <code>DES</code> 实例和一个填充过的字符串。我们试一下对原始字符串进行加密结果会导致 <code>ValueError</code> ，我们已经知道将填充过的字符串传递给加密算法，正如你所见，我们可以对字符串进行加密了！</p>
-<p>当然这个例子还没结束，我们需要知道如何解密：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; des.decrypt(encrypted_text)</span><br><span class="line">b&#39;Python rocks!   &#39;</span><br></pre></td></tr></table></figure>
-
-<p>幸运的是，解密方法非常简单，我们只需要调用 des 对象的 decrypt 方法就可以得到原始的字节串。我们接下来的任务是学习如何利用 PyCrypto 的 RSA 算法对文件进行加密和解密，首先我们需要生成 RSA 密钥！</p>
-<h1 id="生成一个-RSA-密钥"><a href="#生成一个-RSA-密钥" class="headerlink" title="生成一个 RSA 密钥"></a>生成一个 RSA 密钥</h1><p>如果你想要通过 RSA 算法加密你的数据，那么你将需要一对 RSA 公/私钥组合或者自己生成一对。在这个例子中，我们将会自己生成一对。由于非常简单，我们直接在 Python 解释器中完成：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>code = <span class="string">'nooneknows'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>key = RSA.generate(<span class="number">2048</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>encrypted_key = key.exportKey(passphrase=code, pkcs=<span class="number">8</span>,</span><br><span class="line">        protection=<span class="string">"scryptAndAES128-CBC"</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> open(<span class="string">'/path_to_private_key/my_private_rsa_key.bin'</span>, <span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(encrypted_key)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">with</span> open(<span class="string">'/path_to_public_key/my_rsa_public.pem'</span>, <span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(key.publickey().exportKey())</span><br></pre></td></tr></table></figure>
-
-<p>首先我们引入 从 <code>Crypto.PublicKey</code> 引入 <code>RSA</code> ，然后创建一个密码。接下来我们生成一个 2048 位的 <code>RSA</code>对象的实例。为了生成私钥，我们需要调用<code>RSA</code>实例的 <code>exportKey</code> 方法并传递给它刚刚创建的密码，<code>PKCS</code> 标准算法将会用它保护我们的私钥。接下来我们将生成的私钥写入文件。</p>
-<p>下一步我们通过 RSA 实例的 <code>publickey</code> 方法生成公钥，我们在这段代码中用了简写的方式将 <code>publickey</code> 和 <code>exportKey</code> 方法串接起来，最后也将结果写入文件。</p>
-<p>对文件进行加密<br>现在我们有了一对私钥和公钥，我们可以对我们的数据进行加密并写入文件。下面是一个非常标准的例子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"><span class="keyword">from</span> Crypto.Random <span class="keyword">import</span> get_random_bytes</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES, PKCS1_OAEP</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'/path/to/encrypted_data.bin'</span>, <span class="string">'wb'</span>) <span class="keyword">as</span> out_file:</span><br><span class="line">    recipient_key = RSA.import_key(</span><br><span class="line">        open(<span class="string">'/path_to_public_key/my_rsa_public.pem'</span>).read())</span><br><span class="line">    session_key = get_random_bytes(<span class="number">16</span>)</span><br><span class="line"></span><br><span class="line">    cipher_rsa = PKCS1_OAEP.new(recipient_key)</span><br><span class="line">    out_file.write(cipher_rsa.encrypt(session_key))</span><br><span class="line"></span><br><span class="line">    cipher_aes = AES.new(session_key, AES.MODE_EAX)</span><br><span class="line">    data = <span class="string">b'blah blah blah Python blah blah'</span></span><br><span class="line">    ciphertext, tag = cipher_aes.encrypt_and_digest(data)</span><br><span class="line"></span><br><span class="line">    out_file.write(cipher_aes.nonce)</span><br><span class="line">    out_file.write(tag)</span><br><span class="line">    out_file.write(ciphertext)</span><br></pre></td></tr></table></figure>
-<p>前三行完成对 PyCryptodome 的引入，接下来打开将要写入的文件。然后我们将公钥读入变量并创建一个16字节长的 session key。在这个例子中我们用了混合加密方法，因此我们使用最优非对称加密填充的 PKCS#1 OAEP。这让我们可以将任意长度的数据写入文件。接下来我们创建 AES 密文，创建一些数据并进行加密，这一方法会返回加密后的文本和 MAC 值。最终我们将 nonce，MAC(或tag)以及加密后的文本写入文件。</p>
-<p>说明一下，nonce 是一个任意数字，仅用于密文通信。它们通常是随机或伪随机数。对于 AES 来说，它的长度至少要是16位。你可以用你的文本编辑器打开加密后的文件看一下，只能看到一堆乱码。</p>
-<p>现在让我们学一下如何解密数据：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES, PKCS1_OAEP</span><br><span class="line"></span><br><span class="line">code = <span class="string">'nooneknows'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'/path/to/encrypted_data.bin'</span>, <span class="string">'rb'</span>) <span class="keyword">as</span> fobj:</span><br><span class="line">    private_key = RSA.import_key(</span><br><span class="line">        open(<span class="string">'/path_to_private_key/my_rsa_key.pem'</span>).read(),</span><br><span class="line">        passphrase=code)</span><br><span class="line"></span><br><span class="line">    enc_session_key, nonce, tag, ciphertext = [ fobj.read(x)</span><br><span class="line">                                                <span class="keyword">for</span> x <span class="keyword">in</span> (private_key.size_in_bytes(),</span><br><span class="line">                                                <span class="number">16</span>, <span class="number">16</span>, <span class="number">-1</span>) ]</span><br><span class="line"></span><br><span class="line">    cipher_rsa = PKCS1_OAEP.new(private_key)</span><br><span class="line">    session_key = cipher_rsa.decrypt(enc_session_key)</span><br><span class="line"></span><br><span class="line">    cipher_aes = AES.new(session_key, AES.MODE_EAX, nonce)</span><br><span class="line">    data = cipher_aes.decrypt_and_verify(ciphertext, tag)</span><br><span class="line"></span><br><span class="line">print(data)</span><br></pre></td></tr></table></figure>
-<p>如果前面的例子你都跟上了，那这段代码应该很容易读懂了。在这个例子中，我们以二进制模式打开加密文件，然后导入私钥。要注意在导入私钥的时候，必须给出你的密码，否则将会出错。接下来我们读取加密文件，需要注意的是先读取私钥，然后是16位长的 nonce，接下来是另外 16 位长的标签，最后剩下的才是我们的数据。</p>
-<p>接下来我们需要解密 session key，重新生成 AES key 并解密数据。</p>
-<p>你可以用 PyCryptodome 来做更多的事，但是在这里我们需要继续看看 Python 中解决加密问题还有别的什么方法可用。</p>
-<h1 id="cryptography-包"><a href="#cryptography-包" class="headerlink" title="cryptography 包"></a><code>cryptography</code> 包</h1><p>cryptography 包的目的是”给人类使用的加密工具”，就像requests是“给人类使用的HTTP”工具包一样。其理念是让你可以用简单的方法创建安全、易用的加密方案。如果你需要，你也可以深入到底层加密原理，这就要求你必须知道你在做什么，而且很有可能最终得到一些并不那么安全的结果。</p>
-<p>如果你正在用 Python 3.5，你可以像这样使用 pip 安装：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install cryptography</span><br></pre></td></tr></table></figure>
-<p>你会发现 cryptography 自己安装了几个依赖包。假设这些都成功安装完成，我们可以试着来加密一些文本。让我们用一下 Fernet 对称加密算法。Fernet 算法保证你加密的任何消息除非有你自己定义的密钥都无法修改或读取。Fernet 同时也支持通过 MultiFernet 方法对密钥进行旋转。让我们来看一个简单的例子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> cryptography.fernet <span class="keyword">import</span> Fernet</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>cipher_key = Fernet.generate_key()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>cipher_key</span><br><span class="line"><span class="string">b'APM1JDVgT8WDGOWBgQv6EIhvxl4vDYvUnVdg-Vjdt0o='</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>cipher = Fernet(cipher_key)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>text = <span class="string">b'My super secret message'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>encrypted_text = cipher.encrypt(text)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>encrypted_text</span><br><span class="line">(<span class="string">b'gAAAAABXOnV86aeUGADA6mTe9xEL92y_m0_TlC9vcqaF6NzHqRKkjEqh4d21PInEP3C9HuiUkS9f'</span></span><br><span class="line"> <span class="string">b'6bdHsSlRiCNWbSkPuRd_62zfEv3eaZjJvLAm3omnya8='</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>decrypted_text = cipher.decrypt(encrypted_text)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>decrypted_text</span><br><span class="line"><span class="string">b'My super secret message'</span></span><br></pre></td></tr></table></figure>
-
-<p>首先我们需要引入 <code>Fernet</code>，然后生成一个密钥。这里将密钥打印出来看看它是什么。如你所见，它是一个随机的字节串。你也可以多运行几次 <code>generate_key</code> 方法，每次的结果应该都不相同。接下来我们基于这一密钥创建 <code>Fernet</code> 密文实例。</p>
-<p>有了密文之后我们可以用来加密和解密我们的消息，可以用<code>encrypt</code>方法实现对必要消息的加密。接下来我讲加密后的结果打印出来可以看出来已经无法正常阅读了。调用 <code>decrypt</code> 方法可以对消息进行解密，结果可以得到最初的原始消息。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本章只简单介绍了 <code>PyCryptodome</code> 和 <code>cryptography</code> 包最基本的用法，可以让你对如何通过 <code>Python</code> 对字符和文件进行加密、解密有整体的了解。请一定要阅读文档并亲自实验尝试！</p>
-<blockquote>
-<p>注：本文转载自 《掘金翻译计划》。</p>
-</blockquote>
-
+    
+    <a class="article-more-a" href="/python/39233.html#more">more >></a>
+    
     
 
     
@@ -907,35 +965,9 @@ var _hmt = _hmt || [];
 </ol>
 <p>很多人包括一些老开发都会认为是4个，那么实际上呢，s2和s1同时指向了一个地址也就是两个。<br>嗯？是不是有点不可思议？</p>
 <p>这个是因为在C#中，字面值有一个特点，如果声明过程中一个变量的声明使用的都是字面值（即非变量）或者是常量，那么该变量的声明过程会优先计算值，然后将该变量指向一个常量。<br>也就是说 在<code>string s2 = &quot;sa&quot;+&quot;1234&quot;;</code>这个表达式中，会先将”sa”和”1234”合并成一个字符串，再赋值给s2。并不会先划分一个”sa”的内存区域，再划分一个”1234”的内存区域，最后再合并成”sa1234“。所以1和2都是直接指向”sa1234”。</p>
-<h2 id="string的构造函数"><a href="#string的构造函数" class="headerlink" title="string的构造函数"></a>string的构造函数</h2><p><code>string</code>的构造函数一共有以下几种：</p>
-<ol>
-<li><code>public String(char c, int count);</code></li>
-<li><code>public String(char[] value)；</code></li>
-<li><code>public String(char[] value, int startIndex, int length)；</code></li>
-<li>其他</li>
-</ol>
-<p>第一个： 生成数量为count的由c组成的字符串，不包括其他字符。<br>例：<code>string  s = new String(&#39;a&#39;,10);//s=&quot;aaaaaaaaaa&quot;</code><br>第二个： 将字符数组value转换为字符串，字符串等于字符数组依次连接生成的字符串<br>例：<code>string s = new String(new char[]{&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39;,&#39;e&#39;});//s = &quot;abcde&quot;</code><br>第三个： 将字符数组value中部分元素拼接为字符串<br>例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var chars &#x3D; new char[] &#123;&#39;A&#39;, &#39;V&#39;, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;&#125;;</span><br><span class="line">var sr &#x3D; new string(chars, 0, 5);&#x2F;&#x2F;sr &#x3D; &quot;AVabc&quot;</span><br></pre></td></tr></table></figure>
-<p>第四个：这里面包括了一些不安全代码，即用到了指针。有机会会对这部分进行介绍。</p>
-<p>但是，到这里我们发现一个问题，<code>new string(string str)</code>在哪，前面不是使用了一个 <code>new string(&quot;12321&quot;)</code>吗？<br>事实是，并没有这个构造函数。那么，当我们使用<code>new string(&quot;12321&quot;)</code>时，实际上是哪个呢？显然可以看到它走的是 <strong>第二种</strong> ，系统将字符串当做字符数组传递给了<code>string</code>的构造函数。这也为我们揭露了string在内存中的存储方式-字符数组。由此可见字符串的不可变性其实跟数组类似。</p>
-<h2 id="空字符串"><a href="#空字符串" class="headerlink" title="空字符串"></a>空字符串</h2><p>在string类里有一个很有意思的静态属性：<code>string.Empty</code> 。它是一个常量，表示空字符串。空字符串，顾名思义：一个空的字符串，不含任何字符，但是不是NULL。</p>
-<h3 id="空字符串与NULL的区别"><a href="#空字符串与NULL的区别" class="headerlink" title="空字符串与NULL的区别"></a>空字符串与NULL的区别</h3><ul>
-<li>空字符串是一个长度为0的字符串；NULL没有长度，如果强行获取.Length将抛出异常</li>
-<li>空字符串可以调用字符串所有的方法；NULL无法调用字符串对象的任何方法</li>
-<li>空字符串指向的是内存中的某一个地址，NULL则没有任何指向</li>
-</ul>
-<h3 id="判断字符串是否为空："><a href="#判断字符串是否为空：" class="headerlink" title="判断字符串是否为空："></a>判断字符串是否为空：</h3><ol>
-<li>字符串是否是空字符串：</li>
-</ol>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">string</span> str = <span class="keyword">string</span>.Empty;</span><br><span class="line"><span class="keyword">bool</span> result = str == <span class="string">""</span> || str == <span class="keyword">string</span>.Empty || str.Length == <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>字符串是否是空引用：</li>
-</ol>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">string</span> str = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">bool</span> result = str == <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
-<p>除了这些繁琐的方法，c# 内部为我们增加了一个默认支持方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string.IsNullOrEmpty(value)</span><br></pre></td></tr></table></figure>
-<p>该方法验证字符串是否是NULL或者一个空串并返回验证结果<br>当然，在我们平时开发过程中不只是需要不是一个空串或NULL，还得是一个非空白字符的串。这时候就需要用到这个方法了:<code>string.IsNullOrWhiteSpace(value)</code>。</p>
-
+    
+    <a class="article-more-a" href="/basecharp/%E5%AD%97%E7%AC%A6%E4%B8%B2/e6999e60.html#more">more >></a>
+    
     
 
     
@@ -1043,143 +1075,9 @@ var _hmt = _hmt || [];
   <div class="article-entry" itemprop="articleBody">
     
     <h1 id="常见数据类型"><a href="#常见数据类型" class="headerlink" title="常见数据类型"></a>常见数据类型</h1><p>C#的类型一般分为<strong>值类型</strong>、<strong>引用类型</strong>两大类型。<br>值类型的实例存放在栈中，引用类型会在栈中放置一个指针指向堆中的某一块内容。<br>C#为我们内置了几个数据类型供我们使用：</p>
-<table>
-<thead>
-<tr>
-<th align="center">关键词简写</th>
-<th align="left">对应的类全称(点击可以查看对应的API)</th>
-<th align="left">值范围</th>
-<th align="left">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">bool</td>
-<td align="left"><a href="https://docs.microsoft.com/zh-cn/dotnet/api/system.Boolean" target="_blank" rel="noopener"><code>System.Boolean</code></a></td>
-<td align="left">true、false</td>
-<td align="left"><code>该类型只有两个值，用作判断，表示“是”、“否”</code></td>
-</tr>
-<tr>
-<td align="center">sbyte</td>
-<td align="left"><a href="https://docs.microsoft.com/zh-cn/dotnet/api/system.SByte" target="_blank" rel="noopener"><code>System.SByte</code></a></td>
-<td align="left">-128 ~ 127 (-2<sup>7</sup>~2<sup>7</sup>-1)</td>
-<td align="left"><code>该类型在内存中使用8个bit进行存储，而且带有符号。</code><br/><code>根据最高位作符号位，所以sbyte实际表示范围为 -128~127</code></td>
-</tr>
-<tr>
-<td align="center">byte</td>
-<td align="left"><a href="https://docs.microsoft.com/zh-cn/dotnet/api/system.byte" target="_blank" rel="noopener"><code>System.Byte</code></a></td>
-<td align="left">0~2<sup>8</sup>-1</td>
-<td align="left"><code>8位的无符号bit</code></td>
-</tr>
-<tr>
-<td align="center">short</td>
-<td align="left"><a href="https://docs.microsoft.com/zh-cn/dotnet/api/system.Int16" target="_blank" rel="noopener"><code>System.Int16</code></a></td>
-<td align="left">-2<sup>15</sup>~2<sup>15</sup>-1</td>
-<td align="left"><code>short表示一个16位的短整形，其具体的值为-32768～32767</code></td>
-</tr>
-<tr>
-<td align="center">ushort</td>
-<td align="left"><a href="https://docs.microsoft.com/zh-cn/dotnet/api/system.UInt16" target="_blank" rel="noopener"><code>System.UInt16</code></a></td>
-<td align="left">0～2<sup>16</sup>-1</td>
-<td align="left"><code>ushort表示无符号16位的短整型，具体的范围为0～65535</code></td>
-</tr>
-<tr>
-<td align="center">int</td>
-<td align="left"><a href="https://docs.microsoft.com/zh-cn/dotnet/api/system.Int32" target="_blank" rel="noopener"><code>System.Int32</code></a></td>
-<td align="left">-2<sup>15</sup>~2<sup>15</sup>-1</td>
-<td align="left"><code>int是我们常用的一个数据类型，它的数据范围为： -2,147,483,648～ 2,147,483,647 。</code><br/><code>可以看到，是-2亿到2亿，基本满足了数据需要。</code></td>
-</tr>
-<tr>
-<td align="center">uint</td>
-<td align="left"><a href="https://docs.microsoft.com/zh-cn/dotnet/api/system.UInt32" target="_blank" rel="noopener"><code>System.UInt32</code></a></td>
-<td align="left">0~2<sup>32</sup>-1</td>
-<td align="left"><code>uint 无符号整形，最大值比 int大一倍左右，但是没有负数。</code><br/><code>如果在计算中能保证没有负值，可以使用。</code><br/><code>并不推荐，因为在做减法的时候，更、容易溢出</code></td>
-</tr>
-<tr>
-<td align="center">long</td>
-<td align="left"><a href="https://docs.microsoft.com/zh-cn/dotnet/api/system.Int64" target="_blank" rel="noopener"><code>System.Int64</code></a></td>
-<td align="left">-2<sup>16</sup>~2<sup>16</sup>-1</td>
-<td align="left"><code>实际取值为-9,223,372,036,854,775,808~ 9,223,372,036,854,775,807 。</code><br/><code>long在内存中比int占用更多字节，长度为int的两倍。</code><br/><code>所以能表达更多的数剧。在数据库中，经常被用来做大数据表的主键。</code></td>
-</tr>
-<tr>
-<td align="center">ulong</td>
-<td align="left"><a href="https://docs.microsoft.com/zh-cn/dotnet/api/system.UInt64" target="_blank" rel="noopener"><code>System.UInt64</code></a></td>
-<td align="left">0~2<sup>64</sup>-1</td>
-<td align="left"><code>64位无符号长整形，理同其他的无符号整形，在正整数中比long表达更多的数据。</code></td>
-</tr>
-<tr>
-<td align="center">char</td>
-<td align="left"><a href="https://docs.microsoft.com/zh-cn/dotnet/api/system.char" target="_blank" rel="noopener"><code>System.Char</code></a></td>
-<td align="left">utf-16</td>
-<td align="left"><code>在.net 中char 表示 utf-16的编码单位，所以绝大多数的字符都可以用char表示，包括中文汉字。</code></td>
-</tr>
-<tr>
-<td align="center">float</td>
-<td align="left"><a href="https://docs.microsoft.com/zh-cn/dotnet/api/system.single" target="_blank" rel="noopener"><code>System.Single</code></a></td>
-<td align="left">-3.402823e38～3.402823e38</td>
-<td align="left"><code>32位的单精度浮点型，也就是通常说的带小数点的数</code></td>
-</tr>
-<tr>
-<td align="center">double</td>
-<td align="left"><a href="https://docs.microsoft.com/zh-cn/dotnet/api/system.double" target="_blank" rel="noopener"><code>System.Double</code></a></td>
-<td align="left"></td>
-<td align="left"><code>64位双精度浮点型，比float能表示更多的小数位。</code><br/><code>实际取值-1.79769313486232e308～1.79769313486232e308</code></td>
-</tr>
-<tr>
-<td align="center">decimal</td>
-<td align="left"><a href="https://docs.microsoft.com/zh-cn/dotnet/api/system.decimal" target="_blank" rel="noopener"><code>System.Decimal</code></a></td>
-<td align="left"></td>
-<td align="left"><code>128位高精度浮点值。</code><br/><code>常用于不能四舍五入，或者对小数点后数字要求很敏感的地方。</code><br/><code>在128位中，一位是符号位（表示正负），96位是值本身（N）,8位是比例因子（k)。</code><br/><code>所以decimal实际值应该是</code> ±Nx10<sup>k</sup><code>,其中-28≤k≤0.其余位暂时没有使用</code></td>
-</tr>
-<tr>
-<td align="center">string</td>
-<td align="left"><a href="https://docs.microsoft.com/zh-cn/dotnet/api/system.string" target="_blank" rel="noopener"><code>System.String</code></a></td>
-<td align="left">–</td>
-<td align="left"><code>字符串变量，表示一组字符数组。字符串是不可变量。即字符串不能修改，任何针对字符串的修改都会生成一个新的字符串。</code></td>
-</tr>
-</tbody></table>
-<p>另外的两个特殊类型：<code>dynamic</code> <code>object</code>。<br>其中 dynamic 表示动态类型，这是C#在4.0开始支持的，<code>dynamic</code>关键字声明该变量名是个动态变量。具体使用参照 Python,Js 之类的动态语言。但是<code>dynamic</code>声明的变量不支持添加属性，但这并不完全绝对，可以参照后续的动态篇会对这部分内容进行介绍。</p>
-<p><code>object</code> 所有类型的父类，C#所有类都是 object的子类。不过上表中介绍的直接父类是 ValueType（表示值类型），但是ValueType的父类仍然是object。</p>
-<blockquote>
-<p>说明：<br>对于 double 和 float 因为存储数据方式的问题，都存在一个问题：对于 0 或者近0的值不能很好的表达。因为浮点型变量在内存中表示为 1/2<sup>n</sup>，所以都会存在一个+0和-0两个值。当 一个浮点型判断是不是等于0时，可以正常判断。但是一旦涉及到数学运算的结果与0进行比较的话就会出现问题，比如说 <code>0.1+0.2 != 0.3</code> 这个判断式是 <code>true</code>。所以标准的判断方式应该是 <code>Math.Abs(0.1+0.2 - 0.3)&lt; ?</code> 这种方式，其中?表示系统接受的误差范围。<br>而decimal在这方面的准确度就比 double和float高很多。至少不会出现 0.1 + 0.2 != 0.3 这种问题。所以decimal一般用在金额计算这些地方。</p>
-</blockquote>
-<h1 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h1><p>类型转换是指一个类型的数值通过某种手段转换成另一种类型。<br>类型转换分为两种方式：<strong>默认类型转换</strong>、<strong>强制类型转换</strong>。</p>
-<h2 id="默认类型转换"><a href="#默认类型转换" class="headerlink" title="默认类型转换"></a>默认类型转换</h2><p>在以下几种情况会触发默认类型转换：</p>
-<ul>
-<li>当一个子类想转换成它的父类时，</li>
-<li>当短精度向高精度转换时。<br>如： byte -&gt; int -&gt; long -&gt; float -&gt; double<br>参照：</li>
-</ul>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">double</span> d = i;</span><br><span class="line"><span class="keyword">float</span> f = i;</span><br><span class="line">d = f;</span><br><span class="line"><span class="keyword">uint</span> ui = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">long</span> l = ui;</span><br><span class="line">d = l;</span><br><span class="line">f = l;</span><br></pre></td></tr></table></figure>
-
-<p>这里有几个需要特别注意的地方：</p>
-<ul>
-<li>无符号和有符号之间的转换，如果无符号的位数与有符号之间的位数一致的话不能默认转换。</li>
-<li>decimal 所有的整型均可以默认转为 <code>decimal</code>，即 除 <code>double</code>、<code>float</code>以外所有数字类型的均可以。</li>
-</ul>
-<h2 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h2><h3 id="数据类型判断-is-："><a href="#数据类型判断-is-：" class="headerlink" title="数据类型判断 is ："></a>数据类型判断 <code>is</code> ：</h3><p>C# 内置了一个关键字 用来 判断 某个变量是否是某个类型</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">A</span></span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title">B</span> : <span class="title">A</span></span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title">C</span> : <span class="title">A</span></span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">    	B b = <span class="keyword">new</span> B();</span><br><span class="line">        A a = b;</span><br><span class="line">        <span class="comment">// 这时候 a 是一个 假装自己是A的B的引用</span></span><br><span class="line">        Console.WriteLine(<span class="string">"a is B ? &#123;0&#125;"</span>, a <span class="keyword">is</span> B); <span class="comment">// 结果： true</span></span><br><span class="line">        Console.WriteLine(<span class="string">"a is A ? &#123;0&#125;"</span>, a <span class="keyword">is</span> A); <span class="comment">// true</span></span><br><span class="line">        Console.WriteLine(<span class="string">"a is C ? &#123;0&#125;"</span>, a <span class="keyword">is</span> C); <span class="comment">// false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>那么<code>is</code>有什么用呢？在强制类型转换之前检测一下是否可以转换为目标类型，如果返回值为 false 依旧要转换的话，那么就会报错。</p>
-<h3 id="强制类型转换-1"><a href="#强制类型转换-1" class="headerlink" title="强制类型转换"></a>强制类型转换</h3><p>强制类型转换分为两种：</p>
-<ol>
-<li>在变量前加目标类型强制转换，这个方法与C/C++、Java的方式一致，具体为： <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C c1 &#x3D; (C)a;&#x2F;&#x2F; 代码接上</span><br></pre></td></tr></table></figure></li>
-<li>使用<code>as</code>关键字，<code>as</code> 表示将变量 x 当做类型Y<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C c2 &#x3D; a as C;&#x2F;&#x2F; 代码接上</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>两种方式的区别：</p>
-<ol>
-<li><p>当转型失败时会抛出错误，直接终止代码</p>
-</li>
-<li><p>当转型失败时将c2置为null。当前步骤不会抛出异常，如果对于空引用没有进行处理，那么会在<strong><em>后续</em></strong>中抛出空引用的异常。</p>
-</li>
-</ol>
-<h3 id="值类型的类型转换"><a href="#值类型的类型转换" class="headerlink" title="值类型的类型转换"></a>值类型的类型转换</h3><p>在之前的内容中我们提到了小精度到大精度可以默认转换。但是我们在平常使用的过程中会遇到各种情况下的转换，那么这个时候我们就要用到强制转换了，这个时候精度丢失对于我们来说就是可以接受的。<br>常见的转换方式有：</p>
-<ol>
-<li>使用类型强制声明转换 例：<code>long lval = 100; int i = (int)lval;</code></li>
-<li>使用 System.Convert类。使用 <code>Convert.ToXXX()</code>，其中<code>XXX</code>表示转型目标对象。</li>
-</ol>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Convert 示例代码</span></span><br><span class="line"><span class="keyword">long</span> lval = <span class="number">19293</span>;</span><br><span class="line"><span class="keyword">var</span> i = Convert.ToInt32(lval);</span><br><span class="line"><span class="keyword">double</span> d = <span class="number">10.091</span>;</span><br><span class="line"><span class="keyword">var</span> dc = Convert.ToDecimal(d);</span><br><span class="line"><span class="keyword">var</span> dt = Convert.ToDateTime(<span class="string">"2019-03-30"</span>);</span><br></pre></td></tr></table></figure>
-<p>值得注意的是：<code>Convert</code>的ToXXX其中XXX使用的是C#类型名称，而不是关键字。<code>Convert</code>是个很有用的类，在我们开发工作中会大量的使用这个类进行值的类型转换。<br>当然后续我们会对其进行更深入的介绍。</p>
-
+    
+    <a class="article-more-a" href="/basecharp/381553b5.html#more">more >></a>
+    
     
 
     
@@ -1285,6 +1183,7 @@ var _hmt = _hmt || [];
     <a id="more"></a>
 <p><img src="/images/5a45a0a5ab64411cab00092a.png" alt="2.2 Java并发图谱"></p>
 <h2 id="2-1-3-Java集合图谱"><a href="#2-1-3-Java集合图谱" class="headerlink" title="2.1.3 Java集合图谱"></a>2.1.3 Java集合图谱</h2><p><img src="/images/5a45bf81ab64411e95000eff.png" alt="2.3 Java集合图谱"></p>
+<!--more-->
 <h2 id="2-1-4-Java集合类图"><a href="#2-1-4-Java集合类图" class="headerlink" title="2.1.4 Java集合类图"></a>2.1.4 Java集合类图</h2><p><img src="/images/5a45bf81ab64411e95000f05.png" alt="2.4 Java集合类图"></p>
 <h2 id="2-1-5-Java-List类图"><a href="#2-1-5-Java-List类图" class="headerlink" title="2.1.5 Java List类图"></a>2.1.5 Java List类图</h2><p><img src="/images/5a45bf81ab64411e95000f01.png" alt="2.5 Java List类图"></p>
 <h2 id="2-1-6-Java-Map类图"><a href="#2-1-6-Java-Map类图" class="headerlink" title="2.1.6 Java Map类图"></a>2.1.6 Java Map类图</h2><p><img src="/images/5a45bf81ab64411e95000ef4.png" alt="2.6 Java Map类图"></p>
@@ -1664,6 +1563,18 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">IT 图谱</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Express</a>
               </li>
              
@@ -1673,14 +1584,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Express 基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1696,7 +1599,31 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">IT 图谱</a>
+                <a href="javascript:void(0)" class="js-tag color5">C# 基础数据类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">加密技术</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1708,35 +1635,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">C# 基础数据类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">日志</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">加密技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">日志</a>
               </li>
             
             <div class="clearfix"></div>

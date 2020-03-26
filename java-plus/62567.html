@@ -20,7 +20,7 @@
 <meta property="og:description" content="java 枚举的骚操作">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-17T14:24:00.000Z">
-<meta property="article:modified_time" content="2020-03-24T05:40:15.963Z">
+<meta property="article:modified_time" content="2020-03-26T02:39:17.603Z">
 <meta property="article:author" content="Mr.Gao">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="java 枚举">
@@ -297,6 +297,7 @@ var _hmt = _hmt || [];
 <footer><strong>CodeSheep</strong><cite><a href="https://juejin.im/post/5e702e66f265da5770144f22" target="_blank" rel="noopener">《恕我直言，我怀疑你没怎么用过枚举》</a></cite></footer></blockquote>
 
 <h1 id="我们是否一样？"><a href="#我们是否一样？" class="headerlink" title="我们是否一样？"></a>我们是否一样？</h1><p>估计很多小伙伴（也包括我自己）都有这种情况，在自学<code>Java</code>语言看书时，关于枚举<code>enum</code>这一块的知识点可能都有点 *<em>“轻敌” *</em>，觉得这块内容非常简单，一带而过，而且在实际写代码过程中也不注意运用。<br>是的，我也是这样！直到有一天我提的代码审核没过，被技术总监一顿批，我才重新拿起了《Java编程思想》，把枚举这块的知识点重新又审视了一遍。</p>
+<a id="more"></a>
 <h1 id="为什么需要枚举"><a href="#为什么需要枚举" class="headerlink" title="为什么需要枚举"></a>为什么需要枚举</h1><p>常量定义它不香吗？为啥非得用枚举？<br>举个栗子，就以B站上传视频为例，视频一般有三个状态：草稿、审核和发布，我们可以将其定义为静态常量：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VideoStatus</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> Draft = <span class="number">1</span>; <span class="comment">//草稿</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> Review = <span class="number">2</span>; <span class="comment">//审核</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> Published = <span class="number">3</span>; <span class="comment">//发布</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>对于这种单值类型的静态常量定义，本身也没错，主要是在使用的地方没有一个明确性的约束而已，比如：</p>
@@ -306,7 +307,7 @@ var _hmt = _hmt || [];
 <p>而且主要是在用枚举的地方会有更强的类型约束：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 入参就有明确类型约束</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">judgeVideoStatus</span><span class="params">( VideoStatus status )</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    ...</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这样在使用 <code>judgeVideoStatus</code> 函数时，入参类型就会受到明确的类型约束，一旦传入无效值，编译器就会帮我们检查，从而规避潜在问题。<br>除此之外，枚举在扩展性方面比普常量更方便、也更优雅。</p>
-<a id="more"></a>
+<!--more-->
 <h1 id="重新系统认识一下枚举"><a href="#重新系统认识一下枚举" class="headerlink" title="重新系统认识一下枚举"></a>重新系统认识一下枚举</h1><p>还是拿前文《答应我，别再if/else走天下了可以吗》中的那个例子来说：比如，在后台管理系统中，肯定有用户角色一说，而且角色一般都是固定的，适合定义成一个枚举：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> UserRole &#123;</span><br><span class="line"></span><br><span class="line">    ROLE_ROOT_ADMIN,  <span class="comment">// 系统管理员</span></span><br><span class="line"></span><br><span class="line">    ROLE_ORDER_ADMIN, <span class="comment">// 订单管理员</span></span><br><span class="line"></span><br><span class="line">    ROLE_NORMAL       <span class="comment">// 普通用户</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>接下来我们就用这个<code>UserRole</code>为例来说明枚举的所有基本用法：</p>
@@ -646,6 +647,18 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">IT 图谱</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Express</a>
               </li>
              
@@ -655,14 +668,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Express 基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -678,7 +683,31 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">IT 图谱</a>
+                <a href="javascript:void(0)" class="js-tag color5">C# 基础数据类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">加密技术</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -690,35 +719,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">C# 基础数据类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">日志</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">加密技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">日志</a>
               </li>
             
             <div class="clearfix"></div>
