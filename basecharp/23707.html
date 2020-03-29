@@ -21,7 +21,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://q7hyzeb4g.bkt.clouddn.com/Fou_Q2meqXq3b_h8Loe354zwe_ED">
 <meta property="article:published_time" content="2020-03-28T17:25:00.000Z">
-<meta property="article:modified_time" content="2020-03-29T09:26:44.737Z">
+<meta property="article:modified_time" content="2020-03-29T09:34:40.085Z">
 <meta property="article:author" content="Mr.Gao">
 <meta property="article:tag" content="C#基础知识">
 <meta name="twitter:card" content="summary">
@@ -296,6 +296,7 @@ var _hmt = _hmt || [];
     <h1 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h1><p>面向对象是一个抽象的概念，其本质就是对事物以抽象的方式建立对应的模型。<br>简单来讲，比如我有一只钢笔，那么我就可以通过分析，可以得到 这只钢笔的材第是塑料，品牌是个杂牌 ，里面装的墨是黑色的，可以用。这时候就能建立一个钢笔的模型，它在这里应该有这些属性：</p>
 <p> <img src="http://q7hyzeb4g.bkt.clouddn.com/Fou_Q2meqXq3b_h8Loe354zwe_ED" alt="file"></p>
 <p>图是一个不正确的UML类图，但是可以简单的概述一下我们抽象的结果。这个图就描述了一个我们抽象出来的钢笔类应该有哪些特性，而我手里的那只钢笔就可以看做是钢笔类的一个实例。<br>简单来讲，面向对象编程就是针对一个事件或者说一个过程，找到这个过程中参与的所有人、事务或者相对独立的个体，按照他们在这个过程中表现，提取出他们的特性，描述他们的行为，然后按照类别不同再抽象出类来。<br>所以，类是事物的概念抽象，事物是类的特殊实例。</p>
+<a id="more"></a>
 <h1 id="创建一个类"><a href="#创建一个类" class="headerlink" title="创建一个类"></a>创建一个类</h1><p>上面简单的介绍了面向对象的概念，现在先创建一个C#类，然后介绍一下这个类需要注意的地方：</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> count;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> Count</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">get</span> &#123; <span class="keyword">return</span> count; &#125;</span><br><span class="line">		<span class="keyword">set</span> &#123; count = <span class="keyword">value</span>; &#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">string</span> name;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">string</span> Name</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">get</span> &#123; <span class="keyword">return</span> name; &#125;</span><br><span class="line">		<span class="keyword">set</span> &#123; name = <span class="keyword">value</span>; &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Person</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>	&#123;</span><br><span class="line">		Name = <span class="string">""</span>;</span><br><span class="line">		Count = Count + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Person</span>(<span class="params"><span class="keyword">string</span> name</span>)</span></span><br><span class="line"><span class="function"></span>	&#123;</span><br><span class="line">		<span class="keyword">this</span>.Name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SayHello</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>	&#123;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -695,6 +696,14 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">每日转载一篇</a>
               </li>
              
@@ -704,18 +713,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习路线</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">C# 基础数据类型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -731,6 +728,10 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">C# 基础数据类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
               </li>
              
@@ -743,15 +744,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">加密技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
               </li>
              
               <li class="article-tag-list-item">
