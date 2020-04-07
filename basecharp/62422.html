@@ -8,39 +8,24 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="canonical" href="https://blogs.attachie.club">
   <link rel="dns-prefetch" href="https://blogs.attachie.club">
-  <title>【转载】Java后端学习路线 | 高先生小屋-高先生小屋, C#,CSharp,.net,Java,Python,技术站</title>
+  <title>C# 基础知识系列- 5 反射和泛型 | 高先生小屋-高先生小屋, C#,CSharp,.net,Java,Python,技术站</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="java学习路线，适合上班族、在校生、转行业">
+  <meta name="description" content="浅显的介绍了C#的反射和泛型">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【转载】Java后端学习路线">
-<meta property="og:url" content="https://blogs.attachie.club/java-plus/55489.html">
+<meta property="og:title" content="C# 基础知识系列- 5 反射和泛型">
+<meta property="og:url" content="https://blogs.attachie.club/basecharp/62422.html">
 <meta property="og:site_name" content="高先生小屋">
-<meta property="og:description" content="java学习路线，适合上班族、在校生、转行业">
+<meta property="og:description" content="浅显的介绍了C#的反射和泛型">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blogs.attachie.club/images/pasted-22.png">
-<meta property="og:image" content="https://blogs.attachie.club/images/pasted-23.png">
-<meta property="og:image" content="https://blogs.attachie.club/images/pasted-25.png">
-<meta property="og:image" content="https://blogs.attachie.club/images/pasted-26.png">
-<meta property="og:image" content="https://blogs.attachie.club/images/pasted-27.png">
-<meta property="og:image" content="https://blogs.attachie.club/images/pasted-28.png">
-<meta property="og:image" content="https://blogs.attachie.club/images/pasted-29.png">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/0082zybply1gca2znjcfjg30880521kx.gif">
-<meta property="og:image" content="https://blogs.attachie.club/images/pasted-31.png">
-<meta property="og:image" content="https://blogs.attachie.club/images/pasted-32.png">
-<meta property="og:image" content="https://blogs.attachie.club/images/pasted-33.png">
-<meta property="og:image" content="https://blogs.attachie.club/images/pasted-34.png">
-<meta property="og:image" content="https://blogs.attachie.club/images/pasted-35.png">
-<meta property="og:image" content="https://blogs.attachie.club/images/pasted-36.png">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/0082zybply1gca3sgtqvnj31vu0rk1ky.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/0082zybply1gc90z8argwj30sg0lcaf3.jpg">
-<meta property="article:published_time" content="2020-03-16T14:30:00.000Z">
-<meta property="article:modified_time" content="2020-03-24T05:48:44.151Z">
+<meta property="article:published_time" content="2020-03-30T14:32:00.000Z">
+<meta property="article:modified_time" content="2020-04-07T08:33:44.105Z">
 <meta property="article:author" content="Mr.Gao">
-<meta property="article:tag" content="java学习路线;上班族;java;">
+<meta property="article:tag" content="C# ">
+<meta property="article:tag" content="泛型">
+<meta property="article:tag" content="反射">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blogs.attachie.club/images/pasted-22.png">
   
     <link rel="alternative" href="/atom.xml" title="高先生小屋" type="application/atom+xml">
   
@@ -248,14 +233,14 @@ var _hmt = _hmt || [];
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java后端学习路线" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-C-基础知识系列-5-反射和泛型" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      【转载】Java后端学习路线
+      C# 基础知识系列- 5 反射和泛型
     </h1>
   
 
@@ -267,8 +252,8 @@ var _hmt = _hmt || [];
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/java-plus/55489.html" class="archive-article-date">
-        <time datetime="2020-03-16T14:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-16</time>
+<a href="/basecharp/62422.html" class="archive-article-date">
+        <time datetime="2020-03-30T14:32:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-30</time>
 </a>
 
   
@@ -281,7 +266,7 @@ var _hmt = _hmt || [];
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">5k字</span>
+      <span class="post-count">2.9k字</span>
     </span>
   </span>
 
@@ -290,7 +275,7 @@ var _hmt = _hmt || [];
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">17分</span>
+      <span class="post-count">10分</span>
     </span>
   </span>
 </div>
@@ -301,117 +286,146 @@ var _hmt = _hmt || [];
   
   <div class="article-entry" itemprop="articleBody">
     
-    <blockquote><p>作者是CSDN里一个有名的技术分享博主，这是他总结的一份Java后端学习路线，个人看了之后感觉很不错，就搬了过来。</p>
-<footer><strong>敖丙</strong><cite><a href="https://blog.csdn.net/qq_35190492/article/details/104548249" target="_blank" rel="noopener">Java后端学习路线（适合科班、非科班和已工作的仔）</a></cite></footer></blockquote>
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这期我想写很久了，但是因为时间的原因一直拖到了现在，我以为一两天就写完了，结果从构思到整理资料，再到写出来用了差不多一周的时间吧。<br>你们也知道丙丙一直都是创作鬼才来的，所以我肯定不会一本正经的写，我想了好几个切入点，最后决定用一个完整的电商系统作为切入点，带着大家看看，我们需要学些啥，我甚至还收集配套视频和资料，暖男石锤啊，这期是呕心沥血之作，不要白嫖了。</p>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>在写这个文章之前，我花了点时间，自己臆想了一个电商系统，基本上算是麻雀虽小五脏俱全，我今天就用它开刀，一步步剖析，我会讲一下我们可能会接触的技术栈可能不全，但是够用，最后给个学习路线。</p>
-<p><strong>Tip：</strong>请多欣赏一会，每个点看一下，看看什么地方是你接触过的，什么技术栈是你不太熟悉的，我觉得还算是比较全的，有什么建议也可以留言给我。<br><img src="/images/pasted-22.png" alt="pasted image"><br>不知道大家都看了一下没，现在我们就要庖丁解牛了，我从上到下依次分析。</p>
+    <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>为什么要把反射和泛型放在一起讲呢，这里是处于个人对C#的一个很棒的观感，因为C#的反射是可以获取泛型里的元素的，而不像Java一个让我比较难受的地方就是Java的泛型实际编译的时候会擦除类型信息。<br>那么问题来了，什么是泛型，什么又是反射呢？</p>
 <a id="more"></a>
-<h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><p>你可能会会好奇，你不是讲后端学习路线嘛，为啥还有前端的部分，我只能告诉你，傻瓜，肤浅。</p>
-<p>我们可不能闭门造车，谁告诉你后端就不学点前端了？</p>
-<p>前端现在很多也了解后端的技术栈的，你想我们去一个网站，最先接触的，最先看到的是啥？</p>
-<p>没错就是前端，在大学你要是找不到专门的前端同学，去做系统肯定也要自己顶一下前端的，那我觉得最基本的技术栈得熟悉和了解吧，丙丙现在也是偶尔会开发一下我们的管理系统主要是VUE和React。</p>
-<p>在这里我列举了我目前觉得比较简单和我们后端可以了解的技术栈，都是比较基础的。</p>
-<p>作为一名后端了解部分前端知识还是很有必要的，在以后开发的时候，公司有前端那能帮助你前后端联调更顺畅，如果没前端你自己也能顶一下简单的页面。</p>
-<p>HTML、CSS、JS、Ajax我觉得是必须掌握的点，看着简单其实深究或者去操作的话还是有很多东西的，其他作为扩展有兴趣可以了解，反正入门简单，只是精通很难很难。</p>
-<p>在这一层不光有这些还有Http协议和Servlet，request、response、cookie、session这些也会伴随你整个技术生涯，理解他们对后面的你肯定有不少好处。<br><img src="/images/pasted-23.png" alt="pasted image"><br><strong>Tip：</strong>我这里最后删除了JSP相关的技术，我个人觉得没必要学了，很多公司除了老项目之外，新项目都不会使用那些技术了。</p>
-<p>前端在我看来比后端难，技术迭代比较快，知识好像也没特定的体系，所以面试大厂的前端很多朋友都说难，不是技术多难，而是知识多且复杂，找不到一个完整的体系，相比之下后端明朗很多，我后面就开始讲后端了。</p>
-<h2 id="网关层："><a href="#网关层：" class="headerlink" title="网关层："></a>网关层：</h2><p>互联网发展到现在，涌现了很多互联网公司，技术更新迭代了很多个版本，从早期的单机时代，到现在超大规模的互联网时代，几亿人参与的春运，几千亿成交规模的双十一，无数互联网前辈的造就了现在互联网的辉煌。</p>
-<p>微服务，分布式，负载均衡等我们经常提到的这些名词都是这些技术在场景背后支撑。</p>
-<p>单机顶不住，我们就多找点服务器，但是怎么将流量均匀的打到这些服务器上呢？</p>
-<h3 id="负载均衡，LVS"><a href="#负载均衡，LVS" class="headerlink" title="负载均衡，LVS"></a>负载均衡，LVS</h3><p>我们机器都是IP访问的，那怎么通过我们申请的域名去请求到服务器呢？</p>
-<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><p>大家刷的抖音，B站，快手等等视频服务商，是怎么保证同时为全国的用户提供快速的体验？</p>
-<h3 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h3><p>我们这么多系统和服务，还有这么多中间件的调度怎么去管理调度等等？</p>
-<h3 id="zk"><a href="#zk" class="headerlink" title="zk"></a>zk</h3><p>这么多的服务器，怎么对外统一访问呢，就可能需要知道反向代理的服务器。</p>
-<h3 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h3><p><img src="/images/pasted-25.png" alt="pasted image"></p>
-<p>这一层做了反向负载、服务路由、服务治理、流量管理、安全隔离、服务容错等等都做了，大家公司的内外网隔离也是这一层做的。</p>
-<p>我之前还接触过一些比较有意思的项目，所有对外的接口都是加密的，几十个服务会经过网关解密，找到真的路由再去请求。</p>
-<p><img src="/images/pasted-26.png" alt="pasted image"></p>
-<p>这一层的知识点其实也不少，你往后面学会发现分布式事务，分布式锁，还有很多中间件都离不开zk这一层，我们继续往下看。</p>
-<h2 id="服务层："><a href="#服务层：" class="headerlink" title="服务层："></a>服务层：</h2><p>这一层有点东西了，算是整个框架的核心，如果你跟我帅丙一样以后都是从事后端开发的话，我们基本上整个技术生涯，大部分时间都在跟这一层的技术栈打交道了，各种琳琅满目的中间件，计算机基础知识，Linux操作，算法数据结构，架构框架，研发工具等等。</p>
-<p>我想在看这个文章的各位，计算机基础肯定都是学过的吧，如果大学的时候没好好学，我觉得还是有必要再看看的。</p>
-<p>为什么我们网页能保证安全可靠的传输，你可能会了解到HTTP，TCP协议，什么三次握手，四次挥手。</p>
-<p>还有进程、线程、协程，什么内存屏障，指令乱序，分支预测，CPU亲和性等等，在之后的编程生涯，如果你能掌握这些东西，会让你在遇到很多问题的时候瞬间get到点，而不是像个无头苍蝇一样乱撞（然而丙丙还做得不够）。</p>
-<p>了解这些计算机知识后，你就需要接触编程语言了，大学的C语言基础会让你学什么语言入门都会快点，我选择了面向对象的JAVA，但是也不知道为啥现在还没对象。</p>
-<p>JAVA的基础也一样重要，面向对象（包括类、对象、方法、继承、封装、抽象、 多态、消息解析等），常见API，数据结构，集合框架，设计模式（包括创建型、结构型、行为型），多线程和并发，I/O流，Stream，网络编程你都需要了解。</p>
-<p>代码会写了，你就要开始学习一些能帮助你把系统变得更加规范的框架，SSM可以会让你的开发更加便捷，结构层次更加分明。</p>
-<p>写代码的时候你会发现你大学用的Eclipse在公司看不到了，你跟大家一样去用了IDEA，第一天这是什么玩意，一周后，真香，但是这玩意收费有点贵，那免费的VSCode真的就是不错的选择了。</p>
-<p>代码写的时候你会接触代码的仓库管理工具maven、Gradle，提交代码的时候会去写项目版本管理工具Git。</p>
-<p>代码提交之后，发布之后你会发现很多东西需要自己去服务器亲自排查，那Linux的知识点就可以在里面灵活运用了，查看进程，查看文件，各种Vim操作等等。</p>
-<p>系统的优化很多地方没优化的空间了，你可能会尝试从算法，或者优化数据结构去优化，你看到了HashMap的源码，想去了解红黑树，然后在算法网上看到了二叉树搜索树和各种常见的算法问题，刷多了，你也能总结出精华所在，什么贪心，分治，动态规划等。</p>
-<p>这么多个服务，你发现HTTP请求已经开始有点不满足你的需求了，你想开发更便捷，像访问本地服务一样访问远程服务，所以我们去了解了Dubbo，Spring cloud。</p>
-<p>了解Dubbo的过程中，你发现了RPC的精华所在，所以你去接触到了高性能的NIO框架，Netty。</p>
-<p>代码写好了，服务也能通信了，但是你发现你的代码链路好长，都耦合在一起了，所以你接触了消息队列，这种异步的处理方式，真香。</p>
-<p>他还可以帮你在突发流量的时候用队列做缓冲，但是你发现分布式的情况，事务就不好管理了，你就了解到了分布式事务，什么两段式，三段式，TCC，XA，阿里云的全局事务服务GTS等等。</p>
-<p>分布式事务的时候你会想去了解RocketMQ，因为他自带了分布式事务的解决方案，大数据的场景你又看到了Kafka。</p>
-<p><img src="/images/pasted-27.png" alt="pasted image"></p>
-<p>我上面提到过zk，像Dubbo、Kafka等中间件都是用它做注册中心的，所以很多技术栈最后都组成了一个知识体系，你先了解了体系中的每一员，你才能把它们联系起来。</p>
-<p><img src="/images/pasted-28.png" alt="pasted image"></p>
-<p>服务的交互都从进程内通信变成了远程通信，所以性能必然会受到一些影响。</p>
-<p>此外由于很多不确定性的因素，例如网络拥塞、Server 端服务器宕机、挖掘机铲断机房光纤等等，需要许多额外的功能和措施才能保证微服务流畅稳定的工作。</p>
-<p>Spring Cloud 中就有 Hystrix 熔断器、Ribbon客户端负载均衡器、Eureka注册中心等等都是用来解决这些问题的微服务组件。</p>
-<p>你感觉学习得差不多了，你发现各大论坛博客出现了一些前沿技术，比如容器化，你可能就会去了解容器化的知识，像Docker，Kubernetes（K8s）等。</p>
-<p>微服务之所以能够快速发展，很重要的一个原因就是：容器化技术的发展和容器管理系统的成熟。</p>
-<p><img src="/images/pasted-29.png" alt="pasted image"></p>
-<p>这一层的东西呢其实远远不止这些的，我不过多赘述，写多了像个劝退师一样，但是大家也不用慌，大部分的技术都是慢慢接触了，工作中慢慢去了解，去深入的。</p>
-<p>好啦我们继续沿着图往下看，那再往下是啥呢？</p>
-<h2 id="数据层："><a href="#数据层：" class="headerlink" title="数据层："></a>数据层：</h2><p>数据库可能是整个系统中最值钱的部分了，在我码文字的前一天，刚好发生了微盟程序员删库跑路的操作，删库跑路其实是我们在网上最常用的笑话，没想到还是照进了现实。</p>
-<p><img src="https://tva1.sinaimg.cn/large/0082zybply1gca2znjcfjg30880521kx.gif" alt="pasted image"></p>
-<p>这里也提一点点吧，36小时的故障，其实在互联网公司应该是个笑话了吧，权限控制没做好类似rm -rf 、fdisk、drop等等这样的高危命令是可以实时拦截掉的，备份，全量备份，增量备份，延迟备份，异地容灾全部都考虑一下应该也不至于这样，一家上市公司还是有点点不应该。</p>
-<p><img src="/images/pasted-31.png" alt="数据库事务特性"></p>
-<p>数据库基本的事务隔离级别，索引，SQL，主被同步，读写分离等都可能是你学的时候要了解到的。</p>
-<p>上面我们提到了安全，不要把鸡蛋放一个篮子的道理大家应该都知道，那分库的意义就很明显了，然后你会发现时间久了表的数据大了，就会想到去接触分表，什么TDDL、Sharding-JDBC、DRDS这些插件都会接触到。</p>
-<p>你发现流量大的时候，或者热点数据打到数据库还是有点顶不住，压力太大了，那非关系型数据库就进场了，Redis当然是首选，但是MongoDB、memcache也有各自的应用场景。</p>
-<p>Redis使用后，真香，真快，但是你会开始担心最开始提到的安全问题，这玩意快是因为在内存中操作，那断点了数据丢了怎么办？你就开始阅读官方文档，了解RDB，AOF这些持久化机制，线上用的时候还会遇到缓存雪崩击穿、穿透等等问题。</p>
-<p>单机不满足你就用了，他的集群模式，用了集群可能也担心集群的健康状态，所以就得去了解哨兵，他的主从同步，时间久了Key多了，就得了解内存淘汰机制……</p>
-<p>他的大容量存储有问题，你可能需要去了解Pika….<br><img src="/images/pasted-32.png" alt="pasted image"></p>
-<p><img src="/images/pasted-33.png" alt="pasted image"><br>其实远远没完，每个的点我都点到为止，但是其实要深究每个点都要学很久，我们接着往下看</p>
-<h1 id="实时-离线-大数据"><a href="#实时-离线-大数据" class="headerlink" title="实时/离线/大数据"></a>实时/离线/大数据</h1><p>等你把几种关系型非关系型数据库的知识点，整理清楚后，你会发现数据还是大啊，而且数据的场景越来越多多样化了，那大数据的各种中间件你就得了解了。</p>
-<p>你会发现很多场景，不需要实时的数据，比如你查你的支付宝去年的，上个月的账单，这些都是不会变化的数据，没必要实时，那你可能会接触像ODPS这样的中间件去做数据的离线分析。</p>
-<p>然后你可能会接触Hadoop系列相关的东西，比如于Hadoop（HDFS）的一个数据仓库工具Hive，是建立在 Hadoop 文件系统之上的分布式面向列的数据库HBase 。</p>
-<p>写多的场景，适合做一些简单查询，用他们又有点大材小用，那Cassandra就再合适不过了。</p>
-<p>离线的数据分析没办法满足一些实时的常见，类似风控，那Flink你也得略知一二，他的窗口思想还是很有意思。</p>
-<p>数据接触完了，计算引擎Spark你是不是也不能放过……</p>
-<p><img src="/images/pasted-34.png" alt="pasted image"></p>
-<h2 id="搜索引擎："><a href="#搜索引擎：" class="headerlink" title="搜索引擎："></a>搜索引擎：</h2><p>传统关系型数据库和NoSQL非关系型数据都没办法解决一些问题，比如我们在百度，淘宝搜索东西的时候，往往都是几个关键字在一起一起搜索东西的，在数据库除非把几次的结果做交集，不然很难去实现。</p>
-<p>那全文检索引擎就诞生了，解决了搜索的问题，你得思考怎么把数据库的东西实时同步到ES中去，那你可能会思考到logstash去定时跑脚本同步，又或者去接触伪装成一台MySQL从服务的Canal，他会去订阅MySQL主服务的binlog，然后自己解析了去操作Es中的数据。</p>
-<p>这些都搞定了，那可视化的后台查询又怎么解决呢？Kibana，他他是一个可视化的平台，甚至对Es集群的健康管理都做了可视化，很多公司的日志查询系统都是用它做的。</p>
-<p><img src="/images/pasted-35.png" alt="pasted image"></p>
-<h2 id="学习路线"><a href="#学习路线" class="headerlink" title="学习路线"></a>学习路线</h2><p>看了这么久你是不是发现，帅丙只是一直在介绍每个层级的技术栈，并没说到具体的一个路线，那是因为我想让大家先有个认知或者说是扫盲吧，我一样用脑图的方式汇总一下吧，如果图片被平台二压了，可以去公众号回复【路线】。</p>
-<p><img src="/images/pasted-36.png" alt="pasted image"></p>
-<h2 id="资料-学习网站"><a href="#资料-学习网站" class="headerlink" title="资料/学习网站"></a>资料/学习网站</h2><p>JavaFamily：由一个在互联网苟且偷生的男人维护的GitHub</p>
-<p>CodeGym ：一个在线Java编程课程，80%的内容是练习，适合一窍不通的入门者。</p>
-<p>Wibit Online Java Courses ：一个非常有趣的编程学习网站，各种生动的动画形象能让人忘记学习的枯燥。在线视频学习，非常适合零基础。</p>
-<p>stanford CS106A: Programming Methodology ：斯坦福经典课程系列，完全没有编程经验，想学Java语言的，可以看看这个课程。</p>
-<p>Bloombenc ：一个在线交互式学习平台，老师可以根据你的学习能力和节奏修改他们的教学方法，还可以在平台上编码。</p>
-<p>Imooc：慕课网，我大学的C语言就是在这里看的</p>
-<p>CodeAcademy ：比较实用的Java在线课程，注重的是在找工作时非常有用的技术能力。</p>
-<p>PLURALSIGHT：整合了很多Java的视频课程，部分免费，部分付费，可以根据自己的需要挑选。</p>
-<p>Lynda Online Java Training Videos：Java进阶课程，包括如何使用JDBC来集成MySQL数据库，Reflection API，管理文件和目录等。</p>
-<p>九章基础算法班（Java）：中文在线互动课，随时开始学习。</p>
-<p>BeginnersBook：Java初学者免费教程，有稍微一些编程基础之后，可以跟着文档里的代码练习。</p>
-<p>docs.oracle.com/javase/tutorial：官方Java指南，对了解几乎所有的java技术特性都非常有帮助。</p>
-<p>JournalDev：Java相关教程及问答</p>
-<p>JavaWorld：最早的一个Java站点，每周更新Java技术文章。</p>
-<p>developer.com/java ：由<a href="http://Gamelan.com" target="_blank" rel="noopener">http://Gamelan.com</a> 维护的Java技术文章网站。</p>
-<p>IBM Developerworks技术网站：IBM的Develperworks技术网站，这是其中的Java技术主页</p>
-<p><img src="https://tva1.sinaimg.cn/large/0082zybply1gca3sgtqvnj31vu0rk1ky.jpg" alt="pasted image"></p>
-<h1 id="絮叨"><a href="#絮叨" class="headerlink" title="絮叨"></a>絮叨</h1><p>如果你想去一家不错的公司，但是目前的硬实力又不到，我觉得还是有必要去努力一下的，技术能力的高低能决定你走多远，平台的高低，能决定你的高度。</p>
-<p>如果你通过努力成功进入到了心仪的公司，一定不要懈怠放松，职场成长和新技术学习一样，不进则退。</p>
-<p>丙丙发现在工作中发现我身边的人真的就是实力越强的越努力，最高级的自律，享受孤独（周末的歪哥）</p>
-<p><img src="https://tva1.sinaimg.cn/large/0082zybply1gc90z8argwj30sg0lcaf3.jpg" alt=""></p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>我提到的技术栈你想全部了解，我觉得初步了解可能几个月就够了，这里的了解仅限于你知道它，知道他是干嘛的，知道怎么去使用它，并不是说深入了解他的底层原理，了解他的常见问题，熟悉问题的解决方案等等。</p>
-<p>你想做到后者，基本上只能靠时间上的日积月累，或者不断的去尝试积累经验，也没什么速成的东西，欲速则不达大家也是知道的。</p>
-<p>技术这条路，说实话很枯燥，很辛苦，但是待遇也会高于其他一些基础岗位。</p>
-<p>所实话我大学学这个就是为了兴趣，我从小对电子，对计算机都比较热爱，但是现在打磨得，现在就是为了钱吧，是不是很现实？若家境殷实，谁愿颠沛流离。</p>
-<p>但是至少丙丙因为做软件，改变了家庭的窘境，自己日子也向小康一步步迈过去。</p>
-<p>说做程序员改变了我和我家人的一生可能夸张了，但是我总有一种下班辈子会因为我选择走这条路而改变的错觉。</p>
-<p>我是敖丙，一个在互联网苟且偷生的工具人。</p>
-<p>创作不易，本期硬核，不想被白嫖，各位的「三连」就是丙丙创作的最大动力，我们下次见！<br>————————————————<br>版权声明：本文为CSDN博主「敖 丙」的原创文章，遵循 CC 4.0 BY 版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/qq_35190492/article/details/104548249" target="_blank" rel="noopener">https://blog.csdn.net/qq_35190492/article/details/104548249</a></p>
+<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p>请原谅我先介绍泛型，因为没有泛型基础直接介绍反射是不完整的，就比如说你辛辛苦苦拿到一个类的反射信息，等用的时候才发现结果这是一个泛型类，那还得解析这个类的泛型的信息，这时候就必须先有一个泛型的基础。<br>那么什么是泛型呢，先看看百度百科给的定义：</p>
+<blockquote>
+<p>泛型是程序设计语言的一种特性。允许程序员在强类型程序设计语言中编写代码时定义一些可变部分，那些部分在使用前必须作出指明。各种程序设计语言和其编译器、运行环境对泛型的支持均不一样。将类型参数化以达到代码复用提高软件开发工作效率的一种数据类型。泛型类是引用类型，是堆对象，主要是引入了类型参数这个概念。</p>
+</blockquote>
+<p>额，说实话哈，有一部分我没看懂他写的是啥。根据我的理解，泛型就是模板类里套的参数。就好比我们从网上找到一个好看的PPT模板，我们在写PPT的时候根据我们的主题套用这个模板，然后写出一个很好看的PPT，被老板表扬升职加薪。嗯，事实上用好了泛型也会升职加薪。</p>
+<p>泛型说的笼统一些就是类型参数化的过程，我们之前介绍的List就是一个泛型类。泛型分泛型类/接口和泛型方法。泛型类和泛型接口可以看做是一种，因为它的泛型参数是用在整个结构体里面的（注意不是结构，struct）；泛型方法又有参数泛型和返回值泛型两种。</p>
+<h2 id="声明一个泛型类-接口"><a href="#声明一个泛型类-接口" class="headerlink" title="声明一个泛型类/接口"></a>声明一个泛型类/接口</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Template&lt;T&gt;</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">private</span> T data;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SetTemplate</span>(<span class="params">T temp</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">    	data = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">GetTemplate</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">    	<span class="keyword">return</span> data;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>上述示例是一个简单的泛型类，体现了泛型类的特点。在声明类的时候，声明一个泛型占位符<code>T</code> ，在下面的属性、字段、方法的参数和方法的返回值都可以使用这个占位符，约定类型一致。</p>
+<p>泛型的接口和泛型类是一致的，只不过接口没有方法的实现内容也就是方法体而已。</p>
+<h2 id="泛型类的使用"><a href="#泛型类的使用" class="headerlink" title="泛型类的使用"></a>泛型类的使用</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 继续上面的代码</span></span><br><span class="line">Template&lt;<span class="keyword">int</span>&gt; temp = <span class="keyword">new</span> Template&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line">temp.SetTemplate(<span class="number">10</span>);</span><br><span class="line"><span class="keyword">int</span> ten = temp.GetTemplate();</span><br></pre></td></tr></table></figure>
+
+<p>使用泛型类和普通类不同的地方就是，泛型类告诉编译器你要传递的类型。使用&lt;&gt; 做标记，中间写类型，表示这是一个泛型为XXX的泛型类。通常与其他语言不同的地方是，C#的泛型支持所有类型，意思就是在没有额外声明的时候，可以使用任意类型作为泛型参数传递。</p>
+<h2 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h2><p>C#也可以声明一个方法为泛型方法，方法的泛型声明是声明在方法名的后面，参数列表的前方。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> TemplateMethod&lt;T&gt;(T arg);</span><br><span class="line"><span class="keyword">public</span> T TemplateMethod1&lt;T&gt;();</span><br><span class="line"><span class="keyword">public</span> T TemplateMethod2&lt;T&gt;(T arg);</span><br></pre></td></tr></table></figure>
+
+<p>上述三个都是合规的泛型方法声明。泛型可以是参数，也可以是返回值，还能既是返回值又是参数。</p>
+<blockquote>
+<p>那么问题来了，多个泛型参数该怎么声明？</p>
+</blockquote>
+<p>如下：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> T2 TemplateMothod3&lt;T1,T2&gt;(T1 arg);</span><br><span class="line"><span class="keyword">public</span> T3 TemplateMothod4&lt;T1,T2,T3&gt;(T1 arg,T2 arg2);</span><br></pre></td></tr></table></figure>
+
+<p>在两个尖括号中间放入多个泛型，然后用逗号隔开，与参数列表和返回值的类型一一对应。</p>
+<h2 id="泛型方法的使用"><a href="#泛型方法的使用" class="headerlink" title="泛型方法的使用"></a>泛型方法的使用</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TemplateMethod(<span class="number">10</span>);<span class="comment">// 方式 1</span></span><br><span class="line"><span class="keyword">int</span> it = TemplateMethod1&lt;<span class="keyword">int</span>&gt;();<span class="comment">// 方式 2</span></span><br></pre></td></tr></table></figure>
+
+<p>由于篇幅和时间的关系（主要是我写这篇的时候时间有点晚了。。）就不对之前所有的方法进行演示了。</p>
+<p>这里简单介绍一下泛型方法的使用：</p>
+<ul>
+<li>方式1 隐藏了一个泛型参数，这是因为如果泛型是参数的话，c#会根据参数的类型自动解析对应的泛型类型是什么，方式1 等同于<code>TemplateMethod&lt;int&gt;(10);</code>。</li>
+<li>方式2 当泛型参数是返回值时，必须告知具体的泛型类型。</li>
+</ul>
+<h2 id="泛型约束和泛型标记"><a href="#泛型约束和泛型标记" class="headerlink" title="泛型约束和泛型标记"></a>泛型约束和泛型标记</h2><h3 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h3><p>在实际开发过程中，我们会对一些泛型类的泛型参数进行类型约束，那么泛型约束应该怎么写呢，看示例：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> Demo&lt;T&gt;(T arg) <span class="keyword">where</span> T : 约束内容</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> Demo&lt;T,P&gt;(T arg,P arg1) <span class="keyword">where</span> T: 约束内容 <span class="keyword">where</span> P:约束内容</span><br></pre></td></tr></table></figure>
+
+<p>如果对多个参数进行约束，就写多个where。</p>
+<p>泛型的约束有一下几种：</p>
+<ul>
+<li>class 表示这是个引用类型</li>
+<li>new()  表示必须有一个无参构造函数</li>
+<li>struct 表示是个结构体</li>
+<li>具体的类名或接口名 表示这个参数必须是这个类的子类或接口的实现类</li>
+</ul>
+<h3 id="泛型标记"><a href="#泛型标记" class="headerlink" title="泛型标记"></a>泛型标记</h3><p>在C#里有个很有意思的地方，那就是泛型标记。</p>
+<p>泛型支持 in/out作为占位符T的前置标记。那这两个标记是什么意义呢，in表示这个类型参数只能作为参数列表的类型进行传递，out表示这是一个返回值的类型，示例如下：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> T2 Demo&lt;<span class="keyword">in</span> T1,<span class="keyword">out</span> T2&gt;(T1 t1);</span><br></pre></td></tr></table></figure>
+
+<p>类和方法的标记大同小易，基本上是一致的。</p>
+<h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><p>反射在很多地方都有着使用，这里先简单的介绍一下C#中的反射相关内容，因为细讲的话会涉及到很多东西而且还需要很多前置概念，不过在自己写框架之前不需要涉及到太多反射的内容。</p>
+<p>反射，英文名 reflect，简单的介绍就是将类型对象化，然后操作这个对象的技术。</p>
+<p>我们先创建一个示例类：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> Name &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> Age &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        Name = <span class="string">"小李"</span>;</span><br><span class="line">        Age = <span class="number">24</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span>(<span class="params"><span class="keyword">string</span> name, <span class="keyword">int</span> age</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        Name = name;</span><br><span class="line">        Age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">string</span> <span class="title">SayHi</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"你好，我叫"</span> + Name + <span class="string">"我的年纪是 "</span> + Age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="获取一个类型对象"><a href="#获取一个类型对象" class="headerlink" title="获取一个类型对象"></a>获取一个类型对象</h2><p>首先需要注意的一个类：<code>Type</code>，这个类是反射技术里的基石，甚至可以说是核心，表示一个类的类型信息。</p>
+<p>那么，我们该如何获取类型对象呢？在C#中常见的有如下两个方法：</p>
+<ol>
+<li>使用<code>typeof</code> 关键字</li>
+</ol>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Type personType = <span class="keyword">typeof</span>(Person);</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>通过对象，使用<code>GetType</code> 方法</li>
+</ol>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Person person = <span class="keyword">new</span> Person();</span><br><span class="line">Type personType = person.GetType();</span><br></pre></td></tr></table></figure>
+
+<p>如果我们在编写程序的时候，知道要获取什么类的Type对象的话，建议使用typeof获取。如果我们只有一个对象，需要通过这个对象进行操作的话，那么最好使用GetType来获取。</p>
+<p>现在我们获取到了一个Person类的Type对象，可以用来做什么呢？</p>
+<h2 id="Type对象的用处"><a href="#Type对象的用处" class="headerlink" title="Type对象的用处"></a>Type对象的用处</h2><ol>
+<li>获取类名：<code>personType.Name</code></li>
+<li>获取所有属性：<code>personType.GetProperties()</code></li>
+<li>获取所有方法：<code>personType.GetMethods()</code></li>
+<li>获取所有构造函数：<code>personType.GetConstructors()</code></li>
+</ol>
+<p>现在我们一一介绍一下这四种写法：</p>
+<p>第一条：顾名思义，获取到的结果是<code>Person</code> 这个值。</p>
+<p>第二条：该方法会返回一个类型为<code>PropertyInfo[]</code> 的数组，这个数组里包含着所有使用<code>public</code>声明的属性。当然也可以通过指定的属性名获取属性对象：<code>personType.GetProperty(&quot;Name&quot;)</code> 这里会获取到Person类的Name属性。</p>
+<p>第三条： 获取该类所有<code>public</code>的方法，并将其封装成一组类型是<code>MethodInfo</code>的对象数组。同理，也可以根据方法名进行检索：<code>personType.GetMethod(&quot;SayHi&quot;)</code> ，就能获取对应的SayHi方法。不过，如果有同名方法的话，就可能会出现获取到的方法不是你想要的了。嗯，这部分会放到精讲反射的时候再来细说。</p>
+<p>第四条： 获取构造函数，返回的是一个类型是<code>ConstructorInfo</code>的数组，表示所有的构造方法，不过可惜的是，没有根据名字检索的方法了，因为构造方法就一个名。</p>
+<h2 id="使用PropertyInfo动态操作一个对象的属性值"><a href="#使用PropertyInfo动态操作一个对象的属性值" class="headerlink" title="使用PropertyInfo动态操作一个对象的属性值"></a>使用PropertyInfo动态操作一个对象的属性值</h2><p>我们通过上一小节获取到了一个类的属性<code>PropertyInfo</code>，现在可以利用这个属性进行后续的操作：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Person person = <span class="keyword">new</span> Person();</span><br><span class="line">Type personType = person.GetType();</span><br><span class="line">PropertyInfo prop = personType.GetProperty(<span class="string">"Name"</span>);<span class="comment">//获取Name属性</span></span><br><span class="line">Object <span class="keyword">value</span> = prop.GetValue(person);<span class="comment">// 获取 对象 person 的Name属性值</span></span><br><span class="line">prop.SetValue(person, <span class="string">"wangyipeng"</span>);<span class="comment">// 为对象 person的Name属性设置值为 wangyipeng</span></span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是：</p>
+<p>如果 类的属性只有get，那么在调用SetValue时会报错。可能要问了，我们知道是有set，但是程序怎么判断呢？通过<code>prop.CanWrite</code> 的值进行判断，如果值是<code>true</code>则表明这个属性可以写入值，否则不能。</p>
+<p>同理，可以很轻易的联想到如果只有set，那么GetValue也会报错，与之相对应的就是prop.CanRead属性了。</p>
+<h2 id="使用MethodInfo手动执行一个对象的方法"><a href="#使用MethodInfo手动执行一个对象的方法" class="headerlink" title="使用MethodInfo手动执行一个对象的方法"></a>使用MethodInfo手动执行一个对象的方法</h2><p>首先，获得到一个对象里的某一个方法：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Person person = <span class="keyword">new</span> Person();</span><br><span class="line">Type personType = person.GetType();</span><br><span class="line">MethodInfo method = personType.GetMethod(<span class="string">"SayHi"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>现在获取到了 方法对象，该怎么执行呢？</p>
+<p>MethodInfo有一个Invoke方法，这个方法有两个重载版本。其中有一个是：<code>Invoke(object obj, object[] parameters)</code>，第一个参数是要执行的方法所属的对象，后面的数组参数是对应方法的参数列表，如果为空则填null即可。该方法有个返回值，类型是object，如果方法是没有返回值的方法，那么Invoke的返回值就是null。</p>
+<h2 id="通过反射获取一个对象"><a href="#通过反射获取一个对象" class="headerlink" title="通过反射获取一个对象"></a>通过反射获取一个对象</h2><p>通过反射获取一个类的类型对象有几种方式，先介绍一个不用类型的方式：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person p = Activator.CreateInstance&lt;Person&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>这种方式有一个要求，Person必须有一个无参的构造函数。</p>
+<p>第二种方式：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Type personType = <span class="keyword">typeof</span>(Person);</span><br><span class="line"><span class="keyword">object</span> p = Activator.CreateInstance(personType);<span class="comment">//使用无参构造函数</span></span><br><span class="line">p = Activator.CreateInstance(personType, <span class="string">"小王"</span>, <span class="number">19</span>);<span class="comment">//使用Person(string,int)这个构造函数</span></span><br></pre></td></tr></table></figure>
+
+<p>当需要传递参数的时候，参数类型必须与对应的构造函数一一对应，如果顺序变了，可能会出现找不到对应类的问题。</p>
+<p>第三种：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//types 是参数列表的参数类型集合，顺序与实际参数顺序一致</span></span><br><span class="line">ConstructorInfo cons = personType.GetConstructor(Type[] types);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">实际上应该是这个调用方</span></span><br><span class="line"><span class="comment">ConstructorInfo cos = personType.GetConstructor(new[]&#123; typeof(string), typeof(int)&#125;);</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">object</span> person  = cos.Invoke(<span class="keyword">new</span> <span class="keyword">object</span>[] &#123;<span class="string">"王先生"</span>, <span class="number">19</span>&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这时候一个简单的反射介绍就到这里了，反射这里还有一大篇的内容要将。这部分我会放到基础篇完结之后再做一个统一介绍的。不过先道个歉，没介绍泛型在反射的应用。</p>
+<blockquote>
+<p>注：代码里映射的王先生是我一个故人，最近与他有一些纠纷。</p>
+</blockquote>
 
     
 
+    
+    
+
+    
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Mr.Gao
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https:/blogs.attachie.club/basecharp/62422.html" title="C# 基础知识系列- 5 反射和泛型" target="_blank">https:/blogs.attachie.club/basecharp/62422.html</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
     
 
   </div>
@@ -423,15 +437,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">每日转载一篇</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C#基础知识</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习路线</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">面向对象</a>
         		</li>
       		
 		</ul>
@@ -443,7 +453,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/java-plus/" class="article-tag-list-link color3">Java 进阶</a>
+        			<a href="/categories/basecharp/" class="article-tag-list-link color2">C#基础知识</a>
         		</li>
       		
 		</ul>
@@ -498,7 +508,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://blogs.attachie.club/java-plus/55489.html" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://blogs.attachie.club/basecharp/62422.html" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -513,18 +523,18 @@ var _hmt = _hmt || [];
 
 <nav id="article-nav">
   
-    <a href="/java-plus/62567.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/basecharp/63934.html" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          【转载】Java 枚举的骚操作
+          C# 基础知识系列- 6 Lambda表达式和Linq简单介绍
         
       </div>
     </a>
   
   
-    <a href="/java-plus/12234.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">【转载】MyBatis常见面试题和答案（2020最新版）</div>
+    <a href="/basecharp/23707.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C#  基础知识系列- 4 面向对象</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -551,7 +561,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#正文"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#前端"><span class="toc-number">2.1.</span> <span class="toc-text">前端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网关层："><span class="toc-number">2.2.</span> <span class="toc-text">网关层：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#负载均衡，LVS"><span class="toc-number">2.2.1.</span> <span class="toc-text">负载均衡，LVS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS"><span class="toc-number">2.2.2.</span> <span class="toc-text">DNS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CDN"><span class="toc-number">2.2.3.</span> <span class="toc-text">CDN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#zk"><span class="toc-number">2.2.4.</span> <span class="toc-text">zk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx"><span class="toc-number">2.2.5.</span> <span class="toc-text">Nginx</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务层："><span class="toc-number">2.3.</span> <span class="toc-text">服务层：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据层："><span class="toc-number">2.4.</span> <span class="toc-text">数据层：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实时-离线-大数据"><span class="toc-number">3.</span> <span class="toc-text">实时&#x2F;离线&#x2F;大数据</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#搜索引擎："><span class="toc-number">3.1.</span> <span class="toc-text">搜索引擎：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#学习路线"><span class="toc-number">3.2.</span> <span class="toc-text">学习路线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#资料-学习网站"><span class="toc-number">3.3.</span> <span class="toc-text">资料&#x2F;学习网站</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#絮叨"><span class="toc-number">4.</span> <span class="toc-text">絮叨</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#泛型"><span class="toc-number">2.</span> <span class="toc-text">泛型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#声明一个泛型类-接口"><span class="toc-number">2.1.</span> <span class="toc-text">声明一个泛型类&#x2F;接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#泛型类的使用"><span class="toc-number">2.2.</span> <span class="toc-text">泛型类的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#泛型方法"><span class="toc-number">2.3.</span> <span class="toc-text">泛型方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#泛型方法的使用"><span class="toc-number">2.4.</span> <span class="toc-text">泛型方法的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#泛型约束和泛型标记"><span class="toc-number">2.5.</span> <span class="toc-text">泛型约束和泛型标记</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#约束"><span class="toc-number">2.5.1.</span> <span class="toc-text">约束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#泛型标记"><span class="toc-number">2.5.2.</span> <span class="toc-text">泛型标记</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#反射"><span class="toc-number">3.</span> <span class="toc-text">反射</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#获取一个类型对象"><span class="toc-number">3.1.</span> <span class="toc-text">获取一个类型对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Type对象的用处"><span class="toc-number">3.2.</span> <span class="toc-text">Type对象的用处</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用PropertyInfo动态操作一个对象的属性值"><span class="toc-number">3.3.</span> <span class="toc-text">使用PropertyInfo动态操作一个对象的属性值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用MethodInfo手动执行一个对象的方法"><span class="toc-number">3.4.</span> <span class="toc-text">使用MethodInfo手动执行一个对象的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过反射获取一个对象"><span class="toc-number">3.5.</span> <span class="toc-text">通过反射获取一个对象</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
