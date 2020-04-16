@@ -8,26 +8,24 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="canonical" href="https://blogs.attachie.club">
   <link rel="dns-prefetch" href="https://blogs.attachie.club">
-  <title>关于我 | 高先生小屋-高先生小屋, C#,CSharp,.net,Java,Python,技术站</title>
+  <title>C# 基础知识系列- 9 字符串的更多用法（二） | 高先生小屋-高先生小屋, C#,CSharp,.net,Java,Python,技术站</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="昵称：attachie Gitee：gitee.com Mail: 工作经历2014.3~2015.7 初出茅庐，就职于湖南旷野文化传播有限公司 任职期间与同事合作完成了一个P2P金融借贷网站。 2015.7~2017.1 开始施展，就职于南京易考无忧长沙分公司 任职期间并无上线网站，但负责维护企业原有产品，开始逐步深入了解MVC的内部原理。 2017.2~2018.2 大量练习，就职于内蒙古国风">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于我">
-<meta property="og:url" content="https://blogs.attachie.club/about/index.html">
+  <meta name="description" content="C#基础知识之字符串系列">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C# 基础知识系列- 9 字符串的更多用法（二）">
+<meta property="og:url" content="https://blogs.attachie.club/basecharp/34774.html">
 <meta property="og:site_name" content="高先生小屋">
-<meta property="og:description" content="昵称：attachie Gitee：gitee.com Mail: 工作经历2014.3~2015.7 初出茅庐，就职于湖南旷野文化传播有限公司 任职期间与同事合作完成了一个P2P金融借贷网站。 2015.7~2017.1 开始施展，就职于南京易考无忧长沙分公司 任职期间并无上线网站，但负责维护企业原有产品，开始逐步深入了解MVC的内部原理。 2017.2~2018.2 大量练习，就职于内蒙古国风">
+<meta property="og:description" content="C#基础知识之字符串系列">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_02.png">
-<meta property="article:published_time" content="2019-03-13T14:38:47.000Z">
-<meta property="article:modified_time" content="2020-03-23T03:26:14.218Z">
+<meta property="article:published_time" content="2020-04-15T22:48:00.000Z">
+<meta property="article:modified_time" content="2020-04-16T14:56:43.915Z">
 <meta property="article:author" content="Mr.Gao">
-<meta property="article:tag" content="C#">
-<meta property="article:tag" content="基础知识">
-<meta property="article:tag" content="技术站">
+<meta property="article:tag" content="C#基础知识">
+<meta property="article:tag" content="字符串">
+<meta property="article:tag" content="教程">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_02.png">
   
     <link rel="alternative" href="/atom.xml" title="高先生小屋" type="application/atom+xml">
   
@@ -235,14 +233,14 @@ var _hmt = _hmt || [];
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-C-基础知识系列-9-字符串的更多用法（二）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于我
+      C# 基础知识系列- 9 字符串的更多用法（二）
     </h1>
   
 
@@ -254,8 +252,8 @@ var _hmt = _hmt || [];
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2019-03-13T14:38:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-13</time>
+<a href="/basecharp/34774.html" class="archive-article-date">
+        <time datetime="2020-04-15T22:48:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-16</time>
 </a>
 
   
@@ -268,7 +266,7 @@ var _hmt = _hmt || [];
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">542字</span>
+      <span class="post-count">1.8k字</span>
     </span>
   </span>
 
@@ -277,7 +275,7 @@ var _hmt = _hmt || [];
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">7分</span>
     </span>
   </span>
 </div>
@@ -288,22 +286,68 @@ var _hmt = _hmt || [];
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>昵称：attachie</p>
-<p>Gitee：<a href="http://gitee.com/c7jie" target="_blank" rel="noopener">gitee.com</a></p>
-<p>Mail:<a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=TS56JyQofXwNPDxjLiIg" target="_blank" rel="noopener"><img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_02.png" alt="邮件"></a></p>
-<h2 id="工作经历"><a href="#工作经历" class="headerlink" title="工作经历"></a>工作经历</h2><p>2014.3~2015.7 初出茅庐，就职于湖南旷野文化传播有限公司</p>
-<p>任职期间与同事合作完成了一个P2P金融借贷网站。</p>
-<p>2015.7~2017.1 开始施展，就职于南京易考无忧长沙分公司</p>
-<p>任职期间并无上线网站，但负责维护企业原有产品，开始逐步深入了解MVC的内部原理。</p>
-<p>2017.2~2018.2 大量练习，就职于内蒙古国风网络技术有限公司</p>
-<p>在岗期间，编写了大量的项目开始接触微信支付、微信公众号、支付宝支付、微信小程序等。接触并熟悉了Angular1.X的使用。</p>
-<p>2018.3～2019.09 蛰伏，就职于程洋国际天津有限公司<br>原本打算在这边认证学习一些内容，并且好好待一段时间的，但后来发生了一些变故所以，从此单位离职了。</p>
-<h2 id="博客介绍"><a href="#博客介绍" class="headerlink" title="博客介绍"></a>博客介绍</h2><p>技术的积累源于日复一日的温故知新和对知识体系的更新。所以突发奇想想给自己留一份纪念，也是一份督促。</p>
-<h3 id="博客主线"><a href="#博客主线" class="headerlink" title="博客主线"></a>博客主线</h3><h4 id="1-JAVA主线"><a href="#1-JAVA主线" class="headerlink" title="1 JAVA主线"></a>1 JAVA主线</h4><p>因为之前是主学Java的，但是自从开始工作后就没有使用过了，所以想开一条Java主线，把以前学过的重新复习一下与此同时还可以练练手，巩固一下。</p>
-<h4 id="2-C-主线"><a href="#2-C-主线" class="headerlink" title="2 C#主线"></a>2 C#主线</h4><p>C#是在开始工作之后自学的，也是在工作中一直使用，学习过WindowsForm、ASP.NET、ASP.NET MVC，现在在使用MVC4+。</p>
-<h4 id="3-Python"><a href="#3-Python" class="headerlink" title="3 Python"></a>3 Python</h4><p>随着【人工智能】的发展和爆发，Python逐渐成为了IT技术行业的头马。所以也是应景，开始学习Python。这部分内容将记录着 Python的学习过程，参考了很多网站、书籍内容。</p>
-<h3 id="日记拾遗"><a href="#日记拾遗" class="headerlink" title="日记拾遗"></a>日记拾遗</h3><p>这部分记录了一些日常工作中遇到的一些神奇问题以及我对这些问题的解决方案或者说实践。</p>
-<h3 id="每日转载"><a href="#每日转载" class="headerlink" title="每日转载"></a>每日转载</h3><p>这部分收录了很多来自于网络的技术文章，都是很不错的内容。</p>
+    <h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>上一篇文章介绍了字符串自身的一些方法，就是对象方法。在字符串体系中，还有一些是<code>string</code>类提供的静态方法。这两部分构成了字符串体系，当然还有一些三方库为字符串提供了扩展方法。<br>这里简单的介绍一下<code>string</code>类的静态方法。</p>
+<a id="more"></a>
+<h1 id="1-玩转创建字符串"><a href="#1-玩转创建字符串" class="headerlink" title="1. 玩转创建字符串"></a>1. 玩转创建字符串</h1><h2 id="1-1-Create一个字符串"><a href="#1-1-Create一个字符串" class="headerlink" title="1.1 Create一个字符串"></a>1.1 Create一个字符串</h2><p>通过调用<code>string.Create</code>方法可以生成一个字符串。该方法的声明是</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> Create&lt;TState&gt; (<span class="keyword">int</span> length, TState state, System.Buffers.SpanAction&lt;<span class="keyword">char</span>,TState&gt; action);</span><br></pre></td></tr></table></figure>
+<p>简单的来讲就是生成一个长度为<code>length</code>的字符串，基本元素是 <code>TState</code>类型的<code>state</code>，具体的填充过程交由<code>action</code>来进行处理。值得注意的是action是一个委托，也就是它可以用lambda表达式直接使用，具体声明如下：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">void</span> SpanAction&lt;T,<span class="keyword">in</span> TArg&gt;(Span&lt;T&gt; span, TArg arg);</span><br></pre></td></tr></table></figure>
+
+<p>因为方法中指定了<code>Span</code>参数为<code>char</code>，那么 action 的写法应该如下：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(span, state)=&gt;<span class="comment">//span 的类型是 Span&lt;char&gt;，state的类型是 TState</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">// 注意，没有返回值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>示例：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">string</span> str = <span class="string">"12320kz,zxcqweqwkuqwiqewpqwwe"</span>;</span><br><span class="line">Console.WriteLine(<span class="keyword">string</span>.Create(<span class="number">10</span>,str, (span, c) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    span.Fill(c[<span class="number">0</span>]);</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
+
+<p><code>span</code>的方法<code>Fill</code>的参数是<code>char</code>，所以这个方法就是按照一定逻辑将 state参数转换成char然后填充给字符串，在action中多次调用Fill只会生效最后一次填充。</p>
+<h2 id="1-2-连接多个元素"><a href="#1-2-连接多个元素" class="headerlink" title="1.2 连接多个元素"></a>1.2 连接多个元素</h2><p>字符串的连接有两个方法，一个是<code>string.Concat</code>，一个是<code>string.Join</code>。</p>
+<p>首先介绍<code>Concat</code>，这个方法最基本的功能就是将多个字符串收尾连接成一个字符串，继续引申，连接任意个对象形成一个字符串，最后将一个集合的元素拼接成字符串。所以，这个方法的声明就有以下内容：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> <span class="title">Concat</span> (<span class="params"><span class="keyword">string</span> str0, <span class="keyword">string</span> str1</span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> <span class="title">Concat</span> (<span class="params"><span class="keyword">object</span> arg0, <span class="keyword">object</span> arg1</span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> <span class="title">Concat</span> (<span class="params"><span class="keyword">params</span> <span class="keyword">string</span>[] values</span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> <span class="title">Concat</span> (<span class="params"><span class="keyword">params</span> <span class="keyword">object</span>[] args</span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> <span class="title">Concat</span> (<span class="params">System.Collections.Generic.IEnumerable&lt;<span class="keyword">string</span>&gt; values</span>)</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> Concat&lt;T&gt; (System.Collections.Generic.IEnumerable&lt;T&gt; values);</span><br></pre></td></tr></table></figure>
+
+<p>以上只是几个具有代表性的方法，介绍到这里有没有觉得它的实现很眼熟？</p>
+<p>没错，字符串的‘加法’运算就是基于这个方法实现的。</p>
+<p><code>Join</code>在行为上与<code>Concat</code>很相似，但是这个方法是用一个分割符（可以是字符串）将一组对象连接起来，所以它的声明就是如下内容：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> <span class="title">Join</span> (<span class="params"><span class="keyword">char</span> separator, <span class="keyword">params</span> <span class="keyword">object</span>[] values</span>)</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> Join&lt;T&gt; (<span class="keyword">char</span> separator, System.Collections.Generic.IEnumerable&lt;T&gt; values);</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> <span class="title">Join</span> (<span class="params"><span class="keyword">string</span> separator, <span class="keyword">params</span> <span class="keyword">object</span>[] values</span>)</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> Join&lt;T&gt; (<span class="keyword">string</span> separator, System.Collections.Generic.IEnumerable&lt;T&gt; values);</span><br></pre></td></tr></table></figure>
+
+<p>这两个方法出镜率非常高，不过<code>Concat</code>更多的是用‘加法’形式，而<code>Join</code>在多个元素快速生成字符串中非常常见。</p>
+<p>这里简单介绍一下<code>Join</code>的使用：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> list = <span class="keyword">new</span> List&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">&#123;</span><br><span class="line">    list.Add(i);<span class="comment">// 生成一个列表，元素是0到9这十个数字</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">string</span> str = <span class="keyword">string</span>.Join(<span class="string">","</span>, list);<span class="comment">//0,1,2,3,4,5,6,7,8,9</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="2-快来比一比"><a href="#2-快来比一比" class="headerlink" title="2. 快来比一比"></a>2. 快来比一比</h1><h2 id="2-1-我们是不是同一个"><a href="#2-1-我们是不是同一个" class="headerlink" title="2.1 我们是不是同一个"></a>2.1 我们是不是同一个</h2><p>因为字符串机制的问题，所以一般字符串的相等性比较分为了两种，字面相等性和引用相等性。在C#中默认的相等性比较是字面值相等性。示例：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">string</span> str1 = <span class="string">"123"</span>;</span><br><span class="line"><span class="keyword">string</span> str2 = <span class="string">"123"</span>;</span><br><span class="line"><span class="keyword">string</span> str3 = <span class="keyword">new</span> <span class="keyword">string</span>(<span class="string">"123"</span>);</span><br><span class="line"><span class="keyword">bool</span> eq1 = str1 == str2;<span class="comment">// true</span></span><br><span class="line"><span class="keyword">bool</span> eq2 = str2 == str3;<span class="comment">// true</span></span><br><span class="line"><span class="keyword">bool</span> eq3 = str1 == str3;<span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>那么如何判断是否是同一个引用呢？通过<code>object.ReferenceEquals</code>来判断是否是同一个引用。继续上面的例子：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> req1 = <span class="keyword">object</span>.ReferenceEquals(str1, str2);<span class="comment">// true</span></span><br><span class="line"><span class="keyword">bool</span> req1 = <span class="keyword">object</span>.ReferenceEquals(str2, str3);<span class="comment">// false</span></span><br><span class="line"><span class="keyword">bool</span> req3 = <span class="keyword">object</span>.ReferenceEquals(str1, str3);<span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>在C#中，编译器会将一样字面值的字符串指向同一个地址，这个地址是在字符串的常量池中。而使用new等方法创建的字符串，是在程序运行后才会确认字符串具体的值，所以这个地址是后分配的。所以上述两种判断方式会出现不同的结果。</p>
+<p><code>string</code>类提供了一个静态方法<code>Equals</code>，方法声明如下：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">Equals</span> (<span class="params"><span class="keyword">string</span> a, <span class="keyword">string</span> b</span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">Equals</span> (<span class="params"><span class="keyword">string</span> a, <span class="keyword">string</span> b, StringComparison comparisonType</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>该方法返回两个字符串是否是相等的，也就是与字符串默认的<code>==</code>判断是一致的。</p>
+<h2 id="2-2-来比一比高矮"><a href="#2-2-来比一比高矮" class="headerlink" title="2.2 来比一比高矮"></a>2.2 来比一比高矮</h2><p>在我们开发的过程中经常会遇到对字符串进行排序的需求，那么字符串排序的逻辑是什么呢？</p>
+<p>对于数字、字母来说是按照ASCII码进行排序的，也就是数字、小写、大写字母这样进行排序。当加入中文后，中文排最后，同种字符按字典顺序进行排序。对于一些跨语言的排序会因为语言不同而导致排序结果不一样。这里有兴趣的可以查看一下微软的官方文档。</p>
+<p>介绍一下字符串排序的基本方法：<code>Compare</code></p>
+<p>这个方法有一个对象的相似方法是<code>CompareTo</code>，这个方法是<code>IComparable</code>接口定义的方法，与这个方法行为一致。该方法常用的有如下几个定义：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">Compare</span> (<span class="params"><span class="keyword">string</span> strA, <span class="keyword">string</span> strB</span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">Compare</span> (<span class="params"><span class="keyword">string</span> strA, <span class="keyword">string</span> strB, StringComparison comparisonType</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这个方法返回一个整型，可以理解为两个字符串之间的距离，正的表示A在B的后面，负的表示A在B的前面。值的绝对值越大，两个字符串之间的距离也越大，但是值本身不具备意义。如果值为0，则表示这两个字符串相等。</p>
+<p>有一个重载版本里有个参数类型是<code>StringComparison</code>，这是一个枚举类型，用来定义在比较两个字符串时的一些行为，后续有机会详细介绍这一部分。</p>
+<p>示例：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">string</span> str1 = <span class="string">"123a"</span>;</span><br><span class="line"><span class="keyword">string</span> str2 = <span class="string">"132a"</span>;</span><br><span class="line"><span class="keyword">int</span> position1 = <span class="keyword">string</span>.Compare(str1, str2);<span class="comment">// -1</span></span><br><span class="line">str1 = <span class="string">"你好"</span>;</span><br><span class="line">str2 = <span class="string">"我们"</span>;</span><br><span class="line"><span class="keyword">int</span> position2 = <span class="keyword">string</span>.Compare(str1, str2);<span class="comment">// -1</span></span><br></pre></td></tr></table></figure>
+
+<p>可以明显看出，排序规则基本就是字典顺序。</p>
+<h1 id="3-补充"><a href="#3-补充" class="headerlink" title="3. 补充"></a>3. 补充</h1><p>补充三个上一篇文章遗漏的方法，插入、删除、获取一个子串。</p>
+<h2 id="3-1-插入到某个位置"><a href="#3-1-插入到某个位置" class="headerlink" title="3.1 插入到某个位置"></a>3.1 插入到某个位置</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">string</span> <span class="title">Insert</span> (<span class="params"><span class="keyword">int</span> startIndex, <span class="keyword">string</span> <span class="keyword">value</span></span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>在源字符串指定的位置插入一个字符串并返回插入的结果。</p>
+<h2 id="3-2-删除"><a href="#3-2-删除" class="headerlink" title="3.2 删除"></a>3.2 删除</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//从startIndex开始，后面的所有元素都删除，包括startIndex，返回剩下的字符</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">string</span> <span class="title">Remove</span> (<span class="params"><span class="keyword">int</span> startIndex</span>)</span>;</span><br><span class="line"><span class="comment">//从startIndex开始，删除 count个元素，返回剩下的字符</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">string</span> <span class="title">Remove</span> (<span class="params"><span class="keyword">int</span> startIndex, <span class="keyword">int</span> count</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-3-获取一个子串"><a href="#3-3-获取一个子串" class="headerlink" title="3.3 获取一个子串"></a>3.3 获取一个子串</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 返回从startIndex开始，剩下的的元素，包括startIndex</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">string</span> <span class="title">Substring</span> (<span class="params"><span class="keyword">int</span> startIndex</span>)</span>;</span><br><span class="line"><span class="comment">// 返回从startIndex开始，一共count个元素的字符串，包括startIndex</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">string</span> <span class="title">Substring</span> (<span class="params"><span class="keyword">int</span> startIndex, <span class="keyword">int</span> length</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这一部分的方法比较简单，就不做示例演示了。不过需要注意的是 所有参数都应该是大于0的，且不能大于字符串的长度，包括 startIndex+count。</p>
+<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h1><p>目前为止，字符串的常规使用已经完成了，但是字符串的使用却并没有结束，后续会继续介绍C#其他内容，其中有几个内容是与字符串有很大的关联的，这里先容我卖个关子。</p>
 
     
 
@@ -320,7 +364,7 @@ var _hmt = _hmt || [];
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https:/blogs.attachie.club/about/index.html" title="关于我" target="_blank">https:/blogs.attachie.club/about/index.html</a>
+          <a href="https:/blogs.attachie.club/basecharp/34774.html" title="C# 基础知识系列- 9 字符串的更多用法（二）" target="_blank">https:/blogs.attachie.club/basecharp/34774.html</a>
         </li>
         
         <li>
@@ -338,7 +382,33 @@ var _hmt = _hmt || [];
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C#基础知识</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">字符串</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/basecharp/" class="article-tag-list-link color2">C#基础知识</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
 
@@ -388,7 +458,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://blogs.attachie.club/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://blogs.attachie.club/basecharp/34774.html" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -400,6 +470,16 @@ var _hmt = _hmt || [];
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/basecharp/6060.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C# 基础知识系列- 9 字符串的更多用法（一）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -422,7 +502,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#工作经历"><span class="toc-number">1.</span> <span class="toc-text">工作经历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#博客介绍"><span class="toc-number">2.</span> <span class="toc-text">博客介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#博客主线"><span class="toc-number">2.1.</span> <span class="toc-text">博客主线</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-JAVA主线"><span class="toc-number">2.1.1.</span> <span class="toc-text">1 JAVA主线</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-C-主线"><span class="toc-number">2.1.2.</span> <span class="toc-text">2 C#主线</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Python"><span class="toc-number">2.1.3.</span> <span class="toc-text">3 Python</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日记拾遗"><span class="toc-number">2.2.</span> <span class="toc-text">日记拾遗</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#每日转载"><span class="toc-number">2.3.</span> <span class="toc-text">每日转载</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-玩转创建字符串"><span class="toc-number">2.</span> <span class="toc-text">1. 玩转创建字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-Create一个字符串"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 Create一个字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-连接多个元素"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 连接多个元素</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-快来比一比"><span class="toc-number">3.</span> <span class="toc-text">2. 快来比一比</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-我们是不是同一个"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 我们是不是同一个</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-来比一比高矮"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 来比一比高矮</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-补充"><span class="toc-number">4.</span> <span class="toc-text">3. 补充</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-插入到某个位置"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 插入到某个位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-删除"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 删除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-获取一个子串"><span class="toc-number">4.3.</span> <span class="toc-text">3.3 获取一个子串</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-总结"><span class="toc-number">5.</span> <span class="toc-text">4. 总结</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -482,7 +562,7 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
