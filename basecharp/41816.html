@@ -19,17 +19,17 @@
 <meta property="og:site_name" content="高先生小屋">
 <meta property="og:description" content="C# 集合的简单介绍和描述">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://q7hyzeb4g.bkt.clouddn.com/FrzLzJDaiJiP5G3_k6cXW1JzcgQh">
-<meta property="og:image" content="http://q7hyzeb4g.bkt.clouddn.com/FhF7lm4AZoMR7ULClGayEdDOL9cW">
+<meta property="og:image" content="http://images.attachie.club/FrzLzJDaiJiP5G3_k6cXW1JzcgQh">
+<meta property="og:image" content="http://images.attachie.club/FhF7lm4AZoMR7ULClGayEdDOL9cW">
 <meta property="article:published_time" content="2020-03-26T20:18:00.000Z">
-<meta property="article:modified_time" content="2020-04-07T08:33:44.105Z">
+<meta property="article:modified_time" content="2020-04-20T02:23:47.765Z">
 <meta property="article:author" content="Mr.Gao">
 <meta property="article:tag" content="C#">
 <meta property="article:tag" content=".net">
 <meta property="article:tag" content="集合">
 <meta property="article:tag" content="常见方法">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://q7hyzeb4g.bkt.clouddn.com/FrzLzJDaiJiP5G3_k6cXW1JzcgQh">
+<meta name="twitter:image" content="http://images.attachie.club/FrzLzJDaiJiP5G3_k6cXW1JzcgQh">
   
     <link rel="alternative" href="/atom.xml" title="高先生小屋" type="application/atom+xml">
   
@@ -408,7 +408,7 @@ var _hmt = _hmt || [];
 <p> Set 只能通过遍历访问元素，不能通过Get或者下标操作访问元素。关于<code>foreach</code>循环会在下一篇《<code>C#基础知识</code>系列》里进行介绍。</p>
 </li>
 <li><p>集合运算</p>
-<p> <img src="http://q7hyzeb4g.bkt.clouddn.com/FrzLzJDaiJiP5G3_k6cXW1JzcgQh" alt="file"></p>
+<p> <img src="http://images.attachie.club/FrzLzJDaiJiP5G3_k6cXW1JzcgQh" alt="file"></p>
 <ol>
 <li><p><code>UnionWith</code>  并</p>
  <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SortedSet&lt;<span class="keyword">int</span>&gt; <span class="keyword">set</span> = <span class="keyword">new</span> SortedSet&lt;<span class="keyword">int</span>&gt;&#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">29</span>,<span class="number">38</span>,<span class="number">33</span>,<span class="number">48</span>,<span class="number">17</span>&#125;;</span><br><span class="line"><span class="keyword">set</span>.UnionWith(<span class="keyword">new</span> []&#123;<span class="number">5</span>,<span class="number">57</span>,<span class="number">8</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">33</span>&#125;); <span class="comment">// set = 0,1,3,4,5,8,17,29,33,38,48,57</span></span><br></pre></td></tr></table></figure>
@@ -510,7 +510,7 @@ var _hmt = _hmt || [];
 </ol>
 </li>
 </ol>
-<h2 id="3-2-LinkedList-lt-T-gt"><a href="#3-2-LinkedList-lt-T-gt" class="headerlink" title="3.2 LinkedList&lt;T&gt;"></a>3.2 <code>LinkedList&lt;T&gt;</code></h2><p><code>LinkedList</code>，链表。与List不同的地方是，<code>LinkedList</code>的元素是<code>LinkedListNode</code>对象，该对象有四个属性，分别是<code>List</code><br>-指向列表对象，<code>Previous</code>指向前一个对象如果有的话，<code>Next</code>指向后一个对象如果有的话。所以根据元素的属性可以发现链表的工作方式，链表就像一条锁链一样，一个元素分三块，一个指向前一个元素，一个用来存放值，一个指向下一个元素，简单如下图所示：<br><img src="http://q7hyzeb4g.bkt.clouddn.com/FhF7lm4AZoMR7ULClGayEdDOL9cW" alt="file"><br>所以可以明显的发现<code>LinkedList</code>在随机插取上比一般的要快，因为它不用维护一个数组，但是在查找和坐标操作上明显要慢很多。<br><code>LinkedList</code>简单介绍这么多，可以看看它的一些常见操作：</p>
+<h2 id="3-2-LinkedList-lt-T-gt"><a href="#3-2-LinkedList-lt-T-gt" class="headerlink" title="3.2 LinkedList&lt;T&gt;"></a>3.2 <code>LinkedList&lt;T&gt;</code></h2><p><code>LinkedList</code>，链表。与List不同的地方是，<code>LinkedList</code>的元素是<code>LinkedListNode</code>对象，该对象有四个属性，分别是<code>List</code><br>-指向列表对象，<code>Previous</code>指向前一个对象如果有的话，<code>Next</code>指向后一个对象如果有的话。所以根据元素的属性可以发现链表的工作方式，链表就像一条锁链一样，一个元素分三块，一个指向前一个元素，一个用来存放值，一个指向下一个元素，简单如下图所示：<br><img src="http://images.attachie.club/FhF7lm4AZoMR7ULClGayEdDOL9cW" alt="file"><br>所以可以明显的发现<code>LinkedList</code>在随机插取上比一般的要快，因为它不用维护一个数组，但是在查找和坐标操作上明显要慢很多。<br><code>LinkedList</code>简单介绍这么多，可以看看它的一些常见操作：</p>
 <ol>
 <li><p><code>First</code> 第一个元素</p>
 <p> 获取第一个元素</p>
@@ -545,10 +545,7 @@ var _hmt = _hmt || [];
 <h2 id="4-1-System-Collections-Concurrent-线程安全"><a href="#4-1-System-Collections-Concurrent-线程安全" class="headerlink" title="4.1 System.Collections.Concurrent 线程安全"></a>4.1 <code>System.Collections.Concurrent</code> 线程安全</h2><p>这个命名空间，提供了一系列线程安全的集合类，当出现多线程操作集合的时候，应当使用这个命名空间的集合。名称和常用的类是一一对应的，不过只提供了<code>ConcurrentDictionary&lt;TKey,TValue&gt;</code>、<code>ConcurrentQueue&lt;T&gt;</code>、<code>ConcurrentStack&lt;T&gt;</code>等几个集合类。具体可以查看<a href="https://docs.microsoft.com/zh-cn/dotnet/api/system.collections.concurrent?view=netcore-3.1" target="_blank" rel="noopener">官方文档</a></p>
 <h2 id="4-2-System-Collections-Immutable-不可变集合"><a href="#4-2-System-Collections-Immutable-不可变集合" class="headerlink" title="4.2 System.Collections.Immutable 不可变集合"></a>4.2 <code>System.Collections.Immutable</code> 不可变集合</h2><p>命名空间包含用于定义不可变集合的接口和类，如果需要使用这个命名空间，则需要使用NuGet下载。</p>
 <ul>
-<li><ul>
 <li>共享集合，使其使用者可以确保集合永远不会发生更改。</li>
-</ul>
-</li>
 <li>提供多线程应用程序中的隐式线程安全（无需锁来访问集合）。</li>
 <li>遵循函数编程做法。</li>
 <li>在枚举过程中修改集合，同时确保该原始集合不会更改。</li>
@@ -674,11 +671,11 @@ var _hmt = _hmt || [];
 
 <nav id="article-nav">
   
-    <a href="/basecharp/23707.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/java-plus/59791.html" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          C#  基础知识系列- 4 面向对象
+          【转载】JVM从入门到入土之JVM的类文件结构
         
       </div>
     </a>
@@ -877,19 +874,19 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">面向对象</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Lambda</a>
+                <a href="javascript:void(0)" class="js-tag color5">Linq</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Linq</a>
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Lambda</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -909,15 +906,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">IT 图谱</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">IT 图谱</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -941,6 +938,14 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
               </li>
              
@@ -953,19 +958,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">加密技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">

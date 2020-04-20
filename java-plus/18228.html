@@ -19,21 +19,21 @@
 <meta property="og:site_name" content="高先生小屋">
 <meta property="og:description" content="java JVM相关机制介绍">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://q7hyzeb4g.bkt.clouddn.com/FomwObHkZVV1ZXcpeIH0MPzpFF3H">
-<meta property="og:image" content="http://q7hyzeb4g.bkt.clouddn.com/FrSSELJHVMM00A1IWV7siSd4Wj6B">
-<meta property="og:image" content="http://q7hyzeb4g.bkt.clouddn.com/FvVw3tdQyzP_2Xs7rfhiDUC8DxHQ">
-<meta property="og:image" content="http://q7hyzeb4g.bkt.clouddn.com/Fj55MVOqVLe1vTEH17_8eLq3E6TN">
-<meta property="og:image" content="http://q7hyzeb4g.bkt.clouddn.com/Foyo9YX3DelamBfil348Q4c2nEyi">
-<meta property="og:image" content="http://q7hyzeb4g.bkt.clouddn.com/FnhsqiwKdRSmT6ST82opBY6m7AsZ">
-<meta property="og:image" content="http://q7hyzeb4g.bkt.clouddn.com/FmdVtdRYaMSWQiGQMnEdooWDEGwA">
-<meta property="og:image" content="http://q7hyzeb4g.bkt.clouddn.com/FpVoEfh5QzRjqDtJaCfJ_Zf5fH_B">
+<meta property="og:image" content="http://images.attachie.club/FomwObHkZVV1ZXcpeIH0MPzpFF3H">
+<meta property="og:image" content="http://images.attachie.club/FrSSELJHVMM00A1IWV7siSd4Wj6B">
+<meta property="og:image" content="http://images.attachie.club/FvVw3tdQyzP_2Xs7rfhiDUC8DxHQ">
+<meta property="og:image" content="http://images.attachie.club/Fj55MVOqVLe1vTEH17_8eLq3E6TN">
+<meta property="og:image" content="http://images.attachie.club/Foyo9YX3DelamBfil348Q4c2nEyi">
+<meta property="og:image" content="http://images.attachie.club/FnhsqiwKdRSmT6ST82opBY6m7AsZ">
+<meta property="og:image" content="http://images.attachie.club/FmdVtdRYaMSWQiGQMnEdooWDEGwA">
+<meta property="og:image" content="http://images.attachie.club/FpVoEfh5QzRjqDtJaCfJ_Zf5fH_B">
 <meta property="article:published_time" content="2020-03-26T00:24:00.000Z">
-<meta property="article:modified_time" content="2020-03-26T02:39:17.603Z">
+<meta property="article:modified_time" content="2020-04-20T02:23:47.796Z">
 <meta property="article:author" content="Mr.Gao">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://q7hyzeb4g.bkt.clouddn.com/FomwObHkZVV1ZXcpeIH0MPzpFF3H">
+<meta name="twitter:image" content="http://images.attachie.club/FomwObHkZVV1ZXcpeIH0MPzpFF3H">
   
     <link rel="alternative" href="/atom.xml" title="高先生小屋" type="application/atom+xml">
   
@@ -302,9 +302,9 @@ var _hmt = _hmt || [];
 </blockquote>
 <h2 id="絮叨"><a href="#絮叨" class="headerlink" title="絮叨"></a>絮叨</h2><p>学Java的没办法都逃不过Java虚拟机的，所以这个系列是必须讲的，因为你要构建你的Java知识体系，你就肯定知道要怎么按步骤学，对于JVM的学习我也自己的一个小规划吧，从JVM介绍,然后，Java文件编程成.class文件，然后Java虚拟机怎么加载这写.class文件，加载到虚拟机之后，这些数据怎么再Java虚拟机中存储，存储之后我们知道Java是自动回收垃圾，不像C C++那样，那我们我们肯定得知道垃圾回收算法，和垃圾回收器，最后到真正的一个Java系统的JVM调优，这个就是我打算要讲的这个系列，然后我大多数类容参考周志明老师的深入理解Java虚拟机</p>
 <a id="more"></a>
-<p><img src="http://q7hyzeb4g.bkt.clouddn.com/FomwObHkZVV1ZXcpeIH0MPzpFF3H" alt="file"></p>
+<p><img src="http://images.attachie.club/FomwObHkZVV1ZXcpeIH0MPzpFF3H" alt="file"></p>
 <h2 id="什么是JVM"><a href="#什么是JVM" class="headerlink" title="什么是JVM"></a>什么是JVM</h2><p>JVM是Java Virtual Machine（Java虚拟机）的缩写，JVM是一种用于计算设备的规范，它是一个虚构出来的计算机，是通过在实际的计算机上仿真模拟各种计算机功能来实现的。Java虚拟机包括一套字节码指令集、一组寄存器、一个栈、一个垃圾回收堆和一个存储方法域。 JVM屏蔽了与具体操作系统平台相关的信息，使Java程序只需生成在Java虚拟机上运行的目标代码（字节码）,就可以在多种平台上不加修改地运行。JVM在执行字节码时，实际上最终还是把字节码解释成具体平台上的机器指令执行 ,是Java跨平台的原因。</p>
-<h2 id="JDK-JRE-JVM"><a href="#JDK-JRE-JVM" class="headerlink" title="JDK JRE JVM"></a>JDK JRE JVM</h2><p><img src="http://q7hyzeb4g.bkt.clouddn.com/FrSSELJHVMM00A1IWV7siSd4Wj6B" alt="file"></p>
+<h2 id="JDK-JRE-JVM"><a href="#JDK-JRE-JVM" class="headerlink" title="JDK JRE JVM"></a>JDK JRE JVM</h2><p><img src="http://images.attachie.club/FrSSELJHVMM00A1IWV7siSd4Wj6B" alt="file"></p>
 <p>这个是我从oracle官网截图的，从中可以看出JDK=JRE+一些工具，JRE里面包含了JVM(Java虚拟机)</p>
 <h2 id="JVM总体概述"><a href="#JVM总体概述" class="headerlink" title="JVM总体概述"></a>JVM总体概述</h2><p>JVM总体上是由</p>
 <ul>
@@ -330,7 +330,7 @@ var _hmt = _hmt || [];
 <li>卸载</li>
 </ul>
 <p>总共是7个阶段</p>
-<p><img src="http://q7hyzeb4g.bkt.clouddn.com/FvVw3tdQyzP_2Xs7rfhiDUC8DxHQ" alt="file"></p>
+<p><img src="http://images.attachie.club/FvVw3tdQyzP_2Xs7rfhiDUC8DxHQ" alt="file"></p>
 <h2 id="理解类加载三个字"><a href="#理解类加载三个字" class="headerlink" title="理解类加载三个字"></a>理解类加载三个字</h2><p>首先 类 是指的.Class文件类，那么怎么生成这个文件呢？</p>
 <ul>
 <li>Java代码编译</li>
@@ -339,7 +339,7 @@ var _hmt = _hmt || [];
 </ul>
 <p>等等 还有很多</p>
 <p>那么 加载 这2个字应该怎么理解呢 大家可以看下图</p>
-<p><img src="http://q7hyzeb4g.bkt.clouddn.com/Fj55MVOqVLe1vTEH17_8eLq3E6TN" alt="file"></p>
+<p><img src="http://images.attachie.club/Fj55MVOqVLe1vTEH17_8eLq3E6TN" alt="file"></p>
 <p>本地的.Class文件通过类加载器加载到JVM内存中的方法区里面，然后通过这个对象来访问数据区的数据</p>
 <ol>
 <li>通过一个类的全限定名来获取定义此类的二进制字节流</li>
@@ -368,7 +368,7 @@ var _hmt = _hmt || [];
 <p>public static int value = 3；</p>
 <p>那么变量value在准备阶段过后的初始值为0，而不是3，因为这时候尚未开始执行任何Java方法，而把value赋值为3的putstatic指令是在程序编译后，存放于类构造器（）方法之中的，所以把value赋值为3的动作将在初始化阶段才会执行。</p>
 <p>下表列出了Java中所有基本数据类型以及reference类型的默认零值：</p>
-<p><img src="http://q7hyzeb4g.bkt.clouddn.com/Foyo9YX3DelamBfil348Q4c2nEyi" alt="file"></p>
+<p><img src="http://images.attachie.club/Foyo9YX3DelamBfil348Q4c2nEyi" alt="file"></p>
 <p>这里还需要注意如下几点：</p>
 <ul>
 <li>对基本数据类型来说，对于类变量（static）和全局变量，如果不显式地对其赋值而直接使用，则系统会为其赋予默认的零值，而- 对于局部变量来说，在使用前必须显式地为其赋值，否则编译时不通过。</li>
@@ -391,7 +391,7 @@ var _hmt = _hmt || [];
 <li>自定义加载器 (ClassLoader)</li>
 </ul>
 <p>这几种类加载器的层次关系如下图所示：</p>
-<p><img src="http://q7hyzeb4g.bkt.clouddn.com/FnhsqiwKdRSmT6ST82opBY6m7AsZ" alt="file"></p>
+<p><img src="http://images.attachie.club/FnhsqiwKdRSmT6ST82opBY6m7AsZ" alt="file"></p>
 <h2 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h2><p>类加载器之间的这种层次关系叫做双亲委派模型。<br>双亲委派模型要求除了顶层的启动类加载器（Bootstrap ClassLoader）外，其余的类加载器都应当有自己的父类加载器。这里的类加载器之间的父子关系一般不是以继承关系实现的，而是用组合实现的。</p>
 <h2 id="双亲委派模型的工作过程"><a href="#双亲委派模型的工作过程" class="headerlink" title="双亲委派模型的工作过程"></a>双亲委派模型的工作过程</h2><p>由我来概况就是 八个字 <strong>向上检查，从下加载</strong><br/><br>如果一个类接受到类加载请求，他自己不会去加载这个请求，而是将这个类加载请求委派给父类加载器，这样一层一层传送，直到到达启动类加载器（Bootstrap ClassLoader）。<br>只有当父类加载器无法加载这个请求时，子加载器才会尝试自己去加载。</p>
 <h2 id="双亲委派模型的代码实现"><a href="#双亲委派模型的代码实现" class="headerlink" title="双亲委派模型的代码实现"></a>双亲委派模型的代码实现</h2><p>双亲委派模型的代码实现集中在java.lang.ClassLoader的loadClass()方法当中。</p>
@@ -407,7 +407,7 @@ loadClass源代码如下：</li>
 <h2 id="自定义类加载器"><a href="#自定义类加载器" class="headerlink" title="自定义类加载器"></a>自定义类加载器</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">   <span class="class"><span class="keyword">class</span> <span class="title">NetworkClassLoader</span> <span class="keyword">extends</span> <span class="title">ClassLoader</span> </span>&#123;</span><br><span class="line">*         String host;</span><br><span class="line">*         <span class="keyword">int</span> port;</span><br><span class="line">*</span><br><span class="line">*         <span class="function"><span class="keyword">public</span> Class <span class="title">findClass</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">*             <span class="keyword">byte</span>[] b = loadClassData(name);</span><br><span class="line">*             <span class="keyword">return</span> defineClass(name, b, <span class="number">0</span>, b.length);</span><br><span class="line">*         &#125;</span><br><span class="line">*</span><br><span class="line">*         <span class="keyword">private</span> <span class="keyword">byte</span>[] loadClassData(String name) &#123;</span><br><span class="line">*             <span class="comment">// load the class data from the connection</span></span><br><span class="line">*             &amp;amp;nbsp;.&amp;amp;nbsp;.&amp;amp;nbsp;.</span><br><span class="line">*         &#125;</span><br><span class="line">*     &#125;</span><br></pre></td></tr></table></figure>
 
 <p>这个就是官方的例子</p>
-<p><img src="http://q7hyzeb4g.bkt.clouddn.com/FmdVtdRYaMSWQiGQMnEdooWDEGwA" alt="file"></p>
+<p><img src="http://images.attachie.club/FmdVtdRYaMSWQiGQMnEdooWDEGwA" alt="file"></p>
 <h2 id="破环双亲委派"><a href="#破环双亲委派" class="headerlink" title="破环双亲委派"></a>破环双亲委派</h2><p>双亲委派模型很好的解决了各个类加载器加载基础类的统一性问题。即越基础的类由越上层的加载器进行加载。<br>若加载的基础类中需要回调用户代码，而这时顶层的类加载器无法识别这些用户代码，怎么办呢？这时就需要破坏双亲委派模型了。</p>
 <p>java默认的线程上下文类加载器是系统类加载器(AppClassLoader).</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Now create the class loader to use to launch the application    </span></span><br><span class="line">   <span class="keyword">try</span> &#123;    </span><br><span class="line">       loader = AppClassLoader.getAppClassLoader(extcl);    </span><br><span class="line">   &#125; <span class="keyword">catch</span> (IOException e) &#123;    </span><br><span class="line">       <span class="keyword">throw</span> <span class="keyword">new</span> InternalError(    </span><br><span class="line">   <span class="string">"Could not create application class loader"</span> );    </span><br><span class="line">   &#125;    </span><br><span class="line">        </span><br><span class="line">   <span class="comment">// Also set the context class loader for the primordial thread.    </span></span><br><span class="line">  Thread.currentThread().setContextClassLoader(loader);</span><br></pre></td></tr></table></figure>
@@ -416,7 +416,7 @@ loadClass源代码如下：</li>
 <p>使用线程上下文类加载器,可以在执行线程中,抛弃双亲委派加载链模式,使用线程上下文里的类加载器加载类.</p>
 <p>典型的例子有,通过线程上下文来加载第三方库jndi实现,而不依赖于双亲委派.</p>
 <p>大部分java app服务器(jboss, tomcat..)也是采用contextClassLoader来处理web服务。</p>
-<p><img src="http://q7hyzeb4g.bkt.clouddn.com/FpVoEfh5QzRjqDtJaCfJ_Zf5fH_B" alt="file"></p>
+<p><img src="http://images.attachie.club/FpVoEfh5QzRjqDtJaCfJ_Zf5fH_B" alt="file"></p>
 <h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>今天把类加载机制好好讲了一下，这样大家就更加的熟悉了内的加载过程，对于Java开发是有好处的</p>
 <h2 id="日常求赞"><a href="#日常求赞" class="headerlink" title="日常求赞"></a>日常求赞</h2><blockquote>
 <p>好了各位，以上就是这篇文章的全部内容了，能看到这里的人呀，都是<strong>真粉</strong>。</p>
@@ -734,19 +734,19 @@ loadClass源代码如下：</li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">面向对象</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Lambda</a>
+                <a href="javascript:void(0)" class="js-tag color5">Linq</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Linq</a>
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Lambda</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -766,15 +766,15 @@ loadClass源代码如下：</li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">IT 图谱</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">IT 图谱</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -798,6 +798,14 @@ loadClass源代码如下：</li>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
               </li>
              
@@ -810,19 +818,11 @@ loadClass源代码如下：</li>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">加密技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
               <li class="article-tag-list-item">
