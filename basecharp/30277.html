@@ -8,23 +8,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="canonical" href="https://blogs.attachie.club">
   <link rel="dns-prefetch" href="https://blogs.attachie.club">
-  <title>404 | 高先生小屋-高先生小屋, C#,CSharp,.net,Java,Python,技术站</title>
+  <title>C# 基础知识系列- 11 委托和事件 | 高先生小屋-高先生小屋, C#,CSharp,.net,Java,Python,技术站</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="高先生小屋, C#,CSharp,.net,Java,Python,技术站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="404">
-<meta property="og:url" content="https://blogs.attachie.club/404/index.html">
+  <meta name="description" content="介绍什么是委托，什么是事件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C# 基础知识系列- 11 委托和事件">
+<meta property="og:url" content="https://blogs.attachie.club/basecharp/30277.html">
 <meta property="og:site_name" content="高先生小屋">
-<meta property="og:description" content="高先生小屋, C#,CSharp,.net,Java,Python,技术站">
+<meta property="og:description" content="介绍什么是委托，什么是事件">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-01-11T08:10:59.000Z">
-<meta property="article:modified_time" content="2020-01-11T11:43:08.152Z">
+<meta property="article:published_time" content="2020-04-19T20:40:00.000Z">
+<meta property="article:modified_time" content="2020-04-20T12:42:22.114Z">
 <meta property="article:author" content="Mr.Gao">
 <meta property="article:tag" content="C#">
-<meta property="article:tag" content="基础知识">
-<meta property="article:tag" content="技术站">
+<meta property="article:tag" content="委托">
+<meta property="article:tag" content="事件">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="高先生小屋" type="application/atom+xml">
@@ -233,14 +233,14 @@ var _hmt = _hmt || [];
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-C-基础知识系列-11-委托和事件" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      404
+      C# 基础知识系列- 11 委托和事件
     </h1>
   
 
@@ -252,8 +252,8 @@ var _hmt = _hmt || [];
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/404/index.html" class="archive-article-date">
-        <time datetime="2020-01-11T08:10:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-11</time>
+<a href="/basecharp/30277.html" class="archive-article-date">
+        <time datetime="2020-04-19T20:40:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
 </a>
 
   
@@ -266,7 +266,7 @@ var _hmt = _hmt || [];
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">1.9k字</span>
     </span>
   </span>
 
@@ -275,7 +275,7 @@ var _hmt = _hmt || [];
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">6分</span>
     </span>
   </span>
 </div>
@@ -286,7 +286,70 @@ var _hmt = _hmt || [];
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>事件和委托是C#中的高级特性，也是C#中很有意思的一部分。出现事件的地方，必然有委托出现；而委托则不一定会有事件出现。那为什么会出现这样的关系呢？这就需要从事件和委托的定义出发，了解其中的内在。</p>
+<a id="more"></a>
+
+<h1 id="1-委托"><a href="#1-委托" class="headerlink" title="1. 委托"></a>1. 委托</h1><p>说起委托，就不得不回忆一下之前在Linq篇中介绍的匿名方法，其中提到了Func和Action这两个类型。这两个类型就是委托。</p>
+<p>委托在C#中定义为一种面向对象形式的方法寻址方案。简单来讲，就是定义一个类型，然后表示这个类型代表某一种方法。而委托对象，就是方法参数化。委托可以实现将方法当做一个参数传递给另一个方法，也可以认为是反射中的MethodInfo的一种特例（实际上并没有太多关系）。</p>
+<p>委托不关心方法叫什么，也不关心方法从哪来（归属于哪个类或者哪个对象），只关心方法需要哪些参数，返回什么类型。</p>
+<p>说到这里，我们来看一下如何定义一个委托吧，委托的定义形式如下：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delegate</span> &lt;返回类型&gt;  委托名(参数列表);<span class="comment">//参数列表代表任意个参数</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>由之前的定义形式，我们可以知道委托也是一种类型，所以它的定义也符合类型的定义规范。现在我们定义一个没有返回值也没有参数类型的委托作为我们创建的第一个委托：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">void</span> <span class="title">FirstDel</span>(<span class="params"></span>)</span>;<span class="comment">// 类型名称是 FirstDel</span></span><br></pre></td></tr></table></figure>
+
+<p>简单的使用一下：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FirstDel del ;</span><br><span class="line">del();<span class="comment">// 会直接报错</span></span><br></pre></td></tr></table></figure>
+
+<p>上述代码如果运行的话，会很直接的报错，因为你没有告诉编译器变量del 应该是什么，也就是没有为del赋值，同时委托可以赋值为null，所以在使用的时候需要注意不能为null，否者也是无法运行的。</p>
+<p>这里应用匿名方法的话，可以按照下面的代码对del进行赋值：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">del = ()=&gt;</span><br><span class="line">&#123;</span><br><span class="line"> 	<span class="comment">//省略方法   </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>那么我们热身结束，开始正式创建一个有意义的委托：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">decimal</span> <span class="title">CalculateArea</span>(<span class="params"><span class="keyword">decimal</span> height, <span class="keyword">decimal</span> weight</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>上述委托声明了一个计算面积的规范，使用长宽进行面积计算，那么我们来为它赋值：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CalculateArea squrare = (height, weight) =&gt; height * height;<span class="comment">// 正方形</span></span><br><span class="line">CalculateArea rectangle = (height, weight) =&gt; height * weight;<span class="comment">// 矩形</span></span><br><span class="line">CalculateArea triangle = (height, weight) =&gt; height * weight / <span class="number">2</span>; <span class="comment">//三角形</span></span><br></pre></td></tr></table></figure>
+
+<p>我们依次创建了三个计算面积的方法，分别是正方形、矩形、三角形，分别调用它们将会得到对应的计算结果：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> squrareArea = squrare(<span class="number">10</span>, <span class="number">10</span>);<span class="comment">// 100</span></span><br><span class="line"><span class="keyword">var</span> rectangleArea = rectangle(<span class="number">19</span>, <span class="number">10</span>);<span class="comment">//190</span></span><br><span class="line"><span class="keyword">var</span> triangleArea = triangle(<span class="number">10</span>, <span class="number">5</span>);<span class="comment">//25</span></span><br></pre></td></tr></table></figure>
+
+<p>特别的，C#中委托支持多路广播，所以也可以使用<code>+</code>、<code>-</code>进行注册和删除。多路广播是指在事件和委托中有多个监听器或响应方法，当事件触发或者委托调用的时候，注册的方法组将会都调用。当使用这种方式对委托进行赋值的时候，委托将自动转为方法组，简单理解就是 委托对象内部创建了一个列表，然后把赋值给它的方法都存进去了。</p>
+<p>所以就会产生如下操作：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CalculateArea calculate = squrare;<span class="comment">// calculate必须先赋值一个方法</span></span><br><span class="line">calculate += rectangle;<span class="comment">// 增加 矩形的面积计算方法</span></span><br><span class="line">calculate += triangle; <span class="comment">// 增加三角形的面积计算方法</span></span><br><span class="line">calculate -= triangle; <span class="comment">// 减去三角形的面积计算方法</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>到这里会产生一个疑问，<code>calculate</code>运行结果是什么，会返回一个数组或者其他类型吗？显然不会，因为calculate定义的返回类型就是一个decimal，所以不会返回其他的值。</p>
+<p>嗯，这就产生了另一个疑问，返回的是哪一个方法的计算结果呢，其他方法的计算结果呢？这里告诉大家一个结果，只会返回最后一次注册的方法的执行结果，其他的方法执行了，但是方法的执行结果无法用变量接到。</p>
+<p>所以这里有一个很重要的实践，如果有需要把委托当做一个方法列表进行使用的时候，最好声明为<code>void</code>或者抛弃返回值的具体内容。</p>
+<h1 id="2-事件"><a href="#2-事件" class="headerlink" title="2. 事件"></a>2. 事件</h1><p>事件，event。在C#中，事件就像是一种机制，在程序运行到一定阶段的时候或者遇到某些状况的时候，就会触发一个事件。然后如果有其他代码订阅了这个事件，就会自动执行订阅的代码。描述起来很抽象，简单来讲就是在类声明一个委托，并标记这个委托是一个事件，在另一个方法中执行这个事件。其中，触发这个事件的类称为发布者，接受或者注册了处理方法的类称为订阅者。</p>
+<p>如何创建或声明一个事件？声明一个事件有两种方式，一种是直接使用<code>EventHandler</code> ，另一种是自己先定义一个委托，然后用这个委托定义事件。</p>
+<p><strong>1. 使用EventHandler</strong></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">EventDemo</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">event</span> EventHandler HandlerEvent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.  使用自定义委托</strong></p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">EventDemo</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">void</span> <span class="title">EventDelegate</span>(<span class="params"><span class="keyword">object</span> sender, EventArgs e</span>)</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">event</span> EventDelegate DelegateEvent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一般事件的定义约定俗称是一个void方法，第一个参数是sender表示事件的发布者，默认是object类型，第二个参数是EventArgs类型的事件变量，表示触发事件时需要订阅者注意的内容，一般用来传一些参数。</p>
+<p>其中 EventHandler有一个泛型版本，其声明如下：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">void</span> EventHandler&lt;TEventArgs&gt;(<span class="keyword">object</span> sender, TEventArgs e);</span><br></pre></td></tr></table></figure>
+
+<p>其第二个参数并没有对TEventArgs进行限制，所以我们可以用任何类型当做事件变量。</p>
+<p>我们再来看看，EventArgs里有什么，什么都没有，只有一个默认构造方法和几个继承自Object的方法。所以在开发中，我们会自己定义一个事件变量类型，为了保持一致会继承EventArgs。</p>
+<p>C#建议事件的定义以On开头，表示在什么时触发，示例代码并不符合这个规范。</p>
+<h1 id="3-使用一下事件和委托"><a href="#3-使用一下事件和委托" class="headerlink" title="3. 使用一下事件和委托"></a>3. 使用一下事件和委托</h1><p>创建一个带事件的类：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">EventDemo</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">void</span> <span class="title">EventDelegate</span>(<span class="params"><span class="keyword">object</span> sender, EventArgs e</span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">event</span> EventDelegate DelegateEvent;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Trigger</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">if</span> (DelegateEvent != <span class="literal">null</span>)<span class="comment">// 触发事件，按需判断事件的订阅者列表是否为空</span></span><br><span class="line">        &#123;</span><br><span class="line">            DelegateEvent(<span class="keyword">this</span>, <span class="keyword">new</span> EventArgs());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用一下：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">EventDemo demo = <span class="keyword">new</span> EventDemo(); </span><br><span class="line">demo.DelegateEvent += (sender, eventArgs) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//省略订阅者的方法内容</span></span><br><span class="line">&#125;</span><br><span class="line">demo.Trigger();<span class="comment">//触发事件</span></span><br></pre></td></tr></table></figure>
+
+<p>当发布者尝试触发事件的时候，订阅者将会接收到消息，然后注册订阅者方法就会被调用。发布者向订阅者传递一对sender和eventArgs，订阅者按照自己的逻辑进行处理。</p>
+<p>这里很明显可以看出，事件的处理程序注册方法用的<code>+=</code>，所以与之对应的也有一个<code>-=</code>表示取消订阅。</p>
+<p>到这里，委托和事件的基本概念就已经介绍完毕了，当然还是那句话，更多的内容在实践中。C#的事件机制让程序员有更多的自由去自定义事件，而不是被局限在某些框架内。所以大家可以多试试C#的事件，也许能发现更多的我不知道的内容呢。</p>
+
     
 
     
@@ -302,7 +365,7 @@ var _hmt = _hmt || [];
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https:/blogs.attachie.club/404/index.html" title="404" target="_blank">https:/blogs.attachie.club/404/index.html</a>
+          <a href="https:/blogs.attachie.club/basecharp/30277.html" title="C# 基础知识系列- 11 委托和事件" target="_blank">https:/blogs.attachie.club/basecharp/30277.html</a>
         </li>
         
         <li>
@@ -320,7 +383,29 @@ var _hmt = _hmt || [];
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C# 基础知识</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/basecharp/" class="article-tag-list-link color2">C#基础知识</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
 
@@ -370,7 +455,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://blogs.attachie.club/404/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://blogs.attachie.club/basecharp/30277.html" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -382,6 +467,16 @@ var _hmt = _hmt || [];
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/basecharp/1077.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C# 基础知识系列- 10 反射和泛型（二）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -404,7 +499,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-委托"><span class="toc-number">2.</span> <span class="toc-text">1. 委托</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-事件"><span class="toc-number">3.</span> <span class="toc-text">2. 事件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-使用一下事件和委托"><span class="toc-number">4.</span> <span class="toc-text">3. 使用一下事件和委托</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -464,7 +559,7 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
