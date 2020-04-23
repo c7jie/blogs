@@ -8,24 +8,28 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="canonical" href="https://blogs.attachie.club">
   <link rel="dns-prefetch" href="https://blogs.attachie.club">
-  <title>C# 基础知识系列- 10 反射和泛型（二） | 高先生小屋-高先生小屋, C#,CSharp,.net,Java,Python,技术站</title>
+  <title>C# 基础知识系列- 12 任务和多线程 | 高先生小屋-高先生小屋, C#,CSharp,.net,Java,Python,技术站</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="0. 前言这篇文章延续《C# 基础知识系列- 5 反射和泛型》，继续介绍C#在反射所开发的功能和做的努力。上一篇文章大概介绍了一下泛型和反射的一些基本内容，主要是通过获取对象的类型，然后通过这个类型对象操作对象。这一篇介绍一个在反射中很重要的内容：特性，以及上一篇未完成的内容——泛型在反射中的引用。">
+  <meta name="description" content="C# 基础系列之 任务和多线程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C# 基础知识系列- 10 反射和泛型（二）">
-<meta property="og:url" content="https://blogs.attachie.club/basecharp/1077.html">
+<meta property="og:title" content="C# 基础知识系列- 12 任务和多线程">
+<meta property="og:url" content="https://blogs.attachie.club/basecharp/17815.html">
 <meta property="og:site_name" content="高先生小屋">
-<meta property="og:description" content="0. 前言这篇文章延续《C# 基础知识系列- 5 反射和泛型》，继续介绍C#在反射所开发的功能和做的努力。上一篇文章大概介绍了一下泛型和反射的一些基本内容，主要是通过获取对象的类型，然后通过这个类型对象操作对象。这一篇介绍一个在反射中很重要的内容：特性，以及上一篇未完成的内容——泛型在反射中的引用。">
+<meta property="og:description" content="C# 基础系列之 任务和多线程">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-04-19T08:53:00.000Z">
-<meta property="article:modified_time" content="2020-04-20T02:23:47.765Z">
+<meta property="og:image" content="http://images.attachie.club/20200423102110.png">
+<meta property="article:published_time" content="2020-04-21T23:15:00.000Z">
+<meta property="article:modified_time" content="2020-04-23T15:39:28.636Z">
 <meta property="article:author" content="Mr.Gao">
-<meta property="article:tag" content="C# 基础知识">
-<meta property="article:tag" content="反射">
-<meta property="article:tag" content="泛型">
+<meta property="article:tag" content="C#基础知识">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="net">
+<meta property="article:tag" content="core">
+<meta property="article:tag" content="编程教程">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://images.attachie.club/20200423102110.png">
   
     <link rel="alternative" href="/atom.xml" title="高先生小屋" type="application/atom+xml">
   
@@ -236,14 +240,14 @@ var _hmt = _hmt || [];
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-C-基础知识系列-10-反射和泛型（二）" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-C-基础知识系列-12-任务和多线程" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      C# 基础知识系列- 10 反射和泛型（二）
+      C# 基础知识系列- 12 任务和多线程
     </h1>
   
 
@@ -255,8 +259,8 @@ var _hmt = _hmt || [];
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/basecharp/1077.html" class="archive-article-date">
-        <time datetime="2020-04-19T08:53:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-19</time>
+<a href="/basecharp/17815.html" class="archive-article-date">
+        <time datetime="2020-04-21T23:15:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-22</time>
 </a>
 
   
@@ -278,7 +282,7 @@ var _hmt = _hmt || [];
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">11分</span>
+      <span class="post-count">10分</span>
     </span>
   </span>
 </div>
@@ -289,94 +293,99 @@ var _hmt = _hmt || [];
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>这篇文章延续《C# 基础知识系列- 5 反射和泛型》，继续介绍C#在反射所开发的功能和做的努力。上一篇文章大概介绍了一下泛型和反射的一些基本内容，主要是通过获取对象的类型，然后通过这个类型对象操作对象。这一篇介绍一个在反射中很重要的内容：特性，以及上一篇未完成的内容——泛型在反射中的引用。</p>
-<a id="more"></a>
-<h1 id="1-特性"><a href="#1-特性" class="headerlink" title="1. 特性"></a>1. 特性</h1><p>特性是一种类增强技术，配合解析对应的解析方法可以完成很多类原本没有的功能。特性本质是一种标签，可以标注在类、方法、属性等。它是类本身的一种信息扩展，就像生活中一个人只有一个身份证号，但是可以有多个身份一样，而这些多出来的身份对于类来说就是特性。特性虽然是对类的增强，但不局限于在类上做标记，属性、方法上都可以。</p>
-<p>在C#中特性分为三种，位映射特性、自定义特性和伪自定义特性。</p>
-<p>位映射特性，举个例子，在C#中一个类会有public、private、abstract（抽象类）、saled（不能继承）等修饰符，而这些修饰符在C#编译的过程中会生成一串二进制码，里面存放就是 是否是public、是否是private 等。这些就是位映射特性的一部分，位映射特性对我们来说是无法进行扩展和修改的，所以就不做更多的介绍。</p>
-<p>我们通常说的特性一般指的是自定义特性，这部分特性也是我们能够扩展的，也是我们实际开发中用的特性。</p>
-<h2 id="1-1-定义一个特性"><a href="#1-1-定义一个特性" class="headerlink" title="1.1 定义一个特性"></a>1.1 定义一个特性</h2><p>如何正确的定义一个特性呢？在C#中，特性也是类的一种。所以声明一个特性，就如同声明一个类一样，不同的是，这个类指定一个根父类是<code>System.Attribute</code>。所有自定义特性都是这个类的子类或者后代类，无一例外。同时，C#提倡在定义一个特性类的时候，类名应当以<code>Attribute</code>结尾，在使用的时候可以自动忽略。</p>
-<p>示例：</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DemoAttribute</span> : <span class="title">Attribute</span> &#123;   &#125;</span><br></pre></td></tr></table></figure>
+    <h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>照例一份前言，在介绍任务和多线程之前，先介绍一下异步和同步的概念。我们之间介绍的知识点都是在同步执行，所谓的同步就是一行代码一行代码的执行，就像是我们日常乘坐地铁通过安检通道一样，想象我们每个人都是一行代码，我们依次通过安检仪器的时候就是同步。</p>
+<p>那么，什么是异步呢？有一个时间利用率的故事，讲的是在烧水的同时，顺便准备茶叶，清洗茶杯等工序可以节省时间。这个故事就是异步的一个典型范例。异步通俗的将就是不暂停也不等待当前耗时的流程执行完成，继续执行后续的流程。</p>
+<p>那么这和任务与多线程有什么关系呢？在C#中，基于任务可以很简单的创建一个异步程序或者异步方法；同时任务也是一个简单的多线程模式。不过值得注意的是，C#的异步可以由多线程实现，但多线程更多的是用来实现并行。所谓并行，顾名思义，就是多任务同时执行，这里的任务指的是程序需要完成的事，而不是C#中的任务机制。</p>
+<p>这一篇是《C#基础知识系列》的一篇，简单介绍一下如何创建、使用任务和多线程，这部分的内容很多，包括有很多注意事项，将会另开一个系列专门讲解C#的异步和并行编程，名字暂定为《C#异步编程系列》。</p>
+<h1 id="1-线程"><a href="#1-线程" class="headerlink" title="1. 线程"></a>1. 线程</h1><p>了解过计算机的人可能知道程序最小执行单元是线程，最小资源分配单位是进程。进程里必然至少有一个线程，而一个程序也必然至少有一个进程。这里不过多的介绍进程和线程的区别于关系，只需要记着线程是程序最小执行单元，我们在开发中最常用的也是线程。</p>
+<p>在很多不太严谨的编程教程中，都会把多线程和并行化作等号。但是这里有一个很微妙的区别，对于单核CPU来说，多进程和多线程一样，都不会产生并行的效果；对于多核CPU而言，多进程必然是并行的，但是多线程则不一定并行。所以C#中，线程更多的用作异步处理上，而不是并行计算上。</p>
+<p>在C#程序中，需要引用<code>System.Threading</code>。C#的入门级线程操作只需要知道Thread类、一个带参数的无返回值方法和一个不带参数的无返回值方法，这三个要点就可以了。</p>
+<h2 id="1-1-创建一个线程"><a href="#1-1-创建一个线程" class="headerlink" title="1.1 创建一个线程"></a>1.1 创建一个线程</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> thread = <span class="keyword">new</span> Thread(() =&gt;</span><br><span class="line">&#123;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<p>以上实例就是定义了一个很普通的特性类，用了也没有任何用的特性。因为特性只是一种标签。这个特性类可以用在任何支持特性的地方，当这个特性标记一个类的时候，目标类的子类也将自动获取这个特性。</p>
-<p>以上是一个特性的默认行为，如果我们想要对此做一定限制的话，那么就需要用到特性<code>System.AttributeUsageAttribute</code>。这个特性类用来控制特性的使用方式。</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">bool</span> Inherited &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;<span class="comment">// 该特性是否可以被子类继承，默认是 True</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">bool</span> AllowMultiple &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;<span class="comment">// 一个类是否可以多次使用该特性做标记，默认是 False</span></span><br><span class="line"><span class="keyword">public</span> AttributeTargets ValidOn &#123; <span class="keyword">get</span>; &#125;<span class="comment">//获取一组值，这组值标识指示的属性可应用到的程序元素，该参数使用构造方法赋值</span></span><br></pre></td></tr></table></figure>
+<p>以上示例代码演示了如果创建一个线程。但创建了线程，并不代表线程就会运行。</p>
+<p>说到这里就必须说一下线程的状态，一般情况线程分为五个阶段，也就是五种状态：分别是准备、就绪、运行、阻塞、死亡。当然在不同的地方，状态可能会细分为更多的级别，这里只做初步的介绍。状态之间的切换如下：</p>
+<p><img src="http://images.attachie.club/20200423102110.png" alt="image-20200423102030652"></p>
+<p>线程的状态之间切换顺序有着严格的限制，而且只能从就绪态由CPU切换到运行态，运行态无法从其他状态切换过去，而且这一步的切换开发者不能控制。</p>
+<p>现在，我们回到线程的创建方法，先来看看<code>Thread</code>构造方法的声明：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Thread</span> (<span class="params">System.Threading.ParameterizedThreadStart start</span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Thread</span> (<span class="params">System.Threading.ThreadStart start</span>)</span>;</span><br></pre></td></tr></table></figure>
 
-<p>我们再来看看<code>AttributeTargets</code>里有些什么吧。</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">System.Flags</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> AttributeTargets</span><br><span class="line">&#123;</span><br><span class="line">    Assembly = <span class="number">1</span>,<span class="comment">// 表示特性是用在 Assembly上的，不常用</span></span><br><span class="line">    Module = <span class="number">2</span>, <span class="comment">//特性是用在 Module上的，不常用</span></span><br><span class="line">    Class = <span class="number">4</span>,  <span class="comment">// 表示特性是用来类上的</span></span><br><span class="line">    Struct = <span class="number">8</span>, <span class="comment">//表示用在结构体上</span></span><br><span class="line">    Enum = <span class="number">16</span>, <span class="comment">// 0x00000010   表示用在枚举上</span></span><br><span class="line">    Constructor = <span class="number">32</span>, <span class="comment">// 0x00000020   构造方法</span></span><br><span class="line">    Method = <span class="number">64</span>, <span class="comment">// 0x00000040       普通方法</span></span><br><span class="line">    Property = <span class="number">128</span>, <span class="comment">// 0x00000080     属性</span></span><br><span class="line">    Field = <span class="number">256</span>, <span class="comment">// 0x00000100        字段</span></span><br><span class="line">    Event = <span class="number">512</span>, <span class="comment">// 0x00000200         事件</span></span><br><span class="line">    Interface = <span class="number">1024</span>, <span class="comment">// 0x00000400    接口</span></span><br><span class="line">    Parameter = <span class="number">2048</span>, <span class="comment">// 0x00000800    方法的参数</span></span><br><span class="line">    Delegate = <span class="number">4096</span>, <span class="comment">// 0x00001000     委托</span></span><br><span class="line">    ReturnValue = <span class="number">8192</span>, <span class="comment">// 0x00002000   返回值</span></span><br><span class="line">    GenericParameter = <span class="number">16384</span>, <span class="comment">// 0x00004000   泛型参数</span></span><br><span class="line">    All = GenericParameter | ReturnValue | Delegate | Parameter | Interface | Event | Field | Property | Method | Constructor | Enum | Struct | Class | Module | Assembly, <span class="comment">// 0x00007FFF ，所有</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>碰到了两个没见过的类型，我们继续看看？</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">void</span> <span class="title">ParameterizedThreadStart</span>(<span class="params"><span class="keyword">object</span> obj</span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">void</span> <span class="title">ThreadStart</span>(<span class="params"></span>)</span>;</span><br></pre></td></tr></table></figure>
 
-<p>我们常用的限制是ALL或者类等，限制也可以是多个，写法如下：<code>限制A|限制B|限制C</code>，表示A、B、C三种限制共存。具体原理是因为 <code>AttributeTargets</code> 是支持位运算的枚举，通过一定的位运算可以在一个值中间存放多个枚举。</p>
-<p>说了这么多，我们自己重新写一个特性类吧：</p>
-<p><strong>1.限定只能给类使用的特性</strong></p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">AttributeUsage(AttributeTargets.Class)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DemoAttribute</span> : <span class="title">Attribute</span> &#123; &#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>2.限定只能给方法使用的特性</strong></p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">AttributeUsage(AttributeTargets.Method)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DemoAttribute</span> : <span class="title">Attribute</span></span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>3.限定不能继承的特性</strong></p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">AttributeUsage(AttributeTargets.All, Inherited = false)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DemoAttribute</span> : <span class="title">Attribute</span></span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>4.限定类和枚举可以使用，但不能继承的 特性</strong></p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">AttributeUsage(AttributeTargets.Class| AttributeTargets.Enum, Inherited = false)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DemoAttribute</span> : <span class="title">Attribute</span></span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>需要注意的一点就是，如果要指定是否可以被继承或者是否允许多次使用 这两个属性则需要先指定特性的作用范围，即限定是类能使用还是所有都可以。</p>
-<h2 id="1-2-使用特性"><a href="#1-2-使用特性" class="headerlink" title="1.2 使用特性"></a>1.2 使用特性</h2><p>我们自定义了一个特性，就必须使用它才能会有意义，否则它只是一个普通的类。那么我们该如何使用呢？其实在上一节中我们隐晦的介绍了特性的使用方式。就是用中括号包裹起来，给类、属性、方法等标记起来。</p>
-<p>首先我们定义一个贼普通的特性：</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DemoAttribute</span> : <span class="title">Attribute</span> &#123;   &#125;<span class="comment">//没有任何限制，可以用在任何支持特性的地方</span></span><br></pre></td></tr></table></figure>
-
-<p>然后使用它：</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">Demo</span>]<span class="comment">//[DemoAttribute]</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">TestDemo</span></span><br><span class="line">&#123;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如示例所示，在类上面添加<code>[Demo]</code>标记，表示这个类应用了特性DemoAttribute，也可以使用类名，但是C#会自动忽略类名中结尾的Attribute。当然有的人会把特性写在类或者方法等声明的同一行开头位置，不过我一般会写在不同行，毕竟阅读上简单明了。</p>
-<p>我们之前说过，抛开它集成自Attribute类不提，它也是一个类。既然是类，那么就会有属性。那么现在定义一个带属性的特性类：</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">AttributeUsage(AttributeTargets.Class| AttributeTargets.Enum, Inherited = false)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DemoAttribute</span> : <span class="title">Attribute</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> Name &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>该特性声明了一个变量，使用方式如下：</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">Demo(Name = <span class="meta-string">"测试"</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Student</span>&#123; &#125;</span><br></pre></td></tr></table></figure>
-
-<p>DemoAttribute是一个只能用在 类、枚举 上的特性，有一个属性是Name。在使用的时候可以用<code>(属性名=&quot;属性值&quot;)</code>的方式为属性赋值。</p>
-<p>更多的使用方式：</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">AttributeUsage(AttributeTargets.Class| AttributeTargets.Enum, Inherited = false)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DemoAttribute</span> : <span class="title">Attribute</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> Name &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> Age &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DemoAttribute</span>(<span class="params"><span class="keyword">int</span> age</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        Age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>使用：</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">Demo(10,Name = <span class="meta-string">"测试"</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Student</span>(<span class="params"></span>)</span>&#123; &#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果特性类声明了构造方法，那么在使用的时候，优先按照构造方法的顺序进行赋值，然后使用<code>属性名=属性值</code>的方式为其他属性进行赋值。</p>
-<h1 id="2-特性在反射中的应用"><a href="#2-特性在反射中的应用" class="headerlink" title="2. 特性在反射中的应用"></a>2. 特性在反射中的应用</h1><p>在第一节中介绍了如何声明一个特性和使用特性，但是没有反射或者类加载技术，那么特性的作用就并没有想象中的那么大。就像人有多个身份，但是也得有对应的公司或者对应的环境。比如说，王XX有个身份是某XX公司老总，那么XX公司得需要在工商局注册登记，他这个身份才会有效。如果没有登记，那么这个身份也就是个虚名。当特性离开了反射，离开了类加载技术，特性就是摆设。当然这部分只限于自定义特性，因为C#内置的一些特性涉及到另外的技术：动态编译，或者需要编译器的配合。我们自定义的特性显然没有这些特权，所以必须我们手动开发对应的行为和规范。</p>
-<p>首先，声明一个类和特性：</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">AttributeUsage(AttributeTargets.Class| AttributeTargets.Enum, Inherited = false)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DemoAttribute</span> : <span class="title">Attribute</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> Name &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> Age &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DemoAttribute</span>(<span class="params"><span class="keyword">int</span> age</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        Age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">[<span class="meta">Demo(10,Name = <span class="meta-string">"测试"</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Student</span></span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-1-获取类的特性"><a href="#2-1-获取类的特性" class="headerlink" title="2.1 获取类的特性"></a>2.1 获取类的特性</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> stuType = <span class="keyword">typeof</span>(Student);</span><br></pre></td></tr></table></figure>
-
-<p>上述代码先获取到一个类的类型对象，然后调用：</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IEnumerable&lt;CustomAttributeData&gt; attrs = stuType.CustomAttributes;</span><br></pre></td></tr></table></figure>
-
-<p>将获取到这个类上声明的所有的自定义的特性，不过获取到的是一个<code>CustomAttributeData</code>，这个类封装了一个特性的特征，但是在我们使用起来会很困难，而且我们更多的需要得到特性本身的对象，而不是这种需要我们进一步处理的对象。那么，调用：</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IEnumerable&lt;Attribute&gt; data = stuType.GetCustomAttributes(<span class="keyword">typeof</span>(DemoAttribute));</span><br></pre></td></tr></table></figure>
-
-<p>通过上述方法就可以获取到一组类型是<code>DemoAttribute</code>的特性对象。</p>
-<p>那么回想一下为什么是一组？在<code>AttributeUsageAttribute</code>有一个<code>AllowMultiple</code>属性，这个属性就是用来标记这个特性是否可以标注多个，也就是在同一目标上多次使用，如果这个值为True，则在此处将获取不定个，否则最多一个。具体取决于对目标做了多少标记。</p>
-<p>获取到特性之后，依据实际需求进行开发。这里就不做过多介绍了，在后续篇幅中会对这部分的使用做更多的介绍。</p>
-<h2 id="2-2-获取其他元素的特性"><a href="#2-2-获取其他元素的特性" class="headerlink" title="2.2 获取其他元素的特性"></a>2.2 获取其他元素的特性</h2><p>特性不止可以标记在类上，还可以标记在属性、方法上。那么这些元素应该如何获取对应的特性呢？</p>
-<p><strong>1. 属性</strong></p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> stuType = <span class="keyword">typeof</span>(Student);</span><br><span class="line"><span class="keyword">var</span> property = stuType.GetProperties()[<span class="number">0</span>];<span class="comment">//假设类有一个Property</span></span><br><span class="line"><span class="keyword">var</span> attrs = property.GetCustomAttributes(<span class="keyword">typeof</span>(DemoAttribute));</span><br></pre></td></tr></table></figure>
-
-<p><strong>2. 方法</strong> </p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> stuType = <span class="keyword">typeof</span>(Student);</span><br><span class="line"><span class="keyword">var</span> method = stuType.GetMethods()[<span class="number">0</span>];<span class="comment">// 假设类有一个方法</span></span><br><span class="line"><span class="keyword">var</span> attrs = method.GetCustomAttributes(<span class="keyword">typeof</span>(DemoAttribute));</span><br></pre></td></tr></table></figure>
-
-
-
+<p>到这里，线程的创建为我们揭开了它的谜底。根据之前《C# 基础知识系列- 11 委托和事件》那篇的介绍，我们可以很明确的得到 <code>ThreadStart</code>是一个 无返回值也没有参数的委托，而<code>ParameterizedThreadStart</code>表示有一个object的参数。所以，创建线程的时候，可以直接传一个方法进去。</p>
+<p>有的同学可能要问了，为什么创建线程的委托参数那么少？这里涉及到一个并发概念，因为线程访问过多的主线程可能会导致锁，所以最佳的线程实践就是让线程的运行保持一个相对封闭的环境。</p>
 <blockquote>
-<p>需要注意的地方是，<code>var</code> 关键字；DemoAttribute只是一个代指，不是特指之前声明的DemoAttribute特性类，因为之前声明的特性类没有对属性和方法进行支持，所以在本节中直接使用会编译不通过。</p>
+<p>当然，C#的线程其实放宽了这部分的限制，这部分将在《C#异步编程系列》中继续探讨。</p>
 </blockquote>
-<p>特性就先简单的介绍到这里，特性可以标记给很多目标比如程序集、模块、类等一系列，但实际开发至少是Web开发中，更多的是标记类、方法、属性等。这里只是介绍了特性的声明和使用，但是没有介绍实际开发中特性的使用，这部分有机会在后续篇幅中介绍吧。因为我也用的不是很多。</p>
-<h1 id="3-反射中的泛型"><a href="#3-反射中的泛型" class="headerlink" title="3. 反射中的泛型"></a>3. 反射中的泛型</h1><p>之前在《C# 基础知识系列- 5 泛型和反射》介绍过，C#的泛型不会在编译过程中抹去痕迹，意思就是我们可以通过反射获取到对象的实际泛型类型。那么如何获取呢？</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> stuType = <span class="keyword">typeof</span>(Student);</span><br><span class="line"><span class="comment">// 获取类的泛型参数</span></span><br><span class="line"><span class="keyword">var</span> genericTypes = stuType.GenericTypeArguments;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> method = stuType.GetMethods()[<span class="number">0</span>];</span><br><span class="line"><span class="comment">// 获取方法的泛型参数</span></span><br><span class="line"><span class="keyword">var</span> types = method.GetGenericArguments();</span><br></pre></td></tr></table></figure>
+<p>现在我们回过头来，再看看如何创建一个标准的线程：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">var</span> thread1 = <span class="keyword">new</span> Thread(ThreadTest1);</span><br><span class="line">        <span class="keyword">var</span> thread2 = <span class="keyword">new</span> Thread(ThreadTest2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 不带参数的线程</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">ThreadTest1</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="comment">// 业务代码</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 带参数的线程</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name="obj"&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">ThreadTest2</span>(<span class="params"><span class="keyword">object</span> obj</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="comment">//业务代码</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>这个问题，在我写Java代码的时候，困扰了我很久，没有很好的办法。但是在C#中，我可以不用考虑这个问题。</p>
-<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h1><p>反射在各大编程语言中是一个很重要的特点，泛型、特性在泛型中扮演着很重要的角色。反射在实际开发中扮演着很重要的角色，但是我们在开发中必须慎重考虑反射的使用。</p>
-<p>到目前为止，反射介绍告一段落，但这不是结束。因为反射是个可深可浅的内容，目前只是介绍了依稀概念和理论上的一些内容，而更多的则隐藏在实际开发中，这时候就需要结合需求进行设计和代码编写了。</p>
+<p>其中thread1就是一个没有参数的线程，thread2是一个带参数的线程。</p>
+<blockquote>
+<p>注：Main方法是C#程序入口的固定写法，之前所有的示例代码都是在这个方法里执行的，后续这部分会在《C#基础篇之开发工具和项目的基本结构》这一篇中详细介绍，这里先记住这是一个固定写法。</p>
+</blockquote>
+<h2 id="1-2-启动并使用线程"><a href="#1-2-启动并使用线程" class="headerlink" title="1.2 启动并使用线程"></a>1.2 启动并使用线程</h2><p>在启动线程之前，我们先介绍一个概念：主线程。主线程指伴随着当前程序启动而启动的线程，以代码来看就是<code>Main</code>方法所在线程。</p>
+<p>线程通过调用<code>Thread.Start</code>方法，来将线程标记为就绪态。</p>
+<blockquote>
+<p>注意：线程不能直接进入运行态，该状态只能由CPU决定。</p>
+</blockquote>
+<p>所以上一小节的创建的两个线程可以通过以下方式通知已经准备就续：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">thread1.Start();</span><br></pre></td></tr></table></figure>
+
+<p>咦？是不是少了一个？注意力集中的小伙伴会发现，我没有演示thread2的调用方法。thread2与threa1有个不同的地方，thread2的委托参数有一个参数。那么必然<code>Start</code>也有一个对应的带参版本的重载，所以thread2就会有以下两种调用方式：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">thread2.Start();</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">object</span> obj;<span class="comment">// 省略来源</span></span><br><span class="line">thread2.Start(obj);</span><br></pre></td></tr></table></figure>
+
+<p>两种方法有什么区别吗？</p>
+<p>有，但是区别不大。第一种调用方式对于方法<code>ThreadTest2</code>而言就是参数为<code>null</code>,第二种就是参数为obj的值。所以第一种调用约等于<code>thread2.Start(null)</code>。</p>
+<h2 id="1-3-暂停或销毁线程"><a href="#1-3-暂停或销毁线程" class="headerlink" title="1.3 暂停或销毁线程"></a>1.3 暂停或销毁线程</h2><p>这一小节的标题是，暂停或销毁线程。当线程运行起来后，如果没有突发情况或者外力干涉会直接运行到结束。这时候，后续程序觉得这个线程执行时间过长，需要暂停或者取消线程的执行，那么就需要了解一下如何暂停或者销毁线程了。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">thread1.Suspend();<span class="comment">//挂起</span></span><br><span class="line">thread1.Resume();<span class="comment">//继续</span></span><br></pre></td></tr></table></figure>
+
+<p>中断线程，也就是终止线程：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">thread1.Abort();<span class="comment">// 已挂起的线程无法中断</span></span><br></pre></td></tr></table></figure>
+
+<p>强制终止销毁：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">thread1.Interrupt();<span class="comment">//在执行中的线程无法终止</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>以上是线程操作的基本概念，这部分并不是为了能让大家精通多线程，这是为了让大家有个初步概念。在C# 中，创建一个线程需要传递一个委托进去，因为委托的性质，并没有限制是否是静态方法，所以这里也可以传一个对象的方法。当然了，我们十分不提倡这样做，因为会导致一些多线程领域里的一些问题。</p>
+<h1 id="2-任务"><a href="#2-任务" class="headerlink" title="2. 任务"></a>2. 任务</h1><p>C#中的任务与线程的区别不是很大，因为C#的任务就是基于线程实现的，而任务比线程更友好，使用也更方便，当然使用也更加复杂。不过对于开发者而言，任务取消了线程的状态切换，只保留了有限的一部分。而且，在C# 更推荐使用任务，任务也是对线程的进一步抽象和改进。</p>
+<h2 id="2-1-创建一个任务"><a href="#2-1-创建一个任务" class="headerlink" title="2.1  创建一个任务"></a>2.1  创建一个任务</h2><p>如线程相同的一点是，任务的创建也是通过传递一个方法（严格上讲是一个委托）。不同的是，线程的委托没有返回值而且也不接受从线程返回的值，而任务则不同，调用方可以期待任务是有返回值的而且也可以正常使用。</p>
+<p>我们先来看看任务是什么，任务的命名空间<code>System.Threading.Tasks</code>，任务的类有以下两种声明：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Task</span> : <span class="title">IAsyncResult</span>, <span class="title">IDisposable</span>;</span><br><span class="line">public class Task&lt;TResult&gt; : System.Threading.Tasks.Task;</span><br></pre></td></tr></table></figure>
+
+<p>第一个，没有泛型的Task类表示一个没有返回值的任务；</p>
+<p>第二个，泛型Task类表示该任务有一个返回值，返回值的类型为传递进来的泛型参数。</p>
+<p>两个任务类的初始化类似于Thread类，不过与之不同的是 泛型Task的参数是Func，都有一个带Object参数的委托。</p>
+<p>与线程不同，任务的创建就有很多种方法：</p>
+<p>1  通过构造函数创建</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> task1 = <span class="keyword">new</span> Task(() =&gt; &#123; &#125;);</span><br><span class="line"><span class="keyword">var</span> task2 = <span class="keyword">new</span> Task&lt;<span class="keyword">int</span>&gt;(()=&gt; </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>2 使用任务工厂：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> task1 = Task.Factory.StartNew(() =&gt; &#123; &#125;);</span><br><span class="line"><span class="keyword">var</span> task2 = Task.Factory.StartNew(() =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>3 通过Task.Run创建：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> task1 = Task.Run(() =&gt; &#123; &#125;);</span><br><span class="line"><span class="keyword">var</span> task2 = Task.Run(() =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>以上三种方式创建的任务是等效的。当然实际上任务的创建并非只有这么几种，但这几种是任务创建的基础，使用频率相当高。</p>
+<h2 id="2-2-执行任务"><a href="#2-2-执行任务" class="headerlink" title="2.2 执行任务"></a>2.2 执行任务</h2><p>与线程不同的是，任务创建完成之后就会自动执行，不需要调用方法。</p>
+<blockquote>
+<p>关于任务的运行有以下需要注意的地方：</p>
+<ol>
+<li><p>任务的运行不会阻塞主线程；</p>
+</li>
+<li><p>主线程结束后，任务一定也会结束；</p>
+</li>
+</ol>
+</blockquote>
+<p>任务可以<code>IsCompleted</code>属性确定任务是否执行完成，所以可以通过访问任务对象的<code>IsCompleted</code>确认该任务是否执行完成，但有一个问题，这个属性只会表示当前任务是否完成。所以如果需要等待任务完成，则可以通过访问<code>Wait()</code>方法，强制主线程等待任务结束。</p>
+<p>如果使用的任务是泛型Task也就是待返回值的任务，可以通过访问<code>Result</code>属性获取任务执行结果。有意思的地方就是，这个属性能获取到结果的时候，也是任务执行完成的时候，所以不需要调用<code>Wait()</code>或<code>IsCompleted</code>来判断任务是否完成。</p>
+<h1 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h1><p>C#中任务基于线程，对其做了更多的抽象和封装，将线程的粒度进一步细分。所以线程在C#中就没有那么重要了，任务逐渐替代了线程在C#程序中的地位。</p>
+<p>任务与线程，有共通的地方，也有完全不一样的地方。线程的运行环境相对封闭，所以线程出现错误导致线程中断，不会影响主线程的运行。但任务则不一样了，任务与主线程的关联性更大，一旦任务出现异常导致任务中断，如果没有正确处理，则会影响主线程的运行。</p>
+<p>以上是本篇的全部内容，也请大家期待一下《C#异步编程系列》吧。</p>
 
     
 
@@ -393,7 +402,7 @@ var _hmt = _hmt || [];
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https:/blogs.attachie.club/basecharp/1077.html" title="C# 基础知识系列- 10 反射和泛型（二）" target="_blank">https:/blogs.attachie.club/basecharp/1077.html</a>
+          <a href="https:/blogs.attachie.club/basecharp/17815.html" title="C# 基础知识系列- 12 任务和多线程" target="_blank">https:/blogs.attachie.club/basecharp/17815.html</a>
         </li>
         
         <li>
@@ -483,7 +492,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://blogs.attachie.club/basecharp/1077.html" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://blogs.attachie.club/basecharp/17815.html" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -498,18 +507,9 @@ var _hmt = _hmt || [];
 
 <nav id="article-nav">
   
-    <a href="/basecharp/30277.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          C# 基础知识系列- 11 委托和事件
-        
-      </div>
-    </a>
   
-  
-    <a href="/basecharp/34774.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">C# 基础知识系列- 9 字符串的更多用法（二）</div>
+    <a href="/basecharp/30277.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C# 基础知识系列- 11 委托和事件</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -536,7 +536,7 @@ var _hmt = _hmt || [];
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-特性"><span class="toc-number">2.</span> <span class="toc-text">1. 特性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-定义一个特性"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 定义一个特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-使用特性"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 使用特性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-特性在反射中的应用"><span class="toc-number">3.</span> <span class="toc-text">2. 特性在反射中的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-获取类的特性"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 获取类的特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-获取其他元素的特性"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 获取其他元素的特性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-反射中的泛型"><span class="toc-number">4.</span> <span class="toc-text">3. 反射中的泛型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-总结"><span class="toc-number">5.</span> <span class="toc-text">4. 总结</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-线程"><span class="toc-number">2.</span> <span class="toc-text">1. 线程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-创建一个线程"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 创建一个线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-启动并使用线程"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 启动并使用线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-暂停或销毁线程"><span class="toc-number">2.3.</span> <span class="toc-text">1.3 暂停或销毁线程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-任务"><span class="toc-number">3.</span> <span class="toc-text">2. 任务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-创建一个任务"><span class="toc-number">3.1.</span> <span class="toc-text">2.1  创建一个任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-执行任务"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 执行任务</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-总结"><span class="toc-number">4.</span> <span class="toc-text">3. 总结</span></a></li></ol>
                     </div>
                 </span>
             </div>
