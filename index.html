@@ -275,96 +275,9 @@ var _hmt = _hmt || [];
 <p>那么，什么是异步呢？有一个时间利用率的故事，讲的是在烧水的同时，顺便准备茶叶，清洗茶杯等工序可以节省时间。这个故事就是异步的一个典型范例。异步通俗的将就是不暂停也不等待当前耗时的流程执行完成，继续执行后续的流程。</p>
 <p>那么这和任务与多线程有什么关系呢？在C#中，基于任务可以很简单的创建一个异步程序或者异步方法；同时任务也是一个简单的多线程模式。不过值得注意的是，C#的异步可以由多线程实现，但多线程更多的是用来实现并行。所谓并行，顾名思义，就是多任务同时执行，这里的任务指的是程序需要完成的事，而不是C#中的任务机制。</p>
 <p>这一篇是《C#基础知识系列》的一篇，简单介绍一下如何创建、使用任务和多线程，这部分的内容很多，包括有很多注意事项，将会另开一个系列专门讲解C#的异步和并行编程，名字暂定为《C#异步编程系列》。</p>
-<h1 id="1-线程"><a href="#1-线程" class="headerlink" title="1. 线程"></a>1. 线程</h1><p>了解过计算机的人可能知道程序最小执行单元是线程，最小资源分配单位是进程。进程里必然至少有一个线程，而一个程序也必然至少有一个进程。这里不过多的介绍进程和线程的区别于关系，只需要记着线程是程序最小执行单元，我们在开发中最常用的也是线程。</p>
-<p>在很多不太严谨的编程教程中，都会把多线程和并行化作等号。但是这里有一个很微妙的区别，对于单核CPU来说，多进程和多线程一样，都不会产生并行的效果；对于多核CPU而言，多进程必然是并行的，但是多线程则不一定并行。所以C#中，线程更多的用作异步处理上，而不是并行计算上。</p>
-<p>在C#程序中，需要引用<code>System.Threading</code>。C#的入门级线程操作只需要知道Thread类、一个带参数的无返回值方法和一个不带参数的无返回值方法，这三个要点就可以了。</p>
-<h2 id="1-1-创建一个线程"><a href="#1-1-创建一个线程" class="headerlink" title="1.1 创建一个线程"></a>1.1 创建一个线程</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> thread = <span class="keyword">new</span> Thread(() =&gt;</span><br><span class="line">&#123;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>以上示例代码演示了如果创建一个线程。但创建了线程，并不代表线程就会运行。</p>
-<p>说到这里就必须说一下线程的状态，一般情况线程分为五个阶段，也就是五种状态：分别是准备、就绪、运行、阻塞、死亡。当然在不同的地方，状态可能会细分为更多的级别，这里只做初步的介绍。状态之间的切换如下：</p>
-<p><img src="http://images.attachie.club/20200423102110.png" alt="image-20200423102030652"></p>
-<p>线程的状态之间切换顺序有着严格的限制，而且只能从就绪态由CPU切换到运行态，运行态无法从其他状态切换过去，而且这一步的切换开发者不能控制。</p>
-<p>现在，我们回到线程的创建方法，先来看看<code>Thread</code>构造方法的声明：</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Thread</span> (<span class="params">System.Threading.ParameterizedThreadStart start</span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Thread</span> (<span class="params">System.Threading.ThreadStart start</span>)</span>;</span><br></pre></td></tr></table></figure>
-
-<p>碰到了两个没见过的类型，我们继续看看？</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">void</span> <span class="title">ParameterizedThreadStart</span>(<span class="params"><span class="keyword">object</span> obj</span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">void</span> <span class="title">ThreadStart</span>(<span class="params"></span>)</span>;</span><br></pre></td></tr></table></figure>
-
-<p>到这里，线程的创建为我们揭开了它的谜底。根据之前《C# 基础知识系列- 11 委托和事件》那篇的介绍，我们可以很明确的得到 <code>ThreadStart</code>是一个 无返回值也没有参数的委托，而<code>ParameterizedThreadStart</code>表示有一个object的参数。所以，创建线程的时候，可以直接传一个方法进去。</p>
-<p>有的同学可能要问了，为什么创建线程的委托参数那么少？这里涉及到一个并发概念，因为线程访问过多的主线程可能会导致锁，所以最佳的线程实践就是让线程的运行保持一个相对封闭的环境。</p>
-<blockquote>
-<p>当然，C#的线程其实放宽了这部分的限制，这部分将在《C#异步编程系列》中继续探讨。</p>
-</blockquote>
-<p>现在我们回过头来，再看看如何创建一个标准的线程：</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">var</span> thread1 = <span class="keyword">new</span> Thread(ThreadTest1);</span><br><span class="line">        <span class="keyword">var</span> thread2 = <span class="keyword">new</span> Thread(ThreadTest2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 不带参数的线程</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">ThreadTest1</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="comment">// 业务代码</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 带参数的线程</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name="obj"&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">ThreadTest2</span>(<span class="params"><span class="keyword">object</span> obj</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="comment">//业务代码</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>其中thread1就是一个没有参数的线程，thread2是一个带参数的线程。</p>
-<blockquote>
-<p>注：Main方法是C#程序入口的固定写法，之前所有的示例代码都是在这个方法里执行的，后续这部分会在《C#基础篇之开发工具和项目的基本结构》这一篇中详细介绍，这里先记住这是一个固定写法。</p>
-</blockquote>
-<h2 id="1-2-启动并使用线程"><a href="#1-2-启动并使用线程" class="headerlink" title="1.2 启动并使用线程"></a>1.2 启动并使用线程</h2><p>在启动线程之前，我们先介绍一个概念：主线程。主线程指伴随着当前程序启动而启动的线程，以代码来看就是<code>Main</code>方法所在线程。</p>
-<p>线程通过调用<code>Thread.Start</code>方法，来将线程标记为就绪态。</p>
-<blockquote>
-<p>注意：线程不能直接进入运行态，该状态只能由CPU决定。</p>
-</blockquote>
-<p>所以上一小节的创建的两个线程可以通过以下方式通知已经准备就续：</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">thread1.Start();</span><br></pre></td></tr></table></figure>
-
-<p>咦？是不是少了一个？注意力集中的小伙伴会发现，我没有演示thread2的调用方法。thread2与threa1有个不同的地方，thread2的委托参数有一个参数。那么必然<code>Start</code>也有一个对应的带参版本的重载，所以thread2就会有以下两种调用方式：</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">thread2.Start();</span><br></pre></td></tr></table></figure>
-
-<p>或</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">object</span> obj;<span class="comment">// 省略来源</span></span><br><span class="line">thread2.Start(obj);</span><br></pre></td></tr></table></figure>
-
-<p>两种方法有什么区别吗？</p>
-<p>有，但是区别不大。第一种调用方式对于方法<code>ThreadTest2</code>而言就是参数为<code>null</code>,第二种就是参数为obj的值。所以第一种调用约等于<code>thread2.Start(null)</code>。</p>
-<h2 id="1-3-暂停或销毁线程"><a href="#1-3-暂停或销毁线程" class="headerlink" title="1.3 暂停或销毁线程"></a>1.3 暂停或销毁线程</h2><p>这一小节的标题是，暂停或销毁线程。当线程运行起来后，如果没有突发情况或者外力干涉会直接运行到结束。这时候，后续程序觉得这个线程执行时间过长，需要暂停或者取消线程的执行，那么就需要了解一下如何暂停或者销毁线程了。</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">thread1.Suspend();<span class="comment">//挂起</span></span><br><span class="line">thread1.Resume();<span class="comment">//继续</span></span><br></pre></td></tr></table></figure>
-
-<p>中断线程，也就是终止线程：</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">thread1.Abort();<span class="comment">// 已挂起的线程无法中断</span></span><br></pre></td></tr></table></figure>
-
-<p>强制终止销毁：</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">thread1.Interrupt();<span class="comment">//在执行中的线程无法终止</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>以上是线程操作的基本概念，这部分并不是为了能让大家精通多线程，这是为了让大家有个初步概念。在C# 中，创建一个线程需要传递一个委托进去，因为委托的性质，并没有限制是否是静态方法，所以这里也可以传一个对象的方法。当然了，我们十分不提倡这样做，因为会导致一些多线程领域里的一些问题。</p>
-<h1 id="2-任务"><a href="#2-任务" class="headerlink" title="2. 任务"></a>2. 任务</h1><p>C#中的任务与线程的区别不是很大，因为C#的任务就是基于线程实现的，而任务比线程更友好，使用也更方便，当然使用也更加复杂。不过对于开发者而言，任务取消了线程的状态切换，只保留了有限的一部分。而且，在C# 更推荐使用任务，任务也是对线程的进一步抽象和改进。</p>
-<h2 id="2-1-创建一个任务"><a href="#2-1-创建一个任务" class="headerlink" title="2.1  创建一个任务"></a>2.1  创建一个任务</h2><p>如线程相同的一点是，任务的创建也是通过传递一个方法（严格上讲是一个委托）。不同的是，线程的委托没有返回值而且也不接受从线程返回的值，而任务则不同，调用方可以期待任务是有返回值的而且也可以正常使用。</p>
-<p>我们先来看看任务是什么，任务的命名空间<code>System.Threading.Tasks</code>，任务的类有以下两种声明：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Task</span> : <span class="title">IAsyncResult</span>, <span class="title">IDisposable</span>;</span><br><span class="line">public class Task&lt;TResult&gt; : System.Threading.Tasks.Task;</span><br></pre></td></tr></table></figure>
-
-<p>第一个，没有泛型的Task类表示一个没有返回值的任务；</p>
-<p>第二个，泛型Task类表示该任务有一个返回值，返回值的类型为传递进来的泛型参数。</p>
-<p>两个任务类的初始化类似于Thread类，不过与之不同的是 泛型Task的参数是Func，都有一个带Object参数的委托。</p>
-<p>与线程不同，任务的创建就有很多种方法：</p>
-<p>1  通过构造函数创建</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> task1 = <span class="keyword">new</span> Task(() =&gt; &#123; &#125;);</span><br><span class="line"><span class="keyword">var</span> task2 = <span class="keyword">new</span> Task&lt;<span class="keyword">int</span>&gt;(()=&gt; </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>2 使用任务工厂：</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> task1 = Task.Factory.StartNew(() =&gt; &#123; &#125;);</span><br><span class="line"><span class="keyword">var</span> task2 = Task.Factory.StartNew(() =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>3 通过Task.Run创建：</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> task1 = Task.Run(() =&gt; &#123; &#125;);</span><br><span class="line"><span class="keyword">var</span> task2 = Task.Run(() =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>以上三种方式创建的任务是等效的。当然实际上任务的创建并非只有这么几种，但这几种是任务创建的基础，使用频率相当高。</p>
-<h2 id="2-2-执行任务"><a href="#2-2-执行任务" class="headerlink" title="2.2 执行任务"></a>2.2 执行任务</h2><p>与线程不同的是，任务创建完成之后就会自动执行，不需要调用方法。</p>
-<blockquote>
-<p>关于任务的运行有以下需要注意的地方：</p>
-<ol>
-<li><p>任务的运行不会阻塞主线程；</p>
-</li>
-<li><p>主线程结束后，任务一定也会结束；</p>
-</li>
-</ol>
-</blockquote>
-<p>任务可以<code>IsCompleted</code>属性确定任务是否执行完成，所以可以通过访问任务对象的<code>IsCompleted</code>确认该任务是否执行完成，但有一个问题，这个属性只会表示当前任务是否完成。所以如果需要等待任务完成，则可以通过访问<code>Wait()</code>方法，强制主线程等待任务结束。</p>
-<p>如果使用的任务是泛型Task也就是待返回值的任务，可以通过访问<code>Result</code>属性获取任务执行结果。有意思的地方就是，这个属性能获取到结果的时候，也是任务执行完成的时候，所以不需要调用<code>Wait()</code>或<code>IsCompleted</code>来判断任务是否完成。</p>
-<h1 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h1><p>C#中任务基于线程，对其做了更多的抽象和封装，将线程的粒度进一步细分。所以线程在C#中就没有那么重要了，任务逐渐替代了线程在C#程序中的地位。</p>
-<p>任务与线程，有共通的地方，也有完全不一样的地方。线程的运行环境相对封闭，所以线程出现错误导致线程中断，不会影响主线程的运行。但任务则不一样了，任务与主线程的关联性更大，一旦任务出现异常导致任务中断，如果没有正确处理，则会影响主线程的运行。</p>
-<p>以上是本篇的全部内容，也请大家期待一下《C#异步编程系列》吧。</p>
-
+    
+    <a class="article-more-a" href="/basecharp/17815.html#more">more >></a>
+    
     
 
     
@@ -1124,11 +1037,11 @@ var _hmt = _hmt || [];
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Linq</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Lambda</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Lambda</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Linq</a>
         		</li>
       		
 		</ul>
@@ -1551,11 +1464,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Linq</a>
+                <a href="javascript:void(0)" class="js-tag color2">Lambda</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Lambda</a>
+                <a href="javascript:void(0)" class="js-tag color5">Linq</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1583,10 +1496,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">每日转载一篇</a>
               </li>
              
@@ -1596,6 +1505,10 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习路线</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1615,15 +1528,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
               </li>
              
               <li class="article-tag-list-item">
