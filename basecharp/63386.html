@@ -8,23 +8,26 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="canonical" href="https://blogs.attachie.club">
   <link rel="dns-prefetch" href="https://blogs.attachie.club">
-  <title>标签云: Express | 高先生小屋-高先生小屋, C#,CSharp,.net,Java,Python,技术站</title>
+  <title>C# 基础知识系列- 13 常见类库介绍（二）时间日期 | 高先生小屋-高先生小屋, C#,CSharp,.net,Java,Python,技术站</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="高先生小屋, C#,CSharp,.net,Java,Python,技术站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="高先生小屋">
-<meta property="og:url" content="https://blogs.attachie.club/tags/Express/index.html">
+  <meta name="description" content="C# 基础知识之 时间日期的相关内容">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C# 基础知识系列- 13 常见类库介绍（二）时间日期">
+<meta property="og:url" content="https://blogs.attachie.club/basecharp/63386.html">
 <meta property="og:site_name" content="高先生小屋">
-<meta property="og:description" content="高先生小屋, C#,CSharp,.net,Java,Python,技术站">
+<meta property="og:description" content="C# 基础知识之 时间日期的相关内容">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://images.attachie.club/image-20200425111100330.png">
+<meta property="article:published_time" content="2020-04-24T22:04:00.000Z">
+<meta property="article:modified_time" content="2020-04-26T00:27:33.509Z">
 <meta property="article:author" content="Mr.Gao">
-<meta property="article:tag" content="C#">
-<meta property="article:tag" content="基础知识">
-<meta property="article:tag" content="Python">
-<meta property="article:tag" content="编程技术">
+<meta property="article:tag" content="DateTime">
+<meta property="article:tag" content="日期">
+<meta property="article:tag" content="C#基础知识">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://images.attachie.club/image-20200425111100330.png">
   
     <link rel="alternative" href="/atom.xml" title="高先生小屋" type="application/atom+xml">
   
@@ -235,84 +238,375 @@ var _hmt = _hmt || [];
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-C-基础知识系列-13-常见类库介绍（二）时间日期" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/express/deceab70.html" class="archive-article-date">
-        <time datetime="2019-03-13T02:59:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-13</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/express/deceab70.html" target="_blank">Express 基础入门</a>
   
+    <h1 class="article-title" itemprop="name">
+      C# 基础知识系列- 13 常见类库介绍（二）时间日期
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/basecharp/63386.html" class="archive-article-date">
+        <time datetime="2020-04-24T22:04:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-25</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">2.4k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">9分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>上一篇内容介绍了Console类和Math类，这篇内容着重介绍一下C#中时间日期的处理方式。</p>
+<blockquote>
+<p>上一篇勘误： 上一篇中关于静态类没有构造函数，这一表述有误。正确的说法是C#中静态类不包含常规构造函数，但可以添加一个静态构造函数。<br>静态构造函数与普通普通构造函数的区别是，静态构造函数没有访问修饰符，即访问修饰符是默认的，且静态构造函数只能是无参的，并添加 static 修饰符。</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="1-DateTime-和-TimeSpan"><a href="#1-DateTime-和-TimeSpan" class="headerlink" title="1  DateTime 和 TimeSpan"></a>1  DateTime 和 TimeSpan</h1><p>DateTime表示时间点，TimeSpan表示 时间段。在C#中，这两个都是结构体，结构体与类都能继承并实现接口，但是与类不同的是结构体在内存中存放在栈里。这部分在微软官方文档中关于CLR有过介绍。后续也会针对CLR写一个系列。这里就不做过多的介绍了。</p>
+<p>DateTime延伸开来也有很多内容要讲，这里只做一个大体的介绍：</p>
+<h2 id="1-创建一个DateTime"><a href="#1-创建一个DateTime" class="headerlink" title="1. 创建一个DateTime"></a>1. 创建一个DateTime</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DateTime time = <span class="keyword">new</span> DateTime(<span class="number">2018</span>,<span class="number">1</span>,<span class="number">20</span>);<span class="comment">// 2018年1月20日 0时0分0秒</span></span><br><span class="line">DateTime time = <span class="keyword">new</span> DateTime(<span class="number">2019</span>,<span class="number">11</span>,<span class="number">30</span>, <span class="number">12</span>, <span class="number">01</span>, <span class="number">59</span>);<span class="comment">// 2019年11月30日，12:01:59</span></span><br><span class="line">DateTime time = DateTime.Now;<span class="comment">// 表示代码运行到这里的系统时间，一般意义上的当前时间</span></span><br><span class="line">DateTime time = <span class="keyword">new</span> DateTime(<span class="keyword">long</span> ticks);<span class="comment">// 以时间刻度计算日期，以公历 0001 年 1 月 1 日 00:00:00.000 以来所经历的以 100 纳秒为间隔的间隔数来表示</span></span><br></pre></td></tr></table></figure>
+
+<p>这些是我们常用的创建日期的方法，还有一些通过日历对象结合日历来创建日期时间，不过这块在不涉及到程序国际化之前不需要做过多的深入。</p>
+<p>需要注意的是，<code>DateTime.Now</code>在每次运行结果都不一样，这个属性返回的是系统运行时<strong>当前时间</strong>，而不是程序编写时的时间。与之对应的还有一个<code>DaTime.Year</code>，这个属性返回结果是<strong>当天</strong>，也就是Now去掉时分秒的时间。</p>
+<h2 id="2-日期变更"><a href="#2-日期变更" class="headerlink" title="2. 日期变更"></a>2. 日期变更</h2><p>DateTime提供了很多可以变更日期的方法，这些方法可以获取一个计算之后的时间值：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> DateTime <span class="title">AddDays</span> (<span class="params"><span class="keyword">double</span> <span class="keyword">value</span></span>)</span>;<span class="comment">// 计算天数，正数代表 天数增加，负数代表天数减少</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> DateTime <span class="title">AddHours</span> (<span class="params"><span class="keyword">double</span> <span class="keyword">value</span></span>)</span>;<span class="comment">// 返回一个新的 DateTime，它将指定的小时数加到此实例的值上。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> DateTime <span class="title">AddMilliseconds</span> (<span class="params"><span class="keyword">double</span> <span class="keyword">value</span></span>)</span>;<span class="comment">//返回一个新的 DateTime，它将指定的毫秒数加到此实例的值上。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> DateTime <span class="title">AddMonths</span> (<span class="params"><span class="keyword">int</span> months</span>)</span>;<span class="comment">//返回一个新的 DateTime，它将指定的月数加到此实例的值上</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> DateTime <span class="title">AddMonths</span> (<span class="params"><span class="keyword">int</span> months</span>)</span>;<span class="comment">// 返回一个新的 DateTime，它将指定的月数加到此实例的值上</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> DateTime <span class="title">AddSeconds</span> (<span class="params"><span class="keyword">double</span> <span class="keyword">value</span></span>)</span>;<span class="comment"><span class="doctag">///</span> 返回一个新的 DateTime，它将指定的秒数加到此实例的值上。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> DateTime <span class="title">AddTicks</span> (<span class="params"><span class="keyword">long</span> <span class="keyword">value</span></span>)</span>;<span class="comment">// 返回一个新的 DateTime，它将指定的刻度数加到此实例的值上，也就是构造函数里的ticks</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> DateTime <span class="title">AddYears</span> (<span class="params"><span class="keyword">int</span> <span class="keyword">value</span></span>)</span>;<span class="comment">//返回一个新的 DateTime，它将指定的年份数加到此实例的值上。</span></span><br></pre></td></tr></table></figure>
+
+<p>以上是DateTime类对日期计算的支持，其中参数如果是正的表示时间后移，如果是负的则表示时间向前移。</p>
+<p>需要注意的一点就是，日期的变更不会在原有的DateTime元素上变更，会返回一个计算之后的日期类型。</p>
+<h2 id="3-日期算术运算"><a href="#3-日期算术运算" class="headerlink" title="3. 日期算术运算"></a><strong>3. 日期算术运算</strong></h2><p>说了这么多DateTime，没有介绍TimeSpan，那么这里就会介绍一下TimeSpan是什么了。TimeSpan表示一个时间间隔，也就是两个DateTime之间的差值。说到这里，大家也应该明白日期的算术运算应该是指什么了。以下来看一组示例：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        DateTime lastYear = <span class="keyword">new</span> DateTime(<span class="number">2019</span>, <span class="number">03</span>, <span class="number">08</span>, <span class="number">20</span>,<span class="number">49</span>, <span class="number">36</span>);</span><br><span class="line">        DateTime now = DateTime.Now;</span><br><span class="line">        TimeSpan span = now - lastYear;</span><br><span class="line">        DateTime newTime = lastYear + span;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这就是C#中关于日期运算的基本内容。那我们来看看 TimeSpan里封装了哪些内容吧。</p>
+<p>TimeSpan的属性：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> Days &#123; <span class="keyword">get</span>; &#125;<span class="comment">//获取当前 TimeSpan 结构所表示的时间间隔的天数部分。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> Hours &#123; <span class="keyword">get</span>; &#125;<span class="comment">// 获取当前 TimeSpan 结构所表示的时间间隔的小时数部分。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> Milliseconds &#123; <span class="keyword">get</span>; &#125;<span class="comment">//获取当前 TimeSpan 结构所表示的时间间隔的毫秒数部分。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> Minutes &#123; <span class="keyword">get</span>; &#125;<span class="comment">//获取当前 TimeSpan 结构所表示的时间间隔的分钟数部分。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> Seconds &#123; <span class="keyword">get</span>; &#125;<span class="comment">//获取当前 TimeSpan 结构所表示的时间间隔的秒数部分。</span></span><br></pre></td></tr></table></figure>
+
+<p>以上属性表示一个TimeSpan的代表的时间间隔中的天数、小时、分钟等。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">double</span> TotalDays &#123; <span class="keyword">get</span>; &#125;<span class="comment">//获取以整天数和天的小数部分表示的当前 TimeSpan 结构的值。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">double</span> TotalHours &#123; <span class="keyword">get</span>; &#125;<span class="comment">//获取以整小时数和小时的小数部分表示的当前 TimeSpan 结构的值。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">double</span> TotalMinutes &#123; <span class="keyword">get</span>; &#125;<span class="comment">//获取以整分钟数和分钟的小数部分表示的当前 TimeSpan 结构的值。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">double</span> TotalSeconds &#123; <span class="keyword">get</span>; &#125;<span class="comment">//获取以整秒数和秒的小数部分表示的当前 TimeSpan 结构的值。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">double</span> TotalMilliseconds &#123; <span class="keyword">get</span>; &#125;<span class="comment">//获取以整毫秒数和毫秒的小数部分表示的当前 TimeSpan 结构的值。</span></span><br></pre></td></tr></table></figure>
+
+<p>上述几组属性表示以XXX为单位，返回的TimeSpan的值，与之相对应的TimeSpan提供了一组FormXXX的方法，可以将double类型的值还原成TimeSpan。</p>
+<p>因为TimeSpan表示时间间隔，所以TimeSpan也允许两个TimeSpan进行加法运算，并提供了一个<code>Add(TimeSpan ts)</code>的方法。</p>
+<p>这些是TimeSpan最常用的一些属性和方法。不过在使用TimeSpan中需要注意的地方是，TimeSpan计算返回的值可正可负，正值表示时间间隔的头在前尾在后，负值表示头在后尾在前；TimeSpan中没有提供TotalMonths这个方法，这是因为每个月具体有多少天不是固定值，如果想计算两个日期直接相差几个月，则需要自定义对应的计算方法了。</p>
+<h2 id="4-DateTime与字符串之间的恩怨情仇"><a href="#4-DateTime与字符串之间的恩怨情仇" class="headerlink" title="4. DateTime与字符串之间的恩怨情仇"></a>4. DateTime与字符串之间的恩怨情仇</h2><p>在程序中，用户或者三方输入的日期大多都是字符串格式的，而且系统获取到的时间也大多会转成字符串给其他人展示，所以这里就会涉及到DateTime与字符串之间的相互转换。</p>
+<p>我们先试试日期的各种ToString会产生什么样的结果：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        DateTime now = DateTime.Now;</span><br><span class="line">        Console.WriteLine(<span class="string">"ToString :&#123;0&#125;"</span>, now.ToString());</span><br><span class="line">        Console.WriteLine(<span class="string">"ToLongDateString :&#123;0&#125;"</span>, now.ToLongDateString());</span><br><span class="line">        Console.WriteLine(<span class="string">"ToLongTimeString :&#123;0&#125;"</span>, now.ToLongTimeString());</span><br><span class="line">        Console.WriteLine(<span class="string">"ToShortDateString :&#123;0&#125;"</span>,now.ToShortDateString());</span><br><span class="line">        Console.WriteLine(<span class="string">"ToShortTimeString :&#123;0&#125;"</span>,now.ToShortTimeString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p><img src="http://images.attachie.club/image-20200425111100330.png" alt="image-20200425111100330"></p>
+<p>这是DateTime的默认输出结果，当然会根据系统的语言和地区等设置变化而产生不同的变化。为了避免这种变化，C#提供了一种日期类型的格式化模板，这里介绍几个常用的格式代表：</p>
+<table>
+<thead>
+<tr>
+<th align="center">格式符</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">yy</td>
+<td align="center">年份。00~99，如果年份大于99，则只保留后两位。如2020年则显示20,2019年则显示19</td>
+</tr>
+<tr>
+<td align="center">yyyy</td>
+<td align="center">年份，显示四位。0000~9999</td>
+</tr>
+<tr>
+<td align="center">M</td>
+<td align="center">月份，显示1~12</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">月份，显示01~12</td>
+</tr>
+<tr>
+<td align="center">d</td>
+<td align="center">天，1~31（具体看月份允许的最大天数）</td>
+</tr>
+<tr>
+<td align="center">dd</td>
+<td align="center">与d一致，显示为01~31</td>
+</tr>
+<tr>
+<td align="center">h</td>
+<td align="center">小时，12小时制显示1~12</td>
+</tr>
+<tr>
+<td align="center">hh</td>
+<td align="center">与h一致，显示为01~12</td>
+</tr>
+<tr>
+<td align="center">H</td>
+<td align="center">小时，24小时制，显示0~23</td>
+</tr>
+<tr>
+<td align="center">HH</td>
+<td align="center">小时，24小时制，显示00~23</td>
+</tr>
+<tr>
+<td align="center">m</td>
+<td align="center">分钟，显示0~59</td>
+</tr>
+<tr>
+<td align="center">mm</td>
+<td align="center">分钟，显示00~59</td>
+</tr>
+<tr>
+<td align="center">s</td>
+<td align="center">秒，显示0~59</td>
+</tr>
+<tr>
+<td align="center">ss</td>
+<td align="center">秒，显示00~59</td>
+</tr>
+<tr>
+<td align="center">f</td>
+<td align="center">表示日期和时间值的十分之几秒，显示0~9</td>
+</tr>
+<tr>
+<td align="center">ff</td>
+<td align="center">表示百分之几秒，显示00～99</td>
+</tr>
+</tbody></table>
+<p>最后的f，f的次数越多精度越细，但需要考虑系统的时钟精度。</p>
+<p>在实际开发中，最常用的格式是：<code>yyyy-MM-dd HH:mm:ss</code>，显示效果就是：2020-04-25 12:00:00。其中连接符可以根据开发需求更换。</p>
+<p>上述是时间转字符串，反过来也有字符串转时间。</p>
+<p>使用<code>DateTime.Parse</code>或者<code>Convert.ToDateTime</code>就可以将字符串转换为时间类型。C#并不需要在字符串转日期的时候指定字符串的显示格式，这是因为一个约定优于配置的设计理念。C#通过分析字符串，然后将字符串转换成对应的时间类型。当然，在正确解析到时间的时候，C#会抛出异常。为此，C#提供了<code>DateTime.TryParse</code>方法，该方法不会抛出异常，会返回一个是否正确转换的bool值。</p>
+<p>它的声明如下：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">TryParse</span> (<span class="params"><span class="keyword">string</span> s, <span class="keyword">out</span> DateTime result</span>)</span>;<span class="comment">// 使用了result作为实际转换结果</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>虽然C# 不用提供转换格式就可以读取，但是如果时间字符串的格式比较少见呢，或者说就想指定一个格式字符串，怎么办？别急，C#还提供了一个方法：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> DateTime <span class="title">ParseExact</span> (<span class="params"><span class="keyword">string</span> s, <span class="keyword">string</span> format, IFormatProvider provider</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>不过，这个方法需要指定一个区域性的格式信息：provider。这个信息可以通过<code>CultureInfo.CurrentCulture</code>来获取，这个属性表示系统的当前区域信息。</p>
+<p>以上是DateTime的基本内容，有兴趣的小伙伴可以查阅一下微软的官方文档继续深入研究一下。</p>
+
+    
+
+    
+    
+
+    
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Mr.Gao
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https:/blogs.attachie.club/basecharp/63386.html" title="C# 基础知识系列- 13 常见类库介绍（二）时间日期" target="_blank">https:/blogs.attachie.club/basecharp/63386.html</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Express</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3"> NodeJS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Express 基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C#基础知识</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/express/" class="article-tag-list-link color1">Express 基础</a>
+        			<a href="/categories/basecharp/" class="article-tag-list-link color2">C#基础知识</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+    
 
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://blogs.attachie.club/basecharp/63386.html" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/basecharp/13983.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C# 基础知识系列- 13 常见类库介绍（一）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-DateTime-和-TimeSpan"><span class="toc-number">2.</span> <span class="toc-text">1  DateTime 和 TimeSpan</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-创建一个DateTime"><span class="toc-number">2.1.</span> <span class="toc-text">1. 创建一个DateTime</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-日期变更"><span class="toc-number">2.2.</span> <span class="toc-text">2. 日期变更</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-日期算术运算"><span class="toc-number">2.3.</span> <span class="toc-text">3. 日期算术运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-DateTime与字符串之间的恩怨情仇"><span class="toc-number">2.4.</span> <span class="toc-text">4. DateTime与字符串之间的恩怨情仇</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+  <div id="giteement-ctn"></div>
+  
+    <link rel="stylesheet" href="/lib/default.css">
+    <script src="/lib/giteement.browser.js"></script>
+  
+  <script>
+  <!-- id: "C# 基础知识系列- 13 常见类库介绍（二）时间日期" -->
+  var giteement = new Giteement({
+    id: '20200425060400',
+    owner: 'c7jie',
+    repo: 'hexo-tips',
+    backcall_uri: 'http://blogs.attachie.club/',
+    oauth_uri: 'https://cors-anywhere.herokuapp.com/https://gitee.com/oauth/token',
+    oauth: {
+      client_id: 'f797d99bfca0499590558742f8e7c26173b1466c26085565ca6f07713e3839f7',
+      client_secret: '201054ffe39bb6710abef4230c95ab490c28a62cb6a7c5ef61b56dcedb3b4685'
+    },
+  })
+  giteement.render('giteement-ctn')
+  </script>
+
+
+
+
+
+
 
 
           </div>
@@ -353,9 +647,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
