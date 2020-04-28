@@ -249,6 +249,110 @@ var _hmt = _hmt || [];
 
 
   
+    <article id="post-为什么-0-1-0-2-0-3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/others/37713.html" target="_blank">【转载】为什么 0.1 + 0.2 = 0.3</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/others/37713.html" class="archive-article-date">
+        <time datetime="2020-04-27T22:47:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-28</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <blockquote><p>讲解了编程语言中对于小数的设计，这在高精度计算中是个很重要的内容。</p>
+<footer><strong>面向信仰编程</strong><cite><a href="https://draveness.me/whys-the-design-decimal-and-rational/" target="_blank" rel="noopener">《为什么 0.1 + 0.2 = 0.3》</a></cite></footer></blockquote>
+
+<blockquote>
+<p>为什么这么设计（Why’s THE Design）是一系列关于计算机领域中程序设计决策的文章，我们在这个系列的每一篇文章中都会提出一个具体的问题并从不同的角度讨论这种设计的优缺点、对具体实现造成的影响。</p>
+</blockquote>
+<p><code>0.1 + 0.2 = 0.3</code> 这个等式的成立看起来是理所当然的，然而前面的文章 <a href="https://draveness.me/whys-the-design-floating-point-arithmetic/" target="_blank" rel="noopener">为什么 0.1 + 0.2 = 0.300000004</a> 分析了为什么这个等式在绝大多数的编程语言中都不成立，标准的浮点数可以通过 32 位单精度浮点数或者 64 位的双精度浮点数保证有限的精度，所有正确实现浮点数的编程语言都会遇到如下所示的『错误』：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; 0.1 + 0.2</span><br><span class="line">0.30000000000000004</span><br></pre></td></tr></table></figure>
+    
+    <a class="article-more-a" href="/others/37713.html#more">more >></a>
+    
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">每日转载一篇</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/others/" class="article-tag-list-link color3">其他</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/others/37713.html">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-C-基础知识系列-13-常见类库（三）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1212,119 +1316,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-C-基础知识系列-7-Linq-方法详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/csharp/base/9197.html" target="_blank">C# 基础知识系列-7 Linq 方法详解</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/csharp/base/9197.html" class="archive-article-date">
-        <time datetime="2020-04-04T00:51:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-04</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在上一篇中简单介绍了Linq的入门级用法，这一篇尝试讲解一些更加深入的使用方法，与前一篇的结构不一样的地方是，这一篇我会先介绍Linq里的支持方法，然后以实际需求为引导，分别以方法链的形式和类SQL的形式写出来。</p>
-<h1 id="前置概念介绍"><a href="#前置概念介绍" class="headerlink" title="前置概念介绍"></a>前置概念介绍</h1><ol>
-<li><code>Predicate&lt;T&gt;</code>  谓词、断言，等价于 <code>Func&lt;T,bool&gt;</code> 即返回bool的表达式</li>
-<li><code>Expression&lt;TDelegate&gt;</code> 表达式树，这个类很关键，但是在这里会细说，我们会讲它的一个特殊的泛型类型：<code>Expression&lt;Func&lt;T,bool&gt;&gt;</code> 这个在某些数据源的查询中十分重要，它代表lambda表达式中一种特殊的表达式，即没有大括号和<code>return</code>关键字的那种。
-    
-    <a class="article-more-a" href="/csharp/base/9197.html#more">more >></a>
-    
-    
-
-    
-    
-
-    
-    
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C#基础知识</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Linq</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/csharp/" class="article-tag-list-link color3">C#</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/csharp/base/" class="article-tag-list-link color5">基础知识</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/csharp/base/9197.html">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &gt;</a>
@@ -1483,15 +1474,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Linq</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">linq</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Lambda</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Linq</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1504,6 +1491,18 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Express 基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">linq</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1523,15 +1522,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1547,15 +1538,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
               </li>
              
               <li class="article-tag-list-item">

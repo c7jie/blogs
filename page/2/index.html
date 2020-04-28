@@ -249,6 +249,119 @@ var _hmt = _hmt || [];
 
 
   
+    <article id="post-C-基础知识系列-7-Linq-方法详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/csharp/base/9197.html" target="_blank">C# 基础知识系列-7 Linq 方法详解</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/csharp/base/9197.html" class="archive-article-date">
+        <time datetime="2020-04-04T00:51:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-04</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在上一篇中简单介绍了Linq的入门级用法，这一篇尝试讲解一些更加深入的使用方法，与前一篇的结构不一样的地方是，这一篇我会先介绍Linq里的支持方法，然后以实际需求为引导，分别以方法链的形式和类SQL的形式写出来。</p>
+<h1 id="前置概念介绍"><a href="#前置概念介绍" class="headerlink" title="前置概念介绍"></a>前置概念介绍</h1><ol>
+<li><code>Predicate&lt;T&gt;</code>  谓词、断言，等价于 <code>Func&lt;T,bool&gt;</code> 即返回bool的表达式</li>
+<li><code>Expression&lt;TDelegate&gt;</code> 表达式树，这个类很关键，但是在这里会细说，我们会讲它的一个特殊的泛型类型：<code>Expression&lt;Func&lt;T,bool&gt;&gt;</code> 这个在某些数据源的查询中十分重要，它代表lambda表达式中一种特殊的表达式，即没有大括号和<code>return</code>关键字的那种。
+    
+    <a class="article-more-a" href="/csharp/base/9197.html#more">more >></a>
+    
+    
+
+    
+    
+
+    
+    
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C#基础知识</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Linq</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/csharp/" class="article-tag-list-link color3">C#</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/csharp/base/" class="article-tag-list-link color5">基础知识</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/csharp/base/9197.html">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-C-基础知识系列-6-Lambda表达式和Linq简单介绍" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -306,11 +419,11 @@ var _hmt = _hmt || [];
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Linq</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Lambda</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Lambda</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Linq</a>
         		</li>
       		
 		</ul>
@@ -1269,105 +1382,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-【转载】浅谈MySQL并发控制：隔离级别、锁与MVCC" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/database/26172.html" target="_blank">【转载】浅谈MySQL并发控制：隔离级别、锁与MVCC</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/database/26172.html" class="archive-article-date">
-        <time datetime="2020-03-22T14:32:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-22</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <blockquote><p>简单的介绍了一下Mysql的锁和隔离，情况</p>
-<footer><strong>Turling_hu</strong><cite><a href="https://juejin.im/post/5e72246ae51d4527143e6a0d" target="_blank" rel="noopener">浅谈MySQL并发控制：隔离级别、锁与MVCC</a></cite></footer></blockquote>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>如果数据库中的事务都是串行执行的，这种方式可以保障事务的执行不会出现异常和错误，但带来的问题是串行执行会带来性能瓶颈；而事务并发执行，如果不加以控制则会引发诸多问题，包括死锁、更新丢失等等。这就需要我们在性能和安全之间做出合理的权衡，使用适当的并发控制机制保障并发事务的执行。</p>
-    
-    <a class="article-more-a" href="/database/26172.html#more">more >></a>
-    
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">每日转载一篇</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/database/" class="article-tag-list-link color1">数据库概念</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/database/26172.html">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&lt; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &gt;</a>
@@ -1526,15 +1540,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Linq</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">linq</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Lambda</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Linq</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1547,6 +1557,18 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Express 基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">linq</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1566,15 +1588,7 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1590,15 +1604,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
               </li>
              
               <li class="article-tag-list-item">
