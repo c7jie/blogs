@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>Java Spring Cloud 实战之路-01 框架选型</title>
+      <link href="/java/action/21392.html"/>
+      <url>/java/action/21392.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>这是一个新的系列，来源于工作中的一个需求，领导准备新开一个项目线路，要求使用Java，项目符合现有主流技术，并要求对并发量有一定的承受能力 ，支持扩展。我和公司的几个小伙伴一起沟通了一下，这不就是标准的Spring Cloud微服务的系统架构吗。</p><p>之前读过小高之前发的文章的小伙伴也清楚我是C#开发，不过想当年我也系统学过Java，多年下来虽然手生，但也好歹没有落下技术。于是就揽下了这个活。毕竟学习是终身的。</p><p>不怎么简明的介绍了这个系列成立的原因，让我们言归正传，这个系列是我在搭建该项目过程的一个总结，如果后续开发中对框架有调整，也会在这个系列发布后续的更新。这也是为什么叫实战系列，而不是实战教程的原因。</p><p>那么，有兴趣的小伙伴，跟我一起来吧～</p><a id="more"></a><h1 id="1-项目结构"><a href="#1-项目结构" class="headerlink" title="1. 项目结构"></a>1. 项目结构</h1><p>项目采用maven作为软件包管理工具，Spring boot+Spring Cloud作为项目基础架构，设有配置中心、服务发现中心、网关中心和链路追踪中心以及服务集群，其中服务集群之间添加链路熔断和负载均衡机制。</p><p>当然，目前参照了几个系统都按照这种逻辑搭建的框架，所以我们大致上也参考了这个模型。具体如下图：</p><p><img src="http://images.attachie.club/image-20200502143113882.png" alt="图片来源于网络，如有侵权请联系我"></p><h1 id="2-主要技术组件使用"><a href="#2-主要技术组件使用" class="headerlink" title="2. 主要技术组件使用"></a>2. 主要技术组件使用</h1><p>这里大概介绍一下，我在实践中选用的技术组件，选用这些技术没多少原因，很大程度上考虑到团队喜好以及后续维护的方便，还有就是官方团队的维护上考虑。</p><h2 id="2-1-Maven"><a href="#2-1-Maven" class="headerlink" title="2.1 Maven"></a>2.1 Maven</h2><p>Maven 翻译为”专家”、”内行”，是 Apache 下的一个纯 Java 开发的开源项目，我主要用来进行包管理。老开发大多都知道如果一个项目使用了大量的三方包，如果没有统一的三方包管理就会出现三个人可能会引用四个版本的同一个包，这对于项目协同来说简直就是噩梦。所以Maven诞生了，从此Javaer有了一个进行包管理的神器。再次声明一下哈，maven不只是用来做包管理的，只是我使用的基本想法。当然还有编译、批量测试等功能。</p><h2 id="2-2-Spring-Boot"><a href="#2-2-Spring-Boot" class="headerlink" title="2.2 Spring Boot"></a>2.2 Spring Boot</h2><p>Spring Boot被誉为是Spring的一个跨时代发明，一度被认为是“不能更好了”的技术。Spring Boot解决了开发一个Web网站必须启动一个Tomcat或者其他的服务器才能进行调试的问题；又解决了Spring之前需要大量xml文件配置；Spring Boot集成了很多常见的Bean组件，在开发过程中只需要设置对应的参数值就可以了。</p><p>Spring Boot创建了Spring Boot maven的pom文件，这个文件里设置了大量java三方库的版本，依赖于一个Spring Boot的pom文件就可以统一的使用对应版本的java三方库。</p><h2 id="2-3-Spring-Cloud"><a href="#2-3-Spring-Cloud" class="headerlink" title="2.3 Spring Cloud"></a>2.3 Spring Cloud</h2><p> Spring Cloud，嗯，怎么说呢。Spring Cloud可以说是一系列框架的有序集合，利用Spring Boot简化了基础设施的开发。Spring Cloud是实现微服务的一个有力的武器，我们利用Spring Cloud搭建服务发现注册、配置中心、消息总线、负载均衡、断路器和数据监控等。</p><p>总而言之，这是一个很神奇的项目。</p><h2 id="2-4-Nacos"><a href="#2-4-Nacos" class="headerlink" title="2.4 Nacos"></a>2.4 Nacos</h2><p>Nacos，阿里巴巴又一个“KPI”产品。最开始的时候，很多人都说又是阿里的一个KPI产品。但实际上Nacos现在成长为业内一个很强的技术框架，它集成了服务发现、配置管理等功能。</p><p>以下是我从nacos官方扒的图，有兴趣的小伙伴可以看看。</p><p><img src="http://images.attachie.club/nacosMap.jpg" alt="nacos_map"></p><h2 id="2-5-Feign-服务接口化"><a href="#2-5-Feign-服务接口化" class="headerlink" title="2.5 Feign 服务接口化"></a>2.5 Feign 服务接口化</h2><p>Feign的英文是“伪装、变形”等意思，是一种HTTP调用框架。它使Http调用变成了一种接口式的调用，而不用写一堆Http请求的代码。在Spring Cloud中，对Feign进行了加强，使得在各个服务之间可以通过定义Interface来调用其他服务的代码。与此同时，Spring Cloud Feign 集成了Ribbon作为负载均衡组件，Hystrix 作为链路熔断组件。</p><p>具体为什么要使用负载均衡和链路熔断可以参考该系列的Feign配置篇。</p><h2 id="2-6-Zipkin"><a href="#2-6-Zipkin" class="headerlink" title="2.6 Zipkin"></a>2.6 Zipkin</h2><p>之所以使用链路追踪系统，主要是为了跟踪各服务之间的调用信息。跟踪之后，可以通过链路信息确认各服务之间的调用关系；可以在发生错误的时候，通过链路追踪定位具体的错误；可以根据链路信息确认服务之间的负载是否均衡，是否满负荷是否超负荷等。</p><p>而Zipkin正是链路追踪系统中的佼佼者，项目中选型选中了Zipkin，让我们欢呼吧。</p><h2 id="2-7-ElasticSearch"><a href="#2-7-ElasticSearch" class="headerlink" title="2.7 ElasticSearch"></a>2.7 ElasticSearch</h2><p>在使用了链路追踪之后，每次都会启动大量的链路数据，所以就需要一个数据库，为了方便查找然后选中了ElasticSearch。那么什么是ElasticSearch呢？</p><p><img src="http://images.attachie.club/image-20200502231147679.png" alt="image-20200502231147679"></p><p>暂且抛开官网中的Elastic Stack，因为我也不知道它说的是啥。简单来讲，ElasticSearch是一种文档型的数据引擎或者数据库。我们可以通过ElasticSearch实现全文检索功能。</p><h2 id="2-8-其他"><a href="#2-8-其他" class="headerlink" title="2.8 其他"></a>2.8 其他</h2><p>项目还集成了Spring Boot Admin，计划集成ELK、jwt这些框架。不过业务暂时没有其他方面的需求，所以暂时没有加入其他组件。后续如有变更会更新到该系列中。</p><h1 id="3-其他"><a href="#3-其他" class="headerlink" title="3. 其他"></a>3. 其他</h1><p>这一篇简单介绍了一下项目的技术选型，从下一篇开始正式说明我是如何从零开始搭建项目框架的。真的是从零开始，很多技术框架都是新接触的。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+          <category> 实战 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Spring </tag>
+            
+            <tag> Spring Boot </tag>
+            
+            <tag> Spring Cloud </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>C# 基础知识系列- 14 IO篇 文件的操作</title>
       <link href="/csharp/base/38256.html"/>
       <url>/csharp/base/38256.html</url>
@@ -377,9 +408,9 @@
             
             <tag> C#基础知识 </tag>
             
-            <tag> Linq </tag>
-            
             <tag> Lambda </tag>
+            
+            <tag> Linq </tag>
             
         </tags>
       
@@ -858,9 +889,9 @@
       
         <tags>
             
-            <tag> 每日转载一篇 </tag>
-            
             <tag> python </tag>
+            
+            <tag> 每日转载一篇 </tag>
             
             <tag> 加密技术 </tag>
             
