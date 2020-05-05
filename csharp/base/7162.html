@@ -8,22 +8,24 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="canonical" href="https://blogs.attachie.club">
   <link rel="dns-prefetch" href="https://blogs.attachie.club">
-  <title>标签云: Spring Boot | 高先生小屋-高先生小屋, C#,CSharp,.net,Java,Python,技术站</title>
+  <title>C# 基础知识系列- 15 异常处理篇 | 高先生小屋-高先生小屋, C#,CSharp,.net,Java,Python,技术站</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="高先生小屋, C#,CSharp,.net,Java,Python,技术站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="高先生小屋">
-<meta property="og:url" content="https://blogs.attachie.club/tags/Spring-Boot/index.html">
+  <meta name="description" content="C#异常处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C# 基础知识系列- 15 异常处理篇">
+<meta property="og:url" content="https://blogs.attachie.club/csharp/base/7162.html">
 <meta property="og:site_name" content="高先生小屋">
-<meta property="og:description" content="高先生小屋, C#,CSharp,.net,Java,Python,技术站">
+<meta property="og:description" content="C#异常处理">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-04T21:49:00.000Z">
+<meta property="article:modified_time" content="2020-05-05T05:50:04.937Z">
 <meta property="article:author" content="Mr.Gao">
+<meta property="article:tag" content="异常">
+<meta property="article:tag" content="Exception">
+<meta property="article:tag" content="处理">
 <meta property="article:tag" content="C#">
-<meta property="article:tag" content="基础知识">
-<meta property="article:tag" content="Python">
-<meta property="article:tag" content="编程技术">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="高先生小屋" type="application/atom+xml">
@@ -235,88 +237,306 @@ var _hmt = _hmt || [];
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-C-基础知识系列-15-异常处理篇" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/java/action/21392.html" class="archive-article-date">
-        <time datetime="2020-05-02T07:22:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-02</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/java/action/21392.html" target="_blank">Java Spring Cloud 实战之路-01 框架选型</a>
   
+    <h1 class="article-title" itemprop="name">
+      C# 基础知识系列- 15 异常处理篇
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Boot</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Spring Cloud</a>
-        		</li>
-      		
-		</ul>
-	</div>
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
 
+<a href="/csharp/base/7162.html" class="archive-article-date">
+        <time datetime="2020-05-04T21:49:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-05</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">1.8k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">6分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>为什么我们需要异常处理？什么是异常？</p>
+<p>在汉语中，异常指非正常的；不同于平常的。翻译到程序中，就是指会导致程序无法按照既定逻辑运行的意外，或者说是错误。可能会有小伙伴好奇了，我们的程序不是正常的吗，为什么还会出错呢？</p>
+<a id="more"></a>
+
+<p>我来举几个例子：</p>
+<ol>
+<li>程序需要访问一个文件，但这个文件不存在，当程序尝试打开一个读该文件的流时就会出错</li>
+<li>成绩管理系统中，成绩需要一个浮点型的数字，但是输入的人错误的输入了其他符号或者用中文输入了成绩</li>
+<li>程序需要通过网络与其他服务器进行交互，但是程序所在计算机没有网了</li>
+<li>程序在计算一个数除以另一个数的时候，除数错误的设置为0了</li>
+</ol>
+<p>等等，以上都是出现异常的情景。</p>
+<p>那么为什么需要异常处理机制呢？这是因为我们需要我们的程序不能是一个精美的易碎品，所以必须有一定程度的容错性，或者叫强壮性。这时候就要求程序员在开发过程中，对一些可能出现的场景进行预估，然后预先处理这些错误。而异常处理机制使得程序员更加简单方便的处理这些错误。</p>
+<h1 id="1-异常类"><a href="#1-异常类" class="headerlink" title="1. 异常类"></a>1. 异常类</h1><p>C#中，所有异常都继承自System.Exception类，Exception类定义了C#异常应该具有的信息和方法。值得注意的属性有：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">string</span> Message &#123; <span class="keyword">get</span>; &#125;<span class="comment">// 错误的信息，文字描述</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">string</span> StackTrace &#123; <span class="keyword">get</span>; &#125;<span class="comment">// 发生异常的调用堆栈信息</span></span><br><span class="line"><span class="keyword">public</span> System.Reflection.MethodBase TargetSite &#123; <span class="keyword">get</span>; &#125;<span class="comment">//引发这个错误的方法</span></span><br><span class="line"><span class="keyword">public</span> Exception InnerException &#123; <span class="keyword">get</span>; &#125;<span class="comment">// 子异常</span></span><br></pre></td></tr></table></figure>
+
+<p>解释一下，调用堆栈指的是调用方法的列表。因为在实际开发中，方法的调用大多是一层套一层的形式调用的，而调用堆栈指的就是引发异常的方法到最外层的调用层次。（描述不太准确，大家意会即可）</p>
+<p>而子异常或者内部异常，是因为在处理异常的时候，经常会对底层异常做处理然后将底层的异常进行封装和包装然后传递给上一级，使得越接近客服异常的信息越简单明了。</p>
+<h2 id="1-1-如何处理异常"><a href="#1-1-如何处理异常" class="headerlink" title="1.1 如何处理异常"></a>1.1 如何处理异常</h2><p>之前说了一堆，但是如何处理异常呢？</p>
+<p>在C#中，处理异常是一套通用的流程，涉及到三个关键字：try/catch/finally。先看一下写法：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//可能会抛出异常</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span> (System.Exception e)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 处理异常</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>简单介绍一下，try块里写的是可能会出现异常的代码。这是因为C#的机制，并不强制性声明方法会抛出异常。也就是说，C#的异常可以在合适的地方处理也可以不处理。</p>
+<p>catch块用来声明捕获的异常，catch有三种写法：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span> (System.Exception e)<span class="comment">// 1</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span>(System.Exception)<span class="comment">//2</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span><span class="comment">//3</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>声明捕获一个异常，并获取这个异常实例 e</li>
+<li>声明捕获一个异常，但不使用这个实例</li>
+<li>声明捕获所有异常，不指定捕获的异常，也不获取异常实例</li>
+</ol>
+<p>catch多次使用，意思是多次捕获不同的异常。如示例中的写法，但是示例中的写法存在一定问题。这是因为C#的异常捕获机制引起的，C#的异常捕获要求先捕获特殊的异常，再捕获一般的异常。换句话就是，在异常类继承树中，越是靠近Exception的异常类越是最后catch，在所有可能的异常处理中，Exception最后处理。所以catch可以是不在一个继承树上的异常类并列处理，也可以先子类再父类这种方式处理，但不论如何都不能对同一个异常多次catch。而且，一旦上一个catch了Exception，则之后的catch全都不会起作用。</p>
+<p>finally块在异常处理中并不一定需要出现，但是这个块在异常处理中有着特殊的意义。finally块表示最后执行的块，用finally包裹的代码必然会执行。通常finally用来处理一些托管资源的释放和流的关闭等类型。</p>
+<h2 id="1-2-如何抛出一个异常"><a href="#1-2-如何抛出一个异常" class="headerlink" title="1.2 如何抛出一个异常"></a>1.2 如何抛出一个异常</h2><p>在上一节我们简单介绍了一下如何处理异常，这一节我们演示一下如何抛出一个异常。</p>
+<p>使用throw就可以了，简单演示一下如何抛出异常：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> Exception();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是最简单的写法，在方法中引发一个异常然后抛出。</p>
+<p>这时候回过头来看一下Exception有哪些构造方法：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Exception</span> (<span class="params"></span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Exception</span> (<span class="params"><span class="keyword">string</span> message</span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Exception</span> (<span class="params"><span class="keyword">string</span> message, Exception innerException</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>所以我们在抛出异常的时候，可以指定异常的信息（message），其中堆栈信息和调用方法等内容由C#底层代码自动填写。</p>
+<h2 id="1-3-如何创建一个自定义异常"><a href="#1-3-如何创建一个自定义异常" class="headerlink" title="1.3 如何创建一个自定义异常"></a>1.3 如何创建一个自定义异常</h2><p>在简单演示了如何处理异常和如何抛出异常之后，我们来看看如何自定义一个异常类。根据类继承原则和异常处理原则，我们可以使用以下方式来自定义一个类：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CustomException</span> : <span class="title">Exception</span></span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样我们就能获取一个异常类，我们可以根据自己的需要定制这个异常类，然后在使用的时候使用throw抛出。</p>
+<h1 id="2-演示异常处理"><a href="#2-演示异常处理" class="headerlink" title="2. 演示异常处理"></a>2. 演示异常处理</h1><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            ThrowAnExcetption();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span>(CustomException e)</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(e.StackTrace);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">finally</span></span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">"执行了finally方法"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">ThrowAnExcetption</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> CustomException();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CustomException</span> : <span class="title">Exception</span></span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上示例简单演示了如何抛出异常，处理异常。</p>
+<h1 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h1><p>异常处理很简单，但是也很难。简单是指使用起来很简单，很难说的是在项目中如何合理优雅的处理异常和抛出异常。</p>
+<p>这里是我自己总结的一个异常处理的哲学：</p>
+<ol>
+<li>不是必须的场景，不要抛出异常</li>
+<li>底层异常不要直接抛给上层方法</li>
+<li>在程序编写的期间，预估一些场景，并对这些场景做数据校验和提示，而不是使用异常</li>
+<li>在捕获异常时，最好编写相应的处理逻辑，而不是为了程序不报错直接写一个空的catch块</li>
+<li>不要把异常当做额外的返回值处理</li>
+</ol>
+<p>当然，最重要的一点就是结合实际业务需要进行异常处理。</p>
+<p>C#的异常对于程序员来说，不是强制的，但是程序员必须在开发过程中对异常足够的重视才行。</p>
+
+    
+
+    
+    
+
+    
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Mr.Gao
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https:/blogs.attachie.club/csharp/base/7162.html" title="C# 基础知识系列- 15 异常处理篇" target="_blank">https:/blogs.attachie.club/csharp/base/7162.html</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/java/" class="article-tag-list-link color5">Java</a>
+        			<a href="/categories/csharp/" class="article-tag-list-link color3">C#</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/java/action/" class="article-tag-list-link color3">实战</a>
+        			<a href="/categories/csharp/base/" class="article-tag-list-link color5">基础知识</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+    
 
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://blogs.attachie.club/csharp/base/7162.html" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/csharp/base/17935.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C# 基础知识系列- 14 IO篇 流的使用</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-异常类"><span class="toc-number">2.</span> <span class="toc-text">1. 异常类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-如何处理异常"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 如何处理异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-如何抛出一个异常"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 如何抛出一个异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-如何创建一个自定义异常"><span class="toc-number">2.3.</span> <span class="toc-text">1.3 如何创建一个自定义异常</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-演示异常处理"><span class="toc-number">3.</span> <span class="toc-text">2. 演示异常处理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-总结"><span class="toc-number">4.</span> <span class="toc-text">3. 总结</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+  <div id="giteement-ctn"></div>
+  
+    <link rel="stylesheet" href="/lib/default.css">
+    <script src="/lib/giteement.browser.js"></script>
+  
+  <script>
+  <!-- id: "C# 基础知识系列- 15 异常处理篇" -->
+  var giteement = new Giteement({
+    id: '20200505054900',
+    owner: 'c7jie',
+    repo: 'hexo-tips',
+    backcall_uri: 'http://blogs.attachie.club/',
+    oauth_uri: 'https://cors-anywhere.herokuapp.com/https://gitee.com/oauth/token',
+    oauth: {
+      client_id: 'f797d99bfca0499590558742f8e7c26173b1466c26085565ca6f07713e3839f7',
+      client_secret: '201054ffe39bb6710abef4230c95ab490c28a62cb6a7c5ef61b56dcedb3b4685'
+    },
+  })
+  giteement.render('giteement-ctn')
+  </script>
+
+
+
+
+
+
 
 
           </div>
@@ -357,9 +577,9 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,

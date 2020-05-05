@@ -249,6 +249,126 @@ var _hmt = _hmt || [];
 
 
   
+    <article id="post-【转载】JVM从入门到入土之JVM的类文件结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/java/plus/59791.html" target="_blank">【转载】JVM从入门到入土之JVM的类文件结构</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/java/plus/59791.html" class="archive-article-date">
+        <time datetime="2020-03-27T23:11:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-28</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <blockquote><p>作者在掘金开了一个《JVM从入门到入土》系列，有兴趣可以去围观一下。</p>
+<footer><strong>引用自 掘金，六脉神剑</strong><cite><a href="https://juejin.im/post/5e1d19b26fb9a02fee1ed155" target="_blank" rel="noopener">《JVM从入门到入土之JVM的类文件结构》</a></cite></footer></blockquote>
+
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>文本已收录至我的 GitHub 仓库，欢迎 Star：<a href="https://github.com/bin392328206/six-finger" target="_blank" rel="noopener">github.com/bin39232820…</a><br><strong>种一棵树最好的时间是十年前，其次是现在</strong><br>我知道很多人不玩 <strong>qq</strong> 了, 但是怀旧一下, 欢迎加入六脉神剑 Java 菜鸟学习群，群聊号码：<strong>549684836</strong> 鼓励大家在技术的路上写博客</p>
+</blockquote>
+<h2 id="絮叨"><a href="#絮叨" class="headerlink" title="絮叨"></a>絮叨</h2><p>昨天讲了类加载机制，其实那个应该算是第二步，第一步还是我们的. Class 文件的结构，但是直接讲这个未免太枯燥，所以我就写讲了类加载机制，再讲文件结构</p>
+<ul>
+<li><a href="https://juejin.im/post/5e1aaf626fb9a0301d11ac8e" target="_blank" rel="noopener">🔥JVM 从入门到入土之 JVM 的类加载机制</a></li>
+</ul>
+<p>我们知道我们写完的 Java 程序经过 javac xxx.java 编译后生成了 xxx.class 文件，可是你是否想过 xxx.class 文件到底是什么？这个文件中到底包含了什么内容？那么现在我们就一起通过解析一个. class 文件来深入的学习一下类文件结构，通过这次的学习，我想你会对 class 文件了如指掌。</p>
+    
+    <a class="article-more-a" href="/java/plus/59791.html#more">more >></a>
+    
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">每日转载一篇</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java/" class="article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/java/plus/" class="article-tag-list-link color3">进阶</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/java/plus/59791.html">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-C-基础知识系列-3-集合数组" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -848,11 +968,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">jupyter</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">jupyter</a>
         		</li>
       		
 		</ul>
@@ -1238,110 +1358,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-【转载】DDD从天书到实践" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/others/32460.html" target="_blank">【转载】DDD从天书到实践</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/others/32460.html" class="archive-article-date">
-        <time datetime="2020-01-17T13:47:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-17</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <blockquote><p>DDD模式的介绍</p>
-<footer><strong>掘金-Robynd</strong><cite><a href="https://juejin.im/post/5e203bbef265da3e2d24cdff" target="_blank" rel="noopener">DDD模式从天书到实践</a></cite></footer></blockquote>
-
-<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>正所谓有人的地方就有江湖，有设计的地方也一定会有架构。如果你是一位软件行业的老鸟，你一定会有这样的经历：一个业务的初期，普通的 CRUD 就能满足，业务线也很短，此时系统的一切都看起来很 nice，但随着迭代的不断演化，以及业务逻辑越来越复杂，我们的系统也越来越冗杂，模块彼此关联，甚至没有人能描述清楚每个细节。当新需求需要修改一个功能时，往往光回顾该功能涉及的流程就需要很长时间，更别提修改带来的不可预知的影响面。于是 RD 就加开关，小心翼翼地切流量上线，一有问题赶紧关闭开关。<br>面对此般场景，你要么跑路，要么重构。重构是克服演进式设计中大杂烩问题的主力，通过在单独的类及方法级别上做一系列小步重构来完成，我们可以很容易重构出一个独立的类来放某些通用的逻辑，但是，你会发现你很难给它一个业务上的含义，只能给予一个技术维度描绘的含义。你正在一边重构一边给后人挖坑。<br>在互联网开发“小步快跑，迭代试错”的大环境下，DDD 似乎是一种比较“古老而缓慢”的思想。然而，由于互联网公司也逐渐深入实体经济，业务日益复杂，我们在开发中也越来越多地遇到传统行业软件开发中所面临的问题。<br>怎么解决这个问题呢？其实法宝就是今天的主题，领域驱动设计！！相信你读完本文一定会有所启发。</p>
-    
-    <a class="article-more-a" href="/others/32460.html#more">more >></a>
-    
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">每日转载一篇</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">DDD模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/others/" class="article-tag-list-link color3">其他</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/others/32460.html">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&lt; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &gt;</a>
@@ -1496,15 +1512,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IO</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">io</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">字符串</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IO</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1552,6 +1568,10 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">每日转载一篇</a>
               </li>
              
@@ -1568,7 +1588,11 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
+                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">C# 基础数据类型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1580,18 +1604,6 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">C# 基础数据类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
@@ -1600,11 +1612,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+                <a href="javascript:void(0)" class="js-tag color1">DDD模式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
               </li>
              
               <li class="article-tag-list-item">
