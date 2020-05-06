@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>C# 基础知识系列- 16 开发工具篇</title>
+      <link href="/csharp/base/24139.html"/>
+      <url>/csharp/base/24139.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>这是C# 基础知识系列的最后一个内容讲解篇，下一篇是基础知识-实战篇。这一篇主要讲解一下C#程序的结构和主要编程工具。</p><a id="more"></a><h1 id="1-工具"><a href="#1-工具" class="headerlink" title="1. 工具"></a>1. 工具</h1><p>工欲善其事必先利其器，在实际动手之前我们先来看看想要编写一套C#程序需要做哪些准备吧。</p><h2 id="1-1-选择"><a href="#1-1-选择" class="headerlink" title="1.1 选择"></a>1.1 选择</h2><p>C# 的sdk在之前的某个时间点分为了三个方向：</p><ol><li>.net framework 4.X</li><li>.net core</li><li>mono</li><li>UWP</li></ol><p>有人可能问了，.net和C#是什么关系。首先需要明确一个概念，C#是一门编程语言，.net是一个CLR，即公共语言运行库。这部分概念比较抽象，不过我这么说大家可能会理解里面的关系了：C#是.net支持的一门语言，于此同时.net还支持F#，Visual C++等。也就是说，.net是一个平台，而C#是运行在这个平台上的语言。</p><p>不过，通常上因为.net支持的其他语言并不如C#出名，所以很多人就忽略了两者之间的区别，有时候也用.net代指C#了。</p><p>讲了这么多废话，回到之前。.net分了三个方向，第一个方向是沿用之前版本，继续深耕Windows环境。.net core是微软为了跨平台战略而开发的，目前支持 Windows/Linux/Mac等系统。后续的文章也将基于.net core进行。Mono是早期在Linux环境中支持.net framework的一套SDK，后来微软把这项技术合并到了.net发展战略里了，现在支持Android、Mac应用开发。最后一个是UWP，通用Windows平台，据说是为了物联网研究的。</p><p>嗯，因为我的工作方向是 BS，也就是做网站开发的，再加上需要接触一些Linux的系统，所以整体就在.net core这个框架下进行后续开发和工作了。换句话说，整个C# 系列都是在.net core上运行的。</p><h2 id="1-2-开发工具"><a href="#1-2-开发工具" class="headerlink" title="1.2 开发工具"></a>1.2 开发工具</h2><p>在选择了.net core之后，我们就要选择一个适合我们的开发工具了。</p><h3 id="1-2-1-Visual-Studio"><a href="#1-2-1-Visual-Studio" class="headerlink" title="1.2.1 Visual Studio"></a>1.2.1 Visual Studio</h3><p>先放一张Visual Studio 2019的图。</p><p><img src="http://images.attachie.club/u=1001948629,3463570166&fm=26&gp=0.jpg" alt="img"></p><p>这是到目前（2020年05月05日）为止，微软开发的最强大的编译器。在编译器界，Visual Studio有着“宇宙第一编译器”的美名。当然最早是因为其安装包十分巨大，动则2~3G的全量安装，再加上其昂贵的正版授权价格，所以被称为第一编译器。后来随着微软更改了安装方式，改为在线安装然后模块化安装，让程序员可以用哪些装哪些，减少了安装包的大小，同时进一步增强了作为编译器的功能，添加了Community版本（社区版，免费的）之后，第一编译器就成了名副其实的美名。</p><p>下图是 Visual Studio支持的功能：</p><p><img src="http://images.attachie.club/image-20200505180109379.png" alt="image-20200505180109379"></p><p>具体的安装就不演示了，这部分网上教程也比较多。如果有疑问的话，可以留言或者私信我哦。</p><blockquote><p>当然了，即使是旗舰版，Visual Studio2019在网上也有很多激活码 ，不过对于公司的话，这部分可能会有法律风险。个人学习研究的话，没事。笑XD</p></blockquote><h3 id="1-2-2-Visual-Studio-Code"><a href="#1-2-2-Visual-Studio-Code" class="headerlink" title="1.2.2 Visual Studio Code"></a>1.2.2 Visual Studio Code</h3><p>嗯，Code是微软开发的另一个神器，凭借着其轻量、开源和免费这几大特性迅速占领了开发者们的内心。再加上其丰富的插件支持，更是让人欲罢不能。</p><p>Code支持跨平台，Windows/Linux/Mac都支持。下图是示意图：</p><p><img src="http://images.attachie.club/home-screenshot-linux-lg.png" alt="img"></p><h3 id="1-2-3-Jetbrains-Rider"><a href="#1-2-3-Jetbrains-Rider" class="headerlink" title="1.2.3 Jetbrains Rider"></a>1.2.3 Jetbrains Rider</h3><p>这是捷克一家软件公司开发的编译器，支持跨平台。语言的智能提示比VS好一点，而且也轻一点。这是它功能特定的宣传图：</p><p><img src="http://images.attachie.club/image-20200505182318350.png" alt="image-20200505182318350"></p><p>可以说功能非常强劲，当然了也是收费的。目前市面上没有很稳定的科学方法。咳咳，我啥也没说。</p><h3 id="1-2-4-总结"><a href="#1-2-4-总结" class="headerlink" title="1.2.4 总结"></a>1.2.4 总结</h3><p>如果是初学者，我建议使用Visual Studio ，不愧与第一编译器的美名。如果是在Linux环境的话，初学者建议试试Rider。</p><p>当然了，对于极客或者Linux环境但预算不高的小伙伴可以试试VS Code，搭配好插件功能也不比另外的编译器差到哪里去。</p><blockquote><p>注：Rider单个软件的订阅是 139美元一年（首年），不过据说有免费的方式。</p></blockquote><p>关于选择编译器的问题，如果是Linux环境，需要事先安装 .net core sdk。这部分内容请参照微软的官方，搜索关键词：net core</p><p><img src="http://images.attachie.club/image-20200505183203359.png" alt="image-20200505183203359"></p><p>这个页面点进去就行，如果在安装过程中有疑问欢迎留言，私信我。</p><p>对于Visual Studio则没有这部分烦恼了，只需要在安装过程中选中 net core开发支持即可。</p><p>当然，还有更究极的开发方式：使用文本编辑器，然后用命令行dotnet执行。嗯，这样很牛但是挺累的，我就不推荐给你们了。</p><h1 id="2-项目类型"><a href="#2-项目类型" class="headerlink" title="2. 项目类型"></a>2. 项目类型</h1><p><img src="http://images.attachie.club/image-20200505183542431.png" alt="image-20200505183542431"></p><p>这是在.net core上支持的一些通用的项目类型，我们常用是 console类型（一个控制台程序）、mvc（asp.net core版的mvc项目）、web （一个网站项目）等。</p><p>具体的项目情况会在后续的篇幅中介绍，记住net core支持这些类型的项目即可。</p><h1 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h1><p>这一篇稀里糊涂的介绍完了，之后还有一个实战系列。完结之后，C#的基础知识系列就暂时告一段落了，不过后续还有可能会针对单个知识点的深入讲解，按照计划如果知识点比较大将会新开一个系列，比如之前的多线程和任务那一章，其实是C# 并发编程系列的开篇 。不过下一个系列应该是 C# 数据访问系列。这个系列讲解如何通过ADO.net、EF、Nhibernate等框架操作数据库。</p><p>那么，敬请期待第一个实战篇吧，亲爱的小伙伴们。</p><p>最后的最后，有问题可以随时回复或私信。当然了，我写的有错误或者不严谨或遗漏的地方也请指出哦。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> C# </category>
+          
+          <category> 基础知识 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C# </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>C# 基础知识系列- 15 异常处理篇</title>
       <link href="/csharp/base/7162.html"/>
       <url>/csharp/base/7162.html</url>
@@ -740,9 +767,9 @@
       
         <tags>
             
-            <tag> python </tag>
-            
             <tag> jupyter </tag>
+            
+            <tag> python </tag>
             
         </tags>
       
