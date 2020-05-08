@@ -249,6 +249,269 @@ var _hmt = _hmt || [];
 
 
   
+    <article id="post-C-基础知识系列-17-小工具优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/csharp/base/action/47051.html" target="_blank">C# 基础知识系列- 17 小工具优化</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/csharp/base/action/47051.html" class="archive-article-date">
+        <time datetime="2020-05-07T16:44:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-08</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>不知道有没有动手能力强的小伙伴照着上一篇的内容写过程序呢？如果有的话，应该会在使用的时候发现以下几个问题：</p>
+<ol>
+<li>每次启动都需要经过漫长的时间去遍历磁盘里的文件目录</li>
+<li>因为数据是用的字典保存的，所以会消耗大量的内存空间</li>
+<li>不能多次查询</li>
+</ol>
+<p>现在我们就针对这些问题，让我们的小工具实用起来。</p>
+<h1 id="1-分析与实现"><a href="#1-分析与实现" class="headerlink" title="1. 分析与实现"></a>1. 分析与实现</h1><p>在动手之前，我们先分析一下问题。在实际开发之前，无论是接到什么需求都要先仔细分析一下，确定好方案再动手方为开发的正道。嗯，没毛病。因为开发过程中跟产品对线、跟客户对线要占整个项目的一半左右时间。好了，不废话了。继续：</p>
+<p>遍历文件目录的时间过长，那么我们是不是可以用异步并发去遍历呢？</p>
+<p>数据用字典保存会消耗内存空间，那么我们是不是可以用其他的方式保存呢？</p>
+<p>不能多次查询，是不是可以使用循环，然后设置一个退出条件？</p>
+<h2 id="1-1-C-的异步-并发实现"><a href="#1-1-C-的异步-并发实现" class="headerlink" title="1.1 C#的异步/并发实现"></a>1.1 C#的异步/并发实现</h2><p>在C#里，异步和并发的实现是依据线程、任务来实现的。在之前《C# 基础知识系列- 12 任务和多线程》里大概介绍了一下线程和任务，我们知道线程本身是没法返回数据的，它与主线程进行数据交互的过程十分需要注意线程安全。而任务可以返回数据，不需要像线程一样小心翼翼地与主线程进行数据交互。任务有一个优点，它比线程更轻量，所以在当前环境下我们可以试试任务。</p>
+<p>当然，线程也有优点，那就是线程的运行环境相对更封闭一点，它能完成一个长的大型运算。</p>
+<p>那么继续上一篇的内容，先引用 ：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Threading.Tasks;</span><br></pre></td></tr></table></figure>
+
+<p>先提取一组根据可枚举目录集合创建任务组并取得结果的方法：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Dictionary&lt;<span class="keyword">string</span>,List&lt;<span class="keyword">string</span>&gt;&gt; OverDirectories(IEnumerable&lt;DirectoryInfo&gt; directories)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> tasks = directories.Select(dir =&gt; Task.Run(()=&gt;OverDirectories(dir))).ToArray();</span><br><span class="line">    Task.WaitAll(tasks);<span class="comment">// 这行的意思是等待所有任务完成</span></span><br><span class="line">    <span class="keyword">return</span> Concat(tasks.Select(t=&gt;t.Result).ToArray());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后改造原有的OverDirectories方法：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Dictionary&lt;<span class="keyword">string</span>,List&lt;<span class="keyword">string</span>&gt;&gt; OverDirectories(DirectoryInfo rootDirectory)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(<span class="string">$"正在遍历目录：<span class="subst">&#123;rootDirectory.FullName&#125;</span>"</span>);</span><br><span class="line">    <span class="keyword">var</span> dict = <span class="keyword">new</span> Dictionary&lt;<span class="keyword">string</span>, List&lt;<span class="keyword">string</span>&gt;&gt;();</span><br><span class="line">    IEnumerable&lt;FileInfo&gt; files = <span class="keyword">new</span> List&lt;FileInfo&gt;();</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        files = rootDirectory.EnumerateFiles();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span>(Exception e)</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$"错误信息：<span class="subst">&#123;e&#125;</span>"</span>);<span class="comment">//打印错误信息</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span>(<span class="keyword">var</span> file <span class="keyword">in</span> files)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> key = Path.GetFileNameWithoutExtension(file.Name);</span><br><span class="line">        <span class="keyword">if</span>(!dict.ContainsKey(key))</span><br><span class="line">        &#123;</span><br><span class="line">            dict[key] = <span class="keyword">new</span> List&lt;<span class="keyword">string</span>&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">        dict[key].Add(file.FullName);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> dirs = rootDirectory.EnumerateDirectories();</span><br><span class="line">        <span class="keyword">return</span> Concat(dict, OverDirectories(dirs));<span class="comment">// 采用线程版的方法进行遍历</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (System.Exception e)</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$"错误信息：<span class="subst">&#123;e&#125;</span>"</span>);<span class="comment">//打印错误信息</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dict;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="1-2-数据复用"><a href="#1-2-数据复用" class="headerlink" title="1.2 数据复用"></a>1.2 数据复用</h2><p>理想状态下，我们的数据应该是保存在数据库的，但因为数据库的操作是在下一系列的教程中，所以目前只能舍弃这个设想。</p>
+<p>那么，利用现有方式，我们可以使用文件作为缓存的方式，也就是说把数据保存在文件里，在需要的时候从文件中读取出来。这时候就需要一组操作文件的方法。</p>
+<p>首先，声明一个静态变量：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">readonly</span> <span class="keyword">string</span> TempFile = <span class="string">"temp.txt"</span>;</span><br></pre></td></tr></table></figure>
+
+<p>然后编写读取、存放数据的方法：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">WriteLinesToTemp</span>(<span class="params">List&lt;<span class="keyword">string</span>&gt; lines</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    File.AppendAllLines(TempFile, lines);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;<span class="keyword">string</span>&gt; <span class="title">Search</span>(<span class="params"><span class="keyword">string</span> file</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> lines = File.ReadLines(file);</span><br><span class="line">    <span class="keyword">var</span> results = lines.Where(line=&gt;Path.GetFileNameWithoutExtension(line).Contains(file));</span><br><span class="line">    <span class="keyword">return</span> results.ToList();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这时候在文件中存放的都是路径文件，所以需要重新修改遍历文件路径的方法，只保留路径：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;<span class="keyword">string</span>&gt; <span class="title">OverDirectories</span>(<span class="params">DirectoryInfo rootDirectory</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Console.WriteLine(<span class="string">$"正在遍历目录：<span class="subst">&#123;rootDirectory.FullName&#125;</span>"</span>);</span><br><span class="line">    List&lt;<span class="keyword">string</span>&gt; files = <span class="keyword">new</span> List&lt;<span class="keyword">string</span>&gt;();</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;    </span><br><span class="line">        files.AddRange(rootDirectory.GetFiles().Select(f=&gt;f.FullName).ToList());</span><br><span class="line">        Console.WriteLine(<span class="string">$"在目录：<span class="subst">&#123;rootDirectory.FullName&#125;</span> 下 找到 文件：<span class="subst">&#123;files.Count&#125;</span> 个"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span>(Exception e)</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$"加载目录：<span class="subst">&#123;rootDirectory.FullName&#125;</span> 中\t错误信息：<span class="subst">&#123;e&#125;</span>"</span>);<span class="comment">//打印错误信息</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> dirs = rootDirectory.GetDirectories();</span><br><span class="line">        OverDirectories(dirs);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (System.Exception e)</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$"在下探目录<span class="subst">&#123;rootDirectory.FullName&#125;</span>时发生错误：<span class="subst">&#123;e&#125;</span>"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> files;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">OverDirectories</span>(<span class="params">IEnumerable&lt;DirectoryInfo&gt; directories</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> tasks =<span class="keyword">new</span> List&lt;Task&lt;List&lt;<span class="keyword">string</span>&gt;&gt;&gt;( directories.Select(dir =&gt; Task.Run(()=&gt;OverDirectories(dir))));</span><br><span class="line">    <span class="keyword">while</span>(tasks.Any())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> completeds = tasks.Where(t=&gt;t.IsCompleted).ToList(); <span class="comment">// 提取所有已完成的任务</span></span><br><span class="line">        <span class="keyword">foreach</span>(<span class="keyword">var</span> t <span class="keyword">in</span> completeds)</span><br><span class="line">        &#123;</span><br><span class="line">            WriteLinesToTemp(t.Result);<span class="comment">// 保存文件列表</span></span><br><span class="line">            tasks.Remove(t);<span class="comment">//移除已处理的任务</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后修改主方法，设置启动时遍历路径的规则：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!File.Exists(TempFile))<span class="comment">// 缓存文件存在，则认为上次已经遍历成功了</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> drivers = GetDrivers();</span><br><span class="line">        OverDirectories(drivers);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Console.WriteLine(<span class="string">"请输入要查询的文件名："</span>);</span><br><span class="line">    <span class="keyword">var</span> search = Console.ReadLine().Trim();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="1-3-循环使用并设置退出条件"><a href="#1-3-循环使用并设置退出条件" class="headerlink" title="1.3 循环使用并设置退出条件"></a>1.3 循环使用并设置退出条件</h2><p>设置用户输入q或Q的时候退出程序，这时候就需要改造Main方法了：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Console.WriteLine(<span class="string">"文件查询小工具启动了……"</span>);</span><br><span class="line">    <span class="keyword">if</span>(!File.Exists(TempFile))</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">"尚未加载缓存记录，数据加载中……"</span>);</span><br><span class="line">        <span class="keyword">var</span> drivers = GetDrivers();</span><br><span class="line">        OverDirectories(drivers);</span><br><span class="line">        Console.WriteLine(<span class="string">"数据加载完成"</span>);</span><br><span class="line">        Thread.Sleep(<span class="number">500</span>);</span><br><span class="line">        Console.Clear();<span class="comment">// 清除控制台</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">"请输入要查询的文件名(输入q/Q 退出)："</span>);</span><br><span class="line">        <span class="keyword">var</span> search = Console.ReadLine().Trim();<span class="comment">// 去除多余的空白字符</span></span><br><span class="line">        <span class="keyword">if</span>(search == <span class="string">"q"</span> || search == <span class="string">"Q"</span>)<span class="comment">//添加退出条件</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Console.WriteLine(<span class="string">"查询中……"</span>);</span><br><span class="line">        <span class="keyword">var</span> results = Search(search);</span><br><span class="line">        Console.WriteLine(<span class="string">"查询结果："</span>);</span><br><span class="line">        <span class="keyword">foreach</span>(<span class="keyword">var</span> r <span class="keyword">in</span> results)</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(r);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    Console.WriteLine(<span class="string">"程序已退出！"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在main 方法里加了很多提示语句，以方便使用。</p>
+<h1 id="2-总结"><a href="#2-总结" class="headerlink" title="2. 总结"></a>2. 总结</h1><p>以上是第一次实战课的所有内容。欢迎各位小伙伴们踊跃讨论。这个小工具并不完善，但是随着我们对.net core的了解和深入就会写的得心应手了。</p>
+
+    
+
+    
+    
+
+    
+    
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/csharp/" class="article-tag-list-link color3">C#</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/csharp/base/" class="article-tag-list-link color5">基础知识</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/csharp/base/action/" class="article-tag-list-link color3">实战</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/csharp/base/action/47051.html">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-C-基础知识系列-17-实战篇-编写一个小工具（1）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/csharp/base/action/33498.html" target="_blank">C# 基础知识系列- 17 实战篇 编写一个小工具（1）</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/csharp/base/action/33498.html" class="archive-article-date">
+        <time datetime="2020-05-07T16:41:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-08</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>这是对C# 基础系列的一个总结，现在我们利用之前学到的知识做一个小小的工具来给我们使用。</p>
+<p>如果有看过IO篇的小伙伴，应该有印象。当时我提过一个场景描述，我们在平时使用系统的时候，经常会为了找某个文件的位置而烦恼。那么我们现在尝试写一个控制台程序来帮助我们找文件的具体位置。</p>
+    
+    <a class="article-more-a" href="/csharp/base/action/33498.html#more">more >></a>
+    
+    
+
+    
+    
+
+    
+    
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/csharp/" class="article-tag-list-link color3">C#</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/csharp/base/" class="article-tag-list-link color5">基础知识</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/csharp/base/action/" class="article-tag-list-link color3">实战</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/csharp/base/action/33498.html">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-C-基础知识系列-16-开发工具篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1093,221 +1356,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-C-基础知识系列-13-常见类库介绍（二）时间日期" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/csharp/base/63386.html" target="_blank">C# 基础知识系列- 13 常见类库介绍（二）时间日期</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/csharp/base/63386.html" class="archive-article-date">
-        <time datetime="2020-04-24T22:04:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-25</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>上一篇内容介绍了Console类和Math类，这篇内容着重介绍一下C#中时间日期的处理方式。</p>
-<blockquote>
-<p>上一篇勘误： 上一篇中关于静态类没有构造函数，这一表述有误。正确的说法是C#中静态类不包含常规构造函数，但可以添加一个静态构造函数。<br>静态构造函数与普通普通构造函数的区别是，静态构造函数没有访问修饰符，即访问修饰符是默认的，且静态构造函数只能是无参的，并添加 static 修饰符。</p>
-</blockquote>
-    
-    <a class="article-more-a" href="/csharp/base/63386.html#more">more >></a>
-    
-    
-
-    
-    
-
-    
-    
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C#基础知识</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/csharp/" class="article-tag-list-link color3">C#</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/csharp/base/" class="article-tag-list-link color5">基础知识</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/csharp/base/63386.html">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-C-基础知识系列-13-常见类库介绍" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/csharp/base/13983.html" target="_blank">C# 基础知识系列- 13 常见类库介绍（一）</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/csharp/base/13983.html" class="archive-article-date">
-        <time datetime="2020-04-23T17:56:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-24</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>每篇一个前言，介绍一下这一篇的内容。之前的内容都是针对某些知识点进行的介绍，这篇内容介绍一下实际开发中常用的一些类和命名空间。</p>
-    
-    <a class="article-more-a" href="/csharp/base/13983.html#more">more >></a>
-    
-    
-
-    
-    
-
-    
-    
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C#基础知识</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/csharp/" class="article-tag-list-link color3">C#</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/csharp/base/" class="article-tag-list-link color5">基础知识</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/csharp/base/13983.html">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &gt;</a>
@@ -1502,6 +1550,14 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">IT 图谱</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring</a>
               </li>
              
@@ -1511,18 +1567,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Spring Cloud</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">IT 图谱</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1538,7 +1582,15 @@ var _hmt = _hmt || [];
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">jupyter</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">C# 基础数据类型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1547,10 +1599,6 @@ var _hmt = _hmt || [];
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">日常工作系列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
               </li>
              
               <li class="article-tag-list-item">

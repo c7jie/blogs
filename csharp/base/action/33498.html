@@ -8,23 +8,35 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="canonical" href="https://blogs.attachie.club">
   <link rel="dns-prefetch" href="https://blogs.attachie.club">
-  <title>归档：: 2020/5 | 高先生小屋-高先生小屋, C#,CSharp,.net,Java,Python,技术站</title>
+  <title>C# 基础知识系列- 17 实战篇 编写一个小工具（1） | 高先生小屋-高先生小屋, C#,CSharp,.net,Java,Python,技术站</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="高先生小屋, C#,CSharp,.net,Java,Python,技术站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="高先生小屋">
-<meta property="og:url" content="https://blogs.attachie.club/archives/2020/05/index.html">
+  <meta name="description" content="0. 前言这是对C# 基础系列的一个总结，现在我们利用之前学到的知识做一个小小的工具来给我们使用。 如果有看过IO篇的小伙伴，应该有印象。当时我提过一个场景描述，我们在平时使用系统的时候，经常会为了找某个文件的位置而烦恼。那么我们现在尝试写一个控制台程序来帮助我们找文件的具体位置。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C# 基础知识系列- 17 实战篇 编写一个小工具（1）">
+<meta property="og:url" content="https://blogs.attachie.club/csharp/base/action/33498.html">
 <meta property="og:site_name" content="高先生小屋">
-<meta property="og:description" content="高先生小屋, C#,CSharp,.net,Java,Python,技术站">
+<meta property="og:description" content="0. 前言这是对C# 基础系列的一个总结，现在我们利用之前学到的知识做一个小小的工具来给我们使用。 如果有看过IO篇的小伙伴，应该有印象。当时我提过一个场景描述，我们在平时使用系统的时候，经常会为了找某个文件的位置而烦恼。那么我们现在尝试写一个控制台程序来帮助我们找文件的具体位置。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://images.attachie.club/image-20200506213821025.png">
+<meta property="og:image" content="http://images.attachie.club/image-20200506214124769.png">
+<meta property="og:image" content="http://images.attachie.club/image-20200506214423649.png">
+<meta property="og:image" content="http://images.attachie.club/image-20200506220949536.png">
+<meta property="og:image" content="http://images.attachie.club/FgpoPWtovQ3L0-NYTfmotBO4ealW">
+<meta property="og:image" content="http://images.attachie.club/FgEMSPrYwXKKcTziYiRzS1pbntBC">
+<meta property="og:image" content="http://images.attachie.club/FsIH5wtQq5QAqIkA7v6BAdxzrKVI">
+<meta property="og:image" content="http://images.attachie.club/Fs0K4xN5lQJIdUWdmlo38ZXzU_mn">
+<meta property="og:image" content="http://images.attachie.club/image-20200506224209939.png">
+<meta property="og:image" content="http://images.attachie.club/image-20200506234510641.png">
+<meta property="article:published_time" content="2020-05-07T16:41:00.000Z">
+<meta property="article:modified_time" content="2020-05-08T00:42:31.937Z">
 <meta property="article:author" content="Mr.Gao">
 <meta property="article:tag" content="C#">
-<meta property="article:tag" content="基础知识">
-<meta property="article:tag" content="Python">
-<meta property="article:tag" content="编程技术">
+<meta property="article:tag" content="IO">
+<meta property="article:tag" content="实战入门">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://images.attachie.club/image-20200506213821025.png">
   
     <link rel="alternative" href="/atom.xml" title="高先生小屋" type="application/atom+xml">
   
@@ -235,103 +247,182 @@ var _hmt = _hmt || [];
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-C-基础知识系列-17-实战篇-编写一个小工具（1）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/csharp/base/action/47051.html" class="archive-article-date">
-        <time datetime="2020-05-07T16:44:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-08</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/csharp/base/action/47051.html" target="_blank">C# 基础知识系列- 17 小工具优化</a>
   
+    <h1 class="article-title" itemprop="name">
+      C# 基础知识系列- 17 实战篇 编写一个小工具（1）
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/csharp/" class="article-tag-list-link color3">C#</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/csharp/base/" class="article-tag-list-link color5">基础知识</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/csharp/base/action/" class="article-tag-list-link color3">实战</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/csharp/base/action/33498.html" class="archive-article-date">
         <time datetime="2020-05-07T16:41:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-08</time>
 </a>
 
-        </div>
-    	 
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/csharp/base/action/33498.html" target="_blank">C# 基础知识系列- 17 实战篇 编写一个小工具（1）</a>
   
-    </h1>
-  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">2.1k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">8分</span>
+    </span>
+  </span>
+</div>
 
 
-        <div class="article-info info-on-right">
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0. 前言"></a>0. 前言</h1><p>这是对C# 基础系列的一个总结，现在我们利用之前学到的知识做一个小小的工具来给我们使用。</p>
+<p>如果有看过IO篇的小伙伴，应该有印象。当时我提过一个场景描述，我们在平时使用系统的时候，经常会为了找某个文件的位置而烦恼。那么我们现在尝试写一个控制台程序来帮助我们找文件的具体位置。</p>
+<a id="more"></a>
+<h1 id="1-分析"><a href="#1-分析" class="headerlink" title="1. 分析"></a>1. 分析</h1><p>好，大家应该初步了解了需求内容。然后让我们来做一个简单的需求分析：</p>
+<ol>
+<li>简单分析一下需求包括哪些功能点</li>
+<li>规划各个功能点的实现方式</li>
+</ol>
+<p>嗯，理论上讲还有一大堆的步骤，但因为是个练手的小项目就不扯那么多没用的了。简单来讲就是，分两步：</p>
+<ol>
+<li>抓取系统可以访问的所有文件，并保存其全路径</li>
+<li>根据输入的参数查询文件的全路径</li>
+</ol>
+<p>需求分析完了，然后寻找可以实现的技术，我们现有的技术有IO、文件/路径操作、任务模式等技术，那么可以供我们选择的技术一目了然了：通过文件/目录/路径API访问所有的文件目录，使用字典保存，然后使用Linq查询文件所在目录。</p>
+<p>OK，需求分析完了，技术也确认了。那么我们现在开始吧，小伙伴们跟紧了哦，车速不快的。</p>
+<h1 id="2-开始"><a href="#2-开始" class="headerlink" title="2. 开始"></a>2. 开始</h1><p>这里简单演示一下如何用Rider和VSCode、Visual Studio2019创建项目。</p>
+<h2 id="2-1-创建一个名为-FileFinder的项目"><a href="#2-1-创建一个名为-FileFinder的项目" class="headerlink" title="2.1. 创建一个名为 FileFinder的项目"></a>2.1. 创建一个名为 FileFinder的项目</h2><p><strong>a.使用Rider：</strong></p>
+<p>点击箭头所指方向：</p>
+<p><img src="http://images.attachie.club/image-20200506213821025.png" alt="image-20200506213821025"></p>
+<p>先在左侧选择Console Application，然后修改 Project name，最后修改 Solution Directory为自己的目录：</p>
+<p><img src="http://images.attachie.club/image-20200506214124769.png" alt="image-20200506214124769"></p>
+<p>然后点击 Create，创建完成结果如下：</p>
+<p><img src="http://images.attachie.club/image-20200506214423649.png" alt="image-20200506214423649"></p>
+<p>Rider创建项目的步骤在Windows、Linux、Mac三个系统都是一样的。</p>
+<p><strong>b. 使用VS Code创建项目</strong></p>
+<p>使用VS Code创建项目与Rider和Visual Studio有所不同，步骤比较繁琐：</p>
+<p>先在合适的文件夹下创建一个fileFinder目录，并在fileFinder目录下打开命令行，输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dotnet new sln -n fileFinder <span class="comment"># 创建一个名为 fileFinder 的解决方案</span></span><br><span class="line">dotnet new console -n fileFinder <span class="comment"># 创建一个名为 fileFinder的控制台程序</span></span><br><span class="line">dotnet sln add fileFinder <span class="comment"># 把 fileFinder的项目添加到fileFinder的解决方案里</span></span><br></pre></td></tr></table></figure>
+
+<p>最终结果应该是这样的：</p>
+<p><img src="http://images.attachie.club/image-20200506220949536.png" alt="image-20200506220949536"></p>
+<p><strong>c.使用 Visual Studio</strong></p>
+<p><img src="http://images.attachie.club/FgpoPWtovQ3L0-NYTfmotBO4ealW" alt="file"></p>
+<p>选择【创建新项目】<br><img src="http://images.attachie.club/FgEMSPrYwXKKcTziYiRzS1pbntBC" alt="file"><br>注意框住地方的选择，选控制台程序，然后点击下一步<br><img src="http://images.attachie.club/FsIH5wtQq5QAqIkA7v6BAdxzrKVI" alt="file"><br>填写项目名称、路径，点击创建<br><img src="http://images.attachie.club/Fs0K4xN5lQJIdUWdmlo38ZXzU_mn" alt="file"></p>
+<h2 id="2-2-开始编写程序"><a href="#2-2-开始编写程序" class="headerlink" title="2.2 开始编写程序"></a>2.2 开始编写程序</h2><p>现在我们创建完成了一个项目，然后可以开始编写我们的程序了。</p>
+<p>首先创建一个遍历所有目录的方法：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Dictionary&lt;<span class="keyword">string</span>,List&lt;<span class="keyword">string</span>&gt;&gt; OverDirectories()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在我们有一个问题，因为Windows的特殊性，目录结构分为了<strong>磁盘:\文件夹</strong>这种形式，我们没法通过设置一个根目录去遍历，这时候就要借助一下官方文档了。通过查阅API，我们发现一个类：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public sealed class DriveInfo : System.Runtime.Serialization.ISerializable//提供对有关驱动器的信息的访问。</span><br></pre></td></tr></table></figure>
+
+<p>有一个方法：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> System.IO.<span class="function">DriveInfo[] <span class="title">GetDrives</span> (<span class="params"></span>)</span>;<span class="comment">// 检索计算机上的所有逻辑驱动器的驱动器名称。</span></span><br></pre></td></tr></table></figure>
+
+<p>再看一下属性：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> Name &#123; <span class="keyword">get</span>; &#125;<span class="comment">// 获取驱动器的名称，如 C:\。</span></span><br><span class="line"><span class="keyword">public</span> System.IO.DirectoryInfo RootDirectory &#123; <span class="keyword">get</span>; &#125;<span class="comment">// 获取驱动器的根目录。</span></span><br></pre></td></tr></table></figure>
+
+<p>初步查看满足我们的需要，先在Program.cs的头添加命名空间引用：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System.IO;</span><br></pre></td></tr></table></figure>
+
+<p>表示在这个代码文件中会使用这个命名空间的类或者结构体等元素。</p>
+<p>在项目中编写一个方法：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">GetDrivers</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> drives = DriveInfo.GetDrives();</span><br><span class="line">    <span class="keyword">foreach</span>(<span class="keyword">var</span> drive <span class="keyword">in</span> drives)</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$"驱动器名称：<span class="subst">&#123;drive.Name&#125;</span>:\t <span class="subst">&#123;drive.RootDirectory&#125;</span>"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后修改Main方法为：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    GetDrivers();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行程序，下图是Linux系统的打印结果：（Rider/Visual Studio的运行程序快捷键是F5）</p>
+<p><img src="http://images.attachie.club/image-20200506224209939.png" alt="image-20200506224209939"></p>
+<p>经过完美符合我们的需求，修改GetDrivers方法，使其可以返回所有驱动器的根目录：</p>
+<p>先引入以下命名空间的引用：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Linq;<span class="comment">// Linq的支持</span></span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;<span class="comment">//泛型集合的支持</span></span><br></pre></td></tr></table></figure>
+
+<p>修改方法如下：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;DirectoryInfo&gt; <span class="title">GetDrivers</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> drives = DriveInfo.GetDrives();</span><br><span class="line">    <span class="keyword">return</span> drives.Select(p=&gt;p.RootDirectory).ToList();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后回到方法OverDirectories里，先获取所有的驱动器，遍历所有驱动器下的所有目录和文件，之后对遍历结果归类：</p>
+<p>修改OverrDirectories方法：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Dictionary&lt;<span class="keyword">string</span>,List&lt;<span class="keyword">string</span>&gt;&gt; OverDirectories(DirectoryInfo rootDirectory)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> dict = <span class="keyword">new</span> Dictionary&lt;<span class="keyword">string</span>, List&lt;<span class="keyword">string</span>&gt;&gt;();<span class="comment">// 创建一个保存数据的 字典类型</span></span><br><span class="line">    <span class="keyword">foreach</span>(<span class="keyword">var</span> file <span class="keyword">in</span> rootDirectory.EnumerateFiles()) <span class="comment">//枚举当前目录下的所有文件</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> key = Path.GetFileNameWithoutExtension(file.Name); <span class="comment">//获取无扩展名的文件名</span></span><br><span class="line">        <span class="keyword">if</span>(!dict.ContainsKey(key)) <span class="comment">//检查dict是否存放过 文件名，如果没有，则创建一个列表，如果有则在列表中添加一条文件的全路径</span></span><br><span class="line">        &#123;</span><br><span class="line">            dict[key] = <span class="keyword">new</span> List&lt;<span class="keyword">string</span>&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">        dict[key].Add(file.FullName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 枚举当前目录的子目录，递归调用该方法</span></span><br><span class="line">    <span class="keyword">var</span> dirs = rootDirectory.EnumerateDirectories().Select(OverDirectories); </span><br><span class="line">    <span class="keyword">foreach</span>(<span class="keyword">var</span> dir <span class="keyword">in</span> dirs)<span class="comment">//处理返回的字典枚举，将数据合并到当前dict变量中</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">foreach</span>(<span class="keyword">var</span> key <span class="keyword">in</span> dir.Keys)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(!dict.ContainsKey(key))</span><br><span class="line">            &#123;</span><br><span class="line">                dict[key] = <span class="keyword">new</span> List&lt;<span class="keyword">string</span>&gt;();</span><br><span class="line">            &#125;</span><br><span class="line">            dict[key].AddRange(dir[key]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 返回结果</span></span><br><span class="line">    <span class="keyword">return</span> dict;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们简单测试一下，修改Main方法：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> drivers = GetDrivers();</span><br><span class="line">    <span class="keyword">var</span> results = OverDirectories(drivers[<span class="number">0</span>]);</span><br><span class="line">    Console.WriteLine(results);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>嗯，如果不出意外的话，你应该能得到类似如下的提示：</p>
+<p><img src="http://images.attachie.club/image-20200506234510641.png" alt="image-20200506234510641"></p>
+<p>这是因为在系统中（不管哪种系统）会有一些文件或者目录是我们没有权限访问的，这时候就必须用try/catch处理这些没有访问权限的目录和文件。因为我们平时使用不会 把文件放到这些目录下面，所以我们可以简单的略过这些目录。</p>
+<p>同时观察一下，GetDrivers 返回的是一组DirectoryInfo实例，而OverDirectories每次处理一个目录，然后返回一个字典集合，所以我们需要整合这些集合，但我们在OverDirectories里编写过相似的代码，为了减少重复代码的编写，提取这部分代码为一个方法：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Dictionary&lt;<span class="keyword">string</span>,List&lt;<span class="keyword">string</span>&gt;&gt; Concat(<span class="keyword">params</span> Dictionary&lt;<span class="keyword">string</span>,List&lt;<span class="keyword">string</span>&gt;&gt;[] dicts)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> dict = <span class="keyword">new</span> Dictionary&lt;<span class="keyword">string</span>,List&lt;<span class="keyword">string</span>&gt;&gt;();</span><br><span class="line">    <span class="keyword">foreach</span>(<span class="keyword">var</span> dir <span class="keyword">in</span> dicts)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">foreach</span>(<span class="keyword">var</span> key <span class="keyword">in</span> dir.Keys)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(!dict.ContainsKey(key))</span><br><span class="line">            &#123;</span><br><span class="line">                dict[key] = <span class="keyword">new</span> List&lt;<span class="keyword">string</span>&gt;();</span><br><span class="line">            &#125;</span><br><span class="line">            dict[key].AddRange(dir[key]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dict;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>params 是C#可变参数列表关键字，声明方式： params T[] values。表示方法可以接收任意个T类型的参数，方法中接到的是一个数组</p>
+</blockquote>
+<p>继续改造 OverDirectories方法，增加异常处理：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Dictionary&lt;<span class="keyword">string</span>,List&lt;<span class="keyword">string</span>&gt;&gt; OverDirectories(DirectoryInfo rootDirectory)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> dict = <span class="keyword">new</span> Dictionary&lt;<span class="keyword">string</span>, List&lt;<span class="keyword">string</span>&gt;&gt;();</span><br><span class="line">    IEnumerable&lt;FileInfo&gt; files = <span class="keyword">new</span> List&lt;FileInfo&gt;();</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        files = rootDirectory.EnumerateFiles();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span>(Exception e)</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$"错误信息：<span class="subst">&#123;e&#125;</span>"</span>);<span class="comment">//打印错误信息</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span>(<span class="keyword">var</span> file <span class="keyword">in</span> files)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> key = Path.GetFileNameWithoutExtension(file.Name);</span><br><span class="line">        <span class="keyword">if</span>(!dict.ContainsKey(key))</span><br><span class="line">        &#123;</span><br><span class="line">            dict[key] = <span class="keyword">new</span> List&lt;<span class="keyword">string</span>&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">        dict[key].Add(file.FullName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> dicts = rootDirectory.EnumerateDirectories().Select(OverDirectories);    </span><br><span class="line">        <span class="keyword">return</span> Concat(dicts.Append(dict).ToArray());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (System.Exception e)</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$"错误信息：<span class="subst">&#123;e&#125;</span>"</span>);<span class="comment">//打印错误信息</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dict;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后修改 Main方法，使其支持使用用户输入的字符串进行查询：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> drivers = GetDrivers();</span><br><span class="line">    <span class="keyword">var</span> results = Concat(drivers.Select(OverDirectories).ToArray());</span><br><span class="line">    Console.WriteLine(<span class="string">"请输入要查询的文件名："</span>);</span><br><span class="line">    <span class="keyword">var</span> search = Console.ReadLine().Trim();</span><br><span class="line">    <span class="keyword">var</span> keys = results.Keys.Where(p=&gt;p.Contains(search));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span>(<span class="keyword">var</span> key <span class="keyword">in</span> keys)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> list = results[key];</span><br><span class="line">        Console.WriteLine(<span class="string">"查找到路径是："</span>);</span><br><span class="line">        <span class="keyword">foreach</span>(<span class="keyword">var</span> path <span class="keyword">in</span> list)</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(path);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h1><p>代码进行到这里了，可以说基本功能已经完成。如果有小伙伴尝试使用示例代码的话，可能会遇到各种问题，下一篇继续为大家在现有知识基础上做优化，让它成为一个真正意义上可以使用的小工具。</p>
+
+    
+
+    
+    
+
+    
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Mr.Gao
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https:/blogs.attachie.club/csharp/base/action/33498.html" title="C# 基础知识系列- 17 实战篇 编写一个小工具（1）" target="_blank">https:/blogs.attachie.club/csharp/base/action/33498.html</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -343,7 +434,7 @@ var _hmt = _hmt || [];
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -364,308 +455,151 @@ var _hmt = _hmt || [];
 	</div>
 
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://blogs.attachie.club/csharp/base/action/33498.html" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/csharp/base/24139.html" class="archive-article-date">
-        <time datetime="2020-05-06T14:23:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-06</time>
-</a>
 
+
+<nav id="article-nav">
+  
+    <a href="/csharp/base/action/47051.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          C# 基础知识系列- 17 小工具优化
+        
+      </div>
+    </a>
+  
+  
+    <a href="/csharp/base/24139.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C# 基础知识系列- 16 开发工具篇</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/csharp/base/24139.html" target="_blank">C# 基础知识系列- 16 开发工具篇</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/csharp/" class="article-tag-list-link color3">C#</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/csharp/base/" class="article-tag-list-link color5">基础知识</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0. 前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-分析"><span class="toc-number">2.</span> <span class="toc-text">1. 分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-开始"><span class="toc-number">3.</span> <span class="toc-text">2. 开始</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-创建一个名为-FileFinder的项目"><span class="toc-number">3.1.</span> <span class="toc-text">2.1. 创建一个名为 FileFinder的项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-开始编写程序"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 开始编写程序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-总结"><span class="toc-number">4.</span> <span class="toc-text">3. 总结</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+  <div id="giteement-ctn"></div>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/csharp/base/7162.html" class="archive-article-date">
-        <time datetime="2020-05-04T21:49:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-05</time>
-</a>
-
-        </div>
-    	 
+    <link rel="stylesheet" href="/lib/default.css">
+    <script src="/lib/giteement.browser.js"></script>
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/csharp/base/7162.html" target="_blank">C# 基础知识系列- 15 异常处理篇</a>
-  
-    </h1>
-  
+  <script>
+  <!-- id: "C# 基础知识系列- 17 实战篇 编写一个小工具（1）" -->
+  var giteement = new Giteement({
+    id: '20200508004100',
+    owner: 'c7jie',
+    repo: 'hexo-tips',
+    backcall_uri: 'http://blogs.attachie.club/',
+    oauth_uri: 'https://cors-anywhere.herokuapp.com/https://gitee.com/oauth/token',
+    oauth: {
+      client_id: 'f797d99bfca0499590558742f8e7c26173b1466c26085565ca6f07713e3839f7',
+      client_secret: '201054ffe39bb6710abef4230c95ab490c28a62cb6a7c5ef61b56dcedb3b4685'
+    },
+  })
+  giteement.render('giteement-ctn')
+  </script>
 
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/csharp/" class="article-tag-list-link color3">C#</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/csharp/base/" class="article-tag-list-link color5">基础知识</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/csharp/base/17935.html" class="archive-article-date">
-        <time datetime="2020-05-03T15:14:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-03</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/csharp/base/17935.html" target="_blank">C# 基础知识系列- 14 IO篇 流的使用</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">IO</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/csharp/" class="article-tag-list-link color3">C#</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/csharp/base/" class="article-tag-list-link color5">基础知识</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/java/action/21392.html" class="archive-article-date">
-        <time datetime="2020-05-02T07:22:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-02</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/java/action/21392.html" target="_blank">Java Spring Cloud 实战之路-01 框架选型</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Boot</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Spring Cloud</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java/" class="article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/java/action/" class="article-tag-list-link color3">实战</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/csharp/base/38256.html" class="archive-article-date">
-        <time datetime="2020-05-01T03:09:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-01</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/csharp/base/38256.html" target="_blank">C# 基础知识系列- 14 IO篇 文件的操作</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/csharp/" class="article-tag-list-link color3">C#</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/csharp/base/" class="article-tag-list-link color5">基础知识</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -706,8 +640,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
